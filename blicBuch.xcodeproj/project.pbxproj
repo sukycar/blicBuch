@@ -7,25 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A2DB41C23896D810070DAE5 /* BibliothekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DB41B23896D810070DAE5 /* BibliothekViewController.swift */; };
+		0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DB41F238975880070DAE5 /* TabBarViewController.swift */; };
 		0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F4B23806EE800B5A39B /* AppDelegate.swift */; };
 		0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F4D23806EE800B5A39B /* SceneDelegate.swift */; };
-		0A333F5023806EE800B5A39B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F4F23806EE800B5A39B /* ViewController.swift */; };
 		0A333F5323806EE800B5A39B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A333F5123806EE800B5A39B /* Main.storyboard */; };
 		0A333F5623806EE800B5A39B /* blicBuch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F5423806EE800B5A39B /* blicBuch.xcdatamodeld */; };
 		0A333F5823806EFD00B5A39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A333F5723806EFD00B5A39B /* Assets.xcassets */; };
 		0A333F5B23806EFD00B5A39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A333F5923806EFD00B5A39B /* LaunchScreen.storyboard */; };
+		0A8F1FB72381EF2200ABE11F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F1FB62381EF2200ABE11F /* ViewController.swift */; };
+		0ABC0E14238A9C0300874626 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */; };
+		0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC0E15238B106400874626 /* Roboto-Regular.ttf */; };
+		0AE5CF0D238E767200FF0D69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */; };
+		EE22A9E32B4DDACD39052C59 /* Pods_blicBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B566F065704364F24DF7AAE5 /* Pods_blicBuch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A2DB41B23896D810070DAE5 /* BibliothekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibliothekViewController.swift; sourceTree = "<group>"; };
+		0A2DB41F238975880070DAE5 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		0A333F4823806EE800B5A39B /* blicBuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blicBuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A333F4B23806EE800B5A39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A333F4D23806EE800B5A39B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0A333F4F23806EE800B5A39B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A333F5223806EE800B5A39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A333F5523806EE800B5A39B /* blicBuch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = blicBuch.xcdatamodel; sourceTree = "<group>"; };
 		0A333F5723806EFD00B5A39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A333F5A23806EFD00B5A39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A333F5C23806EFD00B5A39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A8F1FB62381EF2200ABE11F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		0ABC0E15238B106400874626 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		0AC2B7F9238DC0BC008D4126 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B566F065704364F24DF7AAE5 /* Pods_blicBuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blicBuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB2D9FA7F625458E4A8D73F9 /* Pods-blicBuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch.debug.xcconfig"; sourceTree = "<group>"; };
+		CBEEA3F2B474DC5D9E874EB5 /* Pods-blicBuch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.release.xcconfig"; path = "Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE22A9E32B4DDACD39052C59 /* Pods_blicBuch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,8 +58,11 @@
 		0A333F3F23806EE800B5A39B = {
 			isa = PBXGroup;
 			children = (
+				0ABC0E12238A97E600874626 /* Fonts */,
 				0A333F4A23806EE800B5A39B /* blicBuch */,
 				0A333F4923806EE800B5A39B /* Products */,
+				FB3E92C83B3C57C0CF99597E /* Pods */,
+				E247282502AADE54DFB039BA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,14 +79,43 @@
 			children = (
 				0A333F4B23806EE800B5A39B /* AppDelegate.swift */,
 				0A333F4D23806EE800B5A39B /* SceneDelegate.swift */,
-				0A333F4F23806EE800B5A39B /* ViewController.swift */,
+				0A2DB41F238975880070DAE5 /* TabBarViewController.swift */,
 				0A333F5123806EE800B5A39B /* Main.storyboard */,
 				0A333F5723806EFD00B5A39B /* Assets.xcassets */,
 				0A333F5923806EFD00B5A39B /* LaunchScreen.storyboard */,
 				0A333F5C23806EFD00B5A39B /* Info.plist */,
 				0A333F5423806EE800B5A39B /* blicBuch.xcdatamodeld */,
+				0A8F1FB62381EF2200ABE11F /* ViewController.swift */,
+				0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */,
+				0A2DB41B23896D810070DAE5 /* BibliothekViewController.swift */,
 			);
 			path = blicBuch;
+			sourceTree = "<group>";
+		};
+		0ABC0E12238A97E600874626 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */,
+				0ABC0E15238B106400874626 /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E247282502AADE54DFB039BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B566F065704364F24DF7AAE5 /* Pods_blicBuch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB3E92C83B3C57C0CF99597E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB2D9FA7F625458E4A8D73F9 /* Pods-blicBuch.debug.xcconfig */,
+				CBEEA3F2B474DC5D9E874EB5 /* Pods-blicBuch.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A333F5F23806EFE00B5A39B /* Build configuration list for PBXNativeTarget "blicBuch" */;
 			buildPhases = (
+				BA9090296C618CFE23F51AE1 /* [CP] Check Pods Manifest.lock */,
 				0A333F4423806EE800B5A39B /* Sources */,
 				0A333F4523806EE800B5A39B /* Frameworks */,
 				0A333F4623806EE800B5A39B /* Resources */,
+				A67DB3D8D121CB32EFE6D26F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,21 +180,71 @@
 			files = (
 				0A333F5B23806EFD00B5A39B /* LaunchScreen.storyboard in Resources */,
 				0A333F5823806EFD00B5A39B /* Assets.xcassets in Resources */,
+				0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */,
+				0ABC0E14238A9C0300874626 /* Roboto-Bold.ttf in Resources */,
 				0A333F5323806EE800B5A39B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A67DB3D8D121CB32EFE6D26F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA9090296C618CFE23F51AE1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-blicBuch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0A333F4423806EE800B5A39B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A333F5023806EE800B5A39B /* ViewController.swift in Sources */,
+				0AE5CF0D238E767200FF0D69 /* LoginViewController.swift in Sources */,
 				0A333F5623806EE800B5A39B /* blicBuch.xcdatamodeld in Sources */,
+				0A8F1FB72381EF2200ABE11F /* ViewController.swift in Sources */,
 				0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */,
 				0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */,
+				0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */,
+				0A2DB41C23896D810070DAE5 /* BibliothekViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +255,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0A333F5223806EE800B5A39B /* Base */,
+				0AC2B7F9238DC0BC008D4126 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -227,6 +328,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -280,12 +382,14 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		0A333F6023806EFE00B5A39B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB2D9FA7F625458E4A8D73F9 /* Pods-blicBuch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -304,6 +408,7 @@
 		};
 		0A333F6123806EFE00B5A39B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBEEA3F2B474DC5D9E874EB5 /* Pods-blicBuch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
