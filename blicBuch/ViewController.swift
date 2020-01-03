@@ -7,87 +7,149 @@
 //
 
 import UIKit
+import MessageUI
 
-class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
+struct Book: Codable {
+    let imageName: String
+    let title: String
+    let authors: [String]
+    let genre: String
+}
+
+class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     
+    private var dataSource:[Book] = []
     
-    var tableContent = ["Login", "Sign up", "DONATE"]
-var alphaTest = 0
+    var tableContent = ["Login", "Sign up", "Contact us", "DONATE"]
+    var tableContent1 = ["Login", "Sign up", "Contact us", "DONATE"]
+    
+
+    var alphaTest = 0
 
     
 
     
-    @IBOutlet weak var table1: UITableView!
-    @IBOutlet weak var upView: UIView!
+
+    @IBOutlet weak var tableView2: UITableView! {
+        didSet {
+            tableView2.delegate = self
+            tableView2.dataSource = self
+            let customCellName = String(describing: CustomCell.self)
+            tableView2.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+        }
+    }
+    @IBOutlet weak var tableView1: UITableView!
     
     @IBOutlet weak var button1: UIButton!
 
     
-    override func viewWillAppear(_ animated: Bool)  {
+    override func viewDidLoad() {
+      
+        generateModel()
+        
         print("hi")
         alphaTest = 0
         if alphaTest == 0 {
-        table1.alpha = 0
-            self.table1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
+        tableView1.alpha = 0
+            self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
         }
          
-       
-        table1.delegate = self
-        table1.dataSource = self
-        table1.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
-        table1.layer.borderWidth = 0.22
-    table1.translatesAutoresizingMaskIntoConstraints = true
+        tableView2.delegate = self
+        tableView2.dataSource = self
+        tableView2.layer.borderColor = UIColor.gray.cgColor
+        tableView2.layer.borderWidth = 0.3
+        tableView1.delegate = self
+        tableView1.dataSource = self
+        tableView1.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        tableView1.layer.borderWidth = 0.22
+    tableView1.translatesAutoresizingMaskIntoConstraints = false
         
+        tableView2.translatesAutoresizingMaskIntoConstraints = false
     }
     
    
+    func generateModel() {
+        dataSource = [
+            Book(imageName: "image1", title: "People Who Eat Darkness: Love, Grief and a Journey into Japan's Shadows", authors: ["Richard Lloyd Parry"], genre: "Crime"),
+            Book(imageName: "image2", title: "In Cold Blood", authors: ["Truman Capote"], genre: "Comedy"),
+            Book(imageName: "image3", title: "And the Sea Will Tell", authors: ["Vinsent Bugliosi", "Bruce Henderson"], genre: "Bibliography & Momories"),
+            Book(imageName: "image4", title: "Midnight in the Garden of Good and Evil: A Savannah Story", authors: ["John Berendt"], genre: "Horror"),
+            Book(imageName: "image5", title: "Tinseltown: Murder, Morphine, and Madness at the Dawn of Hollywood", authors: ["William J. Mann"], genre: "Music"),
+        ]
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        table1 = tableView
-        return tableContent.count
+        var numOfRows = Int()
+        if tableView == tableView1 {
+            numOfRows = tableContent.count
+            print("Tabela 1")
+        }
+        else if tableView == tableView2 {
+            numOfRows = dataSource.count
+            print("Tabela 2")
+        }
+        return numOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell : UITableViewCell?
-        if tableView.tag == 1 {
+        var cell = UITableViewCell()
+        if tableView == tableView1 {
         cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         let cellDonate = UIImage(named: "donate")
         let cellLogIn = UIImage(named: "login")
         let cellRegistration = UIImage(named: "registration")
         let cellLocation = tableContent[indexPath.row]
-        cell!.textLabel?.text = cellLocation
+            cell.textLabel?.text = cellLocation
+            let cellContact = UIImage(named: "contact")
+            
         let aColor = UIColor(hexString: "#5cbff2")
-        cell!.textLabel?.textColor = aColor
+            cell.textLabel?.textColor = aColor
+            let cellContactColored = cellContact?.withTintColor(aColor)
+            
             
             switch indexPath.row {
             case 0:
-                cell!.imageView?.image = cellLogIn
+                cell.imageView?.image = cellLogIn
             case 1:
-                 cell!.imageView?.image = cellRegistration
+                cell.imageView?.image = cellRegistration
             case 2:
-                cell!.imageView?.image = cellDonate
-            cell?.textLabel?.textColor = .orange
+                cell.imageView?.image = cellContactColored
+            case 3:
+                cell.imageView?.image = cellDonate
+                cell.textLabel?.textColor = .orange
             default:
                 print("No cell index")
             }
-            cell?.translatesAutoresizingMaskIntoConstraints = false
-        cell!.selectionStyle = .default
-        cell!.layer.masksToBounds = false
-            cell!.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0.8)
-            cell!.layer.borderWidth = 0.22
-        cell!.textLabel?.font = UIFont(name: "Roboto-Regular", size: 16)
-        
-        } else {
-        print("Druga")
+            cell.translatesAutoresizingMaskIntoConstraints = false
+            cell.selectionStyle = .default
+            cell.layer.masksToBounds = true
+            cell.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0.8)
+            cell.layer.borderWidth = 0.22
+            cell.textLabel?.font = UIFont(name: "Roboto-Regular", size: 16)
+            
+            cell.isUserInteractionEnabled = true
+        } else if tableView == tableView2 {
+           
+            let model = dataSource[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
+            cell.configure(with: model)
+            
         }
-        return cell!
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = table1.frame.size.height / 3
+        var height = CGFloat()
+        if tableView.tag == 1{
+        height = tableView1.frame.size.height / 4
+        } else if tableView.tag == 2{
+            height = 182 /*self.view.frame.size.height / 3*/
+        }
         return height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if indexPath.row == 0 {
             performSegue(withIdentifier: "login", sender: self)
         }
@@ -97,18 +159,27 @@ var alphaTest = 0
             
         }
         if indexPath.row == 2 {
+           
+            
+            self.sendEmail()
+            
+        }
+        if indexPath.row == 3 {
             performSegue(withIdentifier: "donate", sender: self)
         }
+        
     }
+    
+   
     @IBAction func buttonAction(_ sender: Any) {
         
         if alphaTest == 0 {
-            table1.alpha = 1
+            tableView1.alpha = 1
             UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
                 
                 
-                self.table1.transform = CGAffineTransform(translationX: self.table1.frame.size.width, y: 120)
-                self.table1.frame = CGRect(x: 0, y:  self.upView.frame.size.height + 10, width: self.view.frame.size.width, height: 120)
+                self.tableView1.transform = CGAffineTransform(translationX: self.view.frame.size.width, y: 120)
+                self.tableView1.frame = CGRect(x: 0, y: self.button1.center.y + self.button1.frame.size.height, width: self.view.frame.size.width, height: 120)
                 
                 
                 }, completion: nil)
@@ -118,8 +189,8 @@ var alphaTest = 0
             
          UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
         
-        self.table1.transform = CGAffineTransform(translationX: -self.view.frame.size.width, y: -120)
-            self.table1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
+        self.tableView1.transform = CGAffineTransform(translationX: -self.view.frame.size.width, y: -120)
+            self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
         
             self.alphaTest = 0
         }, completion: nil)
@@ -127,6 +198,25 @@ var alphaTest = 0
         }
     }
     
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["sukycar@gmail.com"])
+            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+
+            mail.setSubject("Blic Buch support")
+            
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }// func for sending mail
 }
 
 extension UIColor {
@@ -147,4 +237,6 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }// extension for using HEX code for colors
+    
+    
 }

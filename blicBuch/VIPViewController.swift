@@ -1,19 +1,18 @@
 //
-//  BibliothekViewController.swift
+//  VIPViewController.swift
 //  blicBuch
 //
-//  Created by Vladimir Sukanica on 11/23/19.
-//  Copyright © 2019 sukydeveloper. All rights reserved.
+//  Created by Vladimir Sukanica on 1/2/20.
+//  Copyright © 2020 sukydeveloper. All rights reserved.
 //
 
 import UIKit
 
-class BibliothekViewController: UIViewController {
+class VIPViewController: UIViewController {
 
-    override func viewWillAppear(_ animated: Bool) {
-        
-    
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
     

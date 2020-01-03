@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A2DB41C23896D810070DAE5 /* BibliothekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DB41B23896D810070DAE5 /* BibliothekViewController.swift */; };
+		0A196A3B2396653D00E2DF6C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A196A3A2396653D00E2DF6C /* ContactViewController.swift */; };
 		0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DB41F238975880070DAE5 /* TabBarViewController.swift */; };
 		0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F4B23806EE800B5A39B /* AppDelegate.swift */; };
 		0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F4D23806EE800B5A39B /* SceneDelegate.swift */; };
@@ -15,15 +15,23 @@
 		0A333F5623806EE800B5A39B /* blicBuch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F5423806EE800B5A39B /* blicBuch.xcdatamodeld */; };
 		0A333F5823806EFD00B5A39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A333F5723806EFD00B5A39B /* Assets.xcassets */; };
 		0A333F5B23806EFD00B5A39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A333F5923806EFD00B5A39B /* LaunchScreen.storyboard */; };
+		0A4539B723AE297F009841BB /* BibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4539B623AE297E009841BB /* BibViewController.swift */; };
 		0A8F1FB72381EF2200ABE11F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F1FB62381EF2200ABE11F /* ViewController.swift */; };
+		0A9D202823B285D000C4476F /* GenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D202723B285D000C4476F /* GenreTableViewController.swift */; };
+		0AADA21B23BE925E00648835 /* VIPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADA21A23BE925E00648835 /* VIPViewController.swift */; };
+		0AB93D9C23AFB113006CAE59 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */; };
+		0AB93D9D23AFB113006CAE59 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */; };
 		0ABC0E14238A9C0300874626 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */; };
 		0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC0E15238B106400874626 /* Roboto-Regular.ttf */; };
+		0ADFC2122393E1CB00BB8702 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */; };
+		0AE1955C23956A2600FF42A4 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1955B23956A2600FF42A4 /* CustomCell.swift */; };
+		0AE1955E23956A9800FF42A4 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1955D23956A9700FF42A4 /* CustomCell.xib */; };
 		0AE5CF0D238E767200FF0D69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */; };
 		EE22A9E32B4DDACD39052C59 /* Pods_blicBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B566F065704364F24DF7AAE5 /* Pods_blicBuch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A2DB41B23896D810070DAE5 /* BibliothekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibliothekViewController.swift; sourceTree = "<group>"; };
+		0A196A3A2396653D00E2DF6C /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		0A2DB41F238975880070DAE5 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		0A333F4823806EE800B5A39B /* blicBuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blicBuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A333F4B23806EE800B5A39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,10 +41,18 @@
 		0A333F5723806EFD00B5A39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A333F5A23806EFD00B5A39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A333F5C23806EFD00B5A39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A4539B623AE297E009841BB /* BibViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BibViewController.swift; path = /Users/vsukanica/Documents/aplikacije/blicBuch/blicBuch/blicBuch/BibViewController.swift; sourceTree = "<absolute>"; };
 		0A8F1FB62381EF2200ABE11F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A9D202723B285D000C4476F /* GenreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewController.swift; sourceTree = "<group>"; };
+		0AADA21A23BE925E00648835 /* VIPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPViewController.swift; sourceTree = "<group>"; };
+		0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		0ABC0E15238B106400874626 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		0AC2B7F9238DC0BC008D4126 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0AE1955B23956A2600FF42A4 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		0AE1955D23956A9700FF42A4 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B566F065704364F24DF7AAE5 /* Pods_blicBuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blicBuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2D9FA7F625458E4A8D73F9 /* Pods-blicBuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,17 +93,25 @@
 		0A333F4A23806EE800B5A39B /* blicBuch */ = {
 			isa = PBXGroup;
 			children = (
+				0A9D202723B285D000C4476F /* GenreTableViewController.swift */,
+				0A4539B623AE297E009841BB /* BibViewController.swift */,
+				0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */,
+				0AE1955B23956A2600FF42A4 /* CustomCell.swift */,
+				0AE1955D23956A9700FF42A4 /* CustomCell.xib */,
+				0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */,
+				0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */,
 				0A333F4B23806EE800B5A39B /* AppDelegate.swift */,
 				0A333F4D23806EE800B5A39B /* SceneDelegate.swift */,
 				0A2DB41F238975880070DAE5 /* TabBarViewController.swift */,
 				0A333F5123806EE800B5A39B /* Main.storyboard */,
 				0A333F5723806EFD00B5A39B /* Assets.xcassets */,
+				0AADA21A23BE925E00648835 /* VIPViewController.swift */,
 				0A333F5923806EFD00B5A39B /* LaunchScreen.storyboard */,
 				0A333F5C23806EFD00B5A39B /* Info.plist */,
 				0A333F5423806EE800B5A39B /* blicBuch.xcdatamodeld */,
 				0A8F1FB62381EF2200ABE11F /* ViewController.swift */,
+				0A196A3A2396653D00E2DF6C /* ContactViewController.swift */,
 				0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */,
-				0A2DB41B23896D810070DAE5 /* BibliothekViewController.swift */,
 			);
 			path = blicBuch;
 			sourceTree = "<group>";
@@ -178,6 +202,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AE1955E23956A9800FF42A4 /* CustomCell.xib in Resources */,
+				0AB93D9D23AFB113006CAE59 /* CategoryTableViewCell.xib in Resources */,
 				0A333F5B23806EFD00B5A39B /* LaunchScreen.storyboard in Resources */,
 				0A333F5823806EFD00B5A39B /* Assets.xcassets in Resources */,
 				0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */,
@@ -238,13 +264,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AADA21B23BE925E00648835 /* VIPViewController.swift in Sources */,
 				0AE5CF0D238E767200FF0D69 /* LoginViewController.swift in Sources */,
 				0A333F5623806EE800B5A39B /* blicBuch.xcdatamodeld in Sources */,
+				0ADFC2122393E1CB00BB8702 /* SearchViewController.swift in Sources */,
 				0A8F1FB72381EF2200ABE11F /* ViewController.swift in Sources */,
+				0A9D202823B285D000C4476F /* GenreTableViewController.swift in Sources */,
+				0A4539B723AE297F009841BB /* BibViewController.swift in Sources */,
+				0AE1955C23956A2600FF42A4 /* CustomCell.swift in Sources */,
 				0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */,
 				0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */,
 				0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */,
-				0A2DB41C23896D810070DAE5 /* BibliothekViewController.swift in Sources */,
+				0A196A3B2396653D00E2DF6C /* ContactViewController.swift in Sources */,
+				0AB93D9C23AFB113006CAE59 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
