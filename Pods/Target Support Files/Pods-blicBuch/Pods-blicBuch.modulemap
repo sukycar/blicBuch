@@ -1,0 +1,6 @@
+framework module Pods_blicBuch {
+  umbrella header "Pods-blicBuch-umbrella.h"
+
+  export *
+  module * { export * }
+}
