@@ -7,56 +7,108 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A028F8E242FC520005AEF14 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A028F8D242FC520005AEF14 /* InfoViewController.swift */; };
 		0A196A3B2396653D00E2DF6C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A196A3A2396653D00E2DF6C /* ContactViewController.swift */; };
+		0A1E326C2463D3DB00AD388C /* BooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E326B2463D3DB00AD388C /* BooksService.swift */; };
+		0A1F61CB23D06166005C527A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F61CA23D06166005C527A /* RegisterViewController.swift */; };
+		0A27E3DA24634C0F00DE117C /* FormatterHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A27E3D924634C0F00DE117C /* FormatterHelpers.swift */; };
 		0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DB41F238975880070DAE5 /* TabBarViewController.swift */; };
 		0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F4B23806EE800B5A39B /* AppDelegate.swift */; };
 		0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F4D23806EE800B5A39B /* SceneDelegate.swift */; };
 		0A333F5323806EE800B5A39B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A333F5123806EE800B5A39B /* Main.storyboard */; };
-		0A333F5623806EE800B5A39B /* blicBuch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A333F5423806EE800B5A39B /* blicBuch.xcdatamodeld */; };
 		0A333F5823806EFD00B5A39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A333F5723806EFD00B5A39B /* Assets.xcassets */; };
 		0A333F5B23806EFD00B5A39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A333F5923806EFD00B5A39B /* LaunchScreen.storyboard */; };
-		0A4539B723AE297F009841BB /* BibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4539B623AE297E009841BB /* BibViewController.swift */; };
+		0A3A663D23C12393005BD1CF /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A3A663C23C12393005BD1CF /* Alert.storyboard */; };
+		0A4B2D3423F353AA00D1A5E2 /* BlueCloudCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B2D3223F353A900D1A5E2 /* BlueCloudCell.swift */; };
+		0A4B2D3523F353AA00D1A5E2 /* BlueCloudCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4B2D3323F353AA00D1A5E2 /* BlueCloudCell.xib */; };
+		0A75196724668A150089DED8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A75196624668A150089DED8 /* Router.swift */; };
+		0A75196924668A250089DED8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A75196824668A240089DED8 /* API.swift */; };
+		0A75196D24668DF80089DED8 /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A75196C24668DF80089DED8 /* Enviroment.swift */; };
+		0A7519702466A35A0089DED8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A75196F2466A35A0089DED8 /* Model.swift */; };
+		0A7519722466A8F90089DED8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7519712466A8F90089DED8 /* DataManager.swift */; };
+		0A7F74E82467FE960064AE39 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F74E72467FE960064AE39 /* NetworkingService.swift */; };
+		0A7F74EA246802C20064AE39 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F74E9246802C20064AE39 /* PersistenceService.swift */; };
+		0A8E4F4C249DE7BC00C8B38A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E4F4B249DE7BC00C8B38A /* LoadingViewController.swift */; };
+		0A8E4F50249DEE8F00C8B38A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E4F4F249DEE8F00C8B38A /* NavigationController.swift */; };
 		0A8F1FB72381EF2200ABE11F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8F1FB62381EF2200ABE11F /* ViewController.swift */; };
+		0A93D4FA249E2CCC007AA6C4 /* BibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A93D4F9249E2CCC007AA6C4 /* BibViewController.swift */; };
+		0A93D4FD249E66B2007AA6C4 /* Books+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A93D4FB249E66B2007AA6C4 /* Books+CoreDataProperties.swift */; };
+		0A93D4FE249E66B2007AA6C4 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A93D4FC249E66B2007AA6C4 /* User+CoreDataProperties.swift */; };
+		0A93D501249E66C3007AA6C4 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A93D4FF249E66C2007AA6C4 /* User+CoreDataClass.swift */; };
+		0A93D502249E66C3007AA6C4 /* Books+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A93D500249E66C3007AA6C4 /* Books+CoreDataClass.swift */; };
 		0A9D202823B285D000C4476F /* GenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9D202723B285D000C4476F /* GenreTableViewController.swift */; };
 		0AADA21B23BE925E00648835 /* VIPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AADA21A23BE925E00648835 /* VIPViewController.swift */; };
+		0AB938D82483CD72009A9C0D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB938D62483CD6E009A9C0D /* CustomCell.swift */; };
+		0AB938D92483CD72009A9C0D /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB938D72483CD72009A9C0D /* CustomCell.xib */; };
 		0AB93D9C23AFB113006CAE59 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */; };
 		0AB93D9D23AFB113006CAE59 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */; };
+		0ABB0AB0248C50C6001259F1 /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB0AAF248C50C6001259F1 /* SortModel.swift */; };
 		0ABC0E14238A9C0300874626 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */; };
 		0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC0E15238B106400874626 /* Roboto-Regular.ttf */; };
 		0ADFC2122393E1CB00BB8702 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */; };
-		0AE1955C23956A2600FF42A4 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1955B23956A2600FF42A4 /* CustomCell.swift */; };
-		0AE1955E23956A9800FF42A4 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1955D23956A9700FF42A4 /* CustomCell.xib */; };
 		0AE5CF0D238E767200FF0D69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */; };
-		EE22A9E32B4DDACD39052C59 /* Pods_blicBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B566F065704364F24DF7AAE5 /* Pods_blicBuch.framework */; };
+		0AEEE89123C5CDC700240B90 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEE89023C5CDC700240B90 /* AlertViewController.swift */; };
+		0AEEE89323C5DF1300240B90 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEE89223C5DF1300240B90 /* AlertService.swift */; };
+		0AF1EEA22483EA8F000AB7DC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1EEA12483EA8F000AB7DC /* Colors.swift */; };
+		0AFA045524673AA10096CCCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0AA7BCB1240F97C300A06F6A /* GoogleService-Info.plist */; };
+		0AFA045A24674D010096CCCD /* blicBuch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */; };
+		62A1E8408C0F70917DD89373 /* Pods_blicBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BAC61F3C005B976012EA307 /* Pods_blicBuch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A028F8D242FC520005AEF14 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		0A196A3A2396653D00E2DF6C /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		0A1E326B2463D3DB00AD388C /* BooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksService.swift; sourceTree = "<group>"; };
+		0A1F61CA23D06166005C527A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0A27E3D924634C0F00DE117C /* FormatterHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterHelpers.swift; sourceTree = "<group>"; };
+		0A2C199623F4A45400185D3B /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A2DB41F238975880070DAE5 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		0A333F4823806EE800B5A39B /* blicBuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blicBuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A333F4823806EE800B5A39B /* blitzBuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blitzBuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A333F4B23806EE800B5A39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A333F4D23806EE800B5A39B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0A333F5223806EE800B5A39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0A333F5523806EE800B5A39B /* blicBuch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = blicBuch.xcdatamodel; sourceTree = "<group>"; };
 		0A333F5723806EFD00B5A39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A333F5A23806EFD00B5A39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A333F5C23806EFD00B5A39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A4539B623AE297E009841BB /* BibViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BibViewController.swift; path = /Users/vsukanica/Documents/aplikacije/blicBuch/blicBuch/blicBuch/BibViewController.swift; sourceTree = "<absolute>"; };
+		0A3A663C23C12393005BD1CF /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
+		0A4B2D3223F353A900D1A5E2 /* BlueCloudCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCell.swift; sourceTree = "<group>"; };
+		0A4B2D3323F353AA00D1A5E2 /* BlueCloudCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlueCloudCell.xib; sourceTree = "<group>"; };
+		0A75196624668A150089DED8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		0A75196824668A240089DED8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		0A75196C24668DF80089DED8 /* Enviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
+		0A75196E246690DA0089DED8 /* DEV.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DEV.xcconfig; sourceTree = "<group>"; };
+		0A75196F2466A35A0089DED8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		0A7519712466A8F90089DED8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		0A7F74E72467FE960064AE39 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		0A7F74E9246802C20064AE39 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		0A8E4F4B249DE7BC00C8B38A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		0A8E4F4F249DEE8F00C8B38A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0A8F1FB62381EF2200ABE11F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A93D4F9249E2CCC007AA6C4 /* BibViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibViewController.swift; sourceTree = "<group>"; };
+		0A93D4FB249E66B2007AA6C4 /* Books+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Books+CoreDataProperties.swift"; path = "/Users/vsukanica/Documents/aplikacije/blicBuch/blicBuch 2/blicBuch/Core/Books+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		0A93D4FC249E66B2007AA6C4 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "/Users/vsukanica/Documents/aplikacije/blicBuch/blicBuch 2/blicBuch/Core/User+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		0A93D4FF249E66C2007AA6C4 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0A93D500249E66C3007AA6C4 /* Books+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Books+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0A9D202723B285D000C4476F /* GenreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewController.swift; sourceTree = "<group>"; };
+		0AA7BCB1240F97C300A06F6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0AADA21A23BE925E00648835 /* VIPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPViewController.swift; sourceTree = "<group>"; };
+		0AB938D62483CD6E009A9C0D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		0AB938D72483CD72009A9C0D /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
+		0ABB0AAF248C50C6001259F1 /* SortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
 		0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		0ABC0E15238B106400874626 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		0AC2B7F9238DC0BC008D4126 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		0AE1955B23956A2600FF42A4 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		0AE1955D23956A9700FF42A4 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		B566F065704364F24DF7AAE5 /* Pods_blicBuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blicBuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB2D9FA7F625458E4A8D73F9 /* Pods-blicBuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch.debug.xcconfig"; sourceTree = "<group>"; };
-		CBEEA3F2B474DC5D9E874EB5 /* Pods-blicBuch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.release.xcconfig"; path = "Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch.release.xcconfig"; sourceTree = "<group>"; };
+		0AEEE89023C5CDC700240B90 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		0AEEE89223C5DF1300240B90 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		0AF1EEA12483EA8F000AB7DC /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0AFA0457246747850096CCCD /* blicBuch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = blicBuch.xcdatamodel; sourceTree = "<group>"; };
+		4BAC61F3C005B976012EA307 /* Pods_blicBuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blicBuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74A2C81A382350C0FB9E9A88 /* Pods-blicBuch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.release.xcconfig"; path = "Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch.release.xcconfig"; sourceTree = "<group>"; };
+		768CB1EFB42548EC2B67BC6A /* Pods-blicBuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,28 +116,58 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE22A9E32B4DDACD39052C59 /* Pods_blicBuch.framework in Frameworks */,
+				62A1E8408C0F70917DD89373 /* Pods_blicBuch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A1E326A2463D3AB00AD388C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0A1E326B2463D3DB00AD388C /* BooksService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0A27E3CF2463488F00DE117C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */,
+				0A93D4FB249E66B2007AA6C4 /* Books+CoreDataProperties.swift */,
+				0A93D500249E66C3007AA6C4 /* Books+CoreDataClass.swift */,
+				0A93D4FF249E66C2007AA6C4 /* User+CoreDataClass.swift */,
+				0A93D4FC249E66B2007AA6C4 /* User+CoreDataProperties.swift */,
+				0A7519712466A8F90089DED8 /* DataManager.swift */,
+				0A8E4F4F249DEE8F00C8B38A /* NavigationController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		0A27E3D824634BDE00DE117C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0A27E3D924634C0F00DE117C /* FormatterHelpers.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0A333F3F23806EE800B5A39B = {
 			isa = PBXGroup;
 			children = (
 				0ABC0E12238A97E600874626 /* Fonts */,
 				0A333F4A23806EE800B5A39B /* blicBuch */,
 				0A333F4923806EE800B5A39B /* Products */,
-				FB3E92C83B3C57C0CF99597E /* Pods */,
 				E247282502AADE54DFB039BA /* Frameworks */,
+				AED2E585CE14458DD8E03AD3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		0A333F4923806EE800B5A39B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A333F4823806EE800B5A39B /* blicBuch.app */,
+				0A333F4823806EE800B5A39B /* blitzBuch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,11 +175,18 @@
 		0A333F4A23806EE800B5A39B /* blicBuch */ = {
 			isa = PBXGroup;
 			children = (
+				0A75196B24668DE30089DED8 /* Configuration */,
+				0A751965246689ED0089DED8 /* Network */,
+				0A1E326A2463D3AB00AD388C /* Service */,
+				0A27E3D824634BDE00DE117C /* Extensions */,
+				0A27E3CF2463488F00DE117C /* Core */,
 				0A9D202723B285D000C4476F /* GenreTableViewController.swift */,
-				0A4539B623AE297E009841BB /* BibViewController.swift */,
 				0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */,
-				0AE1955B23956A2600FF42A4 /* CustomCell.swift */,
-				0AE1955D23956A9700FF42A4 /* CustomCell.xib */,
+				0A93D4F9249E2CCC007AA6C4 /* BibViewController.swift */,
+				0A4B2D3223F353A900D1A5E2 /* BlueCloudCell.swift */,
+				0A4B2D3323F353AA00D1A5E2 /* BlueCloudCell.xib */,
+				0AB938D62483CD6E009A9C0D /* CustomCell.swift */,
+				0AB938D72483CD72009A9C0D /* CustomCell.xib */,
 				0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */,
 				0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */,
 				0A333F4B23806EE800B5A39B /* AppDelegate.swift */,
@@ -108,12 +197,41 @@
 				0AADA21A23BE925E00648835 /* VIPViewController.swift */,
 				0A333F5923806EFD00B5A39B /* LaunchScreen.storyboard */,
 				0A333F5C23806EFD00B5A39B /* Info.plist */,
-				0A333F5423806EE800B5A39B /* blicBuch.xcdatamodeld */,
 				0A8F1FB62381EF2200ABE11F /* ViewController.swift */,
 				0A196A3A2396653D00E2DF6C /* ContactViewController.swift */,
 				0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */,
+				0A1F61CA23D06166005C527A /* RegisterViewController.swift */,
+				0A3A663C23C12393005BD1CF /* Alert.storyboard */,
+				0AEEE89023C5CDC700240B90 /* AlertViewController.swift */,
+				0AEEE89223C5DF1300240B90 /* AlertService.swift */,
+				0AA7BCB1240F97C300A06F6A /* GoogleService-Info.plist */,
+				0A028F8D242FC520005AEF14 /* InfoViewController.swift */,
+				0A8E4F4B249DE7BC00C8B38A /* LoadingViewController.swift */,
 			);
 			path = blicBuch;
+			sourceTree = "<group>";
+		};
+		0A751965246689ED0089DED8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0A75196624668A150089DED8 /* Router.swift */,
+				0A75196824668A240089DED8 /* API.swift */,
+				0A75196F2466A35A0089DED8 /* Model.swift */,
+				0A7F74E72467FE960064AE39 /* NetworkingService.swift */,
+				0A7F74E9246802C20064AE39 /* PersistenceService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0A75196B24668DE30089DED8 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				0A75196C24668DF80089DED8 /* Enviroment.swift */,
+				0A75196E246690DA0089DED8 /* DEV.xcconfig */,
+				0AF1EEA12483EA8F000AB7DC /* Colors.swift */,
+				0ABB0AAF248C50C6001259F1 /* SortModel.swift */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		0ABC0E12238A97E600874626 /* Fonts */ = {
@@ -125,21 +243,22 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		AED2E585CE14458DD8E03AD3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				768CB1EFB42548EC2B67BC6A /* Pods-blicBuch.debug.xcconfig */,
+				74A2C81A382350C0FB9E9A88 /* Pods-blicBuch.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E247282502AADE54DFB039BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B566F065704364F24DF7AAE5 /* Pods_blicBuch.framework */,
+				0A2C199623F4A45400185D3B /* GTMSessionFetcher.framework */,
+				4BAC61F3C005B976012EA307 /* Pods_blicBuch.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FB3E92C83B3C57C0CF99597E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BB2D9FA7F625458E4A8D73F9 /* Pods-blicBuch.debug.xcconfig */,
-				CBEEA3F2B474DC5D9E874EB5 /* Pods-blicBuch.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,11 +268,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A333F5F23806EFE00B5A39B /* Build configuration list for PBXNativeTarget "blicBuch" */;
 			buildPhases = (
-				BA9090296C618CFE23F51AE1 /* [CP] Check Pods Manifest.lock */,
+				5380689A5AEC10C409B931B5 /* [CP] Check Pods Manifest.lock */,
 				0A333F4423806EE800B5A39B /* Sources */,
 				0A333F4523806EE800B5A39B /* Frameworks */,
 				0A333F4623806EE800B5A39B /* Resources */,
-				A67DB3D8D121CB32EFE6D26F /* [CP] Embed Pods Frameworks */,
+				7A6E1DCCE7E22BCDDBF28C9F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,7 +280,7 @@
 			);
 			name = blicBuch;
 			productName = blicBuch;
-			productReference = 0A333F4823806EE800B5A39B /* blicBuch.app */;
+			productReference = 0A333F4823806EE800B5A39B /* blitzBuch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -202,44 +321,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AE1955E23956A9800FF42A4 /* CustomCell.xib in Resources */,
+				0AB938D92483CD72009A9C0D /* CustomCell.xib in Resources */,
+				0AFA045524673AA10096CCCD /* GoogleService-Info.plist in Resources */,
 				0AB93D9D23AFB113006CAE59 /* CategoryTableViewCell.xib in Resources */,
 				0A333F5B23806EFD00B5A39B /* LaunchScreen.storyboard in Resources */,
 				0A333F5823806EFD00B5A39B /* Assets.xcassets in Resources */,
+				0A4B2D3523F353AA00D1A5E2 /* BlueCloudCell.xib in Resources */,
 				0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */,
 				0ABC0E14238A9C0300874626 /* Roboto-Bold.ttf in Resources */,
 				0A333F5323806EE800B5A39B /* Main.storyboard in Resources */,
+				0A3A663D23C12393005BD1CF /* Alert.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A67DB3D8D121CB32EFE6D26F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BA9090296C618CFE23F51AE1 /* [CP] Check Pods Manifest.lock */ = {
+		5380689A5AEC10C409B931B5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,6 +355,38 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7A6E1DCCE7E22BCDDBF28C9F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -264,19 +394,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A75196924668A250089DED8 /* API.swift in Sources */,
 				0AADA21B23BE925E00648835 /* VIPViewController.swift in Sources */,
+				0AEEE89123C5CDC700240B90 /* AlertViewController.swift in Sources */,
+				0A4B2D3423F353AA00D1A5E2 /* BlueCloudCell.swift in Sources */,
+				0AB938D82483CD72009A9C0D /* CustomCell.swift in Sources */,
 				0AE5CF0D238E767200FF0D69 /* LoginViewController.swift in Sources */,
-				0A333F5623806EE800B5A39B /* blicBuch.xcdatamodeld in Sources */,
+				0A1E326C2463D3DB00AD388C /* BooksService.swift in Sources */,
+				0A028F8E242FC520005AEF14 /* InfoViewController.swift in Sources */,
+				0A93D501249E66C3007AA6C4 /* User+CoreDataClass.swift in Sources */,
+				0AEEE89323C5DF1300240B90 /* AlertService.swift in Sources */,
+				0A8E4F50249DEE8F00C8B38A /* NavigationController.swift in Sources */,
 				0ADFC2122393E1CB00BB8702 /* SearchViewController.swift in Sources */,
+				0A93D502249E66C3007AA6C4 /* Books+CoreDataClass.swift in Sources */,
 				0A8F1FB72381EF2200ABE11F /* ViewController.swift in Sources */,
+				0A75196D24668DF80089DED8 /* Enviroment.swift in Sources */,
+				0A7F74E82467FE960064AE39 /* NetworkingService.swift in Sources */,
+				0A75196724668A150089DED8 /* Router.swift in Sources */,
 				0A9D202823B285D000C4476F /* GenreTableViewController.swift in Sources */,
-				0A4539B723AE297F009841BB /* BibViewController.swift in Sources */,
-				0AE1955C23956A2600FF42A4 /* CustomCell.swift in Sources */,
+				0A8E4F4C249DE7BC00C8B38A /* LoadingViewController.swift in Sources */,
+				0A27E3DA24634C0F00DE117C /* FormatterHelpers.swift in Sources */,
+				0A93D4FD249E66B2007AA6C4 /* Books+CoreDataProperties.swift in Sources */,
+				0A7519702466A35A0089DED8 /* Model.swift in Sources */,
 				0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */,
+				0A1F61CB23D06166005C527A /* RegisterViewController.swift in Sources */,
 				0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */,
+				0AF1EEA22483EA8F000AB7DC /* Colors.swift in Sources */,
+				0A7519722466A8F90089DED8 /* DataManager.swift in Sources */,
 				0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */,
+				0A7F74EA246802C20064AE39 /* PersistenceService.swift in Sources */,
 				0A196A3B2396653D00E2DF6C /* ContactViewController.swift in Sources */,
 				0AB93D9C23AFB113006CAE59 /* CategoryTableViewCell.swift in Sources */,
+				0A93D4FE249E66B2007AA6C4 /* User+CoreDataProperties.swift in Sources */,
+				0AFA045A24674D010096CCCD /* blicBuch.xcdatamodeld in Sources */,
+				0ABB0AB0248C50C6001259F1 /* SortModel.swift in Sources */,
+				0A93D4FA249E2CCC007AA6C4 /* BibViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,18 +573,19 @@
 		};
 		0A333F6023806EFE00B5A39B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB2D9FA7F625458E4A8D73F9 /* Pods-blicBuch.debug.xcconfig */;
+			baseConfigurationReference = 768CB1EFB42548EC2B67BC6A /* Pods-blicBuch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K84TS52934;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = blicBuch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sukydeveloper.blicBuch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = blitzBuch;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -440,18 +593,19 @@
 		};
 		0A333F6123806EFE00B5A39B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBEEA3F2B474DC5D9E874EB5 /* Pods-blicBuch.release.xcconfig */;
+			baseConfigurationReference = 74A2C81A382350C0FB9E9A88 /* Pods-blicBuch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K84TS52934;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = blicBuch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sukydeveloper.blicBuch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = blitzBuch;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -481,12 +635,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0A333F5423806EE800B5A39B /* blicBuch.xcdatamodeld */ = {
+		0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0A333F5523806EE800B5A39B /* blicBuch.xcdatamodel */,
+				0AFA0457246747850096CCCD /* blicBuch.xcdatamodel */,
 			);
-			currentVersion = 0A333F5523806EE800B5A39B /* blicBuch.xcdatamodel */;
+			currentVersion = 0AFA0457246747850096CCCD /* blicBuch.xcdatamodel */;
 			path = blicBuch.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

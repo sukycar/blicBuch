@@ -7,151 +7,172 @@
 //
 
 import UIKit
+import CoreData
 
 
-
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-    private var dataSource:[Book] = []
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UISearchResultsUpdating, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        guard let text = searchController.searchBar.text else {return}
+        print(text)
+        
+    }
     
-    var list = [String]()
-    var filteredList = [String]()
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text != "" {
+            searching = true
+            self.sugestionsLabel.alpha = 0
+            filteredDataSource = mainFilteredData.filter({ (book) -> Bool in
+                guard let text = searchBar.text else { return false }
+                return (book.title?.uppercased().contains(text.uppercased()))!
+            })
+        } else {
+            searching = false
+            sugestionsLabel.alpha = 1
+            filteredDataSource = weReccomend
+            searchTable.reloadData()
+        }
+        searchTable.reloadData()
+    }
+    var fetchResults:NSFetchedResultsController<NSManagedObject>?
+    func fetch(){
+        let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
+        try! fetchResults?.performFetch()
+        dataSource = fetchResults?.fetchedObjects as! [Books]
+        self.searchTable.reloadData()
+        
+    }
+    
+    private var dataSource:[Books] = []
+    private var mainFilteredData:[Books] = []
+    private var filteredDataSource:[Books] = []
+    
+    var weReccomend = [Books]()
     var resultsSearchController = UISearchController()
-    var searching = true
+    var searching = false
     
-
-   
-    @IBOutlet weak var searchTable: UITableView!
     
+    @IBOutlet weak var searchTable: UITableView! {
+        didSet {
+            searchTable.delegate = self
+            searchTable.dataSource = self
+            let customCellName = String(describing: CustomCell.self)
+            searchTable.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+        }
+    } // Initialize table with customCell
     @IBOutlet weak var viewForBorder: UIView!
     @IBOutlet weak var label: UILabel!
-
     @IBOutlet weak var searchBar1: UISearchBar!
+    @IBOutlet weak var sugestionsLabel: UILabel!
     
-    func generateModel() {
-        dataSource = [
-            Book(imageName: "image1", title: "People Who Eat Darkness: Love, Grief and a Journey into Japan's Shadows", authors: ["Richard Lloyd Parry"], genre: "Crime"),
-            Book(imageName: "image2", title: "In Cold Blood", authors: ["Truman Capote"], genre: "Comedy"),
-            Book(imageName: "image3", title: "And the Sea Will Tell", authors: ["Vinsent Bugliosi", "Bruce Henderson"], genre: "Bibliography & Momories"),
-            Book(imageName: "image4", title: "Midnight in the Garden of Good and Evil: A Savannah Story", authors: ["John Berendt"], genre: "Horror"),
-            Book(imageName: "image5", title: "Tinseltown: Murder, Morphine, and Madness at the Dawn of Hollywood", authors: ["William J. Mann"], genre: "Music"),
-        ]
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        generateModel()
         
-        dataSource.forEach { (book) in
-            list.append(book.title)
-        }
-        
-        
-        
+        fetch()
+        weReccomend = dataSource.filter({ (book) -> Bool in
+            if book.id > 121 && book.id < 127 {
+                return true
+            }
+            return false
+        })
+        mainFilteredData = dataSource.filter( { (book) -> Bool in
+            if book.id < 122 || book.id > 126 {
+                return true
+            }
+            return false
+        })
+        searchTable.reloadData()
+        print(mainFilteredData.count)
+        print(weReccomend.count)
+        filteredDataSource = weReccomend
         searchTable.delegate = self
         searchTable.dataSource = self
-       
-        
+        searchTable.resignFirstResponder()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         viewForBorder.addBottomBorder(color: .orange, margins: 0, borderLineSize: 1)
-       
-   
         
+        let search = UISearchController(searchResultsController: nil)
+        search.searchBar.delegate = searchBar1.delegate
         
-        // Do any additional setup after loading the view.
     }
-   
-   
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching {
-            return list.count
+        if searching == false {
+            return weReccomend.count
         } else {
-            return filteredList.count
+            return filteredDataSource.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        if searching {
-            let cell1 = tableView.dequeueReusableCell(withIdentifier: "searchCell")!
-            cell1.textLabel?.text = list[indexPath.row]
-            cell1.textLabel?.textColor = .orange
-            cell = cell1
-        } else {
-            let model = dataSource[indexPath.row]
-            
-            let cell2 = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
-            
-            cell2.configure(with: model)
-            
-            
-            cell = cell2
-            
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
+        let filtered = filteredDataSource[indexPath.row]
+        cell.set(with: filtered)
         return cell
     }
     
     
     
-
+    
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    
-
 }
 
 extension UIView {
     func addBottomBorder(color: UIColor = UIColor.red, margins: CGFloat = 0, borderLineSize: CGFloat = 1) {
-            let border = UIView()
-            border.backgroundColor = color
-            border.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(border)
-            border.addConstraint(NSLayoutConstraint(item: border,
-                                                    attribute: .height,
-                                                    relatedBy: .equal,
-                                                    toItem: nil,
-                                                    attribute: .height,
-                                                    multiplier: 1, constant: borderLineSize))
-            self.addConstraint(NSLayoutConstraint(item: border,
-                                                  attribute: .bottom,
-                                                  relatedBy: .equal,
-                                                  toItem: self,
-                                                  attribute: .bottom,
-                                                  multiplier: 1, constant: 0))
-            self.addConstraint(NSLayoutConstraint(item: border,
-                                                  attribute: .leading,
-                                                  relatedBy: .equal,
-                                                  toItem: self,
-                                                  attribute: .leading,
-                                                  multiplier: 1, constant: margins))
-            self.addConstraint(NSLayoutConstraint(item: border,
-                                                  attribute: .trailing,
-                                                  relatedBy: .equal,
-                                                  toItem: self,
-                                                  attribute: .trailing,
-                                                  multiplier: 1, constant: margins))
-        }
+        let border = UIView()
+        border.backgroundColor = color
+        border.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(border)
+        border.addConstraint(NSLayoutConstraint(item: border,
+                                                attribute: .height,
+                                                relatedBy: .equal,
+                                                toItem: nil,
+                                                attribute: .height,
+                                                multiplier: 1, constant: borderLineSize))
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: .bottom,
+                                              relatedBy: .equal,
+                                              toItem: self,
+                                              attribute: .bottom,
+                                              multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: .leading,
+                                              relatedBy: .equal,
+                                              toItem: self,
+                                              attribute: .leading,
+                                              multiplier: 1, constant: margins))
+        self.addConstraint(NSLayoutConstraint(item: border,
+                                              attribute: .trailing,
+                                              relatedBy: .equal,
+                                              toItem: self,
+                                              attribute: .trailing,
+                                              multiplier: 1, constant: margins))
+    }
     
 }
-
-extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredList = list.filter({$0.prefix(searchText.count) == searchText})
-        searching = false
-        searchTable.reloadData()
-    }
-}
-
 

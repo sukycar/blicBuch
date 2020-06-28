@@ -8,50 +8,101 @@
 
 import UIKit
 import MessageUI
+import CoreData
+import RxSwift
+import Alamofire
 
-struct Book: Codable {
-    let imageName: String
-    let title: String
-    let authors: [String]
-    let genre: String
-}
 
-class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+
+//struct Book: Codable, Hashable {
+//    let imageName: String
+//    let title: String
+//    let authors: [String]
+//    let genre: String
+//}
+
+
+class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, NSFetchedResultsControllerDelegate {
+    var homeBooksArray = [Books]()
+    var fetchResults:NSFetchedResultsController<NSManagedObject>?
     
-    private var dataSource:[Book] = []
+    fileprivate lazy var fetchRequestResults:NSFetchedResultsController<Books> = {
+        let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        fetchRequest.fetchLimit = 5
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "ANY id in %@")])
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
+            try! fetchResults?.performFetch()
+        homeBooksArray = fetchResults?.fetchedObjects as! [Books]
+        self.tableView2.reloadData()
+        return fetchedResultsController
+        
+    }()
+    var sort = [SortModel](){
+        didSet{
+        }
+    }
     
-    var tableContent = ["Login", "Sign up", "Contact us", "DONATE"]
-    var tableContent1 = ["Login", "Sign up", "Contact us", "DONATE"]
+    var book:Books?
     
+    
+    var tableContent = ["Einloggen", "Registrieren", "Kontakt", "SCHENKUNG"]
+    /*var tableContent1 = ["Login", "Sign up", "Contact us", "DONATE"]*/
 
     var alphaTest = 0
 
-    
+    let alertService = AlertService()
 
-    
-
+    @IBOutlet weak var imageViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView2: UITableView! {
         didSet {
             tableView2.delegate = self
             tableView2.dataSource = self
             let customCellName = String(describing: CustomCell.self)
             tableView2.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+            
+            let customCell = String(describing: BlueCloudCell.self)
+            tableView2.register(UINib(nibName: customCell, bundle: nil), forCellReuseIdentifier: customCell)
+            
+            
+            
+            
         }
     }
     @IBOutlet weak var tableView1: UITableView!
     
     @IBOutlet weak var button1: UIButton!
 
+    var disposeBag = DisposeBag()
+    let networking = NetworkingService.shared
     
     override func viewDidLoad() {
-      
-        generateModel()
+//        BooksService.getAll().subscribe(onNext: {(finished) in
+//
+//                                   }, onError: { (error) in
+//        print(error)
+//                                  }, onCompleted: {
+//                                    print(self.book?.description)
+//        print("SUCESSSSSS")
+//                                   }) {
+//
+//                                   }.disposed(by: disposeBag)
+
+        fetch()
         
-        print("hi")
+        let url = "\(Router.books.fullUrl())"
+        print(url)
+        
+        
         alphaTest = 0
         if alphaTest == 0 {
-        tableView1.alpha = 0
-            self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
+            
+                self.tableView1.alpha = 0
+                self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
+           
+        
         }
          
         tableView2.delegate = self
@@ -65,34 +116,92 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     tableView1.translatesAutoresizingMaskIntoConstraints = false
         
         tableView2.translatesAutoresizingMaskIntoConstraints = false
+        
+        definesPresentationContext = true
+        /*Alamofire.request(Router.books.fullUrl(), method: .get, encoding: JSONEncoding.default).responseJSON { (response) in
+            switch response.result {
+            case .success(let books):
+                
+                BooksService.getAll().subscribe(onNext: { (finished) in
+
+                                           }, onError: { (error) in
+                print(error)
+                                          }, onCompleted: {
+                                            print(books)
+                print("SUCESSSSSS")
+                                           }) {
+
+                                           }.disposed(by: self.disposeBag)
+                    
+            case .failure(let error):
+                print("ERROR \(error)")
+            }
+        }*/
+        
     }
     
-   
-    func generateModel() {
-        dataSource = [
-            Book(imageName: "image1", title: "People Who Eat Darkness: Love, Grief and a Journey into Japan's Shadows", authors: ["Richard Lloyd Parry"], genre: "Crime"),
-            Book(imageName: "image2", title: "In Cold Blood", authors: ["Truman Capote"], genre: "Comedy"),
-            Book(imageName: "image3", title: "And the Sea Will Tell", authors: ["Vinsent Bugliosi", "Bruce Henderson"], genre: "Bibliography & Momories"),
-            Book(imageName: "image4", title: "Midnight in the Garden of Good and Evil: A Savannah Story", authors: ["John Berendt"], genre: "Horror"),
-            Book(imageName: "image5", title: "Tinseltown: Murder, Morphine, and Madness at the Dawn of Hollywood", authors: ["William J. Mann"], genre: "Music"),
-        ]
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+//    func fetch(){
+//        let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
+//
+//
+//            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+//            fetchRequest.fetchLimit = 5
+//
+////        }
+//
+//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+//        fetchedResultsController.delegate = self
+//        self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
+//        try! fetchResults?.performFetch()
+//        self.tableView2?.reloadData()
+//
+//    }
+    
+    func fetch(){
+            let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
+            
+           // fetchRequest.predicate = NSPredicate(format: "id > 121 && id < 127", [])
+    //        if let activeSort = sort.getActive() {
+    //            fetchRequest.sortDescriptors = activeSort.compactMap({NSSortDescriptor(key: $0.0, ascending: $0.1)})
+    //        }else{
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+                fetchRequest.fetchLimit = 5
+                
+    //        }
+            
+            let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+            fetchedResultsController.delegate = self
+            self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
+            try! fetchResults?.performFetch()
+        homeBooksArray = fetchResults?.fetchedObjects as! [Books]
+        self.tableView2.reloadData()
+            
+        }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numOfRows = Int()
         if tableView == tableView1 {
             numOfRows = tableContent.count
-            print("Tabela 1")
         }
         else if tableView == tableView2 {
-            numOfRows = dataSource.count
-            print("Tabela 2")
+            
+            numOfRows = 6
+            
         }
         return numOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
+        cell.selectionStyle = .none
         if tableView == tableView1 {
         cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         let cellDonate = UIImage(named: "donate")
@@ -128,28 +237,47 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.textLabel?.font = UIFont(name: "Roboto-Regular", size: 16)
             
             cell.isUserInteractionEnabled = true
+            
         } else if tableView == tableView2 {
-           
-            let model = dataSource[indexPath.row]
+            
+            if indexPath.row < 5 {
+                let model = homeBooksArray[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
-            cell.configure(with: model)
+                
+                    cell.set(with: model)
+                    print(model.id)
+                
+            cell.cellDelegate = self
+            cell.index = indexPath
+                
+            } else {
+                
+                
+                cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BlueCloudCell.self), for: indexPath) as! BlueCloudCell
+                cell.imageView?.frame.size.height = 20
+                
+            }
             
         }
         return cell
     }
     
+    @objc func alert () {
+        let newAlert = UIAlertController(title: "NOVI", message: "FUCKING CONTROLER", preferredStyle: .alert)
+        present(newAlert, animated: true)
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = CGFloat()
-        if tableView.tag == 1{
-        height = tableView1.frame.size.height / 4
-        } else if tableView.tag == 2{
-            height = 182 /*self.view.frame.size.height / 3*/
+        if tableView.tag == 1 {
+            height = tableView1.frame.size.height / 4
+        } else if tableView.tag == 2 {
+            height = 182
         }
         return height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if tableView == tableView1 {
         if indexPath.row == 0 {
             performSegue(withIdentifier: "login", sender: self)
         }
@@ -167,7 +295,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         if indexPath.row == 3 {
             performSegue(withIdentifier: "donate", sender: self)
         }
-        
+        }
     }
     
    
@@ -179,7 +307,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
                 
                 
                 self.tableView1.transform = CGAffineTransform(translationX: self.view.frame.size.width, y: 120)
-                self.tableView1.frame = CGRect(x: 0, y: self.button1.center.y + self.button1.frame.size.height, width: self.view.frame.size.width, height: 120)
+                self.tableView1.frame = CGRect(x: 0, y: self.button1.center.y + self.button1.frame.size.height, width: self.view.frame.size.width, height: 135)
                 
                 
                 }, completion: nil)
@@ -189,7 +317,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             
          UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
         
-        self.tableView1.transform = CGAffineTransform(translationX: -self.view.frame.size.width, y: -120)
+        self.tableView1.transform = CGAffineTransform(translationX: -self.view.frame.size.width, y: -128)
             self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
         
             self.alphaTest = 0
@@ -217,26 +345,53 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }// func for sending mail
+    
+    
 }
 
-extension UIColor {
-    convenience init(hexString: String) {
-        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int = UInt64()
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (255, 0, 0, 0)
-        }
-        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
-    }// extension for using HEX code for colors
+//extension UIColor {
+//    convenience init(hexString: String) {
+//        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+//        var int = UInt64()
+//        Scanner(string: hex).scanHexInt64(&int)
+//        let a, r, g, b: UInt64
+//        switch hex.count {
+//        case 3: // RGB (12-bit)
+//            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+//        case 6: // RGB (24-bit)
+//            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+//        case 8: // ARGB (32-bit)
+//            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+//        default:
+//            (a, r, g, b) = (255, 0, 0, 0)
+//        }
+//        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+//    }// extension for using HEX code for colors
+    
+    
+
+/*extension ViewController: NewAlert {
+    func onClick1(index: Int) {
+        present(self, animated: true)
+    }
+    
+}*/
+
+extension ViewController: AlertMe {
+    func onClick(index: Int) {
+        let alertVC = alertService.alert()
+        present(alertVC, animated: true)
+        /*let alert = UIAlertController(title: "TEST", message: "NISTE REGISTROVANI", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "LOGIN", style: .default, handler: { (action) in
+            print("ULOGOVAN")
+        }))
+        alert.addAction(UIAlertAction(title: "REG", style: .default, handler: { (action) in
+            print("REGISTROVAN")
+        }))
+        present(alert, animated: true)
+        print("Jedan test")*/
+      
+    }//alert for table cell button
     
     
 }

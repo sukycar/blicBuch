@@ -10,15 +10,27 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
 
+    var loaderTest:Loaded = .secondTime
+    @IBOutlet weak var mainTabBar: UITabBar!
+    let customColor = UIColor(hexString: "#5cbff2")//custom color for various elements
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-      
+        print(loaderTest.itIs)
         
         delegate = self
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if loaderTest.itIs == true {
+            self.view.alpha = 0
+            UIView.animate(withDuration: 0.3) {
+                self.view.alpha = 1
+            }
+        }
+    }
 
    
     // MARK: - Navigation
@@ -28,7 +40,19 @@ class TabBarViewController: UITabBarController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    
+    enum Loaded {
+        case firstTime
+        case secondTime
+        
+        var itIs: Bool {
+            switch self {
+            case .firstTime:
+                return true
+            case .secondTime:
+                return false
+            }
+        }
+    }
 
 }
 /*

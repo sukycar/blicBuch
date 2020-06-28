@@ -7,8 +7,22 @@
 //
 
 import UIKit
+import Kingfisher
+import CoreData
+
+protocol AlertMe {
+    func onClick(index: Int)
+}//adding action for button that is on custom cell view
+    
+    
 
 class CustomCell: UITableViewCell {
+    
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    
+    var cellDelegate: AlertMe?
+    var index: IndexPath?
     
     @IBOutlet var imgView: UIImageView! {
         didSet {
@@ -22,54 +36,78 @@ class CustomCell: UITableViewCell {
             self.layer.shadowPath = UIBezierPath(rect: self.bounds.inset(by: .zero)).cgPath
         }
     }
-    @IBOutlet var contentLabel: UILabel! {
-        didSet {
-            contentLabel.numberOfLines = 0
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet weak var orderButton: UIButton! {
+        didSet{
+            orderButton.tag = 0
         }
     }
     
+    @IBOutlet weak var orderOutlet: UIButton!
+    @IBAction func orderButtonAction(_ sender: Any) {
+        
+        cellDelegate?.onClick(index: index!.row)
+       
+        
+    }
     
-    let titleFont = UIFont.boldSystemFont(ofSize: 13)
-    let authorFont = UIFont.italicSystemFont(ofSize: 13)
-    let genreFont = UIFont.systemFont(ofSize: 11)
-    
-    lazy var titleAttributes: [NSAttributedString.Key: Any] = {
-        let attributes: [NSAttributedString.Key: Any] = [.font: titleFont, .foregroundColor: UIColor.systemBlue]
-        return attributes
-    }()
-    
-    lazy var authorAttributes: [NSAttributedString.Key: Any] = {
-        let attributes:[NSAttributedString.Key: Any] = [.font: authorFont]
-        return attributes
-    }()
-    
-    lazy var genereAttributes: [NSAttributedString.Key: Any] = {
-        let attributes:[NSAttributedString.Key: Any] = [.font: genreFont, .foregroundColor: UIColor.gray]
-        return attributes
-    }()
-    
-    let newRow = NSAttributedString(string: "\n")
 
-    
+    var booksForCell = [Books]()
+    //var store = DataStore.shared
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.imgView.image = nil
+//        self.nameLabel.isHidden = true
+//        //self.imgView.isHidden = true
+//        self.authorLabel.isHidden = true
+//        self.genreLabel.isHidden = true
+//        self.orderButton.isHidden = true
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.nameLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        self.nameLabel.textColor = Colors.Font.blue
+        self.authorLabel.font = UIFont.italicSystemFont(ofSize: 13)
+        self.authorLabel.textColor = Colors.tint
+        self.genreLabel.font = UIFont.systemFont(ofSize: 11)
+        self.genreLabel.textColor = Colors.Font.gray
+        /*store.requestBooks { (books) in
+            self.booksForCell = books
+        }*/
         // Initialization code
+        orderOutlet.backgroundColor = .none
+        orderOutlet.layer.borderWidth = 1.5
+        orderOutlet.layer.borderColor = .none
+        orderOutlet.layer.cornerRadius = 3.5
+        
+        orderOutlet.layer.borderColor = Colors.white.cgColor
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(with model:Book) {
-        let attributedTitle = NSMutableAttributedString(string: model.title, attributes: titleAttributes)
-        let attributedAuthor = NSAttributedString(string: model.authors.joined(separator: ", "), attributes: authorAttributes)
-        let attributedGenre = NSAttributedString(string: model.genre, attributes: genereAttributes)
-        
-        attributedTitle.append(newRow)
-        attributedTitle.append(attributedAuthor)
-        attributedTitle.append(newRow)
-        attributedTitle.append(attributedGenre)
-        contentLabel.attributedText = attributedTitle
-        imgView?.image = UIImage(named: model.imageName)
+    
+    
+    func set(with book: Books) {
+        //print("Autor: \(book.author)")
+        if let url = URL(string: "\(book.imageURL!)") {
+        //DispatchQueue.global().async {
+            //let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            //DispatchQueue.main.async {
+        self.imgView.kf.indicatorType = .activity
+        self.imgView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil)}
+                //self.imgView.image = UIImage(data: data!)
+            //}
+            
+        //}
+        self.nameLabel.text = book.title ?? "--"
+        self.authorLabel.text = book.author ?? "--"
+        self.genreLabel.text = book.genre ?? "--"
     }
+  
 }
+

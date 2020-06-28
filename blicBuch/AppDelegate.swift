@@ -8,17 +8,18 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
-        /*FirebaseApp.configure()*/
+        FirebaseApp.configure()
         return true
     }
 
@@ -34,6 +35,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func setWindow(vc:UIViewController, animated:Bool){
+        vc.view.layoutIfNeeded()
+        if animated{
+            for view in UIApplication.shared.connectedScenes {
+                if let window = (view.delegate as? SceneDelegate)?.window {
+                    UIView.transition(with: window, duration: 0.1, options: UIView.AnimationOptions.transitionFlipFromTop, animations: {[weak window] in
+                        window?.rootViewController =  vc
+                    }) { (finished) in
+                        window.makeKeyAndVisible()
+                        
+                    }
+                }
+            }
+        }else{
+            for view in UIApplication.shared.connectedScenes {
+                if let window = (view.delegate as? SceneDelegate)?.window {
+                    window.rootViewController =  vc
+                    window.makeKeyAndVisible()
+                }
+            }
+        }
+        
     }
 
     // MARK: - Core Data stack
@@ -65,8 +90,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
 
+    //MARK: - general logout function
+    /*func logout(withError:Error?){
+            self.finalLogout(withError: withError)
+        }
+        private func finalLogout(withError:Error?){
+            UserDefaults.reset()
+            setWindow(vc: LoginController.getController(), animated:true)
+    //        if let withError = withError{
+    //            AppDelegate.error(error:withError)
+    //        }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                let delegate = UIApplication.shared.delegate as! AppDelegate
+                let context = delegate.persistentContainer.viewContext
+                
+                for i in 0...delegate.persistentContainer.managedObjectModel.entities.count-1 {
+                    let entity = delegate.persistentContainer.managedObjectModel.entities[i]
+                    
+                    do {
+                        let query = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
+                        let deleterequest = NSBatchDeleteRequest(fetchRequest: query)
+                        try context.execute(deleterequest)
+                        try context.save()
+                        
+                    } catch let error as NSError {
+                        print("Error: \(error.localizedDescription)")
+                        abort()
+                    }
+                }
+            }
+        }*/
+    
     // MARK: - Core Data Saving support
-
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

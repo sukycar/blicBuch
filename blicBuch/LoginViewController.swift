@@ -8,8 +8,12 @@
 
 import UIKit
 
-class LoginViewController: UITabBarController {
+class LoginViewController: UIViewController {
 
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBAction func loginButton(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

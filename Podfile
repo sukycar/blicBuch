@@ -1,5 +1,3 @@
-project 'blicBuch.xcodeproj'
-
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
@@ -8,8 +6,12 @@ target 'blicBuch' do
   use_frameworks!
 
   # Pods for blicBuch
- pod 'Firebase/Core'
- pod 'Firebase/Auth'
- pod 'Firebase/Database'
-
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Auth'
+  pod 'SwiftyJSON'
+  pod 'RxSwift'
+  pod 'Alamofire', '~> 4.9.0'
+  pod 'Kingfisher'
+  
 end

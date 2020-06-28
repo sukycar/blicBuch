@@ -1,0 +1,14 @@
+//
+//  DEV.xcconfig
+//  blicBuch
+//
+//  Created by Vladimir Sukanica on 5/9/20.
+//  Copyright © 2020 sukydeveloper. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+baseURL = https:/$()/blitzbuch.club/api/api.php/records/
+allowedKingfisherUrl = vsukanica.com/images/blitzBuch/
+bundleVersion = DEV
+bundleDisplayName = blitzBuch

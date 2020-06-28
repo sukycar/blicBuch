@@ -28,11 +28,11 @@ class CategoryTableViewCell: UITableViewCell {
         }
         
         
-        let titleFont = UIFont.boldSystemFont(ofSize: 20)
-        
+    let titleFont = UIFont.systemFont(ofSize: 14)
+        let aColor = UIColor(hexString: "#5cbcf4")//custom text color
         
         lazy var titleAttributes: [NSAttributedString.Key: Any] = {
-            let attributes: [NSAttributedString.Key: Any] = [.font: titleFont, .foregroundColor: UIColor.systemBlue]
+            let attributes: [NSAttributedString.Key: Any] = [.font: titleFont, .foregroundColor: aColor]
             return attributes
         }()
         
@@ -44,6 +44,8 @@ class CategoryTableViewCell: UITableViewCell {
         override func awakeFromNib() {
             super.awakeFromNib()
             // Initialization code
+            self.contentLabel.numberOfLines = 1
+            self.contentLabel.lineBreakMode = .byTruncatingTail
         }
 
         override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,15 +55,12 @@ class CategoryTableViewCell: UITableViewCell {
             }
         }
         
-        func configure(with model:Genre) {
-            let attributedTitle = NSMutableAttributedString(string: model.title, attributes: titleAttributes)
-           
-            
-            
+    func set(with model:Books) {
+        let attributedTitle = NSMutableAttributedString(string: model.genre!, attributes: titleAttributes)
             
             
             contentLabel.attributedText = attributedTitle
-            imgView?.image = UIImage(named: model.imageName)
+            /*imgView?.image = UIImage(named: model.imageName)*/
             
         }
     }
