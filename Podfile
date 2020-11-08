@@ -11,7 +11,9 @@ target 'blicBuch' do
   pod 'Firebase/Auth'
   pod 'SwiftyJSON'
   pod 'RxSwift'
+  pod 'RxCocoa'
   pod 'Alamofire', '~> 4.9.0'
   pod 'Kingfisher'
+  pod 'SideMenu', '~> 6.4.8'
   
 end

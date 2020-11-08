@@ -17,6 +17,8 @@ protocol AlertMe {
     
 
 class CustomCell: UITableViewCell {
+    let downloader = KingfisherManager.shared.downloader
+    
     
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
@@ -26,6 +28,7 @@ class CustomCell: UITableViewCell {
     
     @IBOutlet var imgView: UIImageView! {
         didSet {
+            downloader.trustedHosts = Set(["www.vsukanica.com"])
             imgView.contentMode = .scaleToFill
             imgView.layer.backgroundColor = UIColor.clear.cgColor
             imgView.layer.shadowColor = UIColor.gray.cgColor
@@ -99,7 +102,7 @@ class CustomCell: UITableViewCell {
             //let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
             //DispatchQueue.main.async {
         self.imgView.kf.indicatorType = .activity
-        self.imgView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil)}
+            self.imgView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.3)), .downloader(downloader)], progressBlock: nil)}
                 //self.imgView.image = UIImage(data: data!)
             //}
             

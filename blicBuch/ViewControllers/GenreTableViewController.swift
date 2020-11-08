@@ -65,7 +65,6 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
                 booksInGenre.append(book)
             }
         }
-        print(booksInGenre.count)
         pictureView.contentMode = .scaleAspectFit
         pictureView.addBottomBorderGray()
         genreLabel.setTitle(genre.title, for: .normal)

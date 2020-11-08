@@ -71,6 +71,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var searchBar1: UISearchBar!
     @IBOutlet weak var sugestionsLabel: UILabel!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetch()
+        mainFilteredData = dataSource.filter( { (book) -> Bool in
+            if book.id < 122 || book.id > 126 {
+                return true
+            }
+            return false
+        })
+    }
     
     
     override func viewDidLoad() {
@@ -83,12 +93,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             return false
         })
-        mainFilteredData = dataSource.filter( { (book) -> Bool in
-            if book.id < 122 || book.id > 126 {
-                return true
-            }
-            return false
-        })
+        
         searchTable.reloadData()
         print(mainFilteredData.count)
         print(weReccomend.count)
@@ -128,6 +133,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.searchBar1.resignFirstResponder()
+    }
     
     
     

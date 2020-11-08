@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B07D5420FDB668EC7D5E88E83A03ABFA"
+               BlueprintIdentifier = "05E22A496605FE3FEB18BFD61FAED8CB"
                BuildableName = "Pods_blicBuch.framework"
                BlueprintName = "Pods-blicBuch"
                ReferencedContainer = "container:Pods.xcodeproj">

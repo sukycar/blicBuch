@@ -102,14 +102,88 @@ final class TabBarAnimatedTransitioning: NSObject, UIViewControllerAnimatedTrans
 */
 extension TabBarViewController: UITabBarControllerDelegate {
 
-    func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MyTransition(viewControllers: tabBarController.viewControllers)
-    }
+//    func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return MyTransition(viewControllers: tabBarController.viewControllers)
+//    }
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+            let tabViewControllers = tabBarController.viewControllers
+            let fromView = tabBarController.selectedViewController?.view
+            let toView = viewController.view
+
+            if (fromView == toView) {
+                return false
+            }
+        if let fromView = fromView, let toView = toView, let selectedViewController = tabBarController.selectedViewController, let fromIndex = tabViewControllers?.firstIndex(of: selectedViewController), let toIndex = tabViewControllers?.firstIndex(of: viewController) {
+                //        if let vcNav = viewController as? NavigationController, let vc = vcNav.viewControllers.first {
+                //            if let nvBar = vcNav.navigationBar as? NavigationBar{
+                //                nvBar.offset = 0
+                //            }
+                //            if let vc = vc as? FeaturedController{
+                //                vc.tableView?.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
+                //            }else if let vc = vc as? WhatsNewController{
+                //                vc.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
+                //            }else if let vc = vc as? FavoriteController {
+                //                vc.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
+                //            }else if let vc = vc as? ExploreController {
+                //                vc.searchYConstraint?.constant = 0
+                //                vc.controllerArray.forEach({ (exploreTabController) in
+                //                    if let exploreTabController = exploreTabController as? ExploreTabController{
+                //                        exploreTabController.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
+                //                    }
+                //                })
+                //            }
+                //        }
+
+                let offScreenRight = CGAffineTransform(translationX: toView.frame.width, y: 0)
+                let offScreenLeft = CGAffineTransform(translationX: -toView.frame.width, y: 0)
+
+                // start the toView to the right of the screen
+                if (toIndex < fromIndex) {
+                    toView.transform = offScreenLeft
+                    fromView.transform = offScreenRight
+                } else {
+                    toView.transform = offScreenRight
+                    fromView.transform = offScreenLeft
+                }
+
+                fromView.tag = 124
+                toView.addSubview(fromView)
+                let oldClipsToBounds = toView.clipsToBounds
+                toView.clipsToBounds = false
+                self.view.isUserInteractionEnabled = false
+                UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+    //                fromView.transform = .identity
+                    if (toIndex < fromIndex) {
+                        toView.transform = offScreenLeft
+                        fromView.transform = offScreenRight
+                    } else {
+                        toView.transform = offScreenRight
+                        fromView.transform = offScreenLeft
+                    }
+                    toView.transform = CGAffineTransform.identity
+
+                }, completion: { finished in
+                    toView.clipsToBounds = oldClipsToBounds
+                    let subViews = toView.subviews
+                    for subview in subViews{
+                        if (subview.tag == 124) {
+                            subview.removeFromSuperview()
+                        }
+                    }
+                    viewController.view.layoutIfNeeded()
+                    tabBarController.selectedIndex = toIndex
+                    self.view.isUserInteractionEnabled = true
+
+                })
+            }
+
+            return true
+        }
 }
 
 class MyTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
-    let viewControllers: [UIViewController]?
+    var viewControllers: [UIViewController]?
     let transitionDuration: Double = 1
 
     init(viewControllers: [UIViewController]?) {
@@ -123,7 +197,7 @@ class MyTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
         guard
-            let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
+        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
             let fromView = fromVC.view,
             let fromIndex = getIndex(forViewController: fromVC),
             let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),

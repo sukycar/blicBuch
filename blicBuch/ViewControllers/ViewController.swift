@@ -23,23 +23,28 @@ import Alamofire
 
 
 class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, NSFetchedResultsControllerDelegate {
-    var homeBooksArray = [Books]()
+    var homeBooksArray : [Books]?{
+        didSet{
+//            self.tableView2.layoutIfNeeded()
+            self.tableView2.reloadData()
+        }
+        }
     var fetchResults:NSFetchedResultsController<NSManagedObject>?
     
-    fileprivate lazy var fetchRequestResults:NSFetchedResultsController<Books> = {
-        let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        fetchRequest.fetchLimit = 5
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "ANY id in %@")])
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController.delegate = self
-        self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
-            try! fetchResults?.performFetch()
-        homeBooksArray = fetchResults?.fetchedObjects as! [Books]
-        self.tableView2.reloadData()
-        return fetchedResultsController
-        
-    }()
+//    fileprivate lazy var fetchRequestResults:NSFetchedResultsController<Books> = {
+//        let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+//        fetchRequest.fetchLimit = 5
+//        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "ANY id in %@")])
+//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+//        fetchedResultsController.delegate = self
+//        self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
+//            try! fetchResults?.performFetch()
+//        homeBooksArray = fetchResults?.fetchedObjects as! [Books]
+//        self.tableView2.reloadData()
+//        return fetchedResultsController
+//
+//    }()
     var sort = [SortModel](){
         didSet{
         }
@@ -48,29 +53,35 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     var book:Books?
     
     
-    var tableContent = ["Einloggen", "Registrieren", "Kontakt", "SCHENKUNG"]
+    var tableContent = ["Einloggen", "Registrieren", "Kontakt", "SCHENKUNG", "Cart"]
     /*var tableContent1 = ["Login", "Sign up", "Contact us", "DONATE"]*/
 
     var alphaTest = 0
-
+    var timer:Timer?
     let alertService = AlertService()
 
+    @IBAction func vipButton(_ sender: Any) {
+        if let tabController = UIApplication.shared.keyWindow?.rootViewController as? TabBarViewController {
+            tabController.view.backgroundColor = .white
+        if let vc = tabController.viewControllers?[2] {
+            tabController.tabBarController(tabController, shouldSelect: vc)
+            vc.presentedViewController?.dismiss(animated: true, completion: nil)
+            if let vc = vc as? UINavigationController {
+                vc.popToRootViewController(animated: true)
+            }
+        }
+    }
+    }
     @IBOutlet weak var imageViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView2: UITableView! {
-        didSet {
-            tableView2.delegate = self
-            tableView2.dataSource = self
+        didSet{
             let customCellName = String(describing: CustomCell.self)
             tableView2.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
             
             let customCell = String(describing: BlueCloudCell.self)
             tableView2.register(UINib(nibName: customCell, bundle: nil), forCellReuseIdentifier: customCell)
-            
-            
-            
-            
         }
-    }
+        }
     @IBOutlet weak var tableView1: UITableView!
     
     @IBOutlet weak var button1: UIButton!
@@ -79,23 +90,32 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     let networking = NetworkingService.shared
     
     override func viewDidLoad() {
-//        BooksService.getAll().subscribe(onNext: {(finished) in
-//
-//                                   }, onError: { (error) in
-//        print(error)
-//                                  }, onCompleted: {
-//                                    print(self.book?.description)
-//        print("SUCESSSSSS")
-//                                   }) {
-//
-//                                   }.disposed(by: disposeBag)
+fetch()
+        
+        
+        timer?.invalidate()
+        
+            self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (timer) in
+                BooksService.getAll().subscribe(onNext: { (finished) in
+                    print("refreshed data")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        self.fetch()
+                    }) 
+                }, onError: { (error) in
+                    print(error)
+                }, onCompleted: {
+                    
 
-        fetch()
+                }) {
+                    
+                }.disposed(by: self.disposeBag)
+            })
+        
+        
+        
         
         let url = "\(Router.books.fullUrl())"
         print(url)
-        
-        
         alphaTest = 0
         if alphaTest == 0 {
             
@@ -116,7 +136,6 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     tableView1.translatesAutoresizingMaskIntoConstraints = false
         
         tableView2.translatesAutoresizingMaskIntoConstraints = false
-        
         definesPresentationContext = true
         /*Alamofire.request(Router.books.fullUrl(), method: .get, encoding: JSONEncoding.default).responseJSON { (response) in
             switch response.result {
@@ -142,7 +161,21 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        fetch()
+//        DispatchQueue.main.async {
+//            let id: Int32 = 157
+//
+//                BooksService.deleteBook(bookId: id).subscribe(onNext: { [weak self](finished) in
+//                    print(finished)
+//                    }, onError: { (error) in
+//                        print(error)
+//                }, onCompleted: {
+//
+//                }) {
+//
+//                }.disposed(by: self.disposeBag)
+//
+//        }
     }
     
 //    func fetch(){
@@ -178,7 +211,8 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             fetchedResultsController.delegate = self
             self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
             try! fetchResults?.performFetch()
-        homeBooksArray = fetchResults?.fetchedObjects as! [Books]
+        homeBooksArray?.removeAll()
+        homeBooksArray = fetchResults?.fetchedObjects as? [Books]
         self.tableView2.reloadData()
             
         }
@@ -207,6 +241,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         let cellDonate = UIImage(named: "donate")
         let cellLogIn = UIImage(named: "login")
         let cellRegistration = UIImage(named: "registration")
+            let cellCart = UIImage(named: "donate")
         let cellLocation = tableContent[indexPath.row]
             cell.textLabel?.text = cellLocation
             let cellContact = UIImage(named: "contact")
@@ -226,6 +261,8 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             case 3:
                 cell.imageView?.image = cellDonate
                 cell.textLabel?.textColor = .orange
+            case 4:
+                cell.imageView?.image = cellCart
             default:
                 print("No cell index")
             }
@@ -241,15 +278,16 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         } else if tableView == tableView2 {
             
             if indexPath.row < 5 {
-                let model = homeBooksArray[indexPath.row]
+
+                let model = homeBooksArray?[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
-                
-                    cell.set(with: model)
-                    print(model.id)
+                if let item = model  {
+                cell.set(with: item)
+                print(item.id)
                 
             cell.cellDelegate = self
             cell.index = indexPath
-                
+                }
             } else {
                 
                 
@@ -269,7 +307,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = CGFloat()
         if tableView.tag == 1 {
-            height = tableView1.frame.size.height / 4
+            height = 40
         } else if tableView.tag == 2 {
             height = 182
         }
@@ -287,14 +325,21 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             
         }
         if indexPath.row == 2 {
-           
-            
             self.sendEmail()
-            
         }
         if indexPath.row == 3 {
             performSegue(withIdentifier: "donate", sender: self)
         }
+            if indexPath.row == 4 {
+                performSegue(withIdentifier: "cart", sender: self)
+        }
+    }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "cart" {
+            let vc = segue.destination as? CartTableView
+            vc?.cartBooks = homeBooksArray ?? [Books()]
         }
     }
     
@@ -307,7 +352,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
                 
                 
                 self.tableView1.transform = CGAffineTransform(translationX: self.view.frame.size.width, y: 120)
-                self.tableView1.frame = CGRect(x: 0, y: self.button1.center.y + self.button1.frame.size.height, width: self.view.frame.size.width, height: 135)
+                self.tableView1.frame = CGRect(x: 0, y: self.button1.center.y + self.button1.frame.size.height, width: self.view.frame.size.width, height: 200)
                 
                 
                 }, completion: nil)

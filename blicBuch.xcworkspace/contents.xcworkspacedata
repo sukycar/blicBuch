@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/vsukanica/Documents/aplikacije/blicBuch/blicBuch 2/blicBuch/Core/Books+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/vsukanica/Documents/aplikacije/blicBuch/blicBuch 2/blicBuch/Core/User+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:blicBuch.xcodeproj">
    </FileRef>
    <FileRef

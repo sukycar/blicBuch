@@ -12,6 +12,7 @@ enum Router {
     
     case books
     case user
+    case book(for: Int32)
     
     private var baseURL: String {
         //return Environment.configuration(.baseURL)
@@ -23,6 +24,8 @@ enum Router {
         switch self {
         case .books:
             return "Books"
+        case .book(let id):
+            return "Books/\(id)"
         case .user:
             return "User"//user/all?
         }
@@ -34,6 +37,8 @@ enum Router {
             return .get
         case .user:
             return .get
+        case .book:
+            return .delete
         }
     }
     
