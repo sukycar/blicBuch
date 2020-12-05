@@ -30,10 +30,7 @@ class BibViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewWillAppear(_ animated: Bool) {
      
         super.viewWillAppear(animated)
-        
-        
         if let path = genreTable.indexPathForSelectedRow {
-
             genreTable.deselectRow(at: path, animated: true)
         }//cancels the selections when view appears
         
@@ -49,8 +46,6 @@ class BibViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
         
         
 let model = dataSource[indexPath.row]
