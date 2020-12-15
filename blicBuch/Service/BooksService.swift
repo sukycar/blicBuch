@@ -44,23 +44,75 @@ class BooksService {
                     
                     if let jsonArray = jsonArray1?.array {
                         DataManager.shared.work { (context) in
-                            let fetchForCount: NSFetchRequest<Books> = Books.fetchRequest()
+                            let fetchForCount: NSFetchRequest<Book> = Book.fetchRequest()
 //                            let count = try! context.count(for: fetchForCount)
 //                            if jsonArray.count == count {
 //                                observer.onNext(true)
 //                                observer.onCompleted()
 //                                return
 //                            }
-                            context.delete(fetchRequest: fetchForCount, predicate: NSPredicate(format: "id >= 0"))
+//                            context.delete(fetchRequest: fetchForCount, predicate: NSPredicate(format: "id >= 0"))
+
                             context.refreshAllObjects()
                             for (index, json) in jsonArray.enumerated() {
                                 print(json)
-                                let item:Books? = context.update(predicate: NSPredicate(format: "id = %d", json["id"].int32Value))
+                                let item:Book? = context.update(predicate: NSPredicate(format: "id = %d", json["id"].int32Value))
                                 item?.updateForList(with: json)
                             }
                             
                             try! context.save()
-                            try! context.parent?.save()
+//                            try! context.parent?.save()
+                            observer.onNext(true)
+                            observer.onCompleted()
+                        }
+                        observer.onNext(true)
+                        observer.onCompleted()
+                    }
+                } else {
+                        observer.onNext(false)
+                        observer.onCompleted()
+                        return
+                    }
+                case .Failure(let apiError):
+                    observer.onError(apiError)
+                    print("Failure")
+                }
+            })
+            let cancel = Disposables.create {
+                request.cancel()
+            }
+            return cancel
+        }
+    }
+    class func getAllCartStatuses() -> Observable<Bool>{
+        return Observable.create { observer in
+            let router = Router.books
+            let request = API.shared.request(router: router, parameters: nil, completion: { (response) in
+                switch response {
+                case .Success(let json):
+                    
+                    if let newJson = json?.dictionary {
+                        let jsonArray1 = newJson["records"]
+                    
+                    if let jsonArray = jsonArray1?.array {
+                        DataManager.shared.work { (context) in
+                            let fetchForCount: NSFetchRequest<CartBook> = CartBook.fetchRequest()
+//                            let count = try! context.count(for: fetchForCount)
+//                            if jsonArray.count == count {
+//                                observer.onNext(true)
+//                                observer.onCompleted()
+//                                return
+//                            }
+//                            context.delete(fetchRequest: fetchForCount, predicate: NSPredicate(format: "id >= 0"))
+
+                            context.refreshAllObjects()
+                            for (index, json) in jsonArray.enumerated() {
+                                let item:CartBook? = context.update(predicate: NSPredicate(format: "id = %d", json["id"].int32Value))
+                                item?.id = json["id"].int32Value
+                            }
+                            
+                            try! context.save()
+//                            try! context.parent?.save()
                             observer.onNext(true)
                             observer.onCompleted()
                         }

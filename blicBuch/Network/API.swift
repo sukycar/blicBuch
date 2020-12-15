@@ -9,6 +9,7 @@
 import RxSwift
 import Alamofire
 import SwiftyJSON
+
 class API: NSObject {
     var refreshingToken = false
     var refreshing = false

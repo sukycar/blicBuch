@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Books" representedClassName="Books" syncable="YES">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="boxNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="genre" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="inCart" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isbn" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="vip" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="vipUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="vipBooks" inverseEntity="User"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CartBook" inverseName="book" inverseEntity="CartBook"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="books" inverseEntity="User"/>
+    </entity>
+    <entity name="CartBook" representedClassName="CartBook" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="inCart" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="book" inverseEntity="Book"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String"/>
@@ -22,10 +29,11 @@
         <attribute name="payment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="vipUser" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="vipBooks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Books" inverseName="vipUser" inverseEntity="Books"/>
+        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="user" inverseEntity="Book"/>
     </entity>
     <elements>
-        <element name="Books" positionX="-63" positionY="-18" width="128" height="178"/>
-        <element name="User" positionX="-54" positionY="36" width="128" height="208"/>
+        <element name="Book" positionX="-63" positionY="-18" width="128" height="194"/>
+        <element name="CartBook" positionX="-63" positionY="99" width="128" height="74"/>
+        <element name="User" positionX="-54" positionY="36" width="128" height="194"/>
     </elements>
 </model>

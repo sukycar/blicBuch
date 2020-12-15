@@ -26,12 +26,25 @@ let disposeBag = DisposeBag()
         completion: nil)
         BooksService.getAll().subscribe(onNext: {(finished) in
             if finished {
+                BooksService.getAllCartStatuses().subscribe { (finished) in
+                    //finished
+                    print("Completed filling status id's")
+                } onError: { (error) in
+                    print(error)
+                } onCompleted: {
+                    //
+                } onDisposed: {
+                    //
+                }.disposed(by: self.disposeBag)
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                     vc.view.alpha = 0
                     vc.loaderTest = .firstTime
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.setWindow(vc: vc, animated: false)
+                    
+
                     
             }
                 print("Finished")

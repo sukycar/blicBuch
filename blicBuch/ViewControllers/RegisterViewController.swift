@@ -70,6 +70,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     */
 
 }
+
+extension RegisterViewController{
+    class func get() -> RegisterViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+    }
+}
 public extension UIResponder {
 
     private struct Static {
@@ -86,3 +92,5 @@ public extension UIResponder {
         Static.responder = self
     }
 }//code for checking first responder
+
+

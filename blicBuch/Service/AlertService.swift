@@ -15,4 +15,5 @@ class AlertService {
         let alertVC = storyboard.instantiateViewController(identifier: "AlertVC") as! AlertViewController
         return alertVC
     }
+    
 }

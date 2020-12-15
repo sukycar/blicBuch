@@ -9,22 +9,41 @@
 import UIKit
 import CoreData
 import Firebase
+import SideMenu
+import Kingfisher
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private static var tosterLoader = Array<String?>()
+    private static var presentingToaster = false
+    private var sideMenuController:SideMenuViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        ImageCache.default.diskStorage.config.expiration = StorageExpiration.days(30)
+        ImageCache.default.memoryStorage.config.countLimit = 1000
+        KingfisherManager.shared.cache = ImageCache.default
+        KingfisherManager.shared.downloader.trustedHosts = Set([Environment.configuration(.allowedKingfisherUrl)])
         return true
     }
 
+    func getSideMenu() -> SideMenuViewController {
+        if let sideMenuController = sideMenuController{
+            return sideMenuController
+        }
+        sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuVC") as? SideMenuViewController
+        return sideMenuController!
+    }
     // MARK: UISceneSession Lifecycle
 
+    
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.

@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  
 //
-//  Created by Vladimir Sukanica on 6/20/20.
+//  Created by Vladimir Sukanica on 12.12.20..
 //
 //
 
@@ -26,23 +26,23 @@ extension User {
     @NSManaged public var payment: Bool
     @NSManaged public var phoneNumber: Int64
     @NSManaged public var vipUser: Bool
-    @NSManaged public var vipBooks: NSSet?
+    @NSManaged public var books: NSSet?
 
 }
 
-// MARK: Generated accessors for vipBooks
+// MARK: Generated accessors for books
 extension User {
 
-    @objc(addVipBooksObject:)
-    @NSManaged public func addToVipBooks(_ value: Books)
+    @objc(addBooksObject:)
+    @NSManaged public func addToBooks(_ value: Book)
 
-    @objc(removeVipBooksObject:)
-    @NSManaged public func removeFromVipBooks(_ value: Books)
+    @objc(removeBooksObject:)
+    @NSManaged public func removeFromBooks(_ value: Book)
 
-    @objc(addVipBooks:)
-    @NSManaged public func addToVipBooks(_ values: NSSet)
+    @objc(addBooks:)
+    @NSManaged public func addToBooks(_ values: NSSet)
 
-    @objc(removeVipBooks:)
-    @NSManaged public func removeFromVipBooks(_ values: NSSet)
+    @objc(removeBooks:)
+    @NSManaged public func removeFromBooks(_ values: NSSet)
 
 }

@@ -14,15 +14,16 @@ import Alamofire
 
 class VIPViewController: UIViewController, NSFetchedResultsControllerDelegate {
 
-    var books = [Books]()
-    var booksInVip = [Books]()
+    var books = [Book]()
+    var booksInVip = [Book]()
+    
     func fetch(){
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Books")
+        let context = DataManager.shared.context
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
         
         do {
-            let results = try context.fetch(fetchRequest)
-            let booksCreated = results as! [Books]
+            let results = try context?.fetch(fetchRequest)
+            let booksCreated = results as! [Book]
             
             for _booksCreated in booksCreated {
                 books.append(_booksCreated)
@@ -36,7 +37,7 @@ class VIPViewController: UIViewController, NSFetchedResultsControllerDelegate {
         didSet{
         }
     }
-    var book:Books?
+    var book:Book?
         
     @IBOutlet weak var tableView: UITableView!{
         didSet {
@@ -80,8 +81,6 @@ extension VIPViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-
         let model = booksInVip[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
                 cell.set(with: model)
@@ -109,9 +108,33 @@ extension VIPViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension VIPViewController: AlertMe {
+    func selectedBook(id: Int32) {
+        print(id)
+    }
     func onClick(index: Int) {
-        let alertVC = alertService.alert()
-        present(alertVC, animated: true)
+        let availableBooks = blicBuchUserDefaults.get(.numberOfVipBooks)
+        let selectedVipBooks = blicBuchUserDefaults.get(.selectedVipBooks)
+        let selectedBooksString = selectedVipBooks as? String
+        let availableBooksString = availableBooks as? String
+        let selectedBooks = Int(selectedBooksString ?? "0") ?? 0
+        let availableVipBooks = Int(availableBooksString ?? "0") ?? 0
+        if selectedBooks >= availableVipBooks {
+            print("Previse izabrano")
+            print(selectedBooks.description)
+            let alertController = UIAlertController.init(title: "PREKORACEN LIMIT", message: "Prekoracili ste limit za VIP knjige. Kontaktirajte nas klub.", preferredStyle: .alert)
+            alertController.addAction(.init(title: "OK", style: .default, handler: { (action) in
+                print("Closed")
+            }))
+            self.present(alertController, animated: true, completion: nil)
+//        let alertVC = alertService.alert()
+//        present(alertVC, animated: true)
+        } else {
+            let addedValue = String(selectedBooks + 1)
+            _ = blicBuchUserDefaults.set(.selectedVipBooks, value: addedValue)
+            print(selectedBooks)
+            print("Ovde ubaciti funkciju za popunjavanje cart-a")
+            
+        }
     }//alert for table cell button
     
 }

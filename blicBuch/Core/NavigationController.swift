@@ -25,4 +25,11 @@ class NavigationController: UINavigationController, UIViewControllerTransitionin
 
 
     }
+    
+    class func startActivityIndicator(){
+        UIApplication.shared.delegate?.window??.startActivityIndicator()
+    }
+    class func stopActivityIndicator(){
+        UIApplication.shared.delegate?.window??.stopActivityIndicator()
+    }
 }

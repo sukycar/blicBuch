@@ -55,7 +55,7 @@ class CategoryTableViewCell: UITableViewCell {
             }
         }
         
-    func set(with model:Books) {
+    func set(with model:Book) {
         let attributedTitle = NSMutableAttributedString(string: model.genre!, attributes: titleAttributes)
             
             

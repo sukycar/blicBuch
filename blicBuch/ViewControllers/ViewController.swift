@@ -5,25 +5,28 @@
 //  Created by Vladimir Sukanica on 11/17/19.
 //  Copyright © 2019 sukydeveloper. All rights reserved.
 //
+/* Postupak prilikom ubacivanja u korpu:
+ 1. Na svim ekranima sa kojih se moze porucivati napraviti funciju koja radi proveru userDefaults vrednosti za
+ broj dostupnih vip i regularnih knjiga
+ 2. Napraviti alert message dole sa brojem mogucih porucivanja "You have only ? vip book and ? regular books available for order. You have ? vip and ? regular books in your cart."
+ 3. Povezati sve ekrane sa ekranom za porucivanje - cart ekranom i ubaciti funkciju za ubacivanje novih knjiga u cart
+ */
 
 import UIKit
 import MessageUI
 import CoreData
 import RxSwift
 import Alamofire
+import SideMenu
+import Kingfisher
+import RxCocoa
+import RxSwift
+import SideMenu
 
-
-
-//struct Book: Codable, Hashable {
-//    let imageName: String
-//    let title: String
-//    let authors: [String]
-//    let genre: String
-//}
 
 
 class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, NSFetchedResultsControllerDelegate {
-    var homeBooksArray : [Books]?{
+    var homeBooksArray : [Book]?{
         didSet{
 //            self.tableView2.layoutIfNeeded()
             self.tableView2.reloadData()
@@ -49,17 +52,40 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         didSet{
         }
     }
-    
-    var book:Books?
+    var frame : CGRect?
+    var frameView : UIView?
+    var snapshot : UIImage?
+    private var transition: CustomTransition2?
+    var book:Book?
     
     
     var tableContent = ["Einloggen", "Registrieren", "Kontakt", "SCHENKUNG", "Cart"]
     /*var tableContent1 = ["Login", "Sign up", "Contact us", "DONATE"]*/
-
+    var arrayOfBookId = [Int32]()
     var alphaTest = 0
     var timer:Timer?
     let alertService = AlertService()
-
+    var numberOfRegularBooks: String = {
+//        if let regularBooksNumber = blicBuchUserDefaults.get(.numberOfRegularBooks) {
+//            print(regularBooksNumber)
+//            return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
+//        } else {
+            blicBuchUserDefaults.set(.numberOfRegularBooks, value: 4)
+            return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
+        
+    }()
+    var numberOfVipBooks: String = {
+//        if let vipBooksNumber = blicBuchUserDefaults.get(.numberOfVipBooks) {
+//        return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
+//        } else {
+            blicBuchUserDefaults.set(.numberOfVipBooks, value: 1)
+            return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
+//        }
+    }()
+    var numberOfRegularBooksInt = Int()
+    var numberOfVipBooksInt = Int()
+    
+    
     @IBAction func vipButton(_ sender: Any) {
         if let tabController = UIApplication.shared.keyWindow?.rootViewController as? TabBarViewController {
             tabController.view.backgroundColor = .white
@@ -90,11 +116,14 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     let networking = NetworkingService.shared
     
     override func viewDidLoad() {
-fetch()
-        
-        
+        fetch()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.performLoginTransition), name: NSNotification.Name("loginHome"), object: nil)
+        numberOfRegularBooksInt = Int(numberOfRegularBooks) ?? 0
+        numberOfVipBooksInt = Int(numberOfVipBooks) ?? 0
+        print("Broj dostupnih regularnih knjiga \(numberOfRegularBooksInt)")
+        print("Broj dostupnih vip knjiga \(numberOfVipBooksInt)")
+
         timer?.invalidate()
-        
             self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (timer) in
                 BooksService.getAll().subscribe(onNext: { (finished) in
                     print("refreshed data")
@@ -110,19 +139,14 @@ fetch()
                     
                 }.disposed(by: self.disposeBag)
             })
-        
-        
-        
-        
+
         let url = "\(Router.books.fullUrl())"
         print(url)
         alphaTest = 0
         if alphaTest == 0 {
-            
                 self.tableView1.alpha = 0
                 self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
-           
-        
+
         }
          
         tableView2.delegate = self
@@ -134,7 +158,6 @@ fetch()
         tableView1.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         tableView1.layer.borderWidth = 0.22
     tableView1.translatesAutoresizingMaskIntoConstraints = false
-        
         tableView2.translatesAutoresizingMaskIntoConstraints = false
         definesPresentationContext = true
         /*Alamofire.request(Router.books.fullUrl(), method: .get, encoding: JSONEncoding.default).responseJSON { (response) in
@@ -196,7 +219,7 @@ fetch()
 //    }
     
     func fetch(){
-            let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
+            let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
             
            // fetchRequest.predicate = NSPredicate(format: "id > 121 && id < 127", [])
     //        if let activeSort = sort.getActive() {
@@ -212,9 +235,8 @@ fetch()
             self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
             try! fetchResults?.performFetch()
         homeBooksArray?.removeAll()
-        homeBooksArray = fetchResults?.fetchedObjects as? [Books]
+        homeBooksArray = fetchResults?.fetchedObjects as? [Book]
         self.tableView2.reloadData()
-            
         }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -337,37 +359,29 @@ fetch()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "cart" {
+        if segue.identifier == "goToCart" {
             let vc = segue.destination as? CartTableView
-            vc?.cartBooks = homeBooksArray ?? [Books()]
+//            vc?.cartBooks = homeBooksArray ?? [Book()]
         }
     }
     
    
     @IBAction func buttonAction(_ sender: Any) {
         
-        if alphaTest == 0 {
-            tableView1.alpha = 1
-            UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            if let vc = (UIApplication.shared.delegate as? AppDelegate)?.getSideMenu() {
+                let menu = SideMenuNavigationController(rootViewController: vc)
+                menu.leftSide = true
+                menu.pushStyle = .default
+                menu.presentationStyle = .menuSlideIn
+                menu.presentationStyle.menuOnTop = true
+                menu.menuWidth = self.view.frame.size.width * 0.8
+                menu.presentationStyle.presentingEndAlpha = 0.5
+                menu.statusBarEndAlpha = 0
+                menu.presentationStyle.onTopShadowOffset = CGSize(width: 3, height: 0)
+                vc.navigationController?.setNavigationBarHidden(true, animated: false)
+                present(menu, animated: true, completion: nil)
                 
-                
-                self.tableView1.transform = CGAffineTransform(translationX: self.view.frame.size.width, y: 120)
-                self.tableView1.frame = CGRect(x: 0, y: self.button1.center.y + self.button1.frame.size.height, width: self.view.frame.size.width, height: 200)
-                
-                
-                }, completion: nil)
-                
-            self.alphaTest = 1
-        } else {
             
-         UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-        
-        self.tableView1.transform = CGAffineTransform(translationX: -self.view.frame.size.width, y: -128)
-            self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
-        
-            self.alphaTest = 0
-        }, completion: nil)
-        
         }
     }
     
@@ -391,6 +405,14 @@ fetch()
         controller.dismiss(animated: true)
     }// func for sending mail
     
+    @objc func performLoginTransition(){
+        let vc = LoginViewController.get()
+        let newFrame = CGRect(x: (frame?.origin.x)! + 66, y: (frame?.origin.y)!, width: 30, height: 30)
+        self.transition = CustomTransition2(from: self, to: vc, fromFrame: newFrame, snapshot: nil, viewToHide: nil)
+        vc.transitioningDelegate = self.transition
+        vc.modalPresentationStyle = .custom
+        self.present(vc, animated: true, completion: nil)
+    }
     
 }
 
@@ -423,6 +445,18 @@ fetch()
 }*/
 
 extension ViewController: AlertMe {
+    func selectedBook(id: Int32) {
+//        if arrayOfBookId.count < 5 {
+//            if !arrayOfBookId.contains(id){
+//                arrayOfBookId.append(id)
+//            } else {
+//                print("Book is already in cart")//MARK:- make new alert for this
+//            }
+//        
+//        }
+//        print(arrayOfBookId)
+    }
+    
     func onClick(index: Int) {
         let alertVC = alertService.alert()
         present(alertVC, animated: true)

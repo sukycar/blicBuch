@@ -14,9 +14,9 @@ import RxSwift
 class GenreTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var fetchResults:NSFetchedResultsController<NSManagedObject>?
-    var book : Books?
+    var book : Book?
     //var genre : Books.Genre?
-    var genre:Books.Genre = .avantura
+    var genre:Book.Genre = .avantura
     @IBOutlet weak var holderView: UIView!//holder for uiimage view
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var genreLabel: UIButton!
@@ -32,20 +32,20 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     
-    var books = [Books]()
-    var booksInGenre = [Books]()
+    var books = [Book]()
+    var booksInGenre = [Book]()
     //private var dataSource:[Book] = []
     //var books = Books()
     
     @IBOutlet var mainTable: UITableView!
     
     func fetch(){
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Books")
+        let context = DataManager.shared.context
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
         
         do {
-            let results = try context.fetch(fetchRequest)
-            let booksCreated = results as! [Books]
+            let results = try context?.fetch(fetchRequest)
+            let booksCreated = results as! [Book]
             
             for _booksCreated in booksCreated {
                 books.append(_booksCreated)

@@ -2,7 +2,7 @@
 //  User+CoreDataClass.swift
 //  
 //
-//  Created by Vladimir Sukanica on 5/7/20.
+//  Created by Vladimir Sukanica on 12.12.20..
 //
 //
 
@@ -43,3 +43,4 @@ extension User {
         //case vipBooks
     }
 }
+

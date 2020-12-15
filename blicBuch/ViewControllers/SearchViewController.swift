@@ -36,7 +36,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     var fetchResults:NSFetchedResultsController<NSManagedObject>?
     func fetch(){
-        let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
+        let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         
@@ -44,16 +44,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         fetchedResultsController.delegate = self
         self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
         try! fetchResults?.performFetch()
-        dataSource = fetchResults?.fetchedObjects as! [Books]
+        dataSource = fetchResults?.fetchedObjects as! [Book]
         self.searchTable.reloadData()
         
     }
     
-    private var dataSource:[Books] = []
-    private var mainFilteredData:[Books] = []
-    private var filteredDataSource:[Books] = []
+    private var dataSource:[Book] = []
+    private var mainFilteredData:[Book] = [Book()]
+    private var filteredDataSource:[Book] = []
     
-    var weReccomend = [Books]()
+    var weReccomend = [Book]()
     var resultsSearchController = UISearchController()
     var searching = false
     

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ali-IE-iWA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ali-IE-iWA">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -25,7 +27,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAo-Vb-w5j">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bibliothek" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNL-Sj-AhX">
                                 <rect key="frame" x="16" y="36" width="112" height="30"/>
@@ -35,7 +37,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GOG-xp-ppv">
                                 <rect key="frame" x="0.0" y="74" width="320" height="572"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="572" id="Nji-Mj-2Ww"/>
                                 </constraints>
@@ -51,7 +53,8 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hvc-Yp-uoq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GOG-xp-ppv" firstAttribute="trailing" secondItem="hvc-Yp-uoq" secondAttribute="trailing" id="0CT-D3-oF6"/>
                             <constraint firstItem="GOG-xp-ppv" firstAttribute="top" secondItem="lAo-Vb-w5j" secondAttribute="bottom" constant="8" id="9Bc-q3-r83"/>
@@ -64,7 +67,6 @@
                             <constraint firstItem="lAo-Vb-w5j" firstAttribute="leading" secondItem="hvc-Yp-uoq" secondAttribute="leading" id="sMq-bt-ypC"/>
                             <constraint firstItem="hvc-Yp-uoq" firstAttribute="trailing" secondItem="aNL-Sj-AhX" secondAttribute="trailing" constant="192" id="tnc-8p-a2k"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hvc-Yp-uoq"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Bibliothek" image="Untitled-4" id="J8S-b4-44G"/>
                     <connections>
@@ -85,7 +87,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sbF-U2-1pq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="3Bh-P2-pFH">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -94,7 +96,7 @@
                                     <rect key="frame" x="16" y="0.0" width="288" height="164"/>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="KQx-Iu-2Zr" firstAttribute="centerX" secondItem="3Bh-P2-pFH" secondAttribute="centerX" id="4eL-Ey-GJq"/>
                                 <constraint firstItem="KQx-Iu-2Zr" firstAttribute="top" secondItem="3Bh-P2-pFH" secondAttribute="top" identifier="genreDonationTop" id="VuH-gK-sfv"/>
@@ -116,7 +118,7 @@
                                 <action selector="back:" destination="bvJ-Wr-NdX" id="TZ8-vm-3Bf"/>
                             </connections>
                         </barButtonItem>
-                        <button key="titleView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Q78-00-Dqs">
+                        <button key="titleView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Q78-00-Dqs">
                             <rect key="frame" x="134.5" y="4" width="51" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
@@ -146,7 +148,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" allowsEditingTextAttributes="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH1-yN-wAf">
                                 <rect key="frame" x="14" y="77" width="292" height="442"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Verein „Bücherliebhaber Club blitzBuch“ ZVR 1759468752
 c/o Perica Anciger
 c/o Daniela Kukic
@@ -197,7 +199,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="UgJ-Ji-lAE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qJX-cZ-PSa" firstAttribute="top" secondItem="UgJ-Ji-lAE" secondAttribute="top" constant="36" id="1zo-Qg-Bgy"/>
                             <constraint firstItem="dH1-yN-wAf" firstAttribute="leading" secondItem="UgJ-Ji-lAE" secondAttribute="leading" constant="14" id="eG8-xa-RgY"/>
@@ -207,7 +210,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="UgJ-Ji-lAE" firstAttribute="trailing" secondItem="dH1-yN-wAf" secondAttribute="trailing" constant="14" id="q0i-XG-e0F"/>
                             <constraint firstItem="qJX-cZ-PSa" firstAttribute="leading" secondItem="UgJ-Ji-lAE" secondAttribute="leading" constant="16" id="xWb-YO-9mR"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="UgJ-Ji-lAE"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Informationen" image="info" id="GE8-or-0xl"/>
                     <connections>
@@ -226,7 +228,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8jI-cu-vZI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ZxI-1A-h9r">
                                 <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
@@ -273,7 +275,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                         </connections>
                                     </searchBar>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="159" id="ive-YY-SLi"/>
                                     <constraint firstItem="fQs-L2-xxx" firstAttribute="leading" secondItem="YEz-UY-VVo" secondAttribute="leading" constant="16" id="lch-aH-VxH"/>
@@ -288,8 +290,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AmG-eZ-Sje">
                                 <rect key="frame" x="0.0" y="167" width="320" height="352"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="sectionIndexColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexColor" systemColor="systemOrangeColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" id="1Ks-xH-AOs">
                                         <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
@@ -306,7 +308,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="QyB-XA-DD7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YEz-UY-VVo" firstAttribute="leading" secondItem="QyB-XA-DD7" secondAttribute="leading" id="4c7-Ei-BIg"/>
                             <constraint firstItem="AmG-eZ-Sje" firstAttribute="top" secondItem="hH1-zl-tDa" secondAttribute="bottom" constant="36" id="5fI-H1-thc"/>
@@ -322,7 +325,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="TJ9-jp-9dv" firstAttribute="top" secondItem="QyB-XA-DD7" secondAttribute="top" constant="36" id="bZe-53-LFv"/>
                             <constraint firstItem="AmG-eZ-Sje" firstAttribute="top" secondItem="YEz-UY-VVo" secondAttribute="bottom" constant="8" id="ict-yr-oAd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QyB-XA-DD7"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Suchen" image="search" id="kCg-Le-a1A"/>
                     <connections>
@@ -347,7 +349,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2u-7a-UM6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="fBk-en-VWj"/>
                                 </constraints>
@@ -364,7 +366,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8hY-cI-Gks">
                                 <rect key="frame" x="0.0" y="71" width="320" height="448"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fFF-5w-hWT" customClass="CustomCell" customModule="blitzBuch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
@@ -377,7 +379,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="FR7-VL-nHU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="k2u-7a-UM6" firstAttribute="leading" secondItem="FR7-VL-nHU" secondAttribute="leading" id="Dgc-16-oTL"/>
                             <constraint firstItem="k2u-7a-UM6" firstAttribute="top" secondItem="FR7-VL-nHU" secondAttribute="top" id="Ju3-3u-WVr"/>
@@ -390,7 +393,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="8hY-cI-Gks" firstAttribute="bottom" secondItem="FR7-VL-nHU" secondAttribute="bottom" id="i96-AL-S07"/>
                             <constraint firstItem="8P2-HY-OED" firstAttribute="leading" secondItem="FR7-VL-nHU" secondAttribute="leading" constant="16" id="tPW-G7-8M5"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="FR7-VL-nHU"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="VIP Member" image="vip-1" id="MIC-TG-via"/>
                     <connections>
@@ -406,7 +408,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <rect key="frame" x="16" y="8" width="288" height="158"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <viewLayoutGuide key="safeArea" id="7gJ-8n-s7m"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="CXt-lO-fgG" firstAttribute="leading" secondItem="1T1-Xm-t1j" secondAttribute="leading" constant="16" id="GtD-yY-GLt"/>
                         <constraint firstItem="CXt-lO-fgG" firstAttribute="top" secondItem="1T1-Xm-t1j" secondAttribute="top" constant="8" identifier="genreDonationTop" id="XaP-DN-nYs"/>
@@ -414,7 +417,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <constraint firstItem="CXt-lO-fgG" firstAttribute="centerX" secondItem="1T1-Xm-t1j" secondAttribute="centerX" id="mDo-wl-Dkk"/>
                         <constraint firstAttribute="trailing" secondItem="CXt-lO-fgG" secondAttribute="trailing" constant="16" id="olq-7I-yZd"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="7gJ-8n-s7m"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="-414.375" y="379.22535211267603"/>
@@ -422,11 +424,11 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
         <!--Cart Table View-->
         <scene sceneID="Ggx-q4-Rof">
             <objects>
-                <tableViewController id="ZXp-PO-0ce" customClass="CartTableView" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CartTableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZXp-PO-0ce" customClass="CartTableView" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ydw-Id-2lc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
                             <outlet property="dataSource" destination="ZXp-PO-0ce" id="S9H-0s-29i"/>
                             <outlet property="delegate" destination="ZXp-PO-0ce" id="IjA-Xv-vce"/>
@@ -453,14 +455,14 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Nhh-46-zEN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4Dq-gL-GHH" firstAttribute="centerY" secondItem="4Le-YQ-hdv" secondAttribute="centerY" id="4ka-eV-tsb"/>
                             <constraint firstItem="4Dq-gL-GHH" firstAttribute="leading" secondItem="Nhh-46-zEN" secondAttribute="leading" constant="40" id="GXS-0E-UUR"/>
                             <constraint firstItem="Nhh-46-zEN" firstAttribute="trailing" secondItem="4Dq-gL-GHH" secondAttribute="trailing" constant="40" id="adB-Rp-ypr"/>
                             <constraint firstItem="4Dq-gL-GHH" firstAttribute="centerX" secondItem="4Le-YQ-hdv" secondAttribute="centerX" id="xfm-f3-6aK"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Nhh-46-zEN"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="4Dq-gL-GHH" id="sme-H1-qG4"/>
@@ -479,7 +481,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                         <color key="selectedImageTintColor" red="0.35912325978279114" green="0.74797087907791138" blue="0.94822698831558228" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
@@ -532,7 +534,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             </button>
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a9C-oS-OYU">
                                 <rect key="frame" x="0.0" y="174" width="320" height="345"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="CHb-7B-NEn"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="XwV-U6-z7C"/>
@@ -540,7 +542,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             </tableView>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lDl-WI-VGY">
                                 <rect key="frame" x="0.0" y="129" width="320" height="200"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="SZP-5B-6lf"/>
                                 </constraints>
@@ -570,7 +572,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="a9C-oS-OYU" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6Gk-nV-52T"/>
                             <constraint firstItem="k2T-1b-EcN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DhX-IM-dXf"/>
@@ -589,10 +592,9 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="02R-kk-eFT" secondAttribute="trailing" constant="16" id="uxo-bs-260"/>
                             <constraint firstItem="48d-8a-fFj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="whW-Vc-RTZ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="r63-ao-GEM">
-                        <color key="badgeColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="badgeColor" systemColor="scrollViewTexturedBackgroundColor"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="button1" destination="48d-8a-fFj" id="mBj-4v-aLO"/>
@@ -612,7 +614,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
         <!--Login View Controller-->
         <scene sceneID="qXT-wI-aRO">
             <objects>
-                <viewController id="pUr-r3-wfc" customClass="LoginViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pUr-r3-wfc" customClass="LoginViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JxX-Jf-MVe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -633,7 +635,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jG-ax-h3E">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jG-ax-h3E">
                                 <rect key="frame" x="16" y="183" width="288" height="37.5"/>
                                 <state key="normal" title="Login" backgroundImage="testButton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -653,14 +655,15 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="s3g-zt-NYO" firstAttribute="centerY" secondItem="ZaC-ok-mhN" secondAttribute="centerY" id="o1t-40-fAr"/>
                                     <constraint firstItem="s3g-zt-NYO" firstAttribute="centerX" secondItem="ZaC-ok-mhN" secondAttribute="centerX" id="xaG-dc-xXu"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="U38-wd-4k7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2jG-ax-h3E" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="5qp-3r-tz8"/>
                             <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="ZaC-ok-mhN" secondAttribute="trailing" constant="16" id="FQa-cN-Odo"/>
@@ -678,7 +681,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="2jG-ax-h3E" secondAttribute="trailing" constant="16" id="sXj-Kg-SII"/>
                             <constraint firstItem="ZaC-ok-mhN" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="yPQ-Zh-tw7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="U38-wd-4k7"/>
                     </view>
                     <navigationItem key="navigationItem" id="ROe-Lz-8kS"/>
                     <connections>
@@ -693,7 +695,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
         <!--Register View Controller-->
         <scene sceneID="WZx-1U-bzl">
             <objects>
-                <viewController id="S8G-tq-aI7" customClass="RegisterViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S8G-tq-aI7" customClass="RegisterViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KbU-rq-f63">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -773,7 +775,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQL-uB-aqb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQL-uB-aqb">
                                 <rect key="frame" x="16" y="484" width="288" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="msu-eU-JJe"/>
@@ -787,7 +789,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="j7l-CB-UbV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="Swn-gJ-SsU" secondAttribute="trailing" constant="16" id="3Gv-G5-rNT"/>
                             <constraint firstItem="as4-CR-LBS" firstAttribute="leading" secondItem="j7l-CB-UbV" secondAttribute="leading" constant="16" id="4f5-z6-gqC"/>
@@ -821,8 +824,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="as4-CR-LBS" secondAttribute="trailing" constant="16" id="ysJ-Ry-0zp"/>
                             <constraint firstItem="XcK-kC-rGv" firstAttribute="leading" secondItem="j7l-CB-UbV" secondAttribute="leading" constant="16" id="zmi-ce-QJx"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="j7l-CB-UbV"/>
                     </view>
+                    <navigationItem key="navigationItem" id="nQH-k1-zei"/>
                     <connections>
                         <outlet property="city" destination="as4-CR-LBS" id="5Bv-NJ-Vzz"/>
                         <outlet property="email" destination="BAQ-LI-PDe" id="Mq0-ee-5r5"/>
@@ -852,12 +855,12 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="g4K-nd-AeH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YxA-ZO-mOp" firstAttribute="centerY" secondItem="X1t-Zc-0yX" secondAttribute="centerY" id="Fkd-br-srt"/>
                             <constraint firstItem="YxA-ZO-mOp" firstAttribute="centerX" secondItem="X1t-Zc-0yX" secondAttribute="centerX" id="eJ0-lg-Kp6"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="g4K-nd-AeH"/>
                     </view>
                     <navigationItem key="navigationItem" id="PPY-jZ-gqZ"/>
                 </viewController>
@@ -899,31 +902,18 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuMemberCell" rowHeight="176" id="8Ke-Fe-aEP" customClass="SideMenuMemberCell" customModule="blitzBuch" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="320" height="176"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuMemberCell" rowHeight="100" id="8Ke-Fe-aEP" customClass="SideMenuMemberCell" customModule="blitzBuch" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Ke-Fe-aEP" id="Fi9-V9-7ym">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mL3-Of-9M7" customClass="DownloadImageView" customModule="blitzBuch" customModuleProvider="target">
-                                                            <rect key="frame" x="20" y="30" width="64" height="64"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="64" id="OgA-nH-0OD"/>
-                                                                <constraint firstAttribute="width" constant="64" id="QR9-ku-FCR"/>
-                                                            </constraints>
-                                                        </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Frg-y7-6b8">
-                                                            <rect key="frame" x="20" y="109" width="42" height="41"/>
+                                                            <rect key="frame" x="20" y="40" width="264" height="20.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhL-Ft-uvF" customClass="Label" customModule="blitzBuch" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jI-4J-0QV" customClass="Label" customModule="blitzBuch" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="20.5" width="42" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="264" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -934,26 +924,25 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Frg-y7-6b8" firstAttribute="leading" secondItem="Fi9-V9-7ym" secondAttribute="leading" constant="20" id="BJc-UR-oTN"/>
-                                                        <constraint firstItem="mL3-Of-9M7" firstAttribute="leading" secondItem="Fi9-V9-7ym" secondAttribute="leading" constant="20" id="DLP-ii-8hu"/>
-                                                        <constraint firstItem="mL3-Of-9M7" firstAttribute="top" secondItem="Fi9-V9-7ym" secondAttribute="top" constant="30" id="dhQ-6Q-sfq"/>
-                                                        <constraint firstItem="Frg-y7-6b8" firstAttribute="top" secondItem="mL3-Of-9M7" secondAttribute="bottom" constant="15" id="jrI-Zy-Lvk"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="Frg-y7-6b8" secondAttribute="trailing" constant="20" id="Qdz-cU-Inf"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <constraints>
+                                                    <constraint firstItem="Frg-y7-6b8" firstAttribute="centerY" secondItem="8Ke-Fe-aEP" secondAttribute="centerY" id="lDd-Yo-gs3"/>
+                                                </constraints>
                                                 <connections>
-                                                    <outlet property="companyNameLabel" destination="9jI-4J-0QV" id="pyE-vC-ISI"/>
-                                                    <outlet property="memberNameLabel" destination="dhL-Ft-uvF" id="hab-5F-UE3"/>
-                                                    <outlet property="userImageView" destination="mL3-Of-9M7" id="mDP-sr-0GZ"/>
+                                                    <outlet property="usernameLabel" destination="dhL-Ft-uvF" id="pRZ-DK-7eK"/>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuGeneralCell" id="4ga-y6-dIO" customClass="SideMenuGeneralCell" customModule="blitzBuch" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="204" width="320" height="30.5"/>
+                                                <rect key="frame" x="0.0" y="128" width="320" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4ga-y6-dIO" id="TlR-Lg-GoE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="30.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rct-Le-XOi">
-                                                            <rect key="frame" x="20" y="3" width="25" height="25"/>
+                                                            <rect key="frame" x="20" y="9.5" width="25" height="25"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="WV1-yP-GoG"/>
@@ -961,46 +950,34 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CG5-0V-sej" customClass="Label" customModule="blitzBuch" customModuleProvider="target">
-                                                            <rect key="frame" x="59" y="5" width="42" height="20.5"/>
+                                                            <rect key="frame" x="59" y="11.5" width="41.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fL3-eh-mU0" customClass="Label" customModule="blitzBuch" customModuleProvider="target">
-                                                            <rect key="frame" x="258" y="5" width="42" height="20.5"/>
+                                                            <rect key="frame" x="258.5" y="11.5" width="41.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfm-x6-oJg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="30.5"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal">
-                                                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="CG5-0V-sej" firstAttribute="centerY" secondItem="TlR-Lg-GoE" secondAttribute="centerY" id="4Vr-AR-qVE"/>
                                                         <constraint firstItem="Rct-Le-XOi" firstAttribute="leading" secondItem="TlR-Lg-GoE" secondAttribute="leading" constant="20" id="PMA-VL-Xut"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Xfm-x6-oJg" secondAttribute="bottom" id="PkZ-HG-UWw"/>
-                                                        <constraint firstItem="Xfm-x6-oJg" firstAttribute="top" secondItem="TlR-Lg-GoE" secondAttribute="top" id="WeS-IR-5eu"/>
                                                         <constraint firstItem="fL3-eh-mU0" firstAttribute="centerY" secondItem="TlR-Lg-GoE" secondAttribute="centerY" id="gCD-Lb-kTO"/>
                                                         <constraint firstAttribute="trailing" secondItem="fL3-eh-mU0" secondAttribute="trailing" constant="20" id="gQI-fM-f5a"/>
-                                                        <constraint firstItem="Xfm-x6-oJg" firstAttribute="leading" secondItem="TlR-Lg-GoE" secondAttribute="leading" id="jX1-P2-Pbk"/>
                                                         <constraint firstItem="Rct-Le-XOi" firstAttribute="centerY" secondItem="TlR-Lg-GoE" secondAttribute="centerY" id="mlg-7S-mEW"/>
                                                         <constraint firstItem="CG5-0V-sej" firstAttribute="leading" secondItem="Rct-Le-XOi" secondAttribute="trailing" constant="14" id="rDd-la-y1t"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Xfm-x6-oJg" secondAttribute="trailing" id="tM9-jc-rSw"/>
                                                         <constraint firstItem="fL3-eh-mU0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CG5-0V-sej" secondAttribute="trailing" constant="10" id="vrT-Yx-wVS"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <outlet property="cellButton" destination="Xfm-x6-oJg" id="Tz1-nQ-gwS"/>
-                                                    <outlet property="counterLabel" destination="fL3-eh-mU0" id="V2t-WO-cMq"/>
-                                                    <outlet property="imageHolderView" destination="Rct-Le-XOi" id="CVY-tK-ESs"/>
-                                                    <outlet property="titleLabel" destination="CG5-0V-sej" id="aqb-0S-d41"/>
+                                                    <outlet property="counterLabel" destination="fL3-eh-mU0" id="ViV-Ve-72T"/>
+                                                    <outlet property="imageHolderView" destination="Rct-Le-XOi" id="UqA-Eh-I1d"/>
+                                                    <outlet property="titleLabel" destination="CG5-0V-sej" id="5Sx-YF-p2g"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1015,6 +992,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="jRx-Kc-aMB"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jRx-Kc-aMB" firstAttribute="trailing" secondItem="tGR-0N-CRL" secondAttribute="trailing" id="3ku-Ut-4tz"/>
@@ -1022,25 +1000,34 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="tGR-0N-CRL" firstAttribute="leading" secondItem="jRx-Kc-aMB" secondAttribute="leading" id="dqc-OE-mYN"/>
                             <constraint firstAttribute="bottom" secondItem="tGR-0N-CRL" secondAttribute="bottom" id="s2N-9Q-Qjh"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="jRx-Kc-aMB"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
-                        <outlet property="mainView" destination="4d8-Cc-wUP" id="xsf-9T-5YZ"/>
-                        <outlet property="tableHolderView" destination="tGR-0N-CRL" id="zvV-Hz-ddZ"/>
-                        <outlet property="tableView" destination="gaC-ez-FYN" id="7sO-83-ABb"/>
+                        <outlet property="mainView" destination="4d8-Cc-wUP" id="1L1-qB-cO6"/>
+                        <outlet property="tableHolderView" destination="tGR-0N-CRL" id="PXh-yG-5iT"/>
+                        <outlet property="tableView" destination="gaC-ez-FYN" id="Wi7-KY-jyP"/>
+                        <segue destination="pUr-r3-wfc" kind="show" identifier="login" id="1Gj-zh-ZxO"/>
+                        <segue destination="S8G-tq-aI7" kind="show" identifier="registration" id="dqj-fs-0D0"/>
+                        <segue destination="0vm-In-XY6" kind="show" identifier="donate" id="I5g-yn-FbE"/>
+                        <segue destination="ZXp-PO-0ce" kind="show" identifier="cart" id="tGk-Ze-BVt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEp-1q-wm2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1388" y="-1224"/>
+            <point key="canvasLocation" x="1716" y="-2039"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4ty-DA-F2g"/>
+        <segue reference="2ak-G8-IfE"/>
+        <segue reference="i69-T5-41z"/>
+        <segue reference="Jzf-Wj-02z"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Untitled-4" width="25" height="25"/>
         <image name="VIP" width="92" height="65.5"/>
         <image name="bb8" width="147.5" height="268"/>
-        <image name="chevron.left" catalog="system" width="48" height="64"/>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="donacija" width="1133" height="519.5"/>
         <image name="flag" width="127.5" height="85"/>
         <image name="home" width="25" height="25"/>
@@ -1049,5 +1036,14 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
         <image name="search" width="25" height="25"/>
         <image name="testButton" width="288" height="37.5"/>
         <image name="vip-1" width="25" height="25"/>
+        <systemColor name="scrollViewTexturedBackgroundColor">
+            <color red="0.43529411764705878" green="0.44313725490196082" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
