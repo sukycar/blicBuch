@@ -7,7 +7,7 @@
 //
 
 import UIKit
-typealias LabelTypeWithText = (type:LabelType,text:String?)
+typealias LabelTypeWithText = (type:LabelType, text:String?)
 
 class Label: BaseLabel {
     override func setEdgeInsets() {
@@ -72,20 +72,17 @@ enum LabelType{
             return UIColor.blue
         case .sideMenuTitle:
             return UIColor.black
-        
         }
-        
     }
     
     var fontName:FontName{
         switch self {
         case .none:
-            return .medium
+            return .regular
         case .sideMenuCounterLabel:
-            return .medium
+            return .regular
         case .sideMenuTitle:
-            return .medium
-        
+            return .regular
         }
     }
     
@@ -97,7 +94,6 @@ enum LabelType{
             return 16
         case .sideMenuTitle:
             return 16
-        
         }
     }
     

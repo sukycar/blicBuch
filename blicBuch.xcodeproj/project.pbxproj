@@ -57,6 +57,7 @@
 		1F84715B257CD792008D759C /* blicBuchUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */; };
 		1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */; };
 		1FA4CBDF2587848300730984 /* UIView + loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CBDE2587848300730984 /* UIView + loader.swift */; };
+		1FD71E59258B338B004435EA /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD71E58258B338B004435EA /* UIViewController + Extension.swift */; };
 		1FE8B4BA2584C61F00C3A47A /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B4B72584C61F00C3A47A /* User+CoreDataClass.swift */; };
 		1FE8B4BB2584C61F00C3A47A /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B4B62584C61F00C3A47A /* User+CoreDataProperties.swift */; };
 		1FE8B4BD2584C61F00C3A47A /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B4B92584C61F00C3A47A /* Book+CoreDataClass.swift */; };
@@ -72,10 +73,11 @@
 		1FE8B5252584D22500C3A47A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B5242584D22500C3A47A /* Constants.swift */; };
 		1FE8B5282584D45700C3A47A /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B5272584D45700C3A47A /* String + extension.swift */; };
 		1FE8B52B2584DAD600C3A47A /* SideMenuGeneralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */; };
-		727A5804565B06B2D655AB52 /* Pods_blicBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD4AD44D29DEC3FF60EB875 /* Pods_blicBuch.framework */; };
+		9942C551BE6ACA9983D5B06A /* Pods_blicBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0492C561C7BB099EDC73E3D0 /* Pods_blicBuch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0492C561C7BB099EDC73E3D0 /* Pods_blicBuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blicBuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A028F8D242FC520005AEF14 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		0A196A3A2396653D00E2DF6C /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		0A1E326B2463D3DB00AD388C /* BooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksService.swift; sourceTree = "<group>"; };
@@ -125,13 +127,13 @@
 		0AEEE89223C5DF1300240B90 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		0AF1EEA12483EA8F000AB7DC /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0AFA0457246747850096CCCD /* blicBuch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = blicBuch.xcdatamodel; sourceTree = "<group>"; };
-		17F044ACC0838E355034AEEA /* Pods-blicBuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.debug.xcconfig"; path = "Target Support Files/Pods-blicBuch/Pods-blicBuch.debug.xcconfig"; sourceTree = "<group>"; };
 		1F83D1822588C92A003C888D /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataProperties.swift"; path = "blicBuch/Core/Book+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		1F83D1862588C967003C888D /* CartBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CartBook+CoreDataProperties.swift"; path = "/Users/vladimirsukanica/blicBuch/blicBuch/Core/CartBook+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		1F83D1872588C967003C888D /* CartBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CartBook+CoreDataClass.swift"; path = "/Users/vladimirsukanica/blicBuch/blicBuch/Core/CartBook+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blicBuchUserDefaults.swift; sourceTree = "<group>"; };
+		1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = blicBuchUserDefaults.swift; path = blicBuch/Configuration/blicBuchUserDefaults.swift; sourceTree = SOURCE_ROOT; };
 		1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		1FA4CBDE2587848300730984 /* UIView + loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + loader.swift"; sourceTree = "<group>"; };
+		1FD71E58258B338B004435EA /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		1FE8B4B62584C61F00C3A47A /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "blicBuch/Core/User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		1FE8B4B72584C61F00C3A47A /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "blicBuch/Core/User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		1FE8B4B92584C61F00C3A47A /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataClass.swift"; path = "blicBuch/Core/Book+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -147,8 +149,8 @@
 		1FE8B5242584D22500C3A47A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1FE8B5272584D45700C3A47A /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
 		1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuGeneralCell.swift; sourceTree = "<group>"; };
-		AFD4AD44D29DEC3FF60EB875 /* Pods_blicBuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blicBuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0B6D8C57511F57AC7957E3D /* Pods-blicBuch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.release.xcconfig"; path = "Target Support Files/Pods-blicBuch/Pods-blicBuch.release.xcconfig"; sourceTree = "<group>"; };
+		8916CF63BDD4CBEB01AC1014 /* Pods-blicBuch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.release.xcconfig"; path = "Target Support Files/Pods-blicBuch/Pods-blicBuch.release.xcconfig"; sourceTree = "<group>"; };
+		F85B02400823A37719199283 /* Pods-blicBuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.debug.xcconfig"; path = "Target Support Files/Pods-blicBuch/Pods-blicBuch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				727A5804565B06B2D655AB52 /* Pods_blicBuch.framework in Frameworks */,
+				9942C551BE6ACA9983D5B06A /* Pods_blicBuch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +188,6 @@
 				0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */,
 				0A7519712466A8F90089DED8 /* DataManager.swift */,
 				0A8E4F4F249DEE8F00C8B38A /* NavigationController.swift */,
-				1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -198,6 +199,7 @@
 				1FE8B5212584D19A00C3A47A /* AppDelegate + extensions.swift */,
 				1FE8B5272584D45700C3A47A /* String + extension.swift */,
 				1FA4CBDE2587848300730984 /* UIView + loader.swift */,
+				1FD71E58258B338B004435EA /* UIViewController + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -282,6 +284,7 @@
 				0AF1EEA12483EA8F000AB7DC /* Colors.swift */,
 				0A2DB41F238975880070DAE5 /* TabBarViewController.swift */,
 				0ABB0AAF248C50C6001259F1 /* SortModel.swift */,
+				1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -346,8 +349,8 @@
 		6D5C3B4C3604FF44A33220DD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				17F044ACC0838E355034AEEA /* Pods-blicBuch.debug.xcconfig */,
-				D0B6D8C57511F57AC7957E3D /* Pods-blicBuch.release.xcconfig */,
+				F85B02400823A37719199283 /* Pods-blicBuch.debug.xcconfig */,
+				8916CF63BDD4CBEB01AC1014 /* Pods-blicBuch.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -356,7 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				0A2C199623F4A45400185D3B /* GTMSessionFetcher.framework */,
-				AFD4AD44D29DEC3FF60EB875 /* Pods_blicBuch.framework */,
+				0492C561C7BB099EDC73E3D0 /* Pods_blicBuch.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -368,11 +371,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A333F5F23806EFE00B5A39B /* Build configuration list for PBXNativeTarget "blicBuch" */;
 			buildPhases = (
-				C7D255D449010D1FAF780668 /* [CP] Check Pods Manifest.lock */,
+				5E12FE39531DE02621A9595E /* [CP] Check Pods Manifest.lock */,
 				0A333F4423806EE800B5A39B /* Sources */,
 				0A333F4523806EE800B5A39B /* Frameworks */,
 				0A333F4623806EE800B5A39B /* Resources */,
-				7DBB99E61C04CAFE3AB81475 /* [CP] Embed Pods Frameworks */,
+				B68FE2B249840033AF1DE59E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -438,24 +441,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7DBB99E61C04CAFE3AB81475 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C7D255D449010D1FAF780668 /* [CP] Check Pods Manifest.lock */ = {
+		5E12FE39531DE02621A9595E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -477,6 +463,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B68FE2B249840033AF1DE59E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-blicBuch/Pods-blicBuch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -495,6 +498,7 @@
 				1FE8B50B2584CA7600C3A47A /* SideMenuViewController.swift in Sources */,
 				0A028F8E242FC520005AEF14 /* InfoViewController.swift in Sources */,
 				1FE8B5182584CEF400C3A47A /* CustomTransition2.swift in Sources */,
+				1FD71E59258B338B004435EA /* UIViewController + Extension.swift in Sources */,
 				1FE8B52B2584DAD600C3A47A /* SideMenuGeneralCell.swift in Sources */,
 				0AEEE89323C5DF1300240B90 /* AlertService.swift in Sources */,
 				0A8E4F50249DEE8F00C8B38A /* NavigationController.swift in Sources */,
@@ -684,7 +688,7 @@
 		};
 		0A333F6023806EFE00B5A39B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17F044ACC0838E355034AEEA /* Pods-blicBuch.debug.xcconfig */;
+			baseConfigurationReference = F85B02400823A37719199283 /* Pods-blicBuch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -704,7 +708,7 @@
 		};
 		0A333F6123806EFE00B5A39B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0B6D8C57511F57AC7957E3D /* Pods-blicBuch.release.xcconfig */;
+			baseConfigurationReference = 8916CF63BDD4CBEB01AC1014 /* Pods-blicBuch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

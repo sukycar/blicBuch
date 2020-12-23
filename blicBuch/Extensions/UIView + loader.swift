@@ -50,7 +50,7 @@ extension UIView {
             view.widthAnchor.constraint(equalTo: self.widthAnchor, constant: 0).isActive = true
             view.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 0).isActive = true
         }else{
-            let ss = self.safeAreaInsets
+            _ = self.safeAreaInsets
             view.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
             view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
         }

@@ -8,15 +8,11 @@
 import UIKit
 
 enum FontName {
-    case light, regular, medium, bold
+    case regular, bold
     var value:String {
         switch self {
-        case .light:
-            return "Roboto-Light"
         case .regular:
             return "Roboto-Regular"
-        case .medium:
-            return "Roboto-Medium"
         case .bold:
             return "Roboto-Bold"
         }
@@ -41,22 +37,7 @@ struct FontSize {
         static let title:CGFloat = 24
         static let subtitle:CGFloat = 14
     }
-    
-    struct DatePicker {
-        static let mainText:CGFloat = 14
-        static let yearTitle:CGFloat = 14
-        static let monthTitle:CGFloat = 18
-        static let dayTitle:CGFloat = 18
-        static let smallMainText:CGFloat = 12
-    }
-    struct Roadshow {
-        static let yearTitle:CGFloat = 47
-        static let title:CGFloat = 34
-        static let subtitle:CGFloat = 14
-        static let tabSectionYearTitle:CGFloat = 16
-        static let tabSectionLocationTitle:CGFloat = 16
-    }
-    
+        
     struct Register {
         static let title:CGFloat = 12
         static let subtitle:CGFloat = 16
@@ -97,9 +78,6 @@ struct FontSize {
         static let promotionTitle:CGFloat = 16
         static let promotionRatingTitle:CGFloat = 53
         static let feedbackTitle:CGFloat = 16
-        static let roadshowCellSubtitle:CGFloat = 12
-        static let roadshowCellDescription:CGFloat = 14
-        static let roadshowDetailsDescription:CGFloat = 16
     }
     
     struct Section {
@@ -118,25 +96,13 @@ struct FontSize {
         static let descriptionArabic:CGFloat = 14
     }
 
-    struct EditProfile {
-        static let title:CGFloat = 16
-    }
+
     struct Calendar {
         static let month:CGFloat = 12
         static let dayInWeek:CGFloat = 12
         static let day:CGFloat = 14
     }
-    struct Promotion {
-        static let type:CGFloat = 11
-        static let title:CGFloat = 14
-        static let subtitle:CGFloat = 12
-        static let homeCellSubtitle:CGFloat = 14
-        static let from:CGFloat = 12
-        static let price:CGFloat = 16
-        static let detailsPrice:CGFloat = 18
-        static let flagTitle:CGFloat = 12
-    }
-    
+
     struct PromotionDetails {
         static let expiration:CGFloat = 14
         static let contactDetails:CGFloat = 10
@@ -196,17 +162,6 @@ struct FontSize {
     struct Notification{
         static let cellText:CGFloat = 16
     }
-    struct More {
-        static let sectionTitle:CGFloat = 14
-        static let cellTitle:CGFloat = 18
-        static let cellSubtitle:CGFloat = 16
-        static let contactUsSubtitle:CGFloat = 14
-        static let bigTitle:CGFloat = 24
-    }
-    struct Exclusive {
-        static let title:CGFloat = 13
-        static let subtitle:CGFloat = 16
-    }
 
 }
 extension CGFloat {
@@ -242,7 +197,7 @@ let badgeNumberTag = 358
 extension UIFont {
     //TOASTER
     class func toasterLabel(text:String?) -> NSAttributedString {
-        return customAttributedString(text: text, fontType: .medium, fontSize: FontSize.Toaster.toaster, alignment:.center, color: UIColor.white)
+        return customAttributedString(text: text, fontType: .regular, fontSize: FontSize.Toaster.toaster, alignment:.center, color: UIColor.white)
     }
 }
 

@@ -31,11 +31,8 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     
-    
     var books = [Book]()
     var booksInGenre = [Book]()
-    //private var dataSource:[Book] = []
-    //var books = Books()
     
     @IBOutlet var mainTable: UITableView!
     
@@ -93,8 +90,58 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
 
         let cell = mainTable.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for:indexPath) as! CustomCell
         let item = booksInGenre[indexPath.row]
-            cell.set(with: item)
-        
+        cell.set(with: item, inVipController: false)
+        cell.index = indexPath
+        cell.orderButton.rx.tap.subscribe(onNext: {[weak self] in
+            let request = CartBook.fetchRequest() as NSFetchRequest
+            request.predicate = NSPredicate(format: "id == %d", item.id)
+            let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
+            let cartBook = fetchedCartBooks.first
+            if item.vip == true {
+                if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
+                    if vipBooks > 0 {
+                        if cartBook?.inCart == false {
+                            cartBook?.inCart = true
+                            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
+                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                        } else {
+                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        }
+                    } else {
+                        if cartBook?.inCart == true {
+                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        } else {
+                            self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                        }
+                    }
+                }
+            }
+            if item.vip == false {
+                if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
+                    if books > 0 {
+                        if cartBook?.inCart == false {
+                            cartBook?.inCart = true
+                            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
+                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                        } else {
+                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        }
+                    } else {
+                        if cartBook?.inCart == true {
+                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        } else {
+                            self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                        }
+                    }
+                }
+            }
+            do {
+                try DataManager.shared.context.save()
+            } catch {
+                self?.getAlert(errorString: "Error saving data", errorColor: Colors.orange)
+            }
+            
+        }).disposed(by: cell.disposeBag)
         return cell
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RxSwift
 
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UISearchResultsUpdating, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
@@ -52,7 +53,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var dataSource:[Book] = []
     private var mainFilteredData:[Book] = [Book()]
     private var filteredDataSource:[Book] = []
-    
+    let context = DataManager.shared.context
     var weReccomend = [Book]()
     var resultsSearchController = UISearchController()
     var searching = false
@@ -129,7 +130,57 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
         let filtered = filteredDataSource[indexPath.row]
-        cell.set(with: filtered)
+        cell.set(with: filtered, inVipController: false)
+        cell.orderButton.rx.tap.subscribe(onNext: {[weak self] in
+            let request = CartBook.fetchRequest() as NSFetchRequest
+            request.predicate = NSPredicate(format: "id == %d", filtered.id)
+            let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
+            let cartBook = fetchedCartBooks.first
+            if filtered.vip == true {
+                if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
+                    if vipBooks > 0 {
+                        if cartBook?.inCart == false {
+                            cartBook?.inCart = true
+                            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
+                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                        } else {
+                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        }
+                    } else {
+                        if cartBook?.inCart == true {
+                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        } else {
+                            self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                        }
+                    }
+                }
+            }
+            if filtered.vip == false {
+                if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
+                    if books > 0 {
+                        if cartBook?.inCart == false {
+                            cartBook?.inCart = true
+                            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
+                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                        } else {
+                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        }
+                    } else {
+                        if cartBook?.inCart == true {
+                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        } else {
+                            self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                        }
+                    }
+                }
+            }
+            do {
+                try DataManager.shared.context.save()
+            } catch {
+                self?.getAlert(errorString: "Error saving data", errorColor: Colors.orange)
+            }
+            
+        }).disposed(by: cell.disposeBag)
         return cell
     }
     

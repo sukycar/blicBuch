@@ -68,8 +68,6 @@ enum SortModelType:String{
             return "Business Code"
         case .vesselImoNumber:
             return "IMO Number"
-        default:
-            return ""
         }
     }
     

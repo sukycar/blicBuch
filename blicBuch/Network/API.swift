@@ -19,7 +19,7 @@ class API: NSObject {
     var disposeBag = DisposeBag()
     
     func request(router:Router, parameters:[String:AnyObject]?, completion:@escaping ((ApiResponse) -> Void)) -> DataRequest{
-        var headers = [String : String]()
+        let headers = [String : String]()
         let request = managerInstance.request(router.fullUrl(), method: router.httpMethod, parameters: router.httpMethod == .get ? nil : parameters, encoding: JSONEncoding.default, headers: headers)
         print(router.fullUrl().absoluteString + " called")
         request.responseJSON { (response) in
@@ -59,7 +59,7 @@ class API: NSObject {
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
-        var headers = [String:String]()
+        let headers = [String:String]()
         let dlRequest = download(router.fullUrl(), method: router.httpMethod, parameters: parameters, encoding: JSONEncoding.default, headers: headers, to: destination)
         print("Called: " + (dlRequest.request?.url?.absoluteString ?? ""))
         dlRequest.downloadProgress { (progress) in

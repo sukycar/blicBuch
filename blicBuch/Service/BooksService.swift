@@ -19,10 +19,9 @@ class BooksService {
             let request = API.shared.request(router: router, parameters: nil) { (response) in
                 switch response {
                 case .Success(let json):
-                    print(json)
+                    print(json?.debugDescription)
                 case .Failure(let error):
                     observer.onError(error)
-                    
                 }
                 
             }
@@ -44,15 +43,6 @@ class BooksService {
                     
                     if let jsonArray = jsonArray1?.array {
                         DataManager.shared.work { (context) in
-                            let fetchForCount: NSFetchRequest<Book> = Book.fetchRequest()
-//                            let count = try! context.count(for: fetchForCount)
-//                            if jsonArray.count == count {
-//                                observer.onNext(true)
-//                                observer.onCompleted()
-//                                return
-//                            }
-//                            context.delete(fetchRequest: fetchForCount, predicate: NSPredicate(format: "id >= 0"))
-
                             context.refreshAllObjects()
                             for (index, json) in jsonArray.enumerated() {
                                 print(json)
@@ -84,6 +74,27 @@ class BooksService {
             return cancel
         }
     }
+//    //practice
+//    class func getThemAll() -> Observable<Bool>{
+//        Observable.create { observer in
+//            let router = Router.books
+//            let request = API.shared.request(router: router, parameters: nil) { (response) in
+//                switch response {
+//                case .Success(let json):
+//                    if let jsonArray = json {
+//                        print(jsonArray)
+//                        DataManager.shared.work{ (context) in
+//                            for (index, json) in jsonArray.enumerated(){
+//                                let book: Book? = context.update(predicate: NSPredicate(format: "id = %d", json["id"].int32Value))
+//                            }
+//                        }
+//                        
+//                    }
+//                }
+//            }
+//            
+//        }
+//    }
     class func getAllCartStatuses() -> Observable<Bool>{
         return Observable.create { observer in
             let router = Router.books

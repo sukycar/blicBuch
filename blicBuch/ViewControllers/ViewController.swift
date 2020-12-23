@@ -70,7 +70,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
 //            print(regularBooksNumber)
 //            return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
 //        } else {
-            blicBuchUserDefaults.set(.numberOfRegularBooks, value: 4)
+            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: 4)
             return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
         
     }()
@@ -78,7 +78,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
 //        if let vipBooksNumber = blicBuchUserDefaults.get(.numberOfVipBooks) {
 //        return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
 //        } else {
-            blicBuchUserDefaults.set(.numberOfVipBooks, value: 1)
+            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: 1)
             return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
 //        }
     }()
@@ -90,7 +90,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         if let tabController = UIApplication.shared.keyWindow?.rootViewController as? TabBarViewController {
             tabController.view.backgroundColor = .white
         if let vc = tabController.viewControllers?[2] {
-            tabController.tabBarController(tabController, shouldSelect: vc)
+            _ = tabController.tabBarController(tabController, shouldSelect: vc)
             vc.presentedViewController?.dismiss(animated: true, completion: nil)
             if let vc = vc as? UINavigationController {
                 vc.popToRootViewController(animated: true)
@@ -304,11 +304,61 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
                 let model = homeBooksArray?[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
                 if let item = model  {
-                cell.set(with: item)
+                    cell.set(with: item, inVipController: false)
                 print(item.id)
                 
             cell.cellDelegate = self
             cell.index = indexPath
+                    cell.orderButton.rx.tap.subscribe(onNext: {[weak self] in
+                        let request = CartBook.fetchRequest() as NSFetchRequest
+                        request.predicate = NSPredicate(format: "id == %d", item.id)
+                        let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
+                        let cartBook = fetchedCartBooks.first
+                        if item.vip == true {
+                            if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
+                                if vipBooks > 0 {
+                                    if cartBook?.inCart == false {
+                                        cartBook?.inCart = true
+                                        _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
+                                        self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                    } else {
+                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                    }
+                                } else {
+                                    if cartBook?.inCart == true {
+                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                    } else {
+                                        self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                                    }
+                                }
+                            }
+                        }
+                        if item.vip == false {
+                            if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
+                                if books > 0 {
+                                    if cartBook?.inCart == false {
+                                        cartBook?.inCart = true
+                                        _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
+                                        self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                    } else {
+                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                    }
+                                } else {
+                                    if cartBook?.inCart == true {
+                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                    } else {
+                                        self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                                    }
+                                }
+                            }
+                        }
+                        do {
+                            try DataManager.shared.context.save()
+                        } catch {
+                            self?.getAlert(errorString: "Error saving data", errorColor: Colors.orange)
+                        }
+                        
+                    }).disposed(by: cell.disposeBag)
                 }
             } else {
                 
@@ -360,7 +410,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCart" {
-            let vc = segue.destination as? CartTableView
+            _ = segue.destination as? CartTableView
 //            vc?.cartBooks = homeBooksArray ?? [Book()]
         }
     }

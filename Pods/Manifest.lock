@@ -88,6 +88,9 @@ PODS:
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - PromisesObjC (1.2.8)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -104,13 +107,14 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Storage
   - Kingfisher
+  - NVActivityIndicatorView
   - RxCocoa
   - RxSwift
   - SideMenu (~> 6.4.8)
   - SwiftyJSON
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - Firebase
     - FirebaseAnalytics
@@ -128,6 +132,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Kingfisher
     - nanopb
+    - NVActivityIndicatorView
     - PromisesObjC
     - RxCocoa
     - RxRelay
@@ -153,6 +158,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   Kingfisher: 7b64389a43139c903ec434788344c288217c792d
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -160,6 +166,6 @@ SPEC CHECKSUMS:
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 9c8ca9922d52544f2be1ed863f3c64fc16387fa8
+PODFILE CHECKSUM: df21d5d4bf7c38be73d83cafb2c95a2d8b3dd5f2
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.10.0
