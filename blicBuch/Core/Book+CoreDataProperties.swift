@@ -25,6 +25,8 @@ extension Book {
     @NSManaged public var isbn: String?
     @NSManaged public var title: String?
     @NSManaged public var vip: Bool
+    @NSManaged public var weRecommend: Bool
+    @NSManaged public var locked: Int16
     @NSManaged public var user: User?
     @NSManaged public var book: CartBook?
 

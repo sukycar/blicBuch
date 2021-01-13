@@ -1,0 +1,103 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "4E273F1B",
+      "localizations" : [
+        {
+          "description" : "Payment for transport",
+          "displayName" : "Transport expences",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.temporary.transport",
+      "referenceName" : "Transport expences",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "2D8FEE64",
+      "localizations" : [
+
+      ],
+      "name" : "Subscriptions",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "0.00",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "C6822D61",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "One month free membership, one free book",
+              "displayName" : "Free subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.temporary.free",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Free subscription",
+          "subscriptionGroupID" : "2D8FEE64",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "2.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "F3A4A342",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "You can order 3 regular books",
+              "displayName" : "Regular subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.temporary.regular",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Regular subscription",
+          "subscriptionGroupID" : "2D8FEE64",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "7E84128F",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "You can order 4 regular and 1 vip book",
+              "displayName" : "Vip subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.temporary.vip",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Vip subscription",
+          "subscriptionGroupID" : "2D8FEE64",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}

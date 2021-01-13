@@ -15,25 +15,11 @@ protocol AlertMe {
     func onClick(index: Int)
 }//adding action for button that is on custom cell view
 
-
-
-class CustomCell: UITableViewCell {
-    let downloader = KingfisherManager.shared.downloader
-    
+class CustomCell: TableViewCell {
     
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var vipHolderImageView: UIImageView!
-    
-    var cellDelegate: AlertMe?
-    var index: IndexPath?
-    var bookId: Int32?
-    var book: Book?
-    var cartBook: CartBook?
-    var cartBooks: [CartBook]?
-    var booksInCart: [Book]?
-    var disposeBag = DisposeBag()
-    let context = DataManager.shared.context
     @IBOutlet var imgView: UIImageView! {
         didSet {
             imgView.contentMode = .scaleToFill
@@ -49,62 +35,23 @@ class CustomCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet weak var orderButton: UIButton!
     
-//    @IBAction func orderButtonAction(_ sender: Any) {
-////        if index?.row ?? 0 > 10 {
-////        cellDelegate?.onClick(index: index!.row)
-////        } else {
-////            let bookVipStatus = self.book?.vip
-////            let availableVipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int ?? 0
-////            let availableRegularBooks = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int ?? 0
-////            guard let bookId = book?.id else {return}
-////            let fetchCart = CartBook.fetchRequest() as NSFetchRequest
-////            fetchCart.predicate = NSPredicate(format: "id == %d", bookId)
-////            do {
-////                try self.cartBooks = context?.fetch(fetchCart) ?? [CartBook]()
-////                cartBook = cartBooks?.first
-////            } catch {
-////                print("No data to fetch")
-////            }
-////            if cartBook?.inCart != true {
-////            if bookVipStatus == true && availableVipBooks > 0 {
-////            cartBook?.inCart = true
-////            let newVipBooksNumber = availableVipBooks - 1
-////            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: newVipBooksNumber)
-////            }else if bookVipStatus != true && availableRegularBooks > 0 {
-////                cartBook?.inCart = true
-////                let newBooksNumber = availableRegularBooks  - 1
-////                _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: newBooksNumber)
-////            }else if bookVipStatus == true && availableVipBooks == 0 {
-////                let alert = UIAlertController(title: "VIP", message: "Iskoristili ste limit za VIP knjige", preferredStyle: .alert)
-////                let action = UIAlertAction(title: "OK", style: .destructive, handler: .none)
-////                alert.addAction(action)
-////                print("No more vip books available")
-////            }else if bookVipStatus != true && availableRegularBooks == 0{
-////                print("No more regular books available")
-////            }
-////            } else {
-////                print("Book already added to cart")
-////            }
-////
-//////        cellDelegate?.selectedBook(id: bookId ?? 0)
-////        }
-////        do {
-////            try context?.save()
-////            try! context?.parent?.save()
-////        } catch {
-////            print("Not saved")
-////        }
-//    }
-    
-    
+    var cellDelegate: AlertMe?
+    var index: IndexPath?
+    var bookId: Int32?
+    var book: Book?
+    var cartBook: CartBook?
+    var cartBooks: [CartBook]?
+    var booksInCart: [Book]?
+    var disposeBag = DisposeBag()
+    private let context = DataManager.shared.context
     var booksForCell = [Book]()
-    //var store = DataStore.shared
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         self.imgView.image = nil
         self.disposeBag = DisposeBag()
-
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.nameLabel.font = UIFont.boldSystemFont(ofSize: 13)
@@ -118,39 +65,11 @@ class CustomCell: UITableViewCell {
         orderButton.layer.borderColor = .none
         orderButton.layer.cornerRadius = 3.5
         orderButton.layer.borderColor = Colors.white.cgColor
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-//    func fetchBooks(){
-//        let request = CartBook.fetchRequest() as NSFetchRequest
-//        let booksRequest = Book.fetchRequest() as NSFetchRequest
-//        let predicate = NSPredicate(format: "inCart == true")
-//        request.predicate = predicate
-//        do {
-//            try self.cartBooks = context?.fetch(request) ?? [CartBook]()
-//            try self.booksInCart = context?.fetch(booksRequest) ?? [Book]()
-//        } catch {
-//            print("No books")
-//        }
-//
-//        cartBooks.forEach { (cartBook) in
-//            if cartBook.inCart == true {
-//                booksInCart.forEach { (book) in
-//                    if cartBook.id == book.id {
-//                        booksFiltered.append(book)
-//                    }
-//                }
-//            }
-//        }
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//            self.view.stopActivityIndicator()
-//        }
-//    }
     
     func set(with book: Book, inVipController: Bool) {
         //print("Autor: \(book.author)")
@@ -165,17 +84,14 @@ class CustomCell: UITableViewCell {
             vipHolderImageView.isHidden = true
         }
         if let imageUrl = book.imageURL{
-        if let url = URL(string: imageUrl) {
-            self.imgView.kf.indicatorType = .activity
-            self.imgView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil)}
-        self.nameLabel.text = book.title ?? "--"
-        self.authorLabel.text = book.author ?? "--"
-        self.genreLabel.text = book.genre ?? "--"
+            if let url = URL(string: imageUrl) {
+                self.imgView.kf.indicatorType = .activity
+                self.imgView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil)}
+            self.nameLabel.text = book.title ?? "--"
+            self.authorLabel.text = book.author ?? "--"
+            self.genreLabel.text = book.genre ?? "--"
         }
     }
-    
-    
-
 }
 
 

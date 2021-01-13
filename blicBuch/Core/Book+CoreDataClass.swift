@@ -22,6 +22,8 @@ public class Book: NSManagedObject {
         self.isbn = json[CodingKeys.isbn.rawValue].string
         self.title = json[CodingKeys.title.rawValue].string
         self.vip = json[CodingKeys.vip.rawValue].bool ?? false
+        self.weRecommend = json[CodingKeys.weRecommend.rawValue].bool ?? false
+        self.locked = json[CodingKeys.locked.rawValue].int16Value
     }
 }
 extension Book {
@@ -35,6 +37,8 @@ extension Book {
         case title
         case vip
         case vipUser
+        case weRecommend
+        case locked
     }
 
     

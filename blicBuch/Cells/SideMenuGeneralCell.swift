@@ -12,11 +12,13 @@ import RxCocoa
 
 class SideMenuGeneralCell: TableViewCell {
 
-    var sideMenuCell : SideMenuViewController.GeneralMenuCellType = .login
     @IBOutlet weak var imageHolderView: UIImageView!
     @IBOutlet weak var titleLabel: Label!
     @IBOutlet weak var counterLabel: Label!
+    
+    var sideMenuCell : GeneralMenuCellType = .login
     var disposeBag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

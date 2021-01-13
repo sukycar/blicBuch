@@ -32,12 +32,12 @@ class BibViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewWillAppear(animated)
         if let path = genreTable.indexPathForSelectedRow {
             genreTable.deselectRow(at: path, animated: true)
-        }//cancels the selections when view appears
+        }
         
         genreTable.delegate = self
         genreTable.dataSource = self
         
-        borderView.addBottomBorder(color: .gray, margins: 0, borderLineSize: 0.5)//adds borders
+        borderView.addBottomBorder(color: .gray, margins: 0, borderLineSize: 0.3)
         genreTable.tableFooterView = UIView()
     }
     

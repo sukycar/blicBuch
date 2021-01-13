@@ -14,8 +14,39 @@ import Alamofire
 
 class VIPViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
+    @IBOutlet weak var titleHolderView: UIView!
+    @IBOutlet weak var tableView: UITableView!{
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+            let customCellName = String(describing: CustomCell.self)
+            tableView.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+            
+            
+        }
+    }
+    
     var books = [Book]()
     var booksInVip = [Book]()
+    var book:Book?
+    let alertService = AlertService()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetch()
+        titleHolderView.addBottomBorder(color: .gray, margins: 0, borderLineSize: 0.3)
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        for book in books {
+            if book.vip == true{
+                booksInVip.append(book)
+            }
+        }
+        let customCellName = String(describing: CustomCell.self)
+        tableView.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+    }
+    
     func fetch(){
         let context = DataManager.shared.context
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
@@ -32,40 +63,6 @@ class VIPViewController: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
-    var sort = [SortModel](){
-        didSet{
-        }
-    }
-    var book:Book?
-    
-    @IBOutlet weak var tableView: UITableView!{
-        didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
-            let customCellName = String(describing: CustomCell.self)
-            tableView.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
-            
-            
-        }
-    }
-    let alertService = AlertService()
-    
-    override func viewDidLoad() {
-        //        super.viewDidLoad()
-        fetch()
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        for book in books {
-            if book.vip == true{
-                booksInVip.append(book)
-            }
-        }
-        let customCellName = String(describing: CustomCell.self)
-        tableView.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
-        // Do any additional setup after loading the view.
-    }
-    
     
 }
 
@@ -80,54 +77,93 @@ extension VIPViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = booksInVip[indexPath.row]
+        let item = booksInVip[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
-        cell.set(with: model, inVipController: true)
+        cell.set(with: item, inVipController: true)
         cell.cellDelegate = self
         cell.index = indexPath
         cell.orderButton.rx.tap.subscribe(onNext: {[weak self] in
             let request = CartBook.fetchRequest() as NSFetchRequest
-            request.predicate = NSPredicate(format: "id == %d", model.id)
+            request.predicate = NSPredicate(format: "id == %d", item.id)
             let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
             let cartBook = fetchedCartBooks.first
-            if model.vip == true {
-                if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
-                    if vipBooks > 0 {
-                        if cartBook?.inCart == false {
-                            cartBook?.inCart = true
-                            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
-                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                        } else {
-                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                        }
+            self?.navigationController?.view.startActivityIndicator()
+            BooksService.checkLock(bookId: item.id).subscribe { (locked) in
+                if locked == true {
+                    if cartBook?.inCart == false {
+                    self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
                     } else {
-                        if cartBook?.inCart == true {
-                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                        } else {
-                            self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                    }
+                } else {
+                    if item.vip == true {
+                        if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
+                            if vipBooks > 0 {
+                                if cartBook?.inCart == false {
+                                    cartBook?.inCart = true
+                                    _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
+                                    self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                    item.locked = LockStatus.locked.rawValue
+                                    BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                        print(finished.description)
+                                    } onError: { (error) in
+                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                    } onCompleted: {
+                                        //
+                                    } onDisposed: {
+                                        //
+                                    }.disposed(by: cell.disposeBag)
+                                } else {
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                }
+                            } else {
+                                if cartBook?.inCart == true {
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                } else {
+                                    self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                                }
+                            }
+                        }
+                    }
+                    if item.vip == false {
+                        if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
+                            if books > 0 {
+                                if cartBook?.inCart == false {
+                                    cartBook?.inCart = true
+                                    _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
+                                    self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                    item.locked = LockStatus.locked.rawValue
+                                    BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                        print(finished.description)
+                                    } onError: { (error) in
+                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                    } onCompleted: {
+                                        //
+                                    } onDisposed: {
+                                        //
+                                    }.disposed(by: cell.disposeBag)
+                                } else {
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                }
+                            } else {
+                                if cartBook?.inCart == true {
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                } else {
+                                    self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                                }
+                            }
                         }
                     }
                 }
-            }
-            if model.vip == false {
-                if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
-                    if books > 0 {
-                        if cartBook?.inCart == false {
-                            cartBook?.inCart = true
-                            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
-                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                        } else {
-                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                        }
-                    } else {
-                        if cartBook?.inCart == true {
-                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                        } else {
-                            self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
-                        }
-                    }
-                }
-            }
+                self?.navigationController?.view.stopActivityIndicator()
+            } onError: { (error) in
+                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+            } onCompleted: {
+                //
+            } onDisposed: {
+                //
+            }.disposed(by: cell.disposeBag)
+
             do {
                 try DataManager.shared.context.save()
             } catch {
@@ -155,9 +191,6 @@ extension VIPViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension VIPViewController: AlertMe {
-    func selectedBook(id: Int32) {
-        print(id)
-    }
     func onClick(index: Int) {
         //        let availableBooks = blicBuchUserDefaults.get(.numberOfVipBooks)
         //        let selectedVipBooks = blicBuchUserDefaults.get(.selectedVipBooks)

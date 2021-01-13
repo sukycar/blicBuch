@@ -32,33 +32,15 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             self.tableView2.reloadData()
         }
         }
+    let context = DataManager.shared.context
     var fetchResults:NSFetchedResultsController<NSManagedObject>?
-    
-//    fileprivate lazy var fetchRequestResults:NSFetchedResultsController<Books> = {
-//        let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-//        fetchRequest.fetchLimit = 5
-//        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "ANY id in %@")])
-//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
-//        fetchedResultsController.delegate = self
-//        self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
-//            try! fetchResults?.performFetch()
-//        homeBooksArray = fetchResults?.fetchedObjects as! [Books]
-//        self.tableView2.reloadData()
-//        return fetchedResultsController
-//
-//    }()
-    var sort = [SortModel](){
-        didSet{
-        }
-    }
     var frame : CGRect?
     var frameView : UIView?
     var snapshot : UIImage?
     private var transition: CustomTransition2?
     var book:Book?
-    
-    
+    private var sideMenuController: SideMenuViewController?
+
     var tableContent = ["Einloggen", "Registrieren", "Kontakt", "SCHENKUNG", "Cart"]
     /*var tableContent1 = ["Login", "Sign up", "Contact us", "DONATE"]*/
     var arrayOfBookId = [Int32]()
@@ -66,21 +48,12 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     var timer:Timer?
     let alertService = AlertService()
     var numberOfRegularBooks: String = {
-//        if let regularBooksNumber = blicBuchUserDefaults.get(.numberOfRegularBooks) {
-//            print(regularBooksNumber)
-//            return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
-//        } else {
             _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: 4)
             return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
-        
     }()
     var numberOfVipBooks: String = {
-//        if let vipBooksNumber = blicBuchUserDefaults.get(.numberOfVipBooks) {
-//        return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
-//        } else {
             _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: 1)
             return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
-//        }
     }()
     var numberOfRegularBooksInt = Int()
     var numberOfVipBooksInt = Int()
@@ -116,32 +89,49 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     let networking = NetworkingService.shared
     
     override func viewDidLoad() {
+        
+        //MARK: - TESTING of login
+        
+        UsersService.getUser("test@yahoo.com", "Sada").subscribe { [weak self] (logedIn) in
+            print("Da li je ulogovan: \(logedIn.description)")
+            if logedIn == false {
+                self?.getAlert(errorString: "Greska u login podacima, pokusajte ponovo", errorColor: Colors.orange)
+            }
+        } onError: { (error) in
+            self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+        } onCompleted: {
+            //
+        } onDisposed: {
+            //
+        }.disposed(by: self.disposeBag)
+
         fetch()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.dismissSideMenu), name: NSNotification.Name(rawValue: "enteredBackground"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.performLoginTransition), name: NSNotification.Name("loginHome"), object: nil)
         numberOfRegularBooksInt = Int(numberOfRegularBooks) ?? 0
         numberOfVipBooksInt = Int(numberOfVipBooks) ?? 0
         print("Broj dostupnih regularnih knjiga \(numberOfRegularBooksInt)")
         print("Broj dostupnih vip knjiga \(numberOfVipBooksInt)")
 
-        timer?.invalidate()
-            self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (timer) in
-                BooksService.getAll().subscribe(onNext: { (finished) in
-                    print("refreshed data")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                        self.fetch()
-                    }) 
-                }, onError: { (error) in
-                    print(error)
-                }, onCompleted: {
-                    
+//        timer?.invalidate()
+//            self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (timer) in
+//                BooksService.getAll().subscribe(onNext: { (finished) in
+//                    print("refreshed data")
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//                        self.fetch()
+//                    })
+//                }, onError: { (error) in
+//                    print(error)
+//                }, onCompleted: {
+//
+//
+//                }) {
+//
+//                }.disposed(by: self.disposeBag)
+//            })
 
-                }) {
-                    
-                }.disposed(by: self.disposeBag)
-            })
-
-        let url = "\(Router.books.fullUrl())"
-        print(url)
+//        let url = "\(Router.books.fullUrl())"
+//        print(url)
         alphaTest = 0
         if alphaTest == 0 {
                 self.tableView1.alpha = 0
@@ -185,6 +175,16 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetch()
+//        BooksService.updateBook(bookId: 152).subscribe { (finished) in
+//            print("Updated")
+//        } onError: { (error) in
+//            print("error updating")
+//        } onCompleted: {
+//            //
+//        } onDisposed: {
+//            //
+//        }.disposed(by: self.disposeBag)
+
 //        DispatchQueue.main.async {
 //            let id: Int32 = 157
 //
@@ -230,12 +230,15 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
                 
     //        }
             
-            let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context!, sectionNameKeyPath: nil, cacheName: nil)
             fetchedResultsController.delegate = self
             self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
             try! fetchResults?.performFetch()
         homeBooksArray?.removeAll()
         homeBooksArray = fetchResults?.fetchedObjects as? [Book]
+        homeBooksArray?.forEach({ (book) in
+            print(book)
+        })
         self.tableView2.reloadData()
         }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -260,14 +263,13 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.selectionStyle = .none
         if tableView == tableView1 {
         cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        let cellDonate = UIImage(named: "donate")
+        let cellDonate = UIImage(named: "img_menu_donate")
         let cellLogIn = UIImage(named: "login")
         let cellRegistration = UIImage(named: "registration")
-            let cellCart = UIImage(named: "donate")
+            let cellCart = UIImage(named: "img_menu_donate")
         let cellLocation = tableContent[indexPath.row]
             cell.textLabel?.text = cellLocation
-            let cellContact = UIImage(named: "contact")
-            
+            let cellContact = UIImage(named: "img_contact")
         let aColor = UIColor(hexString: "#5cbff2")
             cell.textLabel?.textColor = aColor
             let cellContactColored = cellContact?.withTintColor(aColor)
@@ -314,44 +316,84 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
                         request.predicate = NSPredicate(format: "id == %d", item.id)
                         let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
                         let cartBook = fetchedCartBooks.first
-                        if item.vip == true {
-                            if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
-                                if vipBooks > 0 {
-                                    if cartBook?.inCart == false {
-                                        cartBook?.inCart = true
-                                        _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
-                                        self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                                    } else {
-                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                    }
+                        self?.navigationController?.view.startActivityIndicator()
+                        BooksService.checkLock(bookId: item.id).subscribe { (locked) in
+                            self?.onClick(index: 1)
+                            if locked == true {
+                                if cartBook?.inCart == false {
+                                self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
                                 } else {
-                                    if cartBook?.inCart == true {
-                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                    } else {
-                                        self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                }
+                            } else {
+                                if item.vip == true {
+                                    if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
+                                        if vipBooks > 0 {
+                                            if cartBook?.inCart == false {
+                                                cartBook?.inCart = true
+                                                _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
+                                                self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                                item.locked = LockStatus.locked.rawValue
+                                                BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                    print(finished.description)
+                                                } onError: { (error) in
+                                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                } onCompleted: {
+                                                    //
+                                                } onDisposed: {
+                                                    //
+                                                }.disposed(by: cell.disposeBag)
+                                            } else {
+                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            }
+                                        } else {
+                                            if cartBook?.inCart == true {
+                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            } else {
+                                                self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                                            }
+                                        }
+                                    }
+                                }
+                                if item.vip == false {
+                                    if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
+                                        if books > 0 {
+                                            if cartBook?.inCart == false {
+                                                cartBook?.inCart = true
+                                                _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
+                                                self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                                item.locked = LockStatus.locked.rawValue
+                                                BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                    print(finished.description)
+                                                } onError: { (error) in
+                                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                } onCompleted: {
+                                                    //
+                                                } onDisposed: {
+                                                    //
+                                                }.disposed(by: cell.disposeBag)
+                                            } else {
+                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            }
+                                        } else {
+                                            if cartBook?.inCart == true {
+                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            } else {
+                                                self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                                            }
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if item.vip == false {
-                            if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
-                                if books > 0 {
-                                    if cartBook?.inCart == false {
-                                        cartBook?.inCart = true
-                                        _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
-                                        self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                                    } else {
-                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                    }
-                                } else {
-                                    if cartBook?.inCart == true {
-                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                    } else {
-                                        self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
-                                    }
-                                }
-                            }
-                        }
+                            self?.navigationController?.view.stopActivityIndicator()
+                        } onError: { (error) in
+                            self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                        } onCompleted: {
+                            //
+                        } onDisposed: {
+                            //
+                        }.disposed(by: cell.disposeBag)
+
                         do {
                             try DataManager.shared.context.save()
                         } catch {
@@ -359,6 +401,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
                         }
                         
                     }).disposed(by: cell.disposeBag)
+                    return cell
                 }
             } else {
                 
@@ -403,7 +446,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             performSegue(withIdentifier: "donate", sender: self)
         }
             if indexPath.row == 4 {
-                performSegue(withIdentifier: "cart", sender: self)
+            performSegue(withIdentifier: "cart", sender: self)
         }
     }
     }
@@ -411,29 +454,40 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCart" {
             _ = segue.destination as? CartTableView
-//            vc?.cartBooks = homeBooksArray ?? [Book()]
         }
+        self.disposeBag = DisposeBag()
     }
     
    
     @IBAction func buttonAction(_ sender: Any) {
-        
-            if let vc = (UIApplication.shared.delegate as? AppDelegate)?.getSideMenu() {
-                let menu = SideMenuNavigationController(rootViewController: vc)
-                menu.leftSide = true
-                menu.pushStyle = .default
-                menu.presentationStyle = .menuSlideIn
-                menu.presentationStyle.menuOnTop = true
-                menu.menuWidth = self.view.frame.size.width * 0.8
-                menu.presentationStyle.presentingEndAlpha = 0.5
-                menu.statusBarEndAlpha = 0
-                menu.presentationStyle.onTopShadowOffset = CGSize(width: 3, height: 0)
-                vc.navigationController?.setNavigationBarHidden(true, animated: false)
-                present(menu, animated: true, completion: nil)
-                
-            
-        }
+        if let vc = (UIApplication.shared.delegate as? AppDelegate)?.getSideMenu() {
+            sideMenuController = vc
+            let menu = SideMenuNavigationController(rootViewController: vc)
+            menu.leftSide = true
+            if self.traitCollection.userInterfaceStyle == .dark {
+                    menu.settings.blurEffectStyle = .systemMaterialDark
+            } else {
+                    menu.settings.blurEffectStyle = .systemMaterialLight
+            }
+            menu.pushStyle = .default
+            menu.presentationStyle = .menuSlideIn
+            menu.presentationStyle.menuOnTop = true
+            menu.menuWidth = self.view.frame.size.width * 0.8
+            menu.presentationStyle.presentingEndAlpha = 0.5
+            menu.statusBarEndAlpha = 0
+            menu.presentationStyle.onTopShadowOffset = CGSize(width: 3, height: 0)
+            menu.enableSwipeToDismissGesture = true
+            menu.dismissWhenBackgrounded = true
+            vc.navigationController?.setNavigationBarHidden(true, animated: false)
+            present(menu, animated: true, completion: nil)
     }
+    }
+    
+    @objc func dismissSideMenu(){
+        sideMenuController?.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
@@ -441,7 +495,6 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             mail.mailComposeDelegate = self
             mail.setToRecipients(["sukycar@gmail.com"])
             mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
-
             mail.setSubject("Blic Buch support")
             
             
@@ -451,9 +504,10 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
 
+    // func for sending mail
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
-    }// func for sending mail
+    }
     
     @objc func performLoginTransition(){
         let vc = LoginViewController.get()
@@ -466,47 +520,8 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     
 }
 
-//extension UIColor {
-//    convenience init(hexString: String) {
-//        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-//        var int = UInt64()
-//        Scanner(string: hex).scanHexInt64(&int)
-//        let a, r, g, b: UInt64
-//        switch hex.count {
-//        case 3: // RGB (12-bit)
-//            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-//        case 6: // RGB (24-bit)
-//            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-//        case 8: // ARGB (32-bit)
-//            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-//        default:
-//            (a, r, g, b) = (255, 0, 0, 0)
-//        }
-//        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
-//    }// extension for using HEX code for colors
-    
-    
-
-/*extension ViewController: NewAlert {
-    func onClick1(index: Int) {
-        present(self, animated: true)
-    }
-    
-}*/
 
 extension ViewController: AlertMe {
-    func selectedBook(id: Int32) {
-//        if arrayOfBookId.count < 5 {
-//            if !arrayOfBookId.contains(id){
-//                arrayOfBookId.append(id)
-//            } else {
-//                print("Book is already in cart")//MARK:- make new alert for this
-//            }
-//        
-//        }
-//        print(arrayOfBookId)
-    }
-    
     func onClick(index: Int) {
         let alertVC = alertService.alert()
         present(alertVC, animated: true)

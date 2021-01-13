@@ -12,11 +12,13 @@ enum Router {
     
     case books
     case user
-    case book(for: Int32)
+    case book(for: Int)
+    case updateBook(for: Int32)
+    case checkLockStatus(for: Int32)
     
     private var baseURL: String {
         //return Environment.configuration(.baseURL)
-        return "https://blitzbuch.club/api/api.php/records/"
+        return "https://www.blitzbuch.club/api/api.php/records/"
     }
     
     var path: String {
@@ -28,6 +30,10 @@ enum Router {
             return "Books/\(id)"
         case .user:
             return "User"//user/all?
+        case .updateBook(let id):
+            return "Books/\(id)"
+        case .checkLockStatus(let id):
+            return "Books/\(id)"
         }
     }
     
@@ -39,6 +45,10 @@ enum Router {
             return .get
         case .book:
             return .delete
+        case .updateBook:
+            return .put
+        case .checkLockStatus:
+            return .get
         }
     }
     

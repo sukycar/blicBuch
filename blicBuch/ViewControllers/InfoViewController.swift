@@ -11,12 +11,13 @@ import UIKit
 class InfoViewController: UIViewController {
 
     
+    @IBOutlet weak var titleHolderView: UIView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        titleHolderView.addBottomBorder(color: .gray, margins: 0, borderLineSize: 0.3)
         let line = NSAttributedString(string: "________________________________________\n\n", attributes: [NSAttributedString.Key.font : UIFont(name: "Roboto-Regular", size: 15)!, NSAttributedString.Key.foregroundColor : Colors.Font.blackWhite()])
         let firstPart = NSAttributedString(string: "Verein Bücherliebhaber Club blitzBuch ZVR 1759468752 c/o Perica Anciger \nc/o Daniela Kukic \nPilgeringasse 21/1/1 \n1150 Wien \nBawag Bank: \nVerein „Bücherliebhaber Club blitzBuch“ \nXXXXXXXXXX \nXXXXXXXXXX \n\n\nDer Verein, dessen Tätigkeit nicht auf Gewinn gerichtet ist bezweckt die Zustellung von Büchern an Ihre Adresse in ganz Österreich. \nMan kann sich als Mitglied des Klubs für Bücherfreunde sehr leicht anmelden lassen- nämlich durch schnelles Registrieren. Das Mitglied startet die Applikation, macht den Klick auf das Buch, dass er an seine Hausadresse gesandt haben möchte und es wird von uns sofort geliefert. Falls Sie bereits Mitglied unseres Klubs sind, können Sie sich einfach durch die von Ihnen bereits bei der vorherigen Buchbestellung angegebene E-Mail Adresse einloggen. Die Mitgliedschaft im Klub ist im ersten Monat kostenlos und das Mitglied bekommt ein Buch wunschgemäß. Die vorher beantragten Angaben sind ausschließlich wegen einer präzisen Buchzustellung an Ihre Hausadresse erforderlich. Blitzbuch dient nur dazu, dass die Menschen ihre Liebe gegenüber den Büchern ausleben können und ohne große Hindernisse an das gewünschte Buch ankommen. Sollte der Club irgendwann nicht mehr in Betrieb sein, wird alles übergebliebene an einen Club mit der gleichen Absicht gespendet.\n", attributes: [NSAttributedString.Key.font : UIFont(name: "Roboto-Regular", size: 14)!, NSAttributedString.Key.foregroundColor : Colors.Font.blackWhite()])
         let partTwoTitle = NSAttributedString(string: "Mitgliedsbeitrag\n\n", attributes: [NSAttributedString.Key.font : UIFont(name: "Roboto-Bold", size: 14)!, NSAttributedString.Key.foregroundColor : Colors.Font.blackWhite()])

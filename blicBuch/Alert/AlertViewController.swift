@@ -11,12 +11,15 @@ import UIKit
 class AlertViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var holderView: UIView!
+    @IBOutlet weak var titleLabelView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet weak var newRegistrationButtonOutlet: UIButton!
+    @IBOutlet weak var loginButtonOutlet: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        styleViews()
         // Do any additional setup after loading the view.
     }
     @IBAction func tapRegister(_ sender: Any) {
@@ -35,6 +38,17 @@ class AlertViewController: UIViewController {
         if touch?.view == mainView {
             dismiss(animated: true, completion: nil)
         }//for dismiss of alert controller when clicked outside alert window
+    }
+    
+    func styleViews(){
+        newRegistrationButtonOutlet.backgroundColor = Colors.blueDefault
+        newRegistrationButtonOutlet.layer.cornerRadius = CornerRadius.mediumSmall
+        loginButtonOutlet.backgroundColor = Colors.blueDefault
+        loginButtonOutlet.layer.cornerRadius = CornerRadius.mediumSmall
+        holderView.layer.cornerRadius = CornerRadius.medium
+        titleLabelView.layer.masksToBounds = true
+        titleLabelView.layer.cornerRadius = CornerRadius.medium
+        titleLabelView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
     
 

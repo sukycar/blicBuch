@@ -41,7 +41,6 @@
 		0AB938D92483CD72009A9C0D /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB938D72483CD72009A9C0D /* CustomCell.xib */; };
 		0AB93D9C23AFB113006CAE59 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */; };
 		0AB93D9D23AFB113006CAE59 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */; };
-		0ABB0AB0248C50C6001259F1 /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB0AAF248C50C6001259F1 /* SortModel.swift */; };
 		0ABC0E14238A9C0300874626 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */; };
 		0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC0E15238B106400874626 /* Roboto-Regular.ttf */; };
 		0ADFC2122393E1CB00BB8702 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */; };
@@ -51,12 +50,18 @@
 		0AF1EEA22483EA8F000AB7DC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1EEA12483EA8F000AB7DC /* Colors.swift */; };
 		0AFA045524673AA10096CCCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0AA7BCB1240F97C300A06F6A /* GoogleService-Info.plist */; };
 		0AFA045A24674D010096CCCD /* blicBuch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */; };
+		1F444B9E25A475890046EB5F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444B9D25A475890046EB5F /* Enums.swift */; };
+		1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */; };
+		1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E16925A200EA005B864F /* AlertButton.swift */; };
+		1F5B915525A32ED300F927E2 /* CartBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B915325A32ED200F927E2 /* CartBook+CoreDataProperties.swift */; };
 		1F83D1832588C92A003C888D /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83D1822588C92A003C888D /* Book+CoreDataProperties.swift */; };
 		1F83D1882588C967003C888D /* CartBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83D1872588C967003C888D /* CartBook+CoreDataClass.swift */; };
-		1F83D1892588C967003C888D /* CartBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83D1862588C967003C888D /* CartBook+CoreDataProperties.swift */; };
 		1F84715B257CD792008D759C /* blicBuchUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */; };
+		1F9592EA25AEEB9B00AD065F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9592E925AEEB9B00AD065F /* UsersService.swift */; };
 		1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */; };
 		1FA4CBDF2587848300730984 /* UIView + loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CBDE2587848300730984 /* UIView + loader.swift */; };
+		1FB1B60F25AD828300AD6AE4 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1B60D25AD828300AD6AE4 /* EmptyTableViewCell.swift */; };
+		1FB1B61025AD828300AD6AE4 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB1B60E25AD828300AD6AE4 /* EmptyTableViewCell.xib */; };
 		1FD71E59258B338B004435EA /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD71E58258B338B004435EA /* UIViewController + Extension.swift */; };
 		1FE8B4BA2584C61F00C3A47A /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B4B72584C61F00C3A47A /* User+CoreDataClass.swift */; };
 		1FE8B4BB2584C61F00C3A47A /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B4B62584C61F00C3A47A /* User+CoreDataProperties.swift */; };
@@ -73,6 +78,7 @@
 		1FE8B5252584D22500C3A47A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B5242584D22500C3A47A /* Constants.swift */; };
 		1FE8B5282584D45700C3A47A /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B5272584D45700C3A47A /* String + extension.swift */; };
 		1FE8B52B2584DAD600C3A47A /* SideMenuGeneralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */; };
+		1FF613F025AC5CB300ACCE25 /* UIColor + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF613EF25AC5CB300ACCE25 /* UIColor + extensions.swift */; };
 		9942C551BE6ACA9983D5B06A /* Pods_blicBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0492C561C7BB099EDC73E3D0 /* Pods_blicBuch.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,7 +123,6 @@
 		0AB938D72483CD72009A9C0D /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
-		0ABB0AAF248C50C6001259F1 /* SortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
 		0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		0ABC0E15238B106400874626 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		0AC2B7F9238DC0BC008D4126 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -127,12 +132,19 @@
 		0AEEE89223C5DF1300240B90 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		0AF1EEA12483EA8F000AB7DC /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0AFA0457246747850096CCCD /* blicBuch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = blicBuch.xcdatamodel; sourceTree = "<group>"; };
+		1F24437025A2482300BC99F8 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		1F444B9D25A475890046EB5F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseAlertViewController.swift; sourceTree = "<group>"; };
+		1F52E16925A200EA005B864F /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
+		1F5B915325A32ED200F927E2 /* CartBook+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CartBook+CoreDataProperties.swift"; path = "blicBuch/Core/CartBook+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		1F83D1822588C92A003C888D /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataProperties.swift"; path = "blicBuch/Core/Book+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		1F83D1862588C967003C888D /* CartBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CartBook+CoreDataProperties.swift"; path = "/Users/vladimirsukanica/blicBuch/blicBuch/Core/CartBook+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		1F83D1872588C967003C888D /* CartBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CartBook+CoreDataClass.swift"; path = "/Users/vladimirsukanica/blicBuch/blicBuch/Core/CartBook+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		1F83D1872588C967003C888D /* CartBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CartBook+CoreDataClass.swift"; path = "blicBuch/Core/CartBook+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = blicBuchUserDefaults.swift; path = blicBuch/Configuration/blicBuchUserDefaults.swift; sourceTree = SOURCE_ROOT; };
+		1F9592E925AEEB9B00AD065F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		1FA4CBDE2587848300730984 /* UIView + loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + loader.swift"; sourceTree = "<group>"; };
+		1FB1B60D25AD828300AD6AE4 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		1FB1B60E25AD828300AD6AE4 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		1FD71E58258B338B004435EA /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		1FE8B4B62584C61F00C3A47A /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "blicBuch/Core/User+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		1FE8B4B72584C61F00C3A47A /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "blicBuch/Core/User+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -149,6 +161,7 @@
 		1FE8B5242584D22500C3A47A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1FE8B5272584D45700C3A47A /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
 		1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuGeneralCell.swift; sourceTree = "<group>"; };
+		1FF613EF25AC5CB300ACCE25 /* UIColor + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + extensions.swift"; sourceTree = "<group>"; };
 		8916CF63BDD4CBEB01AC1014 /* Pods-blicBuch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.release.xcconfig"; path = "Target Support Files/Pods-blicBuch/Pods-blicBuch.release.xcconfig"; sourceTree = "<group>"; };
 		F85B02400823A37719199283 /* Pods-blicBuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blicBuch.debug.xcconfig"; path = "Target Support Files/Pods-blicBuch/Pods-blicBuch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +184,7 @@
 				0A1E326B2463D3DB00AD388C /* BooksService.swift */,
 				0AEEE89223C5DF1300240B90 /* AlertService.swift */,
 				1FE8B5072584CA1C00C3A47A /* SideMenuService.swift */,
+				1F9592E925AEEB9B00AD065F /* UsersService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -182,12 +196,13 @@
 				1FE8B4B72584C61F00C3A47A /* User+CoreDataClass.swift */,
 				1FE8B4B62584C61F00C3A47A /* User+CoreDataProperties.swift */,
 				1F83D1872588C967003C888D /* CartBook+CoreDataClass.swift */,
-				1F83D1862588C967003C888D /* CartBook+CoreDataProperties.swift */,
+				1F5B915325A32ED200F927E2 /* CartBook+CoreDataProperties.swift */,
 				1FE8B4B92584C61F00C3A47A /* Book+CoreDataClass.swift */,
 				1F83D1822588C92A003C888D /* Book+CoreDataProperties.swift */,
 				0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */,
 				0A7519712466A8F90089DED8 /* DataManager.swift */,
 				0A8E4F4F249DEE8F00C8B38A /* NavigationController.swift */,
+				1F444B9D25A475890046EB5F /* Enums.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -200,6 +215,7 @@
 				1FE8B5272584D45700C3A47A /* String + extension.swift */,
 				1FA4CBDE2587848300730984 /* UIView + loader.swift */,
 				1FD71E58258B338B004435EA /* UIViewController + Extension.swift */,
+				1FF613EF25AC5CB300ACCE25 /* UIColor + extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,6 +223,7 @@
 		0A333F3F23806EE800B5A39B = {
 			isa = PBXGroup;
 			children = (
+				1F24437025A2482300BC99F8 /* Configuration.storekit */,
 				0ABC0E12238A97E600874626 /* Fonts */,
 				0A333F4A23806EE800B5A39B /* blicBuch */,
 				0A333F4923806EE800B5A39B /* Products */,
@@ -260,6 +277,8 @@
 				1FE8B50D2584CB3600C3A47A /* SideMenuMemberCell.swift */,
 				1FE8B5102584CBE400C3A47A /* TableViewCell.swift */,
 				1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */,
+				1FB1B60D25AD828300AD6AE4 /* EmptyTableViewCell.swift */,
+				1FB1B60E25AD828300AD6AE4 /* EmptyTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -283,7 +302,6 @@
 				0A75196E246690DA0089DED8 /* DEV.xcconfig */,
 				0AF1EEA12483EA8F000AB7DC /* Colors.swift */,
 				0A2DB41F238975880070DAE5 /* TabBarViewController.swift */,
-				0ABB0AAF248C50C6001259F1 /* SortModel.swift */,
 				1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */,
 			);
 			path = Configuration;
@@ -322,6 +340,8 @@
 			children = (
 				0A3A663C23C12393005BD1CF /* Alert.storyboard */,
 				0AEEE89023C5CDC700240B90 /* AlertViewController.swift */,
+				1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */,
+				1F52E16925A200EA005B864F /* AlertButton.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -433,6 +453,7 @@
 				0A4B2D3523F353AA00D1A5E2 /* BlueCloudCell.xib in Resources */,
 				0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */,
 				0ABC0E14238A9C0300874626 /* Roboto-Bold.ttf in Resources */,
+				1FB1B61025AD828300AD6AE4 /* EmptyTableViewCell.xib in Resources */,
 				0A333F5323806EE800B5A39B /* Main.storyboard in Resources */,
 				0A3A663D23C12393005BD1CF /* Alert.storyboard in Resources */,
 			);
@@ -498,11 +519,13 @@
 				1FE8B50B2584CA7600C3A47A /* SideMenuViewController.swift in Sources */,
 				0A028F8E242FC520005AEF14 /* InfoViewController.swift in Sources */,
 				1FE8B5182584CEF400C3A47A /* CustomTransition2.swift in Sources */,
+				1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */,
 				1FD71E59258B338B004435EA /* UIViewController + Extension.swift in Sources */,
 				1FE8B52B2584DAD600C3A47A /* SideMenuGeneralCell.swift in Sources */,
 				0AEEE89323C5DF1300240B90 /* AlertService.swift in Sources */,
 				0A8E4F50249DEE8F00C8B38A /* NavigationController.swift in Sources */,
 				0ADFC2122393E1CB00BB8702 /* SearchViewController.swift in Sources */,
+				1FB1B60F25AD828300AD6AE4 /* EmptyTableViewCell.swift in Sources */,
 				1FE8B5142584CC8C00C3A47A /* Label.swift in Sources */,
 				0A8F1FB72381EF2200ABE11F /* ViewController.swift in Sources */,
 				0A75196D24668DF80089DED8 /* Enviroment.swift in Sources */,
@@ -512,13 +535,16 @@
 				1FE8B50E2584CB3600C3A47A /* SideMenuMemberCell.swift in Sources */,
 				0A9D202823B285D000C4476F /* GenreTableViewController.swift in Sources */,
 				1FE8B5252584D22500C3A47A /* Constants.swift in Sources */,
+				1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */,
 				0A8E4F4C249DE7BC00C8B38A /* LoadingViewController.swift in Sources */,
 				1FE8B51F2584D05200C3A47A /* BaseLabel.swift in Sources */,
 				0A27E3DA24634C0F00DE117C /* FormatterHelpers.swift in Sources */,
+				1F5B915525A32ED300F927E2 /* CartBook+CoreDataProperties.swift in Sources */,
 				0A7519702466A35A0089DED8 /* Model.swift in Sources */,
 				0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */,
 				0A86432C24BB026000EF05CD /* CartTableView.swift in Sources */,
 				1FA4CBDF2587848300730984 /* UIView + loader.swift in Sources */,
+				1FF613F025AC5CB300ACCE25 /* UIColor + extensions.swift in Sources */,
 				1FE8B5282584D45700C3A47A /* String + extension.swift in Sources */,
 				0A1F61CB23D06166005C527A /* RegisterViewController.swift in Sources */,
 				1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */,
@@ -530,7 +556,8 @@
 				1FE8B5082584CA1C00C3A47A /* SideMenuService.swift in Sources */,
 				0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */,
 				1FE8B4BB2584C61F00C3A47A /* User+CoreDataProperties.swift in Sources */,
-				1F83D1892588C967003C888D /* CartBook+CoreDataProperties.swift in Sources */,
+				1F9592EA25AEEB9B00AD065F /* UsersService.swift in Sources */,
+				1F444B9E25A475890046EB5F /* Enums.swift in Sources */,
 				0A7F74EA246802C20064AE39 /* PersistenceService.swift in Sources */,
 				1FE8B5112584CBE400C3A47A /* TableViewCell.swift in Sources */,
 				0A82E6D224F131CD003E00F6 /* OrderTableViewCell.swift in Sources */,
@@ -539,7 +566,6 @@
 				1F84715B257CD792008D759C /* blicBuchUserDefaults.swift in Sources */,
 				0AB93D9C23AFB113006CAE59 /* CategoryTableViewCell.swift in Sources */,
 				0AFA045A24674D010096CCCD /* blicBuch.xcdatamodeld in Sources */,
-				0ABB0AB0248C50C6001259F1 /* SortModel.swift in Sources */,
 				0A93D4FA249E2CCC007AA6C4 /* BibViewController.swift in Sources */,
 				1FE8B4BA2584C61F00C3A47A /* User+CoreDataClass.swift in Sources */,
 			);

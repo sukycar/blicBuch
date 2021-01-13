@@ -16,4 +16,13 @@ class AlertService {
         return alertVC
     }
     
+    func get(with alertType: AlertType) -> InAppPurchaseAlertViewController{
+        let vc = UIStoryboard(name: "Alert", bundle: nil).instantiateViewController(identifier: "InAppPurchaseVC") as InAppPurchaseAlertViewController
+        vc.alertType = alertType
+        return vc
+
+    }
+    
+    
+    
 }

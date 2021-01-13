@@ -13,10 +13,11 @@ import RxSwift
 
 class GenreTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var fetchResults:NSFetchedResultsController<NSManagedObject>?
     var book : Book?
-    //var genre : Books.Genre?
-    var genre:Book.Genre = .avantura
+    var genre: Book.Genre = .avantura
+    var books = [Book]()
+    var booksInGenre = [Book]()
+    
     @IBOutlet weak var holderView: UIView!//holder for uiimage view
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var genreLabel: UIButton!
@@ -30,30 +31,8 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
         self.dismiss(animated: false, completion: nil)
         
     }
-    
-    var books = [Book]()
-    var booksInGenre = [Book]()
-    
     @IBOutlet var mainTable: UITableView!
-    
-    func fetch(){
-        let context = DataManager.shared.context
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
-        
-        do {
-            let results = try context?.fetch(fetchRequest)
-            let booksCreated = results as! [Book]
-            
-            for _booksCreated in booksCreated {
-                books.append(_booksCreated)
-            }
-        } catch let err as NSError {
-            print(err.debugDescription)
-        }
-    }
-    
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetch()
@@ -73,21 +52,15 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return booksInGenre.count// for other categories should be added
+        return booksInGenre.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-
         let cell = mainTable.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for:indexPath) as! CustomCell
         let item = booksInGenre[indexPath.row]
         cell.set(with: item, inVipController: false)
@@ -97,44 +70,83 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
             request.predicate = NSPredicate(format: "id == %d", item.id)
             let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
             let cartBook = fetchedCartBooks.first
-            if item.vip == true {
-                if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
-                    if vipBooks > 0 {
-                        if cartBook?.inCart == false {
-                            cartBook?.inCart = true
-                            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
-                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                        } else {
-                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                        }
+            self?.navigationController?.view.startActivityIndicator()
+            BooksService.checkLock(bookId: item.id).subscribe { (locked) in
+                if locked == true {
+                    if cartBook?.inCart == false {
+                    self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
                     } else {
-                        if cartBook?.inCart == true {
-                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                        } else {
-                            self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                    }
+                } else {
+                    if item.vip == true {
+                        if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
+                            if vipBooks > 0 {
+                                if cartBook?.inCart == false {
+                                    cartBook?.inCart = true
+                                    _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
+                                    self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                    item.locked = LockStatus.locked.rawValue
+                                    BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                        print(finished.description)
+                                    } onError: { (error) in
+                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                    } onCompleted: {
+                                        //
+                                    } onDisposed: {
+                                        //
+                                    }.disposed(by: cell.disposeBag)
+                                } else {
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                }
+                            } else {
+                                if cartBook?.inCart == true {
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                } else {
+                                    self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
+                                }
+                            }
+                        }
+                    }
+                    if item.vip == false {
+                        if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
+                            if books > 0 {
+                                if cartBook?.inCart == false {
+                                    cartBook?.inCart = true
+                                    _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
+                                    self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                    item.locked = LockStatus.locked.rawValue
+                                    BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                        print(finished.description)
+                                    } onError: { (error) in
+                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                    } onCompleted: {
+                                        //
+                                    } onDisposed: {
+                                        //
+                                    }.disposed(by: cell.disposeBag)
+                                } else {
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                }
+                            } else {
+                                if cartBook?.inCart == true {
+                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                } else {
+                                    self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                                }
+                            }
                         }
                     }
                 }
-            }
-            if item.vip == false {
-                if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
-                    if books > 0 {
-                        if cartBook?.inCart == false {
-                            cartBook?.inCart = true
-                            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
-                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                        } else {
-                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                        }
-                    } else {
-                        if cartBook?.inCart == true {
-                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                        } else {
-                            self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
-                        }
-                    }
-                }
-            }
+                self?.navigationController?.view.stopActivityIndicator()
+            } onError: { (error) in
+                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+            } onCompleted: {
+                //
+            } onDisposed: {
+                //
+            }.disposed(by: cell.disposeBag)
+
             do {
                 try DataManager.shared.context.save()
             } catch {
@@ -147,57 +159,27 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = CGFloat()
-        
-            height = 182
-       
+        height = 182
         return height
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func fetch(){
+        let context = DataManager.shared.context
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
+        
+        do {
+            let results = try context?.fetch(fetchRequest)
+            let booksCreated = results as! [Book]
+            
+            for _booksCreated in booksCreated {
+                books.append(_booksCreated)
+            }
+        } catch let err as NSError {
+            print(err.debugDescription)
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-     
+    
+   
 }
 
 

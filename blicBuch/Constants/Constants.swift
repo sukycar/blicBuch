@@ -7,17 +7,7 @@
 //
 import UIKit
 
-enum FontName {
-    case regular, bold
-    var value:String {
-        switch self {
-        case .regular:
-            return "Roboto-Regular"
-        case .bold:
-            return "Roboto-Bold"
-        }
-    }
-}
+
 
 struct FontSize {
     static let label:CGFloat = 17
@@ -25,7 +15,7 @@ struct FontSize {
     static let html:CGFloat = 14
     static let emptyCollection:CGFloat = 15
     static let tabBar:CGFloat = 12
-    static let navigationTitle:CGFloat  = 18
+    static let navigationTitle:CGFloat  = 25
     static let attachmentName:CGFloat = 16
     static let segmentedText:CGFloat = 14
     static let placeholderText:CGFloat = 14
@@ -88,68 +78,6 @@ struct FontSize {
         static let largeTitle:CGFloat = 18
     }
     
-    struct ECard {
-        static let title:CGFloat = 14
-        static let number:CGFloat = 20
-        static let name:CGFloat = 20
-        static let description:CGFloat = 12
-        static let descriptionArabic:CGFloat = 14
-    }
-
-
-    struct Calendar {
-        static let month:CGFloat = 12
-        static let dayInWeek:CGFloat = 12
-        static let day:CGFloat = 14
-    }
-
-    struct PromotionDetails {
-        static let expiration:CGFloat = 14
-        static let contactDetails:CGFloat = 10
-        static let title:CGFloat = 16
-        static let bigTitle:CGFloat = 24
-        static let subtitle:CGFloat = 14
-        static let seller:CGFloat = 14
-        static let from:CGFloat = 14
-        static let price:CGFloat = 16
-        static let locationTitle:CGFloat = 16
-        static let locationSubtitle:CGFloat = 16
-        static let cellTitle:CGFloat = 16
-        static let largeCellTitle:CGFloat = 18
-        static let cellSubtitle:CGFloat = 15
-        static let reviewsCounter:CGFloat = 12
-        static let discountTitle:CGFloat = 16
-    }
-    struct Category{
-        static let title:CGFloat = 14
-        static let subtitle:CGFloat = 12
-        static let exploreTitle:CGFloat = 14
-        static let exploreSubtitle:CGFloat = 14
-    }
-    
-    struct Company{
-        static let section:CGFloat = 14
-        static let title:CGFloat = 14
-        static let fieldInput:CGFloat = 14
-    }
-    
-    struct Collection {
-        static let title:CGFloat = 16
-        static let subtitle:CGFloat = 12
-        static let bottom:CGFloat = 14
-        static let excessive:CGFloat = 14
-        static let location:CGFloat = 14
-    }
-    
-    struct Sort{
-        static let controllerTitle:CGFloat = 20
-        static let title:CGFloat = 16
-        static let value:CGFloat = 14
-        static let cellTitle:CGFloat = 14
-        static let cellSubtitle:CGFloat = 12
-        static let button:CGFloat = 14
-        static let filed:CGFloat = 14
-    }
     struct Search {
         static let textField:CGFloat = 16
         static let sectionTitle:CGFloat = 14

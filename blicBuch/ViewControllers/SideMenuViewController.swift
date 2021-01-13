@@ -15,21 +15,17 @@ import NVActivityIndicatorView
 
 class SideMenuViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
-//    var collections: Results<Collection>?
-//    var promotions: Results<Promotion>?
-//    var categories: Results<Category>?
-//    var favorites: Results<Promotion>?
-//    var notifications:Results<PushNotification>?
-    var selectedCellType: MenuSelectionType = .categories
-    
+
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var tableHolderView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    var cells = [SideMenuCellType]()
-    var transition : CustomTransition2?
-    var frame : CGRect?
-    var frameView : UIView?
-    var snapshot : UIImage?
+    @IBOutlet weak var imageView: UIImageView!
+    
+    private var cells = [SideMenuCellType]()
+    private var transition : CustomTransition2?
+    private var frame : CGRect?
+    private var frameView : UIView?
+    private var snapshot : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,25 +33,26 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
         self.view.clipsToBounds = true
         self.view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         configureTable()
-        self.mainView.backgroundColor = Colors.white
+        self.mainView.backgroundColor = Colors.sideMenuBackgroundColor
+        self.mainView.tintColor = Colors.blueDefault
         tableView.delegate = self
         tableView.dataSource = self
         configureCells()
         tableView.showsVerticalScrollIndicator = false
         tableView.reloadData()
     }
-    
 
     func configureTable() {
-        let backgroundImage = UIImageView(frame: tableHolderView.bounds)
-        backgroundImage.image = UIImage(named: "sideMenuBackground")
-        tableHolderView.insertSubview(backgroundImage, at: 0)
+//        imageView.image = UIImage(named: "img_side_menu_background")
+        imageView.contentMode = .scaleAspectFill
         tableHolderView.clipsToBounds = true
         tableHolderView.layer.cornerRadius = CornerRadius.largest
         tableHolderView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         tableView.clipsToBounds = true
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = Colors.blueDefault
+        self.tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,63 +72,6 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     
-    
-    enum MenuSelectionType{
-        case collections, categories, offers
-    }
-    
-    enum SideMenuCellType{
-        case member,general(type:GeneralMenuCellType)
-    }
-    
-    enum GeneralMenuCellType: CaseIterable{
-        case login, register, contact, donate, cart
-        var title:String{
-            switch self {
-            case .login:
-                return "Einloggen".localized()
-            case .register:
-                return "Registrieren".localized()
-            case .contact:
-                return "Kontakt".localized()
-            case .donate:
-                return "SCHENKUNG".localized()
-            case .cart:
-                return "Cart".localized()
-            }
-        }
-        
-        var imageName: String {
-            switch self {
-            case .login:
-                return "login"
-            case .register:
-                return "registration"
-            case .contact:
-                return "contact"
-            case .donate:
-                return "donate"
-            case .cart:
-                return "donate"
-            }
-        }
-        
-        var imageTint: UIColor {
-            switch self {
-            
-            case .login:
-                return Colors.blueDefault
-            case .register:
-                return Colors.blueDefault
-            case .contact:
-                return Colors.blueDefault
-            case .donate:
-                return Colors.orange
-            case .cart:
-                return Colors.blueDefault
-            }
-        }
-    }
 }
 
 extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
@@ -149,7 +89,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         case .member:
             return 100
         default:
-            return 60
+            return 50
         }
         
     }

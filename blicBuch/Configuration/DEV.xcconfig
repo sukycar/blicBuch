@@ -9,6 +9,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 baseURL = https:/$()/blitzbuch.club/api/api.php/records/
-allowedKingfisherUrl = www.vsukanica.com
+allowedKingfisherUrl = www.blitzbuch.club
 bundleVersion = DEV
 bundleDisplayName = blitzBuch

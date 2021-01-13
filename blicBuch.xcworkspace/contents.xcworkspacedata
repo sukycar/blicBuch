@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/vladimirsukanica/blicBuch/blicBuch/Core/CartBook+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/vladimirsukanica/blicBuch/blicBuch/Core/CartBook+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:blicBuch.xcodeproj">
    </FileRef>
    <FileRef

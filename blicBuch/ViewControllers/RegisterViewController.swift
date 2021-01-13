@@ -16,15 +16,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var phone: UITextField!
     @IBAction func registerButton(_ sender: Any) {
     }
+    @IBOutlet weak var registerButtonOutlet: UIButton!
     var textFieldTester = Int()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        styleViews()
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil);
-
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil);
         
     }//observe keyboard actions
@@ -56,6 +56,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true);
     }// for dismiss of keyboard
     
+    func styleViews(){
+        registerButtonOutlet.backgroundColor = Colors.blueDefault
+        registerButtonOutlet.layer.cornerRadius = CornerRadius.medium
+    }
     
     
     

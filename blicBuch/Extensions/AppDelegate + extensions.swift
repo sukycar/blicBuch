@@ -29,7 +29,7 @@ extension AppDelegate {
         let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.tabBar) ?? UIFont.systemFont(ofSize: FontSize.tabBar) ] as [NSAttributedString.Key : Any]
         
         UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
-        UITabBar.appearance().tintColor = UIColor.blue
+        UITabBar.appearance().tintColor = Colors.blueDefault
         let backButtonImage = resizeImage(image: #imageLiteral(resourceName: "img_back"), targetSize: CGSize(width: 24, height: 44))
         let backImage = backButtonImage.withRenderingMode(.alwaysTemplate)
         UINavigationBar.appearance().backIndicatorImage = backImage

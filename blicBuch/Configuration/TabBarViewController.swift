@@ -12,7 +12,7 @@ class TabBarViewController: UITabBarController {
 
     var loaderTest:Loaded = .secondTime
     @IBOutlet weak var mainTabBar: UITabBar!
-    let customColor = UIColor(hexString: "#5cbff2")//custom color for various elements
+    let customColor = Colors.blueDefault//custom color for various elements
     
     override func viewDidLoad() {
         super.viewDidLoad()

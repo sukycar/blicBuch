@@ -18,12 +18,12 @@ class API: NSObject {
     static let shared = API();
     var disposeBag = DisposeBag()
     
-    func request(router:Router, parameters:[String:AnyObject]?, completion:@escaping ((ApiResponse) -> Void)) -> DataRequest{
+    func request(router:Router, parameters:[String:AnyObject]?, completion: @escaping ((ApiResponse) -> Void)) -> DataRequest{
         let headers = [String : String]()
         let request = managerInstance.request(router.fullUrl(), method: router.httpMethod, parameters: router.httpMethod == .get ? nil : parameters, encoding: JSONEncoding.default, headers: headers)
         print(router.fullUrl().absoluteString + " called")
         request.responseJSON { (response) in
-            self.handleResponse(response: response, router: router, parameters: router.httpMethod == .post ? parameters : nil, completion: { (results) in
+            self.handleResponse(response: response, router: router, parameters: router.httpMethod == .post || router.httpMethod == .put ? parameters : nil, completion: { (results) in
                 completion(results)
                 
             })
@@ -124,7 +124,7 @@ class API: NSObject {
     
     private let managerInstance: SessionManager = {
         let configuration = URLSessionConfiguration.default
-        let serverTrustPolicies: [String: ServerTrustPolicy] = [ "www.vsukanica.com": .disableEvaluation, "http://www.vsukanica.com": .disableEvaluation, "vsukanica.com": .disableEvaluation, "https://www.vsukanica.com": .disableEvaluation]
+        let serverTrustPolicies: [String: ServerTrustPolicy] = [ "www.blitzbuch.club": .disableEvaluation, "http://www.blitzbuch.club": .disableEvaluation, "blitzbuch.club": .disableEvaluation, "https://www.blitzbuch.club": .disableEvaluation]
         configuration.timeoutIntervalForRequest = 220
         configuration.timeoutIntervalForResource = 220
         let manager = Alamofire.SessionManager(configuration: configuration, serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
