@@ -84,7 +84,7 @@ extension InAppPurchaseAlertViewController: SKProductsRequestDelegate, SKPayment
                 print("purchased")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 presentingViewController?.dismiss(animated: true, completion: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PaidTransport"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "paidTransport"), object: nil)
             case .failed:
                 print("failed")
             case .restored:

@@ -11,16 +11,19 @@ import CoreData
 import Firebase
 import SideMenu
 import Kingfisher
+import RxSwift
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     private static var tosterLoader = Array<String?>()
     private static var presentingToaster = false
     private var sideMenuController:SideMenuViewController?
-
+    fileprivate var disposeBag = DisposeBag()
+    var bgTask : UIBackgroundTaskIdentifier!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
@@ -32,13 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KingfisherManager.shared.downloader.trustedHosts = Set([Environment.configuration(.allowedKingfisherUrl)])
         return true
     }
-
+    
     func getSideMenu() -> SideMenuViewController {
         sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuVC") as? SideMenuViewController
         return sideMenuController!
     }
     // MARK: UISceneSession Lifecycle
-
     
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -46,14 +48,92 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+        
     }
     
+    func applicationDidEnterBackground(_ application: UIApplication) {
+
+    }
+
     
+    func applicationWillTerminate(_ application: UIApplication) {
+//        var books = [Book]()
+//        var cartBooks = [CartBook]()
+//        let context = DataManager.shared.context
+//        _ = blicBuchUserDefaults.set(.logedIn, value: false)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logedOut"), object: nil)
+//        let lockedBooks = blicBuchUserDefaults.get(.cartItems) as? [String]
+//        let request = Book.fetchRequest() as NSFetchRequest
+//        let cartRequest = CartBook.fetchRequest() as NSFetchRequest
+//        if let lockedBooks = lockedBooks {
+//            request.predicate = NSPredicate(format: "ANY id in %@", lockedBooks)
+//            cartRequest.predicate = NSPredicate(format: "ANY id in %@", lockedBooks)
+//        }
+//        do {
+//            books = try context?.fetch(request) ?? [Book]()
+//            try! context?.save()
+//        } catch {
+//            print("Not saved")
+//        }
+//        do {
+//            cartBooks = try context?.fetch(cartRequest) ?? [CartBook]()
+//            try! context?.save()
+//        } catch {
+//            print("Cart not erased")
+//        }
+//
+//        books.forEach({
+//            $0.locked = LockStatus.unlocked.rawValue
+//            let vipStatus = $0.vip
+//            let bookId = $0.id
+//                if vipStatus == true {
+//                        let numberOfAvailableVipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int ?? 0
+//                        let numberOfAvailableRegularBooks = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int ?? 0
+//                        let userId = blicBuchUserDefaults.get(.id) as? Int32 ?? 0
+//                        
+//                        UsersService.changeAvailableBooksNumber(vip: vipStatus, removeBooks: false, userId: userId, numberOfVipBooks: numberOfAvailableVipBooks , numberOfRegularBooks: numberOfAvailableRegularBooks ).subscribe { (changed) in
+//                            //
+//                        } onError: { (error) in
+//                            print(error)
+//                        } onCompleted: {
+//                            //
+//                        }.disposed(by: DisposeBag())
+//                    
+//                } else {
+//                        let numberOfAvailableRegularBooks = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int ?? 0
+//                        let numberOfAvailableVipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int ?? 0
+//                        let userId = blicBuchUserDefaults.get(.id) as? Int32 ?? 0
+//                        
+//                        UsersService.changeAvailableBooksNumber(vip: vipStatus, removeBooks: false, userId: userId, numberOfVipBooks: numberOfAvailableVipBooks , numberOfRegularBooks: numberOfAvailableRegularBooks ).subscribe { (changed) in
+//                            //
+//                        } onError: { (error) in
+//                            print(error)
+//                        } onCompleted: {
+//                            //
+//                        }.disposed(by: DisposeBag())
+//                }
+//                
+//        })
+//        cartBooks.forEach({
+//            let id = $0.id
+//            BooksService.lockBook(bookId: id, lockStatus: .unlocked).subscribe { (unlocked) in
+//             //
+//            } onError: { (error) in
+//                print(error.localizedDescription)
+//            } onCompleted: {
+//                print("COMPLETED")
+//            }.disposed(by: DisposeBag())
+//
+//            $0.inCart = false
+//            try! context?.save()
+//        })
+//        _ = blicBuchUserDefaults.set(.cartItems, value: [""])
+    }
     
     
     func setWindow(vc:UIViewController, animated:Bool){
@@ -79,22 +159,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
     }
-
+    
     // MARK: - Core Data stack
-
+    
     lazy var persistentContainer: NSPersistentCloudKitContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
-        */
+         */
         let container = NSPersistentCloudKitContainer(name: "blicBuch")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+                
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -108,37 +188,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-
+    
     //MARK: - general logout function
     /*func logout(withError:Error?){
-            self.finalLogout(withError: withError)
-        }
-        private func finalLogout(withError:Error?){
-            UserDefaults.reset()
-            setWindow(vc: LoginController.getController(), animated:true)
-    //        if let withError = withError{
-    //            AppDelegate.error(error:withError)
-    //        }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                let delegate = UIApplication.shared.delegate as! AppDelegate
-                let context = delegate.persistentContainer.viewContext
-                
-                for i in 0...delegate.persistentContainer.managedObjectModel.entities.count-1 {
-                    let entity = delegate.persistentContainer.managedObjectModel.entities[i]
-                    
-                    do {
-                        let query = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
-                        let deleterequest = NSBatchDeleteRequest(fetchRequest: query)
-                        try context.execute(deleterequest)
-                        try context.save()
-                        
-                    } catch let error as NSError {
-                        print("Error: \(error.localizedDescription)")
-                        abort()
-                    }
-                }
-            }
-        }*/
+     self.finalLogout(withError: withError)
+     }
+     private func finalLogout(withError:Error?){
+     UserDefaults.reset()
+     setWindow(vc: LoginController.getController(), animated:true)
+     //        if let withError = withError{
+     //            AppDelegate.error(error:withError)
+     //        }
+     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+     let delegate = UIApplication.shared.delegate as! AppDelegate
+     let context = delegate.persistentContainer.viewContext
+     
+     for i in 0...delegate.persistentContainer.managedObjectModel.entities.count-1 {
+     let entity = delegate.persistentContainer.managedObjectModel.entities[i]
+     
+     do {
+     let query = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
+     let deleterequest = NSBatchDeleteRequest(fetchRequest: query)
+     try context.execute(deleterequest)
+     try context.save()
+     
+     } catch let error as NSError {
+     print("Error: \(error.localizedDescription)")
+     abort()
+     }
+     }
+     }
+     }*/
     
     // MARK: - Core Data Saving support
     func saveContext () {
@@ -154,6 +234,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
 }
 

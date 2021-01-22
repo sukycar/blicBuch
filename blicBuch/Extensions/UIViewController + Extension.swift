@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 extension UIViewController {
+    /// function for notification of
     func getAlert(errorString: String, errorColor: UIColor) {
         let label = ToasterLabel()
         if #available(iOS 13.0, *){
@@ -46,6 +47,28 @@ extension UIViewController {
                     
                 }
             }
+        }
+    }
+    
+    /// Function for updating books number in userDefaults and on API side
+    public func updateBooksNumber(vip: Bool, removeBooks: Bool, numberOfBooks: Int, disposeBag: DisposeBag){
+        let userDefaultsBooks = vip == true ? blicBuchUserDefaults.get(.numberOfVipBooks) as! Int : blicBuchUserDefaults.get(.numberOfRegularBooks) as! Int
+        var newUserDefaultsBooks = Int()
+        if numberOfBooks != 0 {
+            if removeBooks == true && numberOfBooks <= userDefaultsBooks {
+                newUserDefaultsBooks = userDefaultsBooks - numberOfBooks
+                _ = vip == true ? blicBuchUserDefaults.set(.numberOfVipBooks, value: newUserDefaultsBooks) : blicBuchUserDefaults.set(.numberOfRegularBooks, value: newUserDefaultsBooks)
+            } else if removeBooks == false {
+                newUserDefaultsBooks = userDefaultsBooks + numberOfBooks
+                _ = vip == true ? blicBuchUserDefaults.set(.numberOfVipBooks, value: newUserDefaultsBooks) : blicBuchUserDefaults.set(.numberOfRegularBooks, value: newUserDefaultsBooks)
+            }
+            let updatedUserDefaults = vip == true ? blicBuchUserDefaults.get(.numberOfVipBooks) as! Int : blicBuchUserDefaults.get(.numberOfRegularBooks) as! Int
+            let userId = blicBuchUserDefaults.get(.id) as? Int32 ?? 0
+            UsersService.changeNumberOfBooks(vip: vip, userId: userId, numberOfBooks: updatedUserDefaults).subscribe { (updated) in
+            } onError: { (error) in
+                self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+            } onCompleted: {
+            }.disposed(by: disposeBag)
         }
     }
 }

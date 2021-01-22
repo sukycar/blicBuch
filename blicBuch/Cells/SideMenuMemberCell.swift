@@ -16,16 +16,6 @@ class SideMenuMemberCell: TableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        self.logoutImageButton.setImage(UIImage(named: "img_logout"), for: .normal)
-//        self.logoutImageButton.setTitleColor(Colors.basicBlueColor, for: .normal)
-//        self.logoutLabel.type = (.sideMenuLogoutTitle, "Logout")
-//        self.showAllLines = false
-//        actionButton.rx.tap.subscribe (onNext: {[weak self] (pressed) in
-//            DispatchQueue.main.async {
-//                self?.logout()
-//            }
-//            return
-//        }).disposed(by: self.disposeBag)
         self.showLeftLine = false
         self.showRightLine = false
         self.showTopLine = false

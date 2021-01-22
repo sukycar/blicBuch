@@ -100,6 +100,7 @@ class BooksService {
     class func getAll() -> Observable<Bool>{
         var booksIDs = [String]()
         var jsonFetchedBooksIDs = [String]()
+        
         // Get all books for comparation between API and CoreData
         let booksFetch = Book.fetchRequest() as NSFetchRequest
         let allBooksInContext = try! DataManager.shared.context.fetch(booksFetch)
@@ -107,6 +108,7 @@ class BooksService {
             booksIDs.append("\(book.id)")
         }
         
+        // Create observer for response
         return Observable.create { observer in
             let router = Router.books
             let request = API.shared.request(router: router, parameters: nil, completion: { (response) in
@@ -121,10 +123,13 @@ class BooksService {
                             }
                             booksIDs = booksIDs.filter({!jsonFetchedBooksIDs.contains($0)})
                             
+                            // Update context
                             DataManager.shared.work { (context) in
                                 let bookRequest = Book.fetchRequest() as NSFetchRequest
                                 let predicate = NSPredicate(format: "ANY id in %@", booksIDs)
                                 bookRequest.predicate = predicate
+                                
+                                // Delete objects that doesn't exist in API side
                                 do {
                                     let booksOnlyFromContext = try context.fetch(bookRequest)
                                     booksOnlyFromContext.forEach { (book) in
@@ -134,6 +139,8 @@ class BooksService {
                                     print(error.localizedDescription)
                                 }
                                 context.refreshAllObjects()
+                                
+                                // Update every object which has changes and save it
                                 for (index, json) in jsonArray.enumerated() {
                                     let id = json["id"].int32Value
                                     let item:Book? = context.update(predicate: NSPredicate(format: "id = %d", id))
@@ -156,7 +163,6 @@ class BooksService {
                     }
                 case .Failure(let apiError):
                     observer.onError(apiError)
-                    print("Failure")
                 }
             })
             let cancel = Disposables.create {
@@ -166,46 +172,46 @@ class BooksService {
         }
     }
     
-    class func getAllCartStatuses() -> Observable<Bool>{
-        return Observable.create { observer in
-            let router = Router.books
-            let request = API.shared.request(router: router, parameters: nil, completion: { (response) in
-                switch response {
-                case .Success(let json):
-                    if let newJson = json?.dictionary {
-                        let jsonArray1 = newJson["records"]
-                        if let jsonArray = jsonArray1?.array {
-                            DataManager.shared.work { (context) in
-                                let fetchForCount: NSFetchRequest<CartBook> = CartBook.fetchRequest()
-                                context.refreshAllObjects()
-                                for (index, json) in jsonArray.enumerated() {
-                                    let item:CartBook? = context.update(predicate: NSPredicate(format: "id = %d", json["id"].int32Value))
-                                    item?.id = json["id"].int32Value
-                                }
-                                
-                                try! context.save()
-                                observer.onNext(true)
-                                observer.onCompleted()
-                            }
-                            observer.onNext(true)
-                            observer.onCompleted()
-                        }
-                    } else {
-                        observer.onNext(false)
-                        observer.onCompleted()
-                        return
-                    }
-                case .Failure(let apiError):
-                    observer.onError(apiError)
-                    print("Failure")
-                }
-            })
-            let cancel = Disposables.create {
-                request.cancel()
-            }
-            return cancel
-        }
-    }
+//    class func getAllCartStatuses() -> Observable<Bool>{
+//        return Observable.create { observer in
+//            let router = Router.books
+//            let request = API.shared.request(router: router, parameters: nil, completion: { (response) in
+//                switch response {
+//                case .Success(let json):
+//                    if let newJson = json?.dictionary {
+//                        let jsonArray1 = newJson["records"]
+//                        if let jsonArray = jsonArray1?.array {
+//                            DataManager.shared.work { (context) in
+//                                let fetchForCount: NSFetchRequest<CartBook> = CartBook.fetchRequest()
+//                                context.refreshAllObjects()
+//                                for (index, json) in jsonArray.enumerated() {
+//                                    let item:CartBook? = context.update(predicate: NSPredicate(format: "id = %d", json["id"].int32Value))
+//                                    item?.id = json["id"].int32Value
+//                                }
+//                                
+//                                try! context.save()
+//                                observer.onNext(true)
+//                                observer.onCompleted()
+//                            }
+//                            observer.onNext(true)
+//                            observer.onCompleted()
+//                        }
+//                    } else {
+//                        observer.onNext(false)
+//                        observer.onCompleted()
+//                        return
+//                    }
+//                case .Failure(let apiError):
+//                    observer.onError(apiError)
+//                    print("Failure")
+//                }
+//            })
+//            let cancel = Disposables.create {
+//                request.cancel()
+//            }
+//            return cancel
+//        }
+//    }
 }
 
 

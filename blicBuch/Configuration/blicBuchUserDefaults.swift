@@ -12,13 +12,17 @@ enum UserDefaultsValue:String{
     case membershipType = "membershipType"//MARK:- can be "vip", "regular" and "free"
     case numberOfRegularBooks = "numberOfRegularBooks"
     case numberOfVipBooks = "numberOfVipBooks"
-    case selectedVipBooks = "selectedVipBooks"
-    case selectedRegularBooks = "selectedRegularBooks"
+    case logedIn = "logedIn"
+    case id = "id"
+    case username = "username"
+    case cartItems = "cartItems"
+    
 }
+
 
 class blicBuchUserDefaults {
     private static let userDefaults = UserDefaults()
-    
+
     class func get(_ type: UserDefaultsValue) -> Any? {
         return userDefaults.value(forKey: type.rawValue)
     }

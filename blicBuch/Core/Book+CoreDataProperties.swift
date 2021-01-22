@@ -28,6 +28,4 @@ extension Book {
     @NSManaged public var weRecommend: Bool
     @NSManaged public var locked: Int16
     @NSManaged public var user: User?
-    @NSManaged public var book: CartBook?
-
 }

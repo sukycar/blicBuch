@@ -13,10 +13,13 @@ import RxSwift
 
 class GenreTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var book : Book?
+    private var book : Book?
     var genre: Book.Genre = .avantura
-    var books = [Book]()
-    var booksInGenre = [Book]()
+    private var books = [Book]()
+    private var booksInGenre = [Book]()
+    private let alertService = AlertService()
+    var lockedBooks = [String]()
+
     
     @IBOutlet weak var holderView: UIView!//holder for uiimage view
     @IBOutlet weak var pictureView: UIImageView!
@@ -32,7 +35,7 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     @IBOutlet var mainTable: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetch()
@@ -50,110 +53,179 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
         let customCellName = String(describing: CustomCell.self)
         mainTable.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
     }
-
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return booksInGenre.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = mainTable.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for:indexPath) as! CustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for:indexPath) as! CustomCell
         let item = booksInGenre[indexPath.row]
         cell.set(with: item, inVipController: false)
         cell.index = indexPath
+        cell.cellDelegate = self
         cell.orderButton.rx.tap.subscribe(onNext: {[weak self] in
-            let request = CartBook.fetchRequest() as NSFetchRequest
-            request.predicate = NSPredicate(format: "id == %d", item.id)
-            let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
-            let cartBook = fetchedCartBooks.first
-            self?.navigationController?.view.startActivityIndicator()
-            BooksService.checkLock(bookId: item.id).subscribe { (locked) in
-                if locked == true {
-                    if cartBook?.inCart == false {
-                    self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
-                    } else {
-                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+            if let logedIn = blicBuchUserDefaults.get(.logedIn) as? Bool{
+                var cartItems = blicBuchUserDefaults.get(.cartItems) as? [String]
+                if logedIn == true {
+//                    let request = CartBook.fetchRequest() as NSFetchRequest
+//                    request.predicate = NSPredicate(format: "id == %d", item.id)
+//                    let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
+//                    let cartBook = fetchedCartBooks.first
+                    self?.navigationController?.view.startActivityIndicator()
+                    BooksService.checkLock(bookId: item.id).subscribe { (locked) in
+                        if locked == true {
+                            if !(cartItems?.contains(String(item.id)) ?? false) {
+                                self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
+                            } else {
+                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                            }
+                        } else {
+                            if item.vip == true {
+                                guard let id = blicBuchUserDefaults.get(.id) as? Int32 else {return}
+                                UsersService.checkForAvailableBooks(id).subscribe {(vip, regular) in
+                                    let vip = vip
+                                    let regular = regular
+                                    if vip > 0 {
+                                        self?.updateBooksNumber(vip: true, removeBooks: true, numberOfBooks: 1, disposeBag: cell.disposeBag)
+                                            if !(cartItems?.contains(String(item.id)) ?? false) {
+                                                _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
+                                                self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                                item.locked = LockStatus.locked.rawValue
+                                                cartItems?.append(String(item.id))
+                                                BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                    let lockedBookId = (String(item.id))
+                                                    self?.lockedBooks.append(lockedBookId)
+                                                    var cartBooks = blicBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
+                                                    cartBooks.append(lockedBookId)
+                                                    var newCartBooks = cartBooks
+                                                    newCartBooks = Array(Set(newCartBooks))
+                                                    let clearBooksArray = newCartBooks.filter({return $0 != ""})
+                                                    _ = blicBuchUserDefaults.set(.cartItems, value: clearBooksArray) as! [String]
+                                                    UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                        //
+                                                    } onError: { (error) in
+                                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                    } onCompleted: {
+                                                        //
+                                                    }.disposed(by: cell.disposeBag)
+
+                                                } onError: { (error) in
+                                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                } onCompleted: {
+                                                    //
+                                                } onDisposed: {
+                                                    //
+                                                }.disposed(by: cell.disposeBag)
+                                            } else {
+                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            }
+                                            
+                                            
+                                       
+                                    } else {
+                                        if (cartItems?.contains(String(item.id)) ?? false) {
+                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                        } else {
+                                            self?.getAlert(errorString: "Iskoristili ste limit za vip knjige", errorColor: Colors.orange)
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                } onError: { (error) in
+                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                } onCompleted: {
+                                    //
+                                } onDisposed: {
+                                    //
+                                }.disposed(by: cell.disposeBag)
+                            }
+                            if item.vip == false {
+                                guard let id = blicBuchUserDefaults.get(.id) as? Int32 else {return}
+                                UsersService.checkForAvailableBooks(id).subscribe {(vip, regular) in
+                                    let vip = vip
+                                    let regular = regular
+                                    if regular > 0 {
+                                        self?.updateBooksNumber(vip: false, removeBooks: true, numberOfBooks: 1, disposeBag: cell.disposeBag)
+                                            
+                                            if !(cartItems?.contains(String(item.id)) ?? false) {
+                                                _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
+                                                self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                                item.locked = LockStatus.locked.rawValue
+//                                                cartBook?.inCart = true
+                                                cartItems?.append(String(item.id))
+                                                BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                    let lockedBookId = (String(item.id))
+                                                    self?.lockedBooks.append(lockedBookId)
+                                                    var cartBooks = blicBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
+                                                    cartBooks.append(lockedBookId)
+                                                    var newCartBooks = cartBooks
+                                                    newCartBooks = Array(Set(newCartBooks))
+                                                    let clearBooksArray = newCartBooks.filter({return $0 != ""})
+                                                    _ = blicBuchUserDefaults.set(.cartItems, value: clearBooksArray) as! [String]
+                                                    UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                        //
+                                                    } onError: { (error) in
+                                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                    } onCompleted: {
+                                                        //
+                                                    }.disposed(by: cell.disposeBag)
+                                                } onError: { (error) in
+                                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                } onCompleted: {
+                                                    //
+                                                } onDisposed: {
+                                                    //
+                                                }.disposed(by: cell.disposeBag)
+                                            } else {
+                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            }
+
+                                    } else {
+                                        if (cartItems?.contains(String(item.id)) ?? false) {
+                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                        } else {
+                                            self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                } onError: { (error) in
+                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                } onCompleted: {
+                                    //
+                                } onDisposed: {
+                                    //
+                                }.disposed(by: cell.disposeBag)
+                            }
+                        }
+                        self?.navigationController?.view.stopActivityIndicator()
+                    } onError: { (error) in
+                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                    } onCompleted: {
+                        //
+                    } onDisposed: {
+                        //
+                    }.disposed(by: cell.disposeBag)
+                    
+                    do {
+                        try DataManager.shared.context.save()
+                    } catch {
+                        self?.getAlert(errorString: "Error saving data", errorColor: Colors.orange)
                     }
                 } else {
-                    if item.vip == true {
-                        if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
-                            if vipBooks > 0 {
-                                if cartBook?.inCart == false {
-                                    cartBook?.inCart = true
-                                    _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
-                                    self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                                    item.locked = LockStatus.locked.rawValue
-                                    BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
-                                        print(finished.description)
-                                    } onError: { (error) in
-                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                                    } onCompleted: {
-                                        //
-                                    } onDisposed: {
-                                        //
-                                    }.disposed(by: cell.disposeBag)
-                                } else {
-                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                }
-                            } else {
-                                if cartBook?.inCart == true {
-                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                } else {
-                                    self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
-                                }
-                            }
-                        }
-                    }
-                    if item.vip == false {
-                        if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
-                            if books > 0 {
-                                if cartBook?.inCart == false {
-                                    cartBook?.inCart = true
-                                    _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
-                                    self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                                    item.locked = LockStatus.locked.rawValue
-                                    BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
-                                        print(finished.description)
-                                    } onError: { (error) in
-                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                                    } onCompleted: {
-                                        //
-                                    } onDisposed: {
-                                        //
-                                    }.disposed(by: cell.disposeBag)
-                                } else {
-                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                }
-                            } else {
-                                if cartBook?.inCart == true {
-                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                } else {
-                                    self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
-                                }
-                            }
-                        }
-                    }
+                    self?.onClick(index: 1)
                 }
-                self?.navigationController?.view.stopActivityIndicator()
-            } onError: { (error) in
-                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-            } onCompleted: {
-                //
-            } onDisposed: {
-                //
-            }.disposed(by: cell.disposeBag)
-
-            do {
-                try DataManager.shared.context.save()
-            } catch {
-                self?.getAlert(errorString: "Error saving data", errorColor: Colors.orange)
             }
-            
         }).disposed(by: cell.disposeBag)
+        
         return cell
     }
     
@@ -179,51 +251,13 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
         }
     }
     
-   
+    
 }
 
 
-//extension GenreTableViewController {
-//    class func getController(for book:Books?, and type: Genre) -> GenreTableViewController {
-//        let vc = UIStoryboard(name: "GenreTableViewController", bundle: nil).instantiateViewController(identifier: "GenreTableViewController") as! GenreTableViewController
-//        vc.book = book
-//        vc.genre = type
-//        return vc
-//    }
-//}
-
-extension UIView {
-    func addBottomBorderGray(color: UIColor = UIColor.lightGray, margins: CGFloat = 0, borderLineSize: CGFloat = 0.3) {
-        let border = UIView()
-        border.backgroundColor = color
-        border.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(border)
-        border.addConstraint(NSLayoutConstraint(item: border,
-                                                attribute: .height,
-                                                relatedBy: .equal,
-                                                toItem: nil,
-                                                attribute: .height,
-                                                multiplier: 1, constant: borderLineSize))
-        self.addConstraint(NSLayoutConstraint(item: border,
-                                              attribute: .bottom,
-                                              relatedBy: .equal,
-                                              toItem: self,
-                                              attribute: .bottom,
-                                              multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: border,
-                                              attribute: .leading,
-                                              relatedBy: .equal,
-                                              toItem: self,
-                                              attribute: .leading,
-                                              multiplier: 1, constant: margins))
-        self.addConstraint(NSLayoutConstraint(item: border,
-                                              attribute: .trailing,
-                                              relatedBy: .equal,
-                                              toItem: self,
-                                              attribute: .trailing,
-                                              multiplier: 1, constant: margins))
+extension GenreTableViewController: AlertMe {
+    func onClick(index: Int) {
+        let alertVC = alertService.alert()
+        self.present(alertVC, animated: true)
     }
-    
-    
 }
-

@@ -39,8 +39,6 @@ class CustomCell: TableViewCell {
     var index: IndexPath?
     var bookId: Int32?
     var book: Book?
-    var cartBook: CartBook?
-    var cartBooks: [CartBook]?
     var booksInCart: [Book]?
     var disposeBag = DisposeBag()
     private let context = DataManager.shared.context
@@ -65,6 +63,7 @@ class CustomCell: TableViewCell {
         orderButton.layer.borderColor = .none
         orderButton.layer.cornerRadius = 3.5
         orderButton.layer.borderColor = Colors.white.cgColor
+        self.cellDelegate?.onClick(index: 1)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

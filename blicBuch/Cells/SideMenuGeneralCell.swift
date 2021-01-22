@@ -15,6 +15,7 @@ class SideMenuGeneralCell: TableViewCell {
     @IBOutlet weak var imageHolderView: UIImageView!
     @IBOutlet weak var titleLabel: Label!
     @IBOutlet weak var counterLabel: Label!
+    @IBOutlet weak var actionButton: UIButton!
     
     var sideMenuCell : GeneralMenuCellType = .login
     var disposeBag = DisposeBag()
@@ -32,6 +33,9 @@ class SideMenuGeneralCell: TableViewCell {
     }
     
     func setCell(title: String, imageName: String, counter: String, imageTint: UIColor) {
+        if sideMenuCell != .login {
+            actionButton.isUserInteractionEnabled = false
+        }
         self.imageHolderView.image = UIImage(named: imageName)
         self.imageHolderView.tintColor = imageTint
         switch sideMenuCell {

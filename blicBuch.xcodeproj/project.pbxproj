@@ -53,9 +53,7 @@
 		1F444B9E25A475890046EB5F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444B9D25A475890046EB5F /* Enums.swift */; };
 		1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */; };
 		1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E16925A200EA005B864F /* AlertButton.swift */; };
-		1F5B915525A32ED300F927E2 /* CartBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B915325A32ED200F927E2 /* CartBook+CoreDataProperties.swift */; };
 		1F83D1832588C92A003C888D /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83D1822588C92A003C888D /* Book+CoreDataProperties.swift */; };
-		1F83D1882588C967003C888D /* CartBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83D1872588C967003C888D /* CartBook+CoreDataClass.swift */; };
 		1F84715B257CD792008D759C /* blicBuchUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */; };
 		1F9592EA25AEEB9B00AD065F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9592E925AEEB9B00AD065F /* UsersService.swift */; };
 		1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */; };
@@ -136,9 +134,7 @@
 		1F444B9D25A475890046EB5F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseAlertViewController.swift; sourceTree = "<group>"; };
 		1F52E16925A200EA005B864F /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
-		1F5B915325A32ED200F927E2 /* CartBook+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CartBook+CoreDataProperties.swift"; path = "blicBuch/Core/CartBook+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		1F83D1822588C92A003C888D /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataProperties.swift"; path = "blicBuch/Core/Book+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		1F83D1872588C967003C888D /* CartBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CartBook+CoreDataClass.swift"; path = "blicBuch/Core/CartBook+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = blicBuchUserDefaults.swift; path = blicBuch/Configuration/blicBuchUserDefaults.swift; sourceTree = SOURCE_ROOT; };
 		1F9592E925AEEB9B00AD065F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -195,8 +191,6 @@
 				1FA4CB8B25877E0F00730984 /* Libraries */,
 				1FE8B4B72584C61F00C3A47A /* User+CoreDataClass.swift */,
 				1FE8B4B62584C61F00C3A47A /* User+CoreDataProperties.swift */,
-				1F83D1872588C967003C888D /* CartBook+CoreDataClass.swift */,
-				1F5B915325A32ED200F927E2 /* CartBook+CoreDataProperties.swift */,
 				1FE8B4B92584C61F00C3A47A /* Book+CoreDataClass.swift */,
 				1F83D1822588C92A003C888D /* Book+CoreDataProperties.swift */,
 				0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */,
@@ -539,7 +533,6 @@
 				0A8E4F4C249DE7BC00C8B38A /* LoadingViewController.swift in Sources */,
 				1FE8B51F2584D05200C3A47A /* BaseLabel.swift in Sources */,
 				0A27E3DA24634C0F00DE117C /* FormatterHelpers.swift in Sources */,
-				1F5B915525A32ED300F927E2 /* CartBook+CoreDataProperties.swift in Sources */,
 				0A7519702466A35A0089DED8 /* Model.swift in Sources */,
 				0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */,
 				0A86432C24BB026000EF05CD /* CartTableView.swift in Sources */,
@@ -548,7 +541,6 @@
 				1FE8B5282584D45700C3A47A /* String + extension.swift in Sources */,
 				0A1F61CB23D06166005C527A /* RegisterViewController.swift in Sources */,
 				1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */,
-				1F83D1882588C967003C888D /* CartBook+CoreDataClass.swift in Sources */,
 				0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */,
 				0AF1EEA22483EA8F000AB7DC /* Colors.swift in Sources */,
 				0A7519722466A8F90089DED8 /* DataManager.swift in Sources */,

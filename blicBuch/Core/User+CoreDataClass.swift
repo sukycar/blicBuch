@@ -24,6 +24,7 @@ public class User: NSManagedObject {
         self.payment = json[CodingKeys.payment.rawValue].bool ?? false
         self.phoneNumber = json[CodingKeys.phoneNumber.rawValue].int64Value
         self.vipUser = json[CodingKeys.vipUser.rawValue].bool ?? false
+        self.logedIn = json[CodingKeys.logedIn.rawValue].bool ?? false
         //self.vipBooks = NSSet?
     }
 }
@@ -40,6 +41,7 @@ extension User {
         case payment
         case phoneNumber
         case vipUser
+        case logedIn
         //case vipBooks
     }
 }

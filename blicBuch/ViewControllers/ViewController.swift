@@ -28,10 +28,10 @@ import SideMenu
 class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, NSFetchedResultsControllerDelegate {
     var homeBooksArray : [Book]?{
         didSet{
-//            self.tableView2.layoutIfNeeded()
+            //            self.tableView2.layoutIfNeeded()
             self.tableView2.reloadData()
         }
-        }
+    }
     let context = DataManager.shared.context
     var fetchResults:NSFetchedResultsController<NSManagedObject>?
     var frame : CGRect?
@@ -40,36 +40,38 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     private var transition: CustomTransition2?
     var book:Book?
     private var sideMenuController: SideMenuViewController?
-
     var tableContent = ["Einloggen", "Registrieren", "Kontakt", "SCHENKUNG", "Cart"]
     /*var tableContent1 = ["Login", "Sign up", "Contact us", "DONATE"]*/
     var arrayOfBookId = [Int32]()
     var alphaTest = 0
     var timer:Timer?
     let alertService = AlertService()
-    var numberOfRegularBooks: String = {
-            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: 4)
-            return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
-    }()
-    var numberOfVipBooks: String = {
-            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: 1)
-            return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
-    }()
-    var numberOfRegularBooksInt = Int()
-    var numberOfVipBooksInt = Int()
-    
+    var lockedBooks = [String]()
+
+    //    var numberOfRegularBooks: String = {
+    ////            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: 4)
+    //            return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
+    //    }()
+    //    var numberOfVipBooks: String = {
+    ////            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: 1)
+    //            return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
+    //    }()
+    //    var numberOfRegularBooksInt = Int()
+    //    var numberOfVipBooksInt = Int()
+    var disposeBag = DisposeBag()
+    let networking = NetworkingService.shared
     
     @IBAction func vipButton(_ sender: Any) {
         if let tabController = UIApplication.shared.keyWindow?.rootViewController as? TabBarViewController {
             tabController.view.backgroundColor = .white
-        if let vc = tabController.viewControllers?[2] {
-            _ = tabController.tabBarController(tabController, shouldSelect: vc)
-            vc.presentedViewController?.dismiss(animated: true, completion: nil)
-            if let vc = vc as? UINavigationController {
-                vc.popToRootViewController(animated: true)
+            if let vc = tabController.viewControllers?[2] {
+                _ = tabController.tabBarController(tabController, shouldSelect: vc)
+                vc.presentedViewController?.dismiss(animated: true, completion: nil)
+                if let vc = vc as? UINavigationController {
+                    vc.popToRootViewController(animated: true)
+                }
             }
         }
-    }
     }
     @IBOutlet weak var imageViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView2: UITableView! {
@@ -80,65 +82,28 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             let customCell = String(describing: BlueCloudCell.self)
             tableView2.register(UINib(nibName: customCell, bundle: nil), forCellReuseIdentifier: customCell)
         }
-        }
+    }
     @IBOutlet weak var tableView1: UITableView!
-    
     @IBOutlet weak var button1: UIButton!
-
-    var disposeBag = DisposeBag()
-    let networking = NetworkingService.shared
+    
+    
     
     override func viewDidLoad() {
-        
-        //MARK: - TESTING of login
-        
-        UsersService.getUser("test@yahoo.com", "Sada").subscribe { [weak self] (logedIn) in
-            print("Da li je ulogovan: \(logedIn.description)")
-            if logedIn == false {
-                self?.getAlert(errorString: "Greska u login podacima, pokusajte ponovo", errorColor: Colors.orange)
-            }
-        } onError: { (error) in
-            self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-        } onCompleted: {
-            //
-        } onDisposed: {
-            //
-        }.disposed(by: self.disposeBag)
-
-        fetch()
+        //MARK: - should be activated when order button in cells are pressed
+        fetch()//temporary
         NotificationCenter.default.addObserver(self, selector: #selector(self.dismissSideMenu), name: NSNotification.Name(rawValue: "enteredBackground"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.performLoginTransition), name: NSNotification.Name("loginHome"), object: nil)
-        numberOfRegularBooksInt = Int(numberOfRegularBooks) ?? 0
-        numberOfVipBooksInt = Int(numberOfVipBooks) ?? 0
-        print("Broj dostupnih regularnih knjiga \(numberOfRegularBooksInt)")
-        print("Broj dostupnih vip knjiga \(numberOfVipBooksInt)")
-
-//        timer?.invalidate()
-//            self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (timer) in
-//                BooksService.getAll().subscribe(onNext: { (finished) in
-//                    print("refreshed data")
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-//                        self.fetch()
-//                    })
-//                }, onError: { (error) in
-//                    print(error)
-//                }, onCompleted: {
-//
-//
-//                }) {
-//
-//                }.disposed(by: self.disposeBag)
-//            })
-
-//        let url = "\(Router.books.fullUrl())"
-//        print(url)
+        //        numberOfRegularBooksInt = Int(numberOfRegularBooks) ?? 0
+        //        numberOfVipBooksInt = Int(numberOfVipBooks) ?? 0
+        //        print("Broj dostupnih regularnih knjiga \(numberOfRegularBooksInt)")
+        //        print("Broj dostupnih vip knjiga \(numberOfVipBooksInt)")
         alphaTest = 0
         if alphaTest == 0 {
-                self.tableView1.alpha = 0
-                self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
-
+            self.tableView1.alpha = 0
+            self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
+            
         }
-         
+        
         tableView2.delegate = self
         tableView2.dataSource = self
         tableView2.layer.borderColor = UIColor.gray.cgColor
@@ -147,100 +112,31 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView1.dataSource = self
         tableView1.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         tableView1.layer.borderWidth = 0.22
-    tableView1.translatesAutoresizingMaskIntoConstraints = false
+        tableView1.translatesAutoresizingMaskIntoConstraints = false
         tableView2.translatesAutoresizingMaskIntoConstraints = false
         definesPresentationContext = true
-        /*Alamofire.request(Router.books.fullUrl(), method: .get, encoding: JSONEncoding.default).responseJSON { (response) in
-            switch response.result {
-            case .success(let books):
-                
-                BooksService.getAll().subscribe(onNext: { (finished) in
-
-                                           }, onError: { (error) in
-                print(error)
-                                          }, onCompleted: {
-                                            print(books)
-                print("SUCESSSSSS")
-                                           }) {
-
-                                           }.disposed(by: self.disposeBag)
-                    
-            case .failure(let error):
-                print("ERROR \(error)")
-            }
-        }*/
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetch()
-//        BooksService.updateBook(bookId: 152).subscribe { (finished) in
-//            print("Updated")
-//        } onError: { (error) in
-//            print("error updating")
-//        } onCompleted: {
-//            //
-//        } onDisposed: {
-//            //
-//        }.disposed(by: self.disposeBag)
-
-//        DispatchQueue.main.async {
-//            let id: Int32 = 157
-//
-//                BooksService.deleteBook(bookId: id).subscribe(onNext: { [weak self](finished) in
-//                    print(finished)
-//                    }, onError: { (error) in
-//                        print(error)
-//                }, onCompleted: {
-//
-//                }) {
-//
-//                }.disposed(by: self.disposeBag)
-//
-//        }
     }
     
-//    func fetch(){
-//        let fetchRequest: NSFetchRequest<Books> = Books.fetchRequest()
-//
-//
-//            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-//            fetchRequest.fetchLimit = 5
-//
-////        }
-//
-//        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataManager.shared.context, sectionNameKeyPath: nil, cacheName: nil)
-//        fetchedResultsController.delegate = self
-//        self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
-//        try! fetchResults?.performFetch()
-//        self.tableView2?.reloadData()
-//
-//    }
-    
     func fetch(){
-            let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
-            
-           // fetchRequest.predicate = NSPredicate(format: "id > 121 && id < 127", [])
-    //        if let activeSort = sort.getActive() {
-    //            fetchRequest.sortDescriptors = activeSort.compactMap({NSSortDescriptor(key: $0.0, ascending: $0.1)})
-    //        }else{
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-                fetchRequest.fetchLimit = 5
-                
-    //        }
-            
+        let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        fetchRequest.fetchLimit = 5
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context!, sectionNameKeyPath: nil, cacheName: nil)
-            fetchedResultsController.delegate = self
-            self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
-            try! fetchResults?.performFetch()
+        fetchedResultsController.delegate = self
+        self.fetchResults = fetchedResultsController as? NSFetchedResultsController<NSManagedObject>
+        try! fetchResults?.performFetch()
         homeBooksArray?.removeAll()
         homeBooksArray = fetchResults?.fetchedObjects as? [Book]
         homeBooksArray?.forEach({ (book) in
             print(book)
         })
         self.tableView2.reloadData()
-        }
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -262,15 +158,15 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         var cell = UITableViewCell()
         cell.selectionStyle = .none
         if tableView == tableView1 {
-        cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        let cellDonate = UIImage(named: "img_menu_donate")
-        let cellLogIn = UIImage(named: "login")
-        let cellRegistration = UIImage(named: "registration")
+            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            let cellDonate = UIImage(named: "img_menu_donate")
+            let cellLogIn = UIImage(named: "login")
+            let cellRegistration = UIImage(named: "registration")
             let cellCart = UIImage(named: "img_menu_donate")
-        let cellLocation = tableContent[indexPath.row]
+            let cellLocation = tableContent[indexPath.row]
             cell.textLabel?.text = cellLocation
             let cellContact = UIImage(named: "img_contact")
-        let aColor = UIColor(hexString: "#5cbff2")
+            let aColor = UIColor(hexString: "#5cbff2")
             cell.textLabel?.textColor = aColor
             let cellContactColored = cellContact?.withTintColor(aColor)
             
@@ -302,105 +198,165 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         } else if tableView == tableView2 {
             
             if indexPath.row < 5 {
-
+                
                 let model = homeBooksArray?[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
                 if let item = model  {
                     cell.set(with: item, inVipController: false)
-                print(item.id)
-                
-            cell.cellDelegate = self
-            cell.index = indexPath
+                    print(item.id)
+                    
+                    cell.cellDelegate = self
+                    cell.index = indexPath
                     cell.orderButton.rx.tap.subscribe(onNext: {[weak self] in
-                        let request = CartBook.fetchRequest() as NSFetchRequest
-                        request.predicate = NSPredicate(format: "id == %d", item.id)
-                        let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
-                        let cartBook = fetchedCartBooks.first
-                        self?.navigationController?.view.startActivityIndicator()
-                        BooksService.checkLock(bookId: item.id).subscribe { (locked) in
-                            self?.onClick(index: 1)
-                            if locked == true {
-                                if cartBook?.inCart == false {
-                                self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
-                                } else {
-                                    self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                        if let logedIn = blicBuchUserDefaults.get(.logedIn) as? Bool{
+                            var cartItems = blicBuchUserDefaults.get(.cartItems) as? [String]
+                            if logedIn == true {
+                                self?.navigationController?.view.startActivityIndicator()
+                                BooksService.checkLock(bookId: item.id).subscribe { (locked) in
+                                    if locked == true {
+                                        if !(cartItems?.contains(String(item.id)) ?? false) {
+                                            self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
+                                        } else {
+                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                        }
+                                    } else {
+                                        if item.vip == true {
+                                            guard let id = blicBuchUserDefaults.get(.id) as? Int32 else {return}
+                                            UsersService.checkForAvailableBooks(id).subscribe {(vip, regular) in
+                                                let vip = vip
+                                                let regular = regular
+                                                if vip > 0 {
+                                                    self?.updateBooksNumber(vip: true, removeBooks: true, numberOfBooks: 1, disposeBag: cell.disposeBag)
+                                                        if !(cartItems?.contains(String(item.id)) ?? false) {
+                                                            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
+                                                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                                            item.locked = LockStatus.locked.rawValue
+                                                            cartItems?.append(String(item.id))
+                                                            BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                                let lockedBookId = (String(item.id))
+                                                                self?.lockedBooks.append(lockedBookId)
+                                                                var cartBooks = blicBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
+                                                                cartBooks.append(lockedBookId)
+                                                                var newCartBooks = cartBooks
+                                                                newCartBooks = Array(Set(newCartBooks))
+                                                                let clearBooksArray = newCartBooks.filter({return $0 != ""})
+                                                                _ = blicBuchUserDefaults.set(.cartItems, value: clearBooksArray) as! [String]
+                                                                UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                                    //
+                                                                } onError: { (error) in
+                                                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                                } onCompleted: {
+                                                                    //
+                                                                }.disposed(by: cell.disposeBag)
+
+                                                            } onError: { (error) in
+                                                                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                            } onCompleted: {
+                                                                //
+                                                            } onDisposed: {
+                                                                //
+                                                            }.disposed(by: cell.disposeBag)
+                                                        } else {
+                                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                                        }
+
+                                                } else {
+                                                    if (cartItems?.contains(String(item.id)) ?? false) {
+                                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                                    } else {
+                                                        self?.getAlert(errorString: "Iskoristili ste limit za vip knjige", errorColor: Colors.orange)
+                                                    }
+                                                }
+                                                
+                                                
+                                                
+                                            } onError: { (error) in
+                                                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                            } onCompleted: {
+                                                //
+                                            } onDisposed: {
+                                                //
+                                            }.disposed(by: cell.disposeBag)
+                                        }
+                                        if item.vip == false {
+                                            guard let id = blicBuchUserDefaults.get(.id) as? Int32 else {return}
+                                            UsersService.checkForAvailableBooks(id).subscribe {(vip, regular) in
+                                                let vip = vip
+                                                let regular = regular
+                                                if regular > 0 {
+                                                    self?.updateBooksNumber(vip: false, removeBooks: true, numberOfBooks: 1, disposeBag: cell.disposeBag)
+                                                        if !(cartItems?.contains(String(item.id)) ?? false) {
+                                                            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
+                                                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                                            item.locked = LockStatus.locked.rawValue
+            //                                                cartBook?.inCart = true
+                                                            cartItems?.append(String(item.id))
+                                                            BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                                let lockedBookId = (String(item.id))
+                                                                self?.lockedBooks.append(lockedBookId)
+                                                                var cartBooks = blicBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
+                                                                cartBooks.append(lockedBookId)
+                                                                var newCartBooks = cartBooks
+                                                                newCartBooks = Array(Set(newCartBooks))
+                                                                let clearBooksArray = newCartBooks.filter({return $0 != ""})
+                                                                _ = blicBuchUserDefaults.set(.cartItems, value: clearBooksArray) as! [String]
+                                                                UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                                    //
+                                                                } onError: { (error) in
+                                                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                                } onCompleted: {
+                                                                    //
+                                                                }.disposed(by: cell.disposeBag)
+                                                            } onError: { (error) in
+                                                                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                                            } onCompleted: {
+                                                                //
+                                                            } onDisposed: {
+                                                                //
+                                                            }.disposed(by: cell.disposeBag)
+                                                        } else {
+                                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                                        }
+
+                                                } else {
+                                                    if (cartItems?.contains(String(item.id)) ?? false) {
+                                                        self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                                    } else {
+                                                        self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                                                    }
+                                                }
+                                                
+                                                
+                                                
+                                            } onError: { (error) in
+                                                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                            } onCompleted: {
+                                                //
+                                            } onDisposed: {
+                                                //
+                                            }.disposed(by: cell.disposeBag)
+                                        }
+                                    }
+                                    self?.navigationController?.view.stopActivityIndicator()
+                                } onError: { (error) in
+                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                } onCompleted: {
+                                    //
+                                } onDisposed: {
+                                    //
+                                }.disposed(by: cell.disposeBag)
+                                
+                                do {
+                                    try DataManager.shared.context.save()
+                                } catch {
+                                    self?.getAlert(errorString: "Error saving data", errorColor: Colors.orange)
                                 }
                             } else {
-                                if item.vip == true {
-                                    if let vipBooks = blicBuchUserDefaults.get(.numberOfVipBooks) as? Int {
-                                        if vipBooks > 0 {
-                                            if cartBook?.inCart == false {
-                                                cartBook?.inCart = true
-                                                _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks - 1)
-                                                self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                                                item.locked = LockStatus.locked.rawValue
-                                                BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
-                                                    print(finished.description)
-                                                } onError: { (error) in
-                                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                                                } onCompleted: {
-                                                    //
-                                                } onDisposed: {
-                                                    //
-                                                }.disposed(by: cell.disposeBag)
-                                            } else {
-                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                            }
-                                        } else {
-                                            if cartBook?.inCart == true {
-                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                            } else {
-                                                self?.getAlert(errorString: "Iskoristili ste limit za VIP knjige", errorColor: Colors.orange)
-                                            }
-                                        }
-                                    }
-                                }
-                                if item.vip == false {
-                                    if let books = blicBuchUserDefaults.get(.numberOfRegularBooks) as? Int {
-                                        if books > 0 {
-                                            if cartBook?.inCart == false {
-                                                cartBook?.inCart = true
-                                                _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: books - 1)
-                                                self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                                                item.locked = LockStatus.locked.rawValue
-                                                BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
-                                                    print(finished.description)
-                                                } onError: { (error) in
-                                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                                                } onCompleted: {
-                                                    //
-                                                } onDisposed: {
-                                                    //
-                                                }.disposed(by: cell.disposeBag)
-                                            } else {
-                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                            }
-                                        } else {
-                                            if cartBook?.inCart == true {
-                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                            } else {
-                                                self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
-                                            }
-                                        }
-                                    }
-                                }
+                                self?.onClick(index: 1)
                             }
-                            self?.navigationController?.view.stopActivityIndicator()
-                        } onError: { (error) in
-                            self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                        } onCompleted: {
-                            //
-                        } onDisposed: {
-                            //
-                        }.disposed(by: cell.disposeBag)
-
-                        do {
-                            try DataManager.shared.context.save()
-                        } catch {
-                            self?.getAlert(errorString: "Error saving data", errorColor: Colors.orange)
                         }
-                        
                     }).disposed(by: cell.disposeBag)
+                    
                     return cell
                 }
             } else {
@@ -431,24 +387,24 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == tableView1 {
-        if indexPath.row == 0 {
-            performSegue(withIdentifier: "login", sender: self)
-        }
-        if indexPath.row == 1 {
-            performSegue(withIdentifier: "registration", sender: self)
-           
-            
-        }
-        if indexPath.row == 2 {
-            self.sendEmail()
-        }
-        if indexPath.row == 3 {
-            performSegue(withIdentifier: "donate", sender: self)
-        }
+            if indexPath.row == 0 {
+                performSegue(withIdentifier: "login", sender: self)
+            }
+            if indexPath.row == 1 {
+                performSegue(withIdentifier: "registration", sender: self)
+                
+                
+            }
+            if indexPath.row == 2 {
+                self.sendEmail()
+            }
+            if indexPath.row == 3 {
+                performSegue(withIdentifier: "donate", sender: self)
+            }
             if indexPath.row == 4 {
-            performSegue(withIdentifier: "cart", sender: self)
+                performSegue(withIdentifier: "cart", sender: self)
+            }
         }
-    }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -458,16 +414,16 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         self.disposeBag = DisposeBag()
     }
     
-   
+    
     @IBAction func buttonAction(_ sender: Any) {
         if let vc = (UIApplication.shared.delegate as? AppDelegate)?.getSideMenu() {
             sideMenuController = vc
             let menu = SideMenuNavigationController(rootViewController: vc)
             menu.leftSide = true
             if self.traitCollection.userInterfaceStyle == .dark {
-                    menu.settings.blurEffectStyle = .systemMaterialDark
+                menu.settings.blurEffectStyle = .systemMaterialDark
             } else {
-                    menu.settings.blurEffectStyle = .systemMaterialLight
+                menu.settings.blurEffectStyle = .systemMaterialLight
             }
             menu.pushStyle = .default
             menu.presentationStyle = .menuSlideIn
@@ -480,7 +436,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             menu.dismissWhenBackgrounded = true
             vc.navigationController?.setNavigationBarHidden(true, animated: false)
             present(menu, animated: true, completion: nil)
-    }
+        }
     }
     
     @objc func dismissSideMenu(){
@@ -503,7 +459,7 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             // show failure alert
         }
     }
-
+    
     // func for sending mail
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
@@ -525,16 +481,7 @@ extension ViewController: AlertMe {
     func onClick(index: Int) {
         let alertVC = alertService.alert()
         present(alertVC, animated: true)
-        /*let alert = UIAlertController(title: "TEST", message: "NISTE REGISTROVANI", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "LOGIN", style: .default, handler: { (action) in
-            print("ULOGOVAN")
-        }))
-        alert.addAction(UIAlertAction(title: "REG", style: .default, handler: { (action) in
-            print("REGISTROVAN")
-        }))
-        present(alert, animated: true)
-        print("Jedan test")*/
-      
+        
     }//alert for table cell button
     
     

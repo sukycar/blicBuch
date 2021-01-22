@@ -48,7 +48,7 @@ class API: NSObject {
         request.resume()
         return request
     }
-    
+
     func downloadFile(router:Router,
                       parameters:[String:AnyObject]?,
                       completion: @escaping (ApiResponse) -> Void ,
@@ -76,7 +76,7 @@ class API: NSObject {
                         case .success(let responseData):
                             let jsonResponseData:JSON = JSON(responseData);
                             completion(ApiResponse.Success(jsonResponseData))
-                            print(jsonResponseData)
+//                            print(jsonResponseData)
                             return
                         case .failure(_):
                             completion(ApiResponse.Success(nil))

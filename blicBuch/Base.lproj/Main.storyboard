@@ -687,9 +687,9 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                     </view>
                     <navigationItem key="navigationItem" id="ROe-Lz-8kS"/>
                     <connections>
-                        <outlet property="email" destination="69J-Tc-1nW" id="sk1-vP-ecu"/>
+                        <outlet property="email" destination="69J-Tc-1nW" id="f1n-aA-OkG"/>
                         <outlet property="loginButtonOutlet" destination="2jG-ax-h3E" id="260-UH-iFE"/>
-                        <outlet property="password" destination="7kR-xI-385" id="BEy-HG-Ojr"/>
+                        <outlet property="password" destination="7kR-xI-385" id="6oe-xA-gjF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4s0-VX-skz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -943,14 +943,14 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuGeneralCell" id="4ga-y6-dIO" customClass="SideMenuGeneralCell" customModule="blitzBuch" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="128" width="320" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="128" width="320" height="30.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4ga-y6-dIO" id="TlR-Lg-GoE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="30.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rct-Le-XOi">
-                                                            <rect key="frame" x="20" y="9.5" width="25" height="25"/>
+                                                            <rect key="frame" x="20" y="3" width="25" height="25"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="WV1-yP-GoG"/>
@@ -958,31 +958,41 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CG5-0V-sej" customClass="Label" customModule="blitzBuch" customModuleProvider="target">
-                                                            <rect key="frame" x="59" y="11.5" width="41.5" height="20.5"/>
+                                                            <rect key="frame" x="59" y="5" width="41.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fL3-eh-mU0" customClass="Label" customModule="blitzBuch" customModuleProvider="target">
-                                                            <rect key="frame" x="258.5" y="11.5" width="41.5" height="20.5"/>
+                                                            <rect key="frame" x="258.5" y="5" width="41.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZZ-wZ-HRc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="30.5"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="IZZ-wZ-HRc" secondAttribute="bottom" id="0EA-5N-sAA"/>
+                                                        <constraint firstAttribute="bottom" secondItem="IZZ-wZ-HRc" secondAttribute="bottom" id="0ZV-bI-cYe"/>
                                                         <constraint firstItem="CG5-0V-sej" firstAttribute="centerY" secondItem="TlR-Lg-GoE" secondAttribute="centerY" id="4Vr-AR-qVE"/>
+                                                        <constraint firstItem="IZZ-wZ-HRc" firstAttribute="top" secondItem="TlR-Lg-GoE" secondAttribute="top" id="LLt-A5-YRA"/>
                                                         <constraint firstItem="Rct-Le-XOi" firstAttribute="leading" secondItem="TlR-Lg-GoE" secondAttribute="leading" constant="20" id="PMA-VL-Xut"/>
+                                                        <constraint firstItem="IZZ-wZ-HRc" firstAttribute="leading" secondItem="TlR-Lg-GoE" secondAttribute="leading" id="RPP-Bp-CXV"/>
+                                                        <constraint firstItem="IZZ-wZ-HRc" firstAttribute="top" secondItem="TlR-Lg-GoE" secondAttribute="top" id="c1v-Ox-sIo"/>
                                                         <constraint firstItem="fL3-eh-mU0" firstAttribute="centerY" secondItem="TlR-Lg-GoE" secondAttribute="centerY" id="gCD-Lb-kTO"/>
                                                         <constraint firstAttribute="trailing" secondItem="fL3-eh-mU0" secondAttribute="trailing" constant="20" id="gQI-fM-f5a"/>
                                                         <constraint firstItem="Rct-Le-XOi" firstAttribute="centerY" secondItem="TlR-Lg-GoE" secondAttribute="centerY" id="mlg-7S-mEW"/>
                                                         <constraint firstItem="CG5-0V-sej" firstAttribute="leading" secondItem="Rct-Le-XOi" secondAttribute="trailing" constant="14" id="rDd-la-y1t"/>
                                                         <constraint firstItem="fL3-eh-mU0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CG5-0V-sej" secondAttribute="trailing" constant="10" id="vrT-Yx-wVS"/>
+                                                        <constraint firstAttribute="trailing" secondItem="IZZ-wZ-HRc" secondAttribute="trailing" id="xth-GK-kMq"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
+                                                    <outlet property="actionButton" destination="IZZ-wZ-HRc" id="m36-Ac-7Xg"/>
                                                     <outlet property="counterLabel" destination="fL3-eh-mU0" id="ViV-Ve-72T"/>
                                                     <outlet property="imageHolderView" destination="Rct-Le-XOi" id="UqA-Eh-I1d"/>
                                                     <outlet property="titleLabel" destination="CG5-0V-sej" id="5Sx-YF-p2g"/>
@@ -1027,14 +1037,14 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEp-1q-wm2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1716" y="-2039"/>
+            <point key="canvasLocation" x="1715.625" y="-2039.7887323943662"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4ty-DA-F2g"/>
-        <segue reference="2ak-G8-IfE"/>
-        <segue reference="i69-T5-41z"/>
-        <segue reference="Jzf-Wj-02z"/>
+        <segue reference="I5g-yn-FbE"/>
+        <segue reference="dqj-fs-0D0"/>
+        <segue reference="1Gj-zh-ZxO"/>
+        <segue reference="tGk-Ze-BVt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="VIP" width="92" height="65.5"/>
