@@ -24,6 +24,10 @@ class VIPViewController: UIViewController, NSFetchedResultsControllerDelegate {
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     var books = [Book]()
     var booksInVip = [Book]()
     var book:Book?
@@ -35,7 +39,8 @@ class VIPViewController: UIViewController, NSFetchedResultsControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetch()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentLogin), name: LoginNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentRegister), name: RegisterNotificationName, object: nil)
         titleHolderView.addBottomBorder(color: .gray, margins: 0, borderLineSize: 0.3)
         tableView.delegate = self
         tableView.dataSource = self
@@ -255,6 +260,20 @@ extension VIPViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+}
+
+extension VIPViewController{
+    @objc func presentLogin(){
+        let vc = LoginViewController.get()
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func presentRegister(){
+        let vc = RegisterViewController.get()
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 extension VIPViewController: AlertMe {

@@ -85,32 +85,7 @@ class UsersService {
         }
     }
     
-    class func changeLoginStatus(_ id : Int32, _ loginStatus : LoginStatus?) -> Observable<Bool> {
-        Observable.create { observer in
-            let router = Router.setUserLoginStatus(for: id)
-            var parameters = [String : AnyObject]()
-            if let loginStatus = loginStatus?.rawValue {
-                parameters["logedIn"] = loginStatus as AnyObject
-            }
-            let request = API.shared.request(router: router, parameters: parameters) { (response) in
-                switch response {
-                case .Success(let json):
-                    guard let json = json else {return}
-                    observer.onNext(true)
-                    observer.onCompleted()
-                case .Failure(let error):
-                    observer.onNext(false)
-                    observer.onCompleted()
-                }
-            }
-            let cancel = Disposables.create(){
-                request.cancel()
-            }
-            
-            return cancel
-        }
-    }
-    
+    /// get books in cart for user from SQL on server
     class func getCartBooks(userId: Int32) -> Observable<[Int32]> {
         return Observable.create { observer in
             let router = Router.getCartItems(for: userId)
@@ -149,6 +124,9 @@ class UsersService {
                 } else {
                     booksString.append(",\(bookId)")
                 }
+            }
+            if bookIDs.count == 0 {
+                booksString = ""
             }
 
             var parameters = [String: AnyObject]()

@@ -8,8 +8,12 @@
 
 import UIKit
 
-class AlertViewController: UIViewController {
+let RegisterNotificationName = NSNotification.Name(rawValue: "registerNotification")
+let LoginNotificationName = NSNotification.Name(rawValue: "loginNotification")
 
+
+class AlertViewController: UIViewController {
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var titleLabelView: UIView!
@@ -23,14 +27,15 @@ class AlertViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func tapRegister(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true){
+            NotificationCenter.default.post(name: RegisterNotificationName, object: nil)
+        }
     }
     
     @IBAction func tapLogin(_ sender: Any) {
         dismiss(animated: true) {
-            print("Login uspeo")
+            NotificationCenter.default.post(name: LoginNotificationName, object: nil)
         }
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -51,5 +56,4 @@ class AlertViewController: UIViewController {
         titleLabelView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
     
-
 }

@@ -24,6 +24,7 @@ class InAppPurchaseAlertViewController: UIViewController {
     var alertType: AlertType = .orderBooks
     var products = [SKProduct]()
     var subscriptions = [SKProduct]()
+    var cartItems = [Book]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

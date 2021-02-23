@@ -38,7 +38,9 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UISearchResul
     @IBOutlet weak var searchBar1: UISearchBar!
     @IBOutlet weak var sugestionsLabel: UILabel!
     
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,6 +53,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UISearchResul
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentLogin), name: LoginNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentRegister), name: RegisterNotificationName, object: nil)
         fetch()
         fetchRecommendedBooks()
         searchTable.reloadData()
@@ -348,6 +352,19 @@ extension UIView {
     
 }
 
+extension SearchViewController{
+    @objc func presentLogin(){
+        let vc = LoginViewController.get()
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func presentRegister(){
+        let vc = RegisterViewController.get()
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true, completion: nil)
+    }
+}
 
 extension SearchViewController: AlertMe {
     func onClick(index: Int) {

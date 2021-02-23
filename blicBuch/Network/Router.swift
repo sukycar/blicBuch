@@ -22,33 +22,33 @@ enum Router {
     case getCartItems(for: Int32)
     
     private var baseURL: String {
-        //return Environment.configuration(.baseURL)
-        return "https://www.blitzbuch.club/api/api.php/records/"
+        return Environment.configuration(.baseURL)
+//        return "https://www.blitzbuch.club/api/api.php/records/"
     }
     
     var path: String {
         
         switch self {
         case .books:
-            return "Books"
+            return "\(Environment.configuration(.booksPath))"
         case .book(let id):
-            return "Books/\(id)"
+            return "\(Environment.configuration(.booksPath))/\(id)"
         case .user:
-            return "User"//user/all?
+            return "\(Environment.configuration(.usersPath))/"
         case .updateBook(let id):
-            return "Books/\(id)"
+            return "\(Environment.configuration(.booksPath))/\(id)"
         case .checkLockStatus(let id):
-            return "Books/\(id)"
+            return "\(Environment.configuration(.booksPath))/\(id)"
         case .setUserLoginStatus(let id):
-            return "User/\(id)"
+            return "\(Environment.configuration(.usersPath))/\(id)"
         case .changeNumberOfAvailableBooks(let id):
-            return "User/\(id)"
+            return "\(Environment.configuration(.usersPath))/\(id)"
         case .checkAvailableBooks(let id):
-            return "User/\(id)"
+            return "\(Environment.configuration(.usersPath))/\(id)"
         case .updateCart(let id):
-            return "User/\(id)"
+            return "\(Environment.configuration(.usersPath))/\(id)"
         case .getCartItems(let id):
-            return "User/\(id)"
+            return "\(Environment.configuration(.usersPath))/\(id)"
         }
     }
     

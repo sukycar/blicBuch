@@ -28,7 +28,6 @@ import SideMenu
 class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, NSFetchedResultsControllerDelegate {
     var homeBooksArray : [Book]?{
         didSet{
-            //            self.tableView2.layoutIfNeeded()
             self.tableView2.reloadData()
         }
     }
@@ -47,19 +46,12 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     var timer:Timer?
     let alertService = AlertService()
     var lockedBooks = [String]()
-
-    //    var numberOfRegularBooks: String = {
-    ////            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: 4)
-    //            return blicBuchUserDefaults.get(.numberOfRegularBooks) as? String ?? ""
-    //    }()
-    //    var numberOfVipBooks: String = {
-    ////            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: 1)
-    //            return blicBuchUserDefaults.get(.numberOfVipBooks) as? String ?? ""
-    //    }()
-    //    var numberOfRegularBooksInt = Int()
-    //    var numberOfVipBooksInt = Int()
     var disposeBag = DisposeBag()
     let networking = NetworkingService.shared
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     @IBAction func vipButton(_ sender: Any) {
         if let tabController = UIApplication.shared.keyWindow?.rootViewController as? TabBarViewController {
@@ -83,37 +75,23 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
             tableView2.register(UINib(nibName: customCell, bundle: nil), forCellReuseIdentifier: customCell)
         }
     }
-    @IBOutlet weak var tableView1: UITableView!
     @IBOutlet weak var button1: UIButton!
     
     
     
     override func viewDidLoad() {
-        //MARK: - should be activated when order button in cells are pressed
-        fetch()//temporary
+//        fetch()//temporary
         NotificationCenter.default.addObserver(self, selector: #selector(self.dismissSideMenu), name: NSNotification.Name(rawValue: "enteredBackground"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.performLoginTransition), name: NSNotification.Name("loginHome"), object: nil)
-        //        numberOfRegularBooksInt = Int(numberOfRegularBooks) ?? 0
-        //        numberOfVipBooksInt = Int(numberOfVipBooks) ?? 0
-        //        print("Broj dostupnih regularnih knjiga \(numberOfRegularBooksInt)")
-        //        print("Broj dostupnih vip knjiga \(numberOfVipBooksInt)")
-        alphaTest = 0
-        if alphaTest == 0 {
-            self.tableView1.alpha = 0
-            self.tableView1.frame = CGRect(x: self.button1.center.x, y:  self.button1.center.y, width: 0, height: 0)
-            
-        }
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentLogin), name: LoginNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentRegister), name: RegisterNotificationName, object: nil)
+
         tableView2.delegate = self
         tableView2.dataSource = self
         tableView2.layer.borderColor = UIColor.gray.cgColor
         tableView2.layer.borderWidth = 0.3
-        tableView1.delegate = self
-        tableView1.dataSource = self
-        tableView1.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
-        tableView1.layer.borderWidth = 0.22
-        tableView1.translatesAutoresizingMaskIntoConstraints = false
         tableView2.translatesAutoresizingMaskIntoConstraints = false
+        tableView2.tableFooterView = UIView()
         definesPresentationContext = true
     }
     
@@ -138,73 +116,27 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView2.reloadData()
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numOfRows = Int()
-        if tableView == tableView1 {
-            numOfRows = tableContent.count
+        if section == 0 {
+        return homeBooksArray?.count ?? 0
+        } else {
+            return 1
         }
-        else if tableView == tableView2 {
-            
-            numOfRows = 6
-            
-        }
-        return numOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        cell.selectionStyle = .none
-        if tableView == tableView1 {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-            let cellDonate = UIImage(named: "img_menu_donate")
-            let cellLogIn = UIImage(named: "login")
-            let cellRegistration = UIImage(named: "registration")
-            let cellCart = UIImage(named: "img_menu_donate")
-            let cellLocation = tableContent[indexPath.row]
-            cell.textLabel?.text = cellLocation
-            let cellContact = UIImage(named: "img_contact")
-            let aColor = UIColor(hexString: "#5cbff2")
-            cell.textLabel?.textColor = aColor
-            let cellContactColored = cellContact?.withTintColor(aColor)
-            
-            
-            switch indexPath.row {
-            case 0:
-                cell.imageView?.image = cellLogIn
-            case 1:
-                cell.imageView?.image = cellRegistration
-            case 2:
-                cell.imageView?.image = cellContactColored
-            case 3:
-                cell.imageView?.image = cellDonate
-                cell.textLabel?.textColor = .orange
-            case 4:
-                cell.imageView?.image = cellCart
-            default:
-                print("No cell index")
-            }
-            cell.translatesAutoresizingMaskIntoConstraints = false
-            cell.selectionStyle = .default
-            cell.layer.masksToBounds = true
-            cell.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0.8)
-            cell.layer.borderWidth = 0.22
-            cell.textLabel?.font = UIFont(name: "Roboto-Regular", size: 16)
-            
-            cell.isUserInteractionEnabled = true
-            
-        } else if tableView == tableView2 {
-            
-            if indexPath.row < 5 {
-                
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BlueCloudCell.self), for: indexPath) as! BlueCloudCell
+            return cell
+            } else {
                 let model = homeBooksArray?[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
                 if let item = model  {
                     cell.set(with: item, inVipController: false)
                     print(item.id)
-                    
                     cell.cellDelegate = self
                     cell.index = indexPath
                     cell.orderButton.rx.tap.subscribe(onNext: {[weak self] in
@@ -359,16 +291,8 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
                     
                     return cell
                 }
-            } else {
-                
-                
-                cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BlueCloudCell.self), for: indexPath) as! BlueCloudCell
-                cell.imageView?.frame.size.height = 20
-                
             }
-            
-        }
-        return cell
+            return UITableViewCell()
     }
     
     @objc func alert () {
@@ -377,35 +301,14 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = CGFloat()
-        if tableView.tag == 1 {
-            height = 40
-        } else if tableView.tag == 2 {
+        if indexPath.section == 0{
             height = 182
+        } else {
+            height = 200
         }
         return height
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == tableView1 {
-            if indexPath.row == 0 {
-                performSegue(withIdentifier: "login", sender: self)
-            }
-            if indexPath.row == 1 {
-                performSegue(withIdentifier: "registration", sender: self)
-                
-                
-            }
-            if indexPath.row == 2 {
-                self.sendEmail()
-            }
-            if indexPath.row == 3 {
-                performSegue(withIdentifier: "donate", sender: self)
-            }
-            if indexPath.row == 4 {
-                performSegue(withIdentifier: "cart", sender: self)
-            }
-        }
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCart" {
@@ -471,6 +374,18 @@ class ViewController : UIViewController, UITableViewDelegate, UITableViewDataSou
         self.transition = CustomTransition2(from: self, to: vc, fromFrame: newFrame, snapshot: nil, viewToHide: nil)
         vc.transitioningDelegate = self.transition
         vc.modalPresentationStyle = .custom
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func presentLogin(){
+        let vc = LoginViewController.get()
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func presentRegister(){
+        let vc = RegisterViewController.get()
+        vc.modalPresentationStyle = .formSheet
         self.present(vc, animated: true, completion: nil)
     }
     

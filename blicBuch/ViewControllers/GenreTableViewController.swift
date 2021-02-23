@@ -19,6 +19,10 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
     private var booksInGenre = [Book]()
     private let alertService = AlertService()
     var lockedBooks = [String]()
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     
     @IBOutlet weak var holderView: UIView!//holder for uiimage view
@@ -38,6 +42,8 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentLogin), name: LoginNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentRegister), name: RegisterNotificationName, object: nil)
         fetch()
         for book in books {
             if book.genre == self.genre.title{
@@ -52,6 +58,7 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
         
         let customCellName = String(describing: CustomCell.self)
         mainTable.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+        mainTable.tableFooterView = UIView()
     }
     
     // MARK: - Table view data source
@@ -73,10 +80,6 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
             if let logedIn = blicBuchUserDefaults.get(.logedIn) as? Bool{
                 var cartItems = blicBuchUserDefaults.get(.cartItems) as? [String]
                 if logedIn == true {
-//                    let request = CartBook.fetchRequest() as NSFetchRequest
-//                    request.predicate = NSPredicate(format: "id == %d", item.id)
-//                    let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
-//                    let cartBook = fetchedCartBooks.first
                     self?.navigationController?.view.startActivityIndicator()
                     BooksService.checkLock(bookId: item.id).subscribe { (locked) in
                         if locked == true {
@@ -135,9 +138,7 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
                                             self?.getAlert(errorString: "Iskoristili ste limit za vip knjige", errorColor: Colors.orange)
                                         }
                                     }
-                                    
-                                    
-                                    
+
                                 } onError: { (error) in
                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
                                 } onCompleted: {
@@ -158,7 +159,6 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
                                                 _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
                                                 self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
                                                 item.locked = LockStatus.locked.rawValue
-//                                                cartBook?.inCart = true
                                                 cartItems?.append(String(item.id))
                                                 BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
                                                     let lockedBookId = (String(item.id))
@@ -194,9 +194,7 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
                                             self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
                                         }
                                     }
-                                    
-                                    
-                                    
+
                                 } onError: { (error) in
                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
                                 } onCompleted: {
@@ -249,6 +247,18 @@ class GenreTableViewController: UITableViewController, NSFetchedResultsControlle
         } catch let err as NSError {
             print(err.debugDescription)
         }
+    }
+    
+    @objc func presentLogin(){
+        let vc = LoginViewController.get()
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func presentRegister(){
+        let vc = RegisterViewController.get()
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true, completion: nil)
     }
     
     

@@ -543,24 +543,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="XwV-U6-z7C"/>
                                 </connections>
                             </tableView>
-                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lDl-WI-VGY">
-                                <rect key="frame" x="0.0" y="129" width="320" height="200"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="SZP-5B-6lf"/>
-                                </constraints>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="0RI-JB-02B">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0RI-JB-02B" id="qxx-ae-TV5">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48d-8a-fFj">
                                 <rect key="frame" x="33" y="89" width="25" height="25"/>
                                 <constraints>
@@ -580,15 +562,12 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <constraints>
                             <constraint firstItem="a9C-oS-OYU" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6Gk-nV-52T"/>
                             <constraint firstItem="k2T-1b-EcN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DhX-IM-dXf"/>
-                            <constraint firstItem="lDl-WI-VGY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="L4m-7f-7DS"/>
                             <constraint firstItem="Row-4l-PNZ" firstAttribute="top" secondItem="k2T-1b-EcN" secondAttribute="bottom" constant="-63" id="MaJ-lL-7uP"/>
                             <constraint firstItem="a9C-oS-OYU" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Rqz-yu-jUe"/>
                             <constraint firstItem="a9C-oS-OYU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Y4d-N5-MQp"/>
                             <constraint firstItem="48d-8a-fFj" firstAttribute="top" secondItem="k2T-1b-EcN" secondAttribute="bottom" constant="-32" id="bGZ-cC-iNJ"/>
                             <constraint firstItem="02R-kk-eFT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bWB-3U-d9w"/>
-                            <constraint firstItem="lDl-WI-VGY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g8B-LQ-Jwu"/>
                             <constraint firstItem="02R-kk-eFT" firstAttribute="top" secondItem="k2T-1b-EcN" secondAttribute="bottom" constant="25" id="hBx-UR-3o7"/>
-                            <constraint firstItem="lDl-WI-VGY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="129" id="jZb-PN-vxt"/>
                             <constraint firstItem="a9C-oS-OYU" firstAttribute="top" secondItem="02R-kk-eFT" secondAttribute="bottom" constant="8" id="jhX-Wm-Gc0"/>
                             <constraint firstItem="k2T-1b-EcN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="qkn-q2-iea"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Row-4l-PNZ" secondAttribute="trailing" constant="7" id="riw-Qk-vqC"/>
@@ -602,7 +581,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                     <connections>
                         <outlet property="button1" destination="48d-8a-fFj" id="mBj-4v-aLO"/>
                         <outlet property="imageViewConstraint" destination="qkn-q2-iea" id="QFX-Wj-HaA"/>
-                        <outlet property="tableView1" destination="lDl-WI-VGY" id="WQB-Th-eIP"/>
                         <outlet property="tableView2" destination="a9C-oS-OYU" id="odc-aL-RF6"/>
                         <segue destination="pUr-r3-wfc" kind="presentation" identifier="login" id="i69-T5-41z"/>
                         <segue destination="S8G-tq-aI7" kind="presentation" identifier="registration" id="2ak-G8-IfE"/>
@@ -1041,10 +1019,10 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="I5g-yn-FbE"/>
-        <segue reference="dqj-fs-0D0"/>
-        <segue reference="1Gj-zh-ZxO"/>
-        <segue reference="tGk-Ze-BVt"/>
+        <segue reference="4ty-DA-F2g"/>
+        <segue reference="2ak-G8-IfE"/>
+        <segue reference="i69-T5-41z"/>
+        <segue reference="Jzf-Wj-02z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="VIP" width="92" height="65.5"/>

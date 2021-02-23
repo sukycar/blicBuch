@@ -32,32 +32,12 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
     private var context = DataManager.shared.context
     private var userId = blicBuchUserDefaults.get(.id) as? Int32 ?? 0
     var lockedBooks : [Int32]?//blicBuchUserDefaults.get(.cartItems) as! [String]
-    var numberOfAvailableVipBooks = Int()
-    var numberOfAvailableRegularBooks = Int()
     var vipBooksCounter = Int()
     var regularBooksCounter = Int()
-    
-    
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        checkForAvailableBooksNumber()
-        UsersService.getCartBooks(userId: self.userId).subscribe { (cartArray) in
-            self.lockedBooks = cartArray
-        } onError: { (error) in
-            self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-        } onCompleted: {
-            //
-        }.disposed(by: self.disposeBag)
-        self.loadBooksInCart()
-        books.forEach { (book) in
-            if book.vip == false {
-                regularBooksCounter += 1
-            } else {
-                vipBooksCounter += 1
-            }
-        }
         NotificationCenter.default.addObserver(self, selector: #selector(reloadUsername), name: NSNotification.Name(rawValue: "logedIn"), object: nil)
         self.view.layer.cornerRadius = 15
         self.view.clipsToBounds = true
@@ -68,7 +48,6 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
         tableView.delegate = self
         tableView.dataSource = self
         configureCells()
-        tableView.showsVerticalScrollIndicator = false
     }
     
     func configureTable() {
@@ -82,23 +61,21 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = Colors.blueDefault
         self.tableView.tableFooterView = UIView()
+        tableView.showsVerticalScrollIndicator = false
+
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.loadBooksInCart()
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UsersService.getCartBooks(userId: self.userId).subscribe { (cartArray) in
             self.lockedBooks = cartArray
+            self.loadBooksInCart()
         } onError: { (error) in
             self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
         } onCompleted: {
             //
         }.disposed(by: self.disposeBag)
-        self.loadBooksInCart()
         self.configureCells()
         self.tableView.reloadData()
     }
@@ -125,7 +102,15 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
         request.predicate = predicate
         do {
             self.books = try DataManager.shared.context.fetch(request)
-            print("KNJIGE\(books)")
+            regularBooksCounter = 0
+            vipBooksCounter = 0
+            books.forEach { (book) in
+                if book.vip == false {
+                    regularBooksCounter += 1
+                } else {
+                    vipBooksCounter += 1
+                }
+            }
         } catch {
             self.getAlert(errorString: "Books are not fetched", errorColor: Colors.orange)
         }
@@ -187,8 +172,6 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         case .general(let generalType):
             if generalType == .login {
                 let logedIn = blicBuchUserDefaults.get(.logedIn) as? Bool
-                var numberOfVipBooks = numberOfAvailableVipBooks
-                var numberOfRegularBooks = numberOfAvailableRegularBooks
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
                     cell.sideMenuCell = generalType
                     cell.setCell(title: logedIn == false ? generalType.title : "Logout", imageName: generalType.imageName, counter: "", imageTint: generalType.imageTint)
@@ -198,9 +181,10 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                     cell.layer.opacity = 0
                     cell.actionButton.rx.tap.subscribe(onNext: {[weak self] in
                         if logedIn == true {
+                            self?.updateBooksNumber(vip: true, removeBooks: false, numberOfBooks: self?.vipBooksCounter ?? 0, disposeBag: cell.disposeBag)
+                            self?.updateBooksNumber(vip: false, removeBooks: false, numberOfBooks: self?.regularBooksCounter ?? 0, disposeBag: cell.disposeBag)
                             if let books = self?.books {
                                 for book in books {
-                                    self?.updateBooksNumber(vip: book.vip, removeBooks: false, numberOfBooks: 1, disposeBag: cell.disposeBag)
                                     BooksService.lockBook(bookId:book.id, lockStatus: .unlocked).subscribe {(unlocked) in
                                         book.locked = LockStatus.unlocked.rawValue
                                     } onError: { (error) in

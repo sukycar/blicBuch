@@ -8,9 +8,11 @@
 
 import Foundation
 
-public enum PlistKey :String  {
+public enum PlistKey: String  {
     case baseURL = "baseURL"
     case allowedKingfisherUrl = "allowedKingfisherUrl"
+    case booksPath = "booksPath"
+    case usersPath = "usersPath"
 
 }
 public struct Environment {

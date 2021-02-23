@@ -1,16 +1,16 @@
 //
-//  DEV.xcconfig
+//  PROD.xcconfig
 //  blicBuch
 //
-//  Created by Vladimir Sukanica on 5/9/20.
-//  Copyright © 2020 sukydeveloper. All rights reserved.
+//  Created by Vladimir Sukanica on 6.2.21..
+//  Copyright © 2021 sukydeveloper. All rights reserved.
 //
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 baseURL = https:/$()/www.blitzbuch.club/api/api.php/records/ ///https:/$()/www.blitzbuch.club/api/api.php/records/
-booksPath = BooksDev
-usersPath = UserDev
+booksPath = Books
+usersPath = User
 allowedKingfisherUrl = www.blitzbuch.club
-bundleVersion = DEV
+bundleVersion = PROD
 bundleDisplayName = blitzBuch

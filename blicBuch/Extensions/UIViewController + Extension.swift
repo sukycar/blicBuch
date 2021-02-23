@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 extension UIViewController {
-    /// function for notification of
+    
     func getAlert(errorString: String, errorColor: UIColor) {
         let label = ToasterLabel()
         if #available(iOS 13.0, *){
@@ -51,6 +51,10 @@ extension UIViewController {
     }
     
     /// Function for updating books number in userDefaults and on API side
+    /// - Parameters:
+    ///   - vip: boolean that tells is book in vip section
+    ///   - removeBooks: does the function remove book from API or add it
+    ///   - numberOfBooks: how much books function adds or removes from API
     public func updateBooksNumber(vip: Bool, removeBooks: Bool, numberOfBooks: Int, disposeBag: DisposeBag){
         let userDefaultsBooks = vip == true ? blicBuchUserDefaults.get(.numberOfVipBooks) as! Int : blicBuchUserDefaults.get(.numberOfRegularBooks) as! Int
         var newUserDefaultsBooks = Int()

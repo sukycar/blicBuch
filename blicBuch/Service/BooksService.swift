@@ -47,6 +47,7 @@ class BooksService {
         }
     }
     
+
     
     //MARK: - lock book when it is in the cart
     class func lockBook(bookId: Int32, lockStatus: LockStatus) -> Observable<Bool> {
