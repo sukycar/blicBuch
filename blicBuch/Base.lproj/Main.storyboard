@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,7 +21,7 @@
         <!--Bibliothek-->
         <scene sceneID="ipa-WP-fYl">
             <objects>
-                <viewController id="Yjb-CC-Y9q" customClass="BibViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yjb-CC-Y9q" customClass="BibliotechViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TT3-kD-h8C">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,16 +42,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="572" id="Nji-Mj-2Ww"/>
                                 </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="WgE-G6-0Jk" customClass="CategoryTableViewCell" customModule="blitzBuch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WgE-G6-0Jk" id="Gx0-D5-RYX">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hvc-Yp-uoq"/>
@@ -73,6 +64,7 @@
                         <outlet property="borderView" destination="lAo-Vb-w5j" id="fr6-uq-mHA"/>
                         <outlet property="genreTable" destination="GOG-xp-ppv" id="6Pb-vo-e4A"/>
                         <outlet property="tabBar" destination="J8S-b4-44G" id="MsB-SA-7eq"/>
+                        <outlet property="tableView" destination="GOG-xp-ppv" id="74O-Zd-NbK"/>
                         <segue destination="TT7-O3-l2V" kind="presentation" identifier="bibliotech" animates="NO" modalPresentationStyle="fullScreen" id="2gi-Gb-SHi"/>
                     </connections>
                 </viewController>
@@ -80,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="-414.375" y="-463.73239436619718"/>
         </scene>
-        <!--Genre Table View Controller-->
+        <!--Genre View Controller-->
         <scene sceneID="ptU-6P-KXW">
             <objects>
-                <tableViewController id="bvJ-Wr-NdX" customClass="GenreTableViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="bvJ-Wr-NdX" customClass="GenreViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sbF-U2-1pq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,8 +122,8 @@
                     <connections>
                         <outlet property="genreLabel" destination="Q78-00-Dqs" id="spM-tn-kdx"/>
                         <outlet property="holderView" destination="3Bh-P2-pFH" id="ENs-qc-vBB"/>
-                        <outlet property="mainTable" destination="sbF-U2-1pq" id="TJT-tt-krI"/>
                         <outlet property="pictureView" destination="KQx-Iu-2Zr" id="3aB-xD-Bdf"/>
+                        <outlet property="tableView" destination="sbF-U2-1pq" id="TJT-tt-krI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6R-sV-GFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -196,8 +188,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Informationen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJX-cZ-PSa">
-                                <rect key="frame" x="16" y="36" width="171.5" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Informationen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJX-cZ-PSa">
+                                <rect key="frame" x="16" y="36" width="284" height="32"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -207,6 +199,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qJX-cZ-PSa" firstAttribute="top" secondItem="UgJ-Ji-lAE" secondAttribute="top" constant="36" id="1zo-Qg-Bgy"/>
+                            <constraint firstItem="UgJ-Ji-lAE" firstAttribute="trailing" secondItem="qJX-cZ-PSa" secondAttribute="trailing" constant="20" id="6Fa-ni-lHT"/>
                             <constraint firstItem="dH1-yN-wAf" firstAttribute="top" secondItem="cgR-qM-DaL" secondAttribute="bottom" id="TQ2-0M-AgB"/>
                             <constraint firstItem="cgR-qM-DaL" firstAttribute="top" secondItem="abd-X7-fM6" secondAttribute="top" id="Ud9-A8-R0r"/>
                             <constraint firstItem="dH1-yN-wAf" firstAttribute="leading" secondItem="UgJ-Ji-lAE" secondAttribute="leading" constant="14" id="eG8-xa-RgY"/>
@@ -229,34 +222,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8l-Nk-q8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-414.375" y="1824.2957746478874"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="2ya-Xf-M1e">
-            <objects>
-                <tableViewController id="CCe-wm-AVk" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8jI-cu-vZI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ZxI-1A-h9r">
-                                <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZxI-1A-h9r" id="TF4-wf-tZu">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="CCe-wm-AVk" id="aBi-1t-LHZ"/>
-                            <outlet property="delegate" destination="CCe-wm-AVk" id="rQs-Uq-t9O"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iyL-Pg-xwJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2096" y="425"/>
         </scene>
         <!--Suchen-->
         <scene sceneID="tMS-1K-KE2">
@@ -341,6 +306,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <outlet property="searchBar1" destination="hH1-zl-tDa" id="uHS-5e-4i5"/>
                         <outlet property="searchTable" destination="AmG-eZ-Sje" id="xCF-Hk-gWI"/>
                         <outlet property="sugestionsLabel" destination="fQs-L2-xxx" id="iMn-ya-wUJ"/>
+                        <outlet property="tableView" destination="AmG-eZ-Sje" id="JEA-9j-wsw"/>
                         <outlet property="viewForBorder" destination="YEz-UY-VVo" id="3Ol-SS-0a2"/>
                     </connections>
                 </viewController>
@@ -361,7 +327,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8P2-HY-OED">
-                                <rect key="frame" x="16" y="36" width="39" height="30"/>
+                                <rect key="frame" x="16" y="36" width="284" height="30"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -369,16 +335,6 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8hY-cI-Gks">
                                 <rect key="frame" x="0.0" y="70" width="320" height="449"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fFF-5w-hWT" customClass="CustomCell" customModule="blitzBuch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fFF-5w-hWT" id="jRV-se-UFO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FR7-VL-nHU"/>
@@ -388,6 +344,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="k2u-7a-UM6" firstAttribute="leading" secondItem="FR7-VL-nHU" secondAttribute="leading" id="Dgc-16-oTL"/>
                             <constraint firstItem="k2u-7a-UM6" firstAttribute="top" secondItem="FR7-VL-nHU" secondAttribute="top" id="Ju3-3u-WVr"/>
                             <constraint firstItem="8hY-cI-Gks" firstAttribute="leading" secondItem="FR7-VL-nHU" secondAttribute="leading" id="LhO-gG-Dm3"/>
+                            <constraint firstItem="FR7-VL-nHU" firstAttribute="trailing" secondItem="8P2-HY-OED" secondAttribute="trailing" constant="20" id="MBO-Bj-yjT"/>
                             <constraint firstItem="k2u-7a-UM6" firstAttribute="trailing" secondItem="FR7-VL-nHU" secondAttribute="trailing" id="Me1-yH-Rck"/>
                             <constraint firstItem="8P2-HY-OED" firstAttribute="top" secondItem="FR7-VL-nHU" secondAttribute="top" constant="36" id="Pb4-5v-43U"/>
                             <constraint firstItem="8hY-cI-Gks" firstAttribute="trailing" secondItem="FR7-VL-nHU" secondAttribute="trailing" id="TLq-Gf-Pes"/>
@@ -424,10 +381,10 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
             </objects>
             <point key="canvasLocation" x="-414.375" y="379.22535211267603"/>
         </scene>
-        <!--Cart Table View-->
+        <!--Cart View Controller-->
         <scene sceneID="Ggx-q4-Rof">
             <objects>
-                <tableViewController storyboardIdentifier="CartTableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZXp-PO-0ce" customClass="CartTableView" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CartTableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZXp-PO-0ce" customClass="CartViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ydw-Id-2lc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -437,11 +394,21 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <outlet property="delegate" destination="ZXp-PO-0ce" id="IjA-Xv-vce"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="eBz-Bt-C0D"/>
+                    <navigationItem key="navigationItem" id="eBz-Bt-C0D">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" style="done" id="ZAR-hQ-zSS">
+                            <color key="tintColor" name="defaultBlue"/>
+                            <connections>
+                                <action selector="backButtonAction:" destination="ZXp-PO-0ce" id="Caj-fa-hEI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Ydw-Id-2lc" id="Y2T-ma-qcU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QXl-b5-oih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2796" y="-1224"/>
+            <point key="canvasLocation" x="3793.125" y="-1224.2957746478874"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="fkv-qH-sQ0">
@@ -503,7 +470,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="HomeViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -553,7 +520,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </constraints>
                                 <state key="normal" image="img_menu"/>
                                 <connections>
-                                    <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="taa-hq-la1"/>
+                                    <action selector="menuButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="taa-hq-la1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -579,13 +546,12 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <color key="badgeColor" systemColor="scrollViewTexturedBackgroundColor"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="button1" destination="48d-8a-fFj" id="mBj-4v-aLO"/>
                         <outlet property="imageViewConstraint" destination="qkn-q2-iea" id="QFX-Wj-HaA"/>
-                        <outlet property="tableView2" destination="a9C-oS-OYU" id="odc-aL-RF6"/>
+                        <outlet property="tableView" destination="a9C-oS-OYU" id="odc-aL-RF6"/>
                         <segue destination="pUr-r3-wfc" kind="presentation" identifier="login" id="i69-T5-41z"/>
                         <segue destination="S8G-tq-aI7" kind="presentation" identifier="registration" id="2ak-G8-IfE"/>
                         <segue destination="0vm-In-XY6" kind="show" identifier="donate" id="4ty-DA-F2g"/>
-                        <segue destination="ZXp-PO-0ce" kind="show" identifier="cart" id="Jzf-Wj-02z"/>
+                        <segue destination="TXF-CA-Wa7" kind="show" identifier="cart" id="Jzf-Wj-02z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -600,8 +566,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOGIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqI-xr-ngW">
-                                <rect key="frame" x="16" y="20" width="55" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOGIN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqI-xr-ngW">
+                                <rect key="frame" x="16" y="20" width="284" height="23"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -656,6 +622,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="7kR-xI-385" firstAttribute="top" secondItem="69J-Tc-1nW" secondAttribute="bottom" constant="20" id="Ozb-X5-Sxd"/>
                             <constraint firstItem="ZaC-ok-mhN" firstAttribute="top" secondItem="2jG-ax-h3E" secondAttribute="bottom" constant="8" id="bPu-Zm-80G"/>
                             <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="69J-Tc-1nW" secondAttribute="trailing" constant="16" id="cGF-rF-ENy"/>
+                            <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="fqI-xr-ngW" secondAttribute="trailing" constant="20" id="dEN-UR-B37"/>
                             <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="7kR-xI-385" secondAttribute="trailing" constant="16" id="eav-DB-0sA"/>
                             <constraint firstItem="fqI-xr-ngW" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="gKJ-5j-aku"/>
                             <constraint firstItem="69J-Tc-1nW" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="sOA-Ak-nah"/>
@@ -682,8 +649,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTRIERUNG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-Q9-ddu">
-                                <rect key="frame" x="16" y="20" width="144.5" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTRIERUNG" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-Q9-ddu">
+                                <rect key="frame" x="16" y="20" width="284" height="23"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -782,6 +749,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="XcK-kC-rGv" firstAttribute="top" secondItem="BwS-ra-2h1" secondAttribute="bottom" constant="20" id="Fo5-E8-FN8"/>
                             <constraint firstItem="Swn-gJ-SsU" firstAttribute="top" secondItem="bhJ-Q9-ddu" secondAttribute="bottom" constant="22" id="Lc9-bm-wxH"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="KQL-uB-aqb" secondAttribute="trailing" constant="16" id="QBl-sv-68h"/>
+                            <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="bhJ-Q9-ddu" secondAttribute="trailing" constant="20" id="QPv-SZ-eAW"/>
                             <constraint firstItem="4qo-5D-WAK" firstAttribute="top" secondItem="Swn-gJ-SsU" secondAttribute="bottom" constant="20" id="Qe9-nA-fhE"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="XcK-kC-rGv" secondAttribute="trailing" constant="16" id="Qsi-io-YC8"/>
                             <constraint firstItem="vzB-ce-HB2" firstAttribute="leading" secondItem="BwS-ra-2h1" secondAttribute="trailing" constant="19" id="RTa-Sg-EDm"/>
@@ -1010,19 +978,38 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <segue destination="pUr-r3-wfc" kind="show" identifier="login" id="1Gj-zh-ZxO"/>
                         <segue destination="S8G-tq-aI7" kind="show" identifier="registration" id="dqj-fs-0D0"/>
                         <segue destination="0vm-In-XY6" kind="show" identifier="donate" id="I5g-yn-FbE"/>
-                        <segue destination="ZXp-PO-0ce" kind="show" identifier="cart" id="tGk-Ze-BVt"/>
+                        <segue destination="TXF-CA-Wa7" kind="show" identifier="cart" id="tGk-Ze-BVt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEp-1q-wm2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1715.625" y="-2039.7887323943662"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DHT-Nl-NFY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TXF-CA-Wa7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Xls-ai-aZT"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="coS-WV-6r2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZXp-PO-0ce" kind="relationship" relationship="rootViewController" id="5WB-89-3s7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3lr-JH-nCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2795.625" y="-1224.2957746478874"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="tGk-Ze-BVt"/>
         <segue reference="4ty-DA-F2g"/>
         <segue reference="2ak-G8-IfE"/>
         <segue reference="i69-T5-41z"/>
-        <segue reference="Jzf-Wj-02z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="VIP" width="92" height="65.5"/>
@@ -1036,6 +1023,9 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
         <image name="img_menu" width="58" height="58"/>
         <image name="img_search" width="25" height="25"/>
         <image name="img_vip" width="25" height="25"/>
+        <namedColor name="defaultBlue">
+            <color red="0.36078431372549019" green="0.74901960784313726" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="scrollViewTexturedBackgroundColor">
             <color red="0.43529411764705878" green="0.44313725490196082" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -26,26 +26,19 @@ class SideMenuGeneralCell: TableViewCell {
         
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    func setCell(title: String, imageName: String, counter: String, imageTint: UIColor) {
+    func setCell(title: String, imageName: String, counter: Int, imageTint: UIColor) {
         if sideMenuCell != .login {
             actionButton.isUserInteractionEnabled = false
         }
         self.imageHolderView.image = UIImage(named: imageName)
         self.imageHolderView.tintColor = imageTint
-        switch sideMenuCell {
-        case .donate:
-            self.titleLabel.type = (.sideMenuTitle, title)
-            self.counterLabel.type = (.sideMenuCounterLabel, counter)
-        default:
-            self.titleLabel.type = (.sideMenuTitle, title)
-            self.counterLabel.type = (.sideMenuCounterLabel, counter)
+        self.titleLabel.type = (.sideMenuTitle, title)
+        if sideMenuCell == .cart {
+        self.counterLabel.type = (.sideMenuCounterLabel, String(counter))
         }
+        self.counterLabel.layer.masksToBounds = true
+        self.counterLabel.isHidden = counter != 0 ? false : true
     }
     
     override func prepareForReuse() {

@@ -20,7 +20,7 @@ class BooksService {
             let router = Router.book(for: bookId)
             let request = API.shared.request(router: router, parameters: nil) { (response) in
                 switch response {
-                case .Success(let json):
+                case .Success:
                     let context = DataManager.shared.context
                     var book : Book?
                     let fetchRequest = Book.fetchRequest() as NSFetchRequest
@@ -34,7 +34,6 @@ class BooksService {
                         print("Fetch failed")
                     }
                     
-                    print(json?.debugDescription)
                 case .Failure(let error):
                     observer.onError(error)
                 }
@@ -53,13 +52,11 @@ class BooksService {
     class func lockBook(bookId: Int32, lockStatus: LockStatus) -> Observable<Bool> {
         return Observable.create { observer in
             let router = Router.updateBook(for: bookId)
-            let bookid = bookId
             var parameters = [String: AnyObject]()
             parameters["locked"] = lockStatus.rawValue as AnyObject
             let request = API.shared.request(router: router, parameters: parameters) { (response) in
                 switch response {
-                case .Success(let json):
-                    print(json?.debugDescription)
+                case .Success:
                     observer.onNext(true)
                     observer.onCompleted()
                 case .Failure(let error):
@@ -142,7 +139,7 @@ class BooksService {
                                 context.refreshAllObjects()
                                 
                                 // Update every object which has changes and save it
-                                for (index, json) in jsonArray.enumerated() {
+                                for json in jsonArray {
                                     let id = json["id"].int32Value
                                     let item:Book? = context.update(predicate: NSPredicate(format: "id = %d", id))
                                     item?.updateForList(with: json)

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-//enum for labels
+// MARK: - LABEL
 enum LabelType{
     case none, sideMenuCounterLabel, sideMenuTitle
     var textColor:UIColor {
@@ -17,7 +17,7 @@ enum LabelType{
         case .none:
             return UIColor.clear
         case .sideMenuCounterLabel:
-            return UIColor.blue
+            return UIColor.white
         case .sideMenuTitle:
             return Colors.defaultFontColor
         }
@@ -48,50 +48,44 @@ enum LabelType{
     var backgroundColor:UIColor? {
         switch self {
         case .sideMenuCounterLabel:
-            return UIColor.gray
-        default:
-            return nil
-        }
-    }
-    var textAlignment:NSTextAlignment?{
-        switch self {
-        
+            return .orange
         default:
             return nil
         }
     }
     
-    var borderSize: CGFloat? {
-        switch self {
-        default:
+    var textAlignment:NSTextAlignment?{
             return nil
-        }
+    }
+    
+    var borderSize: CGFloat? {
+            return nil
     }
     
     var cornerRadius:CGFloat? {
         switch self {
-            
-        default:
-            return nil
-        }
-    }
-    var borderColor:CGColor? {
-        switch self {
+        case .sideMenuCounterLabel:
+            return 4
         default:
             return nil
         }
     }
     
+    var borderColor:CGColor? {
+            return nil
+    }
+    
     var edgeInsets:UIEdgeInsets?{
         switch self {
-        
+        case .sideMenuCounterLabel:
+            return UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)
         default:
             return nil
         }
     }
 }
 
-//enum for fonts
+// MARK: - FONT
 enum FontName {
     case regular, bold
     var value:String {
@@ -104,7 +98,7 @@ enum FontName {
     }
 }
 
-//enum for alert type for in-app purchase
+// MARK: - ALERT TYPE
 enum AlertType {
     case orderBooks
     case subscribe
@@ -141,7 +135,7 @@ enum Subscriptions: String, CaseIterable {
     case vip = "com.temporary.vip"
 }
 
-//enum for alert buttons
+// MARK: - ALERT BUTTON TYPE
 enum AlertButtonType {
     case free
     case regular
@@ -182,13 +176,13 @@ var buttonText: String {
     }
 }
 
-//enum for side menu
+// MARK: - SIDE MENU
 enum SideMenuCellType{
     case member,general(type:GeneralMenuCellType)
 }
 
 enum GeneralMenuCellType: CaseIterable{
-    case login, register, contact, donate, cart
+    case login, register, contact, cart
     var title:String{
         switch self {
         case .login:
@@ -197,8 +191,6 @@ enum GeneralMenuCellType: CaseIterable{
             return "Registrieren".localized()
         case .contact:
             return "Kontakt".localized()
-        case .donate:
-            return "SCHENKUNG".localized()
         case .cart:
             return "Cart".localized()
         }
@@ -212,8 +204,6 @@ enum GeneralMenuCellType: CaseIterable{
             return "img_registration"
         case .contact:
             return "img_contact"
-        case .donate:
-            return "img_menu_donate"
         case .cart:
             return "img_cart"
         }
@@ -228,15 +218,13 @@ enum GeneralMenuCellType: CaseIterable{
             return Colors.blueDefault
         case .contact:
             return Colors.blueDefault
-        case .donate:
-            return Colors.orange
         case .cart:
             return Colors.blueDefault
         }
     }
 }
 
-//enum for book lock
+// MARK: - LOCK BOOK
 enum LockStatus: Int16 {
     case locked = 1
     case unlocked = 0

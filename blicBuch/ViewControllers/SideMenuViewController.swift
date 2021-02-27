@@ -9,12 +9,11 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import MessageUI
 import NVActivityIndicatorView
 import CoreData
 
 
-class SideMenuViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class SideMenuViewController: UIViewController{
     
     
     @IBOutlet var mainView: UIView!
@@ -31,53 +30,66 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
     private var disposeBag = DisposeBag()
     private var context = DataManager.shared.context
     private var userId = blicBuchUserDefaults.get(.id) as? Int32 ?? 0
-    var lockedBooks : [Int32]?//blicBuchUserDefaults.get(.cartItems) as! [String]
+    
+    var lockedBooks : [Int32]?
     var vipBooksCounter = Int()
     var regularBooksCounter = Int()
+    var cartItems = blicBuchUserDefaults.get(.cartItems) as? [String]
+    var cartItemsCount = Int(){
+        didSet{
+            if cartItems == [""] {
+                cartItemsCount = 0
+            }
+            self.tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
+        }
+    }
+    let mailHandler = MailHandler()
+    var device : DeviceType?
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
         
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.device = self.view.getDeviceType()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadUsername), name: NSNotification.Name(rawValue: "logedIn"), object: nil)
         self.view.layer.cornerRadius = 15
         self.view.clipsToBounds = true
         self.view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        configureTable()
         self.mainView.backgroundColor = Colors.sideMenuBackgroundColor
         self.mainView.tintColor = Colors.blueDefault
         tableView.delegate = self
         tableView.dataSource = self
+        configureTable()
         configureCells()
     }
     
     func configureTable() {
-        //        imageView.image = UIImage(named: "img_side_menu_background")
         imageView.contentMode = .scaleAspectFill
         tableHolderView.clipsToBounds = true
         tableHolderView.layer.cornerRadius = CornerRadius.largest
         tableHolderView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         tableView.clipsToBounds = true
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = Colors.blueDefault
+        tableView.separatorStyle = device != .macCatalyst ? .singleLine : .none
+        tableView.separatorColor = device != .macCatalyst ? Colors.blueDefault : .none
         self.tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
-
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UsersService.getCartBooks(userId: self.userId).subscribe { (cartArray) in
-            self.lockedBooks = cartArray
-            self.loadBooksInCart()
+        self.cartItemsCount = self.cartItems?.count ?? 0
+        UsersService.getCartBooks(userId: self.userId).subscribe { [weak self](cartArray) in
+            self?.lockedBooks = cartArray
+            self?.loadBooksInCart()
         } onError: { (error) in
             self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
         } onCompleted: {
-            //
         }.disposed(by: self.disposeBag)
-        self.configureCells()
-        self.tableView.reloadData()
     }
     
     private func configureCells(){
@@ -86,8 +98,10 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
         cells.append(.general(type: .login))
         cells.append(.general(type: .register))
         cells.append(.general(type: .contact))
-        cells.append(.general(type: .donate))
         cells.append(.general(type: .cart))
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -110,25 +124,15 @@ class SideMenuViewController: UIViewController, MFMailComposeViewControllerDeleg
                 } else {
                     vipBooksCounter += 1
                 }
-            }
+            }//: LOOP
         } catch {
             self.getAlert(errorString: "Books are not fetched", errorColor: Colors.orange)
-        }
+        }//: DO-CATCH
     }
     
-    //    func checkForAvailableBooksNumber(){
-    //        UsersService.checkForAvailableBooks(self.userId).subscribe { (vip, regular) in
-    //            let vip = vip
-    //            let regular = regular
-    //
-    //            self.numberOfAvailableRegularBooks = regular
-    //            self.numberOfAvailableVipBooks = vip
-    //        } onError: { (error) in
-    //            self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-    //        } onCompleted: {
-    //        }.disposed(by: self.disposeBag)
-    //    }
-    
+    @objc func reloadUsername(){
+        self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0), IndexPath(row: 1, section: 0)], with: .none)
+    }
     
 }
 
@@ -174,7 +178,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                 let logedIn = blicBuchUserDefaults.get(.logedIn) as? Bool
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
                     cell.sideMenuCell = generalType
-                    cell.setCell(title: logedIn == false ? generalType.title : "Logout", imageName: generalType.imageName, counter: "", imageTint: generalType.imageTint)
+                    cell.setCell(title: logedIn == false ? generalType.title : "Logout", imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
                     cell.layer.backgroundColor = UIColor.clear.cgColor
                     cell.contentView.backgroundColor = .clear
                     cell.backgroundColor = .clear
@@ -202,7 +206,6 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                                 }.disposed(by: cell.disposeBag)
                             }
                             self?.getAlert(errorString: "Izlogovani ste!", errorColor: Colors.orange)
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logedOut"), object: nil)
                             _ = blicBuchUserDefaults.set(.id, value: 0)
                             _ = blicBuchUserDefaults.set(.logedIn, value: false)
                             _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: 0)
@@ -228,7 +231,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
             if generalType == .register {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
                     cell.sideMenuCell = generalType
-                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: "", imageTint: generalType.imageTint)
+                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
                     cell.layer.backgroundColor = UIColor.clear.cgColor
                     cell.contentView.backgroundColor = .clear
                     cell.backgroundColor = .clear
@@ -240,36 +243,23 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
             if generalType == .contact {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
                     cell.sideMenuCell = generalType
-                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: "", imageTint: generalType.imageTint)
+                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
                     cell.layer.backgroundColor = UIColor.clear.cgColor
                     cell.contentView.backgroundColor = .clear
                     cell.backgroundColor = .clear
                     cell.layer.opacity = 0
                     return cell
-                }
-            }
-            if generalType == .donate {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
-                    cell.sideMenuCell = generalType
-                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: "", imageTint: generalType.imageTint)
-                    cell.layer.backgroundColor = UIColor.clear.cgColor
-                    cell.contentView.backgroundColor = .clear
-                    cell.backgroundColor = .clear
-                    cell.layer.opacity = 0
-                    return cell
-                    
                 }
             }
             if generalType == .cart {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
                     cell.sideMenuCell = generalType
-                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: "", imageTint: generalType.imageTint)
+                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: cartItemsCount, imageTint: generalType.imageTint)
                     cell.layer.backgroundColor = UIColor.clear.cgColor
                     cell.contentView.backgroundColor = .clear
                     cell.backgroundColor = .clear
                     cell.layer.opacity = 0
                     return cell
-                    
                 }
             }
             
@@ -282,13 +272,11 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         let type = cells[indexPath.row]
         switch type {
         case .member:
-            let lockedBooks = blicBuchUserDefaults.get(.cartItems) as? [String]
-            print(lockedBooks)
             return
         case .general(type: let type):
             switch type {
             case .login:
-                print("Login cell selected")
+                return
             case .register:
                 let vc = RegisterViewController.get()
                 self.transition = CustomTransition2(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
@@ -298,23 +286,24 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                 self.present(vc, animated: true, completion: nil)
                 return
             case .contact:
-                self.sendEmail()
-                return
-            case .donate:
-                let vc = RegisterViewController.get()
-                self.transition = CustomTransition2(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
-                vc.transitioningDelegate = self.transition
-                vc.presentedViewController?.dismiss(animated: true, completion: nil)
-                vc.modalPresentationStyle = .custom
-                self.present(vc, animated: true, completion: nil)
+                DispatchQueue.main.async {[weak self] in
+                    guard let strongSelf = self else {return}
+                    strongSelf.mailHandler.sendEmail(presentedFrom: strongSelf)
+                }
                 return
             case .cart:
-                let vc = CartTableView.get()
+                let vc = CartViewController.get()
                 self.transition = CustomTransition2(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
-                vc.transitioningDelegate = self.transition
-                vc.presentedViewController?.dismiss(animated: true, completion: nil)
-                vc.modalPresentationStyle = .custom
-                self.present(vc, animated: true, completion: nil)
+                let nav = UINavigationController(rootViewController: vc)
+                nav.transitioningDelegate = self.transition
+                nav.presentedViewController?.dismiss(animated: true, completion: nil)
+                vc.cartCountObserver.subscribe(onNext: {number in
+                    self.cartItemsCount = number
+                }).disposed(by: self.disposeBag)
+                let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.navigationTitle) ?? UIFont.systemFont(ofSize: FontSize.navigationTitle), NSAttributedString.Key.foregroundColor : Colors.blueDefault] as [NSAttributedString.Key : Any]
+                nav.navigationBar.titleTextAttributes = attributes
+                nav.modalPresentationStyle = .custom
+                self.present(nav, animated: true, completion: nil)
                 return
             }
             
@@ -322,26 +311,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    @objc func reloadUsername(){
-        self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0), IndexPath(row: 1, section: 0)], with: .none)
-    }
-    func sendEmail() {
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients(["sukycar@gmail.com"])
-            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
-            
-            mail.setSubject("Blic Buch support")
-            
-            
-            present(mail, animated: true)
-        } else {
-            // show failure alert
-        }
-    }
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
-    }// func for sending mail
+    
+    
 }

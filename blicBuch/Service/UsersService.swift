@@ -30,7 +30,7 @@ class UsersService {
                         let jsonArray = jsonResponse["records"]
                         DataManager.shared.work { (context) in
                             if let jsonData = jsonArray?.array {
-                                for (index, user) in jsonData.enumerated() {
+                                for user in jsonData {
                                     let newEmail = user["email"].string
                                     if let passedEmail = email {
                                         let newPassword = user["password"].string
@@ -133,7 +133,7 @@ class UsersService {
             parameters["cartItems"] = booksString as AnyObject
             let request = API.shared.request(router: router, parameters: parameters) { (response) in
                 switch response {
-                case .Success(let json):
+                case .Success:
                     observer.onNext(true)
                     observer.onCompleted()
                 case .Failure(let error):

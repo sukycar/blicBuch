@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tBE-dr-oJP">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Alert View Controller-->
+        <scene sceneID="YnE-M2-6rf">
+            <objects>
+                <viewController storyboardIdentifier="AlertVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="tBE-dr-oJP" customClass="AlertViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2gy-ta-UrW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Csf-gP-Mtj">
+                                <rect key="frame" x="10" y="166.5" width="300" height="235"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPX-B0-r8q">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willkommen in blic Buch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw8-fV-EMv">
+                                                <rect key="frame" x="8" y="8" width="284" height="47"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.999897301197052" green="0.4412282407283783" blue="0.00099938688799738884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="fw8-fV-EMv" secondAttribute="bottom" id="Xah-zj-BC0"/>
+                                            <constraint firstAttribute="height" constant="55" id="ex0-Jm-O61"/>
+                                            <constraint firstItem="fw8-fV-EMv" firstAttribute="leading" secondItem="oPX-B0-r8q" secondAttribute="leading" constant="8" id="fsq-LA-JPT"/>
+                                            <constraint firstItem="fw8-fV-EMv" firstAttribute="top" secondItem="oPX-B0-r8q" secondAttribute="top" constant="8" id="gam-6G-FDB"/>
+                                            <constraint firstAttribute="trailing" secondItem="fw8-fV-EMv" secondAttribute="trailing" constant="8" id="svO-eZ-pIo"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willkommen bei blitzBuch! Falls Sie ein Buch bestellen wollen, müssen Sie sich anmelden oder registrieren." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Oe-XA-tei">
+                                        <rect key="frame" x="8" y="63" width="284" height="103"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqA-9f-TgE">
+                                        <rect key="frame" x="8" y="186" width="110" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="w6S-04-VdM"/>
+                                            <constraint firstAttribute="width" constant="110" id="ypB-hy-TXJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <state key="normal" title="Neu registrieren">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapRegister:" destination="tBE-dr-oJP" eventType="touchUpInside" id="6PJ-mh-4LR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7I-3j-qEB">
+                                        <rect key="frame" x="182" y="186" width="110" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="110" id="B8C-E2-dQ2"/>
+                                            <constraint firstAttribute="height" constant="30" id="fR5-c4-zuM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <state key="normal" title="Einloggen">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapLogin:" destination="tBE-dr-oJP" eventType="touchUpInside" id="LD4-c8-q6t"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="4Oe-XA-tei" firstAttribute="leading" secondItem="Csf-gP-Mtj" secondAttribute="leading" constant="8" id="7yY-Of-0HS"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Oe-XA-tei" secondAttribute="trailing" constant="8" id="8qd-EY-tzi"/>
+                                    <constraint firstItem="oPX-B0-r8q" firstAttribute="top" secondItem="Csf-gP-Mtj" secondAttribute="top" id="EMp-wI-UXQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="d7I-3j-qEB" secondAttribute="trailing" constant="8" id="FDz-pu-XmI"/>
+                                    <constraint firstAttribute="bottom" secondItem="d7I-3j-qEB" secondAttribute="bottom" constant="19" id="QLR-c0-tss"/>
+                                    <constraint firstItem="VqA-9f-TgE" firstAttribute="top" secondItem="4Oe-XA-tei" secondAttribute="bottom" constant="20" id="Twj-sR-4Ve"/>
+                                    <constraint firstAttribute="bottom" secondItem="VqA-9f-TgE" secondAttribute="bottom" constant="19" id="Wb9-Rg-tg7"/>
+                                    <constraint firstItem="4Oe-XA-tei" firstAttribute="top" secondItem="oPX-B0-r8q" secondAttribute="bottom" constant="8" id="aF2-bd-98r"/>
+                                    <constraint firstItem="oPX-B0-r8q" firstAttribute="leading" secondItem="Csf-gP-Mtj" secondAttribute="leading" id="bSR-Kh-OPL"/>
+                                    <constraint firstAttribute="trailing" secondItem="oPX-B0-r8q" secondAttribute="trailing" id="c5P-QP-IRy"/>
+                                    <constraint firstAttribute="height" constant="235" id="cUX-rb-kfk"/>
+                                    <constraint firstAttribute="width" constant="300" id="pPv-hz-sep"/>
+                                    <constraint firstItem="VqA-9f-TgE" firstAttribute="leading" secondItem="Csf-gP-Mtj" secondAttribute="leading" constant="8" id="xFO-OV-3nh"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="oder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyB-3p-vK3">
+                                <rect key="frame" x="145.5" y="359" width="29" height="17"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="v0F-qZ-6Mz"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46240903253424659" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DyB-3p-vK3" firstAttribute="centerX" secondItem="2gy-ta-UrW" secondAttribute="centerX" id="Fta-uA-yGW"/>
+                            <constraint firstItem="Csf-gP-Mtj" firstAttribute="centerY" secondItem="2gy-ta-UrW" secondAttribute="centerY" id="WIi-S9-s3h"/>
+                            <constraint firstItem="Csf-gP-Mtj" firstAttribute="centerX" secondItem="2gy-ta-UrW" secondAttribute="centerX" id="fEk-rt-PFs"/>
+                            <constraint firstItem="DyB-3p-vK3" firstAttribute="centerY" secondItem="d7I-3j-qEB" secondAttribute="centerY" id="zKm-1N-bb6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bodyLabel" destination="4Oe-XA-tei" id="KvK-lL-Fzo"/>
+                        <outlet property="holderView" destination="Csf-gP-Mtj" id="dLA-7i-khV"/>
+                        <outlet property="loginButtonOutlet" destination="d7I-3j-qEB" id="1VA-Qi-IO5"/>
+                        <outlet property="mainView" destination="2gy-ta-UrW" id="fOf-4K-LWX"/>
+                        <outlet property="newRegistrationButtonOutlet" destination="VqA-9f-TgE" id="hp5-49-Bjh"/>
+                        <outlet property="titleLabel" destination="fw8-fV-EMv" id="N42-uY-b7a"/>
+                        <outlet property="titleLabelView" destination="oPX-B0-r8q" id="CU7-FI-wsC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1zJ-Jc-C0L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="73.125" y="142.6056338028169"/>
+        </scene>
+        <!--In App Purchase Alert View Controller-->
+        <scene sceneID="KE0-y9-2Gc">
+            <objects>
+                <viewController storyboardIdentifier="InAppPurchaseVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pig-xu-xca" customClass="InAppPurchaseAlertViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eTp-QL-YUI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Yx-Rz-zPK">
+                                <rect key="frame" x="10" y="166.5" width="300" height="235"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGp-Vv-VYi">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willkommen in blic Buch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXW-Ja-Nqi">
+                                                <rect key="frame" x="8" y="8" width="284" height="47"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.99989730119999998" green="0.4412282407" blue="0.00099938688800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="hXW-Ja-Nqi" firstAttribute="top" secondItem="TGp-Vv-VYi" secondAttribute="top" constant="8" id="PqD-Tc-bHl"/>
+                                            <constraint firstAttribute="bottom" secondItem="hXW-Ja-Nqi" secondAttribute="bottom" id="UW0-2B-6eq"/>
+                                            <constraint firstItem="hXW-Ja-Nqi" firstAttribute="leading" secondItem="TGp-Vv-VYi" secondAttribute="leading" constant="8" id="dxC-ZE-VfF"/>
+                                            <constraint firstAttribute="trailing" secondItem="hXW-Ja-Nqi" secondAttribute="trailing" constant="8" id="nwD-br-EdX"/>
+                                            <constraint firstAttribute="height" constant="55" id="sGf-CS-zK4"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Willkommen bei blitzBuch! Falls Sie ein Buch bestellen wollen, müssen Sie sich anmelden oder registrieren." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scb-l5-eps">
+                                        <rect key="frame" x="8" y="63" width="284" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xOf-Ug-uDi">
+                                        <rect key="frame" x="10" y="191" width="280" height="29"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIh-d5-BmR" customClass="AlertButton" customModule="blitzBuch" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="90.5" height="29"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <state key="normal" title="Neu registrieren">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llL-TR-0g6" customClass="AlertButton" customModule="blitzBuch" customModuleProvider="target">
+                                                <rect key="frame" x="94.5" y="0.0" width="91" height="29"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <state key="normal" title="Einloggen">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJW-TG-F4m" customClass="AlertButton" customModule="blitzBuch" customModuleProvider="target">
+                                                <rect key="frame" x="189.5" y="0.0" width="90.5" height="29"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <state key="normal" title="Neu registrieren">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="xOf-Ug-uDi" firstAttribute="leading" secondItem="1Yx-Rz-zPK" secondAttribute="leading" constant="10" id="13X-NO-z0V"/>
+                                    <constraint firstAttribute="width" constant="300" id="1hQ-wT-WGc"/>
+                                    <constraint firstItem="Scb-l5-eps" firstAttribute="leading" secondItem="1Yx-Rz-zPK" secondAttribute="leading" constant="8" id="69L-k0-cvW"/>
+                                    <constraint firstAttribute="trailing" secondItem="xOf-Ug-uDi" secondAttribute="trailing" constant="10" id="Dyw-DT-b2c"/>
+                                    <constraint firstAttribute="bottom" secondItem="xOf-Ug-uDi" secondAttribute="bottom" constant="15" id="E9F-fr-AVg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Scb-l5-eps" secondAttribute="trailing" constant="8" id="HG5-0K-w1Q"/>
+                                    <constraint firstAttribute="height" constant="235" id="KfL-LL-7Yn"/>
+                                    <constraint firstItem="TGp-Vv-VYi" firstAttribute="top" secondItem="1Yx-Rz-zPK" secondAttribute="top" id="bcK-db-hcM"/>
+                                    <constraint firstItem="Scb-l5-eps" firstAttribute="top" secondItem="TGp-Vv-VYi" secondAttribute="bottom" constant="8" id="dNB-8b-dKL"/>
+                                    <constraint firstAttribute="trailing" secondItem="TGp-Vv-VYi" secondAttribute="trailing" id="g2N-ft-mvx"/>
+                                    <constraint firstItem="TGp-Vv-VYi" firstAttribute="leading" secondItem="1Yx-Rz-zPK" secondAttribute="leading" id="o1T-pX-54H"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lFe-nh-Fs3"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46240903249999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1Yx-Rz-zPK" firstAttribute="centerY" secondItem="eTp-QL-YUI" secondAttribute="centerY" id="LD7-O6-HJh"/>
+                            <constraint firstItem="1Yx-Rz-zPK" firstAttribute="centerX" secondItem="eTp-QL-YUI" secondAttribute="centerX" id="tKk-Mm-sMt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bodyLabel" destination="Scb-l5-eps" id="rNQ-Z0-0B3"/>
+                        <outlet property="freeUserRegisterButton" destination="dIh-d5-BmR" id="BJA-xA-bNV"/>
+                        <outlet property="holderView" destination="1Yx-Rz-zPK" id="rqW-BZ-AEP"/>
+                        <outlet property="mainView" destination="eTp-QL-YUI" id="1HM-XE-wO3"/>
+                        <outlet property="regularUserRegisterButton" destination="llL-TR-0g6" id="p1b-1M-aVh"/>
+                        <outlet property="titleLabel" destination="hXW-Ja-Nqi" id="8eL-k1-Au7"/>
+                        <outlet property="vipUserRegisterButton" destination="CJW-TG-F4m" id="b1b-sO-MBc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c1a-og-ef7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="860.625" y="142.6056338028169"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

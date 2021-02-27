@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Firebase
 import SideMenu
 import Kingfisher
 import RxSwift
@@ -27,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
-        FirebaseApp.configure()
+//        FirebaseApp.configure()
         
         ImageCache.default.diskStorage.config.expiration = StorageExpiration.days(30)
         ImageCache.default.memoryStorage.config.countLimit = 1000

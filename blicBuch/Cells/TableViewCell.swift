@@ -15,6 +15,7 @@ class TableViewCell: UITableViewCell {
             self.setNeedsDisplay()
         }
     }
+    
     var showAllLines:Bool = false{
         didSet{
             showBottomLine = showAllLines
@@ -23,16 +24,19 @@ class TableViewCell: UITableViewCell {
             showLeftLine = showAllLines
         }
     }
+    
     var showBottomLine:Bool = false{
         didSet{
             self.setNeedsDisplay()
         }
     }
+    
     var showLeftLine:Bool = false{
         didSet{
             self.setNeedsDisplay()
         }
     }
+    
     var showRightLine:Bool = false{
         didSet{
             self.setNeedsDisplay()

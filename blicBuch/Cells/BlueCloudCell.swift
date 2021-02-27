@@ -12,12 +12,8 @@ class BlueCloudCell: UITableViewCell {
 
     @IBOutlet var imgView: UIImageView! {
         didSet {
-            imgView.contentMode = .scaleToFill
             imgView.layer.backgroundColor = UIColor.clear.cgColor
-            
             imgView.layer.masksToBounds = false
-            
-           
         }
     }
     override func awakeFromNib() {

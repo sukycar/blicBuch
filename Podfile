@@ -5,9 +5,7 @@ target 'blicBuch' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   # Pods for blicBuch
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Auth'
+
   pod 'SwiftyJSON'
   pod 'RxCocoa'
   pod 'Alamofire', '~> 4.9.0'
