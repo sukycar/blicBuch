@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BibViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BibliotechViewController: BaseViewController {
     
     @IBOutlet weak var tabBar: UITabBarItem!
     @IBOutlet weak var borderView: UIView!//view for adding border below label
@@ -41,11 +41,11 @@ class BibViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         genreTable.tableFooterView = UIView()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         let model = dataSource[indexPath.row]
@@ -116,7 +116,7 @@ class BibViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "bibliotech" {
             let newController = segue.destination as! UINavigationController
-            let tableViewCTRL = newController.topViewController as! GenreTableViewController
+            let tableViewCTRL = newController.topViewController as! GenreViewController
             tableViewCTRL.genre = self.genre
             
             //tableViewCTRL.modelSwitch = indexNumber

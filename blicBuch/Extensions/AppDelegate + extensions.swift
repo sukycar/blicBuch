@@ -80,9 +80,9 @@ extension AppDelegate {
             messageLabel.numberOfLines = 0
             messageLabel.sizeToFit()
             messageLabel.frame.size.width = UIScreen.main.bounds.width
-            messageLabel.frame.origin.y = -80 + UIApplication.shared.statusBarFrame.height
+            messageLabel.frame.origin.y = -80 + (UIApplication.shared.windows[0].windowScene?.statusBarManager?.statusBarFrame.height ?? 0)
             
-            let appDelegate = UIApplication.shared.keyWindow
+            let appDelegate = UIApplication.shared.windows.first
             if let window = appDelegate {
                 window.addSubview(messageLabel)
                 window.bringSubviewToFront(messageLabel)
@@ -90,12 +90,12 @@ extension AppDelegate {
                 if messageLabel.frame.height < 80 {
                     messageLabel.frame.size.height = 80
                 }
-                let topAnchor = messageLabel.topAnchor.constraint(equalTo: window.topAnchor, constant: -(80 + 2 * UIApplication.shared.statusBarFrame.height + messageLabel.frame.height))
+                let topAnchor = messageLabel.topAnchor.constraint(equalTo: window.topAnchor, constant: -(80 + 2 * (UIApplication.shared.windows[0].windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + messageLabel.frame.height))
                 topAnchor.isActive = true
                 messageLabel.leftAnchor.constraint(equalTo: window.leftAnchor).isActive = true
                 messageLabel.rightAnchor.constraint(equalTo: window.rightAnchor).isActive = true
-                messageLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 80 + UIApplication.shared.statusBarFrame.height).isActive = true
-                messageLabel.topInset = UIApplication.shared.statusBarFrame.height
+                messageLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 80 + (UIApplication.shared.windows[0].windowScene?.statusBarManager?.statusBarFrame.height ?? 0)).isActive = true
+                messageLabel.topInset = (UIApplication.shared.windows[0].windowScene?.statusBarManager?.statusBarFrame.height ?? 0)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                     topAnchor.constant = 0
                     UIView.animate(withDuration: 0.25, delay: 0, options: [], animations: {

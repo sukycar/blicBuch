@@ -57,6 +57,7 @@
 		1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */; };
 		1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E16925A200EA005B864F /* AlertButton.swift */; };
 		1F553EC925E93EA400747615 /* UIView + device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F553EC825E93EA400747615 /* UIView + device.swift */; };
+		1F6F13D625ED522C0039F6FB /* blicBuchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F13D525ED522C0039F6FB /* blicBuchUITests.swift */; };
 		1F73893F25E51CD3003EFECC /* MailHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73893E25E51CD3003EFECC /* MailHandler.swift */; };
 		1F73897725E530E8003EFECC /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897325E530E8003EFECC /* User+CoreDataClass.swift */; };
 		1F73897825E530E8003EFECC /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897425E530E8003EFECC /* Book+CoreDataProperties.swift */; };
@@ -71,6 +72,9 @@
 		1FAE4E2725E97BF300E7A774 /* UIResponder + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAE4E2625E97BF300E7A774 /* UIResponder + extensions.swift */; };
 		1FB1B60F25AD828300AD6AE4 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1B60D25AD828300AD6AE4 /* EmptyTableViewCell.swift */; };
 		1FB1B61025AD828300AD6AE4 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB1B60E25AD828300AD6AE4 /* EmptyTableViewCell.xib */; };
+		1FBE360025EFDAA900681F0A /* InfoViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE35FF25EFDAA900681F0A /* InfoViewData.swift */; };
+		1FBE360625EFDB8200681F0A /* InfoViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE360525EFDB8200681F0A /* InfoViewViewModel.swift */; };
+		1FBE360D25EFE00F00681F0A /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE360C25EFE00F00681F0A /* InfoViewModel.swift */; };
 		1FD71E59258B338B004435EA /* UIViewController + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD71E58258B338B004435EA /* UIViewController + extensions.swift */; };
 		1FE8B5082584CA1C00C3A47A /* SideMenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B5072584CA1C00C3A47A /* SideMenuService.swift */; };
 		1FE8B50B2584CA7600C3A47A /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B50A2584CA7600C3A47A /* SideMenuViewController.swift */; };
@@ -87,6 +91,16 @@
 		1FF613F025AC5CB300ACCE25 /* UIColor + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF613EF25AC5CB300ACCE25 /* UIColor + extensions.swift */; };
 		21831E5CD1093D48723594BF /* Pods_blicBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA839433651EB77BF51720 /* Pods_blicBuch.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F6F13D825ED522C0039F6FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A333F4023806EE800B5A39B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A333F4723806EE800B5A39B;
+			remoteInfo = blicBuch;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0A028F8D242FC520005AEF14 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = blicBuch/ViewControllers/InfoViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -146,6 +160,9 @@
 		1F52E16925A200EA005B864F /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
 		1F553EB825E8FFED00747615 /* blitzBuch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = blitzBuch.entitlements; sourceTree = "<group>"; };
 		1F553EC825E93EA400747615 /* UIView + device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + device.swift"; sourceTree = "<group>"; };
+		1F6F13D325ED522C0039F6FB /* blicBuchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = blicBuchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F6F13D525ED522C0039F6FB /* blicBuchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blicBuchUITests.swift; sourceTree = "<group>"; };
+		1F6F13D725ED522C0039F6FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F73893E25E51CD3003EFECC /* MailHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailHandler.swift; sourceTree = "<group>"; };
 		1F73897325E530E8003EFECC /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1F73897425E530E8003EFECC /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -160,9 +177,12 @@
 		1FAE4E2625E97BF300E7A774 /* UIResponder + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder + extensions.swift"; sourceTree = "<group>"; };
 		1FB1B60D25AD828300AD6AE4 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyTableViewCell.swift; path = blicBuch/Cells/EmptyTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		1FB1B60E25AD828300AD6AE4 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EmptyTableViewCell.xib; path = blicBuch/Cells/EmptyTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		1FBE35FF25EFDAA900681F0A /* InfoViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewData.swift; sourceTree = "<group>"; };
+		1FBE360525EFDB8200681F0A /* InfoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewViewModel.swift; sourceTree = "<group>"; };
+		1FBE360C25EFE00F00681F0A /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
 		1FD71E58258B338B004435EA /* UIViewController + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + extensions.swift"; sourceTree = "<group>"; };
 		1FE8B5072584CA1C00C3A47A /* SideMenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuService.swift; sourceTree = "<group>"; };
-		1FE8B50A2584CA7600C3A47A /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideMenuViewController.swift; path = blicBuch/ViewControllers/SideMenuViewController.swift; sourceTree = SOURCE_ROOT; };
+		1FE8B50A2584CA7600C3A47A /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		1FE8B50D2584CB3600C3A47A /* SideMenuMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideMenuMemberCell.swift; path = blicBuch/Cells/SideMenuMemberCell.swift; sourceTree = SOURCE_ROOT; };
 		1FE8B5102584CBE400C3A47A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = blicBuch/Cells/TableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		1FE8B5132584CC8C00C3A47A /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -189,6 +209,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1F6F13D025ED522C0039F6FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -206,6 +233,7 @@
 		0A27E3CF2463488F00DE117C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1FBE360925EFDCF700681F0A /* Data */,
 				1F73894125E52FD1003EFECC /* Model */,
 				0A7519712466A8F90089DED8 /* DataManager.swift */,
 				0A8E4F4F249DEE8F00C8B38A /* NavigationController.swift */,
@@ -233,6 +261,7 @@
 				1F24437025A2482300BC99F8 /* Configuration.storekit */,
 				0ABC0E12238A97E600874626 /* Fonts */,
 				0A333F4A23806EE800B5A39B /* blicBuch */,
+				1F6F13D425ED522C0039F6FB /* blicBuchUITests */,
 				0A333F4923806EE800B5A39B /* Products */,
 				E247282502AADE54DFB039BA /* Frameworks */,
 				6D5C3B4C3604FF44A33220DD /* Pods */,
@@ -243,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				0A333F4823806EE800B5A39B /* blitzBuch.app */,
+				1F6F13D325ED522C0039F6FB /* blicBuchUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,6 +280,7 @@
 		0A333F4A23806EE800B5A39B /* blicBuch */ = {
 			isa = PBXGroup;
 			children = (
+				1F2B680025ED04B2006C1957 /* View */,
 				1F553EB825E8FFED00747615 /* blitzBuch.entitlements */,
 				1FE8B5162584CEE200C3A47A /* Constants */,
 				0A27E3CF2463488F00DE117C /* Core */,
@@ -365,6 +396,13 @@
 			path = UIView;
 			sourceTree = "<group>";
 		};
+		1F2B680025ED04B2006C1957 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F2DBA4325E660FF00F4104B /* MainTabViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,6 +415,15 @@
 			name = MainTabViewControllers;
 			path = blicBuch/ViewControllers/MainTabViewControllers;
 			sourceTree = SOURCE_ROOT;
+		};
+		1F6F13D425ED522C0039F6FB /* blicBuchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1F6F13D525ED522C0039F6FB /* blicBuchUITests.swift */,
+				1F6F13D725ED522C0039F6FB /* Info.plist */,
+			);
+			path = blicBuchUITests;
+			sourceTree = "<group>";
 		};
 		1F73893D25E51A16003EFECC /* Helpers */ = {
 			isa = PBXGroup;
@@ -396,6 +443,7 @@
 				1F73897325E530E8003EFECC /* User+CoreDataClass.swift */,
 				1F73897525E530E8003EFECC /* User+CoreDataProperties.swift */,
 				0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */,
+				1FBE360C25EFE00F00681F0A /* InfoViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -405,6 +453,7 @@
 			children = (
 				1F73897E25E53228003EFECC /* GenreTableViewModel.swift */,
 				1F73898125E5903A003EFECC /* CustomCellViewModel.swift */,
+				1FBE360525EFDB8200681F0A /* InfoViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -416,6 +465,14 @@
 				1FE8B5172584CEF400C3A47A /* CustomTransition2.swift */,
 			);
 			path = Libraries;
+			sourceTree = "<group>";
+		};
+		1FBE360925EFDCF700681F0A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1FBE35FF25EFDAA900681F0A /* InfoViewData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		1FE8B5162584CEE200C3A47A /* Constants */ = {
@@ -469,18 +526,40 @@
 			productReference = 0A333F4823806EE800B5A39B /* blitzBuch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1F6F13D225ED522C0039F6FB /* blicBuchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F6F13DA25ED522C0039F6FB /* Build configuration list for PBXNativeTarget "blicBuchUITests" */;
+			buildPhases = (
+				1F6F13CF25ED522C0039F6FB /* Sources */,
+				1F6F13D025ED522C0039F6FB /* Frameworks */,
+				1F6F13D125ED522C0039F6FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F6F13D925ED522C0039F6FB /* PBXTargetDependency */,
+			);
+			name = blicBuchUITests;
+			productName = blicBuchUITests;
+			productReference = 1F6F13D325ED522C0039F6FB /* blicBuchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0A333F4023806EE800B5A39B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = sukydeveloper;
 				TargetAttributes = {
 					0A333F4723806EE800B5A39B = {
 						CreatedOnToolsVersion = 11.2;
+					};
+					1F6F13D225ED522C0039F6FB = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 0A333F4723806EE800B5A39B;
 					};
 				};
 			};
@@ -498,6 +577,7 @@
 			projectRoot = "";
 			targets = (
 				0A333F4723806EE800B5A39B /* blicBuch */,
+				1F6F13D225ED522C0039F6FB /* blicBuchUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -519,6 +599,13 @@
 				1FB1B61025AD828300AD6AE4 /* EmptyTableViewCell.xib in Resources */,
 				0A333F5323806EE800B5A39B /* Main.storyboard in Resources */,
 				0A3A663D23C12393005BD1CF /* Alert.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F6F13D125ED522C0039F6FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +675,9 @@
 				1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */,
 				1FD71E59258B338B004435EA /* UIViewController + extensions.swift in Sources */,
 				1F73897725E530E8003EFECC /* User+CoreDataClass.swift in Sources */,
+				1FBE360D25EFE00F00681F0A /* InfoViewModel.swift in Sources */,
 				1FE8B52B2584DAD600C3A47A /* SideMenuGeneralCell.swift in Sources */,
+				1FBE360625EFDB8200681F0A /* InfoViewViewModel.swift in Sources */,
 				1F0025A825E81D2600388CA5 /* UIView + border.swift in Sources */,
 				0AEEE89323C5DF1300240B90 /* AlertService.swift in Sources */,
 				0A8E4F50249DEE8F00C8B38A /* NavigationController.swift in Sources */,
@@ -608,6 +697,7 @@
 				1FE8B51F2584D05200C3A47A /* BaseLabel.swift in Sources */,
 				0A27E3DA24634C0F00DE117C /* FormatterHelpers.swift in Sources */,
 				0A7519702466A35A0089DED8 /* Model.swift in Sources */,
+				1FBE360025EFDAA900681F0A /* InfoViewData.swift in Sources */,
 				1F2DBA3D25E64AC400F4104B /* BaseViewController.swift in Sources */,
 				0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */,
 				0A86432C24BB026000EF05CD /* CartViewController.swift in Sources */,
@@ -640,7 +730,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1F6F13CF25ED522C0039F6FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F6F13D625ED522C0039F6FB /* blicBuchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F6F13D925ED522C0039F6FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A333F4723806EE800B5A39B /* blicBuch */;
+			targetProxy = 1F6F13D825ED522C0039F6FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0A333F5123806EE800B5A39B /* Main.storyboard */ = {
@@ -715,7 +821,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -764,6 +870,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -773,7 +880,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -795,6 +902,7 @@
 				DEVELOPMENT_TEAM = K84TS52934;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = blicBuch/Info.plist;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphonesimulator*]" = 14.4;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -818,6 +926,7 @@
 				DEVELOPMENT_TEAM = K84TS52934;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = blicBuch/Info.plist;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphonesimulator*]" = 14.4;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -828,6 +937,50 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
+			};
+			name = Release;
+		};
+		1F6F13DB25ED522C0039F6FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K84TS52934;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				INFOPLIST_FILE = blicBuchUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sukydeveloper.blicBuchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = blicBuch;
+			};
+			name = Debug;
+		};
+		1F6F13DC25ED522C0039F6FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K84TS52934;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				INFOPLIST_FILE = blicBuchUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sukydeveloper.blicBuchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = blicBuch;
 			};
 			name = Release;
 		};
@@ -848,6 +1001,15 @@
 			buildConfigurations = (
 				0A333F6023806EFE00B5A39B /* Debug */,
 				0A333F6123806EFE00B5A39B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F6F13DA25ED522C0039F6FB /* Build configuration list for PBXNativeTarget "blicBuchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F6F13DB25ED522C0039F6FB /* Debug */,
+				1F6F13DC25ED522C0039F6FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

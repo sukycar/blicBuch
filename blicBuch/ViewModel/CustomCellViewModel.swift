@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-struct CustomCellViewModel {
+class CustomCellViewModel {
     
     let id : Int32
     let authorName: String

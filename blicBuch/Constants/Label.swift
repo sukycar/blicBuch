@@ -49,6 +49,9 @@ class Label: BaseLabel {
         if let borderSize =  type.type.borderSize {
             self.layer.borderWidth = borderSize
         }
+        if let zPosition = type.type.zPosition {
+            self.layer.zPosition = zPosition
+        }
         
         
         self.text = type.text

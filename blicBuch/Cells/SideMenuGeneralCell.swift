@@ -31,6 +31,7 @@ class SideMenuGeneralCell: TableViewCell {
         if sideMenuCell != .login {
             actionButton.isUserInteractionEnabled = false
         }
+        self.imageHolderView.layer.zPosition = 2
         self.imageHolderView.image = UIImage(named: imageName)
         self.imageHolderView.tintColor = imageTint
         self.titleLabel.type = (.sideMenuTitle, title)

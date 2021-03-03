@@ -15,6 +15,11 @@ protocol LoadName {
 
 class LoginViewController: UIViewController {
     
+    private var deviceType : DeviceType?
+    
+    @IBAction func backButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var email: UITextField!
     private var emailText = String()
     @IBOutlet weak var password: UITextField!
@@ -54,14 +59,15 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         styleViews()
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     func styleViews(){
+        deviceType = self.view.getDeviceType()
+        self.title = "Einloggen"
         loginButtonOutlet.layer.cornerRadius = CornerRadius.medium
-        loginButtonOutlet.backgroundColor = Colors.blueDefault
+        loginButtonOutlet.backgroundColor = deviceType != .macCatalyst ? Colors.blueDefault : .clear
+        loginButtonOutlet.setTitle("Einloggen", for: .normal)
+        loginButtonOutlet.setTitleColor(deviceType != .macCatalyst ? Colors.white : Colors.defaultFontColor, for: .normal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

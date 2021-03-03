@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ali-IE-iWA">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -139,57 +138,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgR-qM-DaL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" allowsEditingTextAttributes="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH1-yN-wAf">
-                                <rect key="frame" x="14" y="72" width="292" height="447"/>
+                                <rect key="frame" x="14" y="40" width="292" height="479"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Verein „Bücherliebhaber Club blitzBuch“ ZVR 1759468752
-c/o Perica Anciger
-c/o Daniela Kukic
-Pilgeringasse 21/1/1
-1150 Wien
-Bawag Bank:
-Verein „Bücherliebhaber Club blitzBuch“ 
-XXXXXXXXXX
-XXXXXXXXXX
-
-
-——————————————————
-
-Der Verein, dessen Tätigkeit nicht auf Gewinn gerichtet ist bezweckt die Zustellung von Büchern an Ihre Adresse in ganz Österreich. 
-Man kann sich als Mitglied des Klubs für Bücherfreunde sehr leicht anmelden lassen- nämlich durch schnelles Registrieren. Das Mitglied startet die Applikation, macht den Klick auf das Buch, dass er an seine Hausadresse gesandt haben möchte und es wird von uns sofort geliefert. Falls Sie bereits Mitglied unseres Klubs sind, können Sie sich einfach durch die von Ihnen bereits bei der vorherigen Buchbestellung angegebene E-Mail Adresse einloggen. Die Mitgliedschaft im Klub ist im ersten Monat kostenlos und das Mitglied bekommt ein Buch wunschgemäß. Die vorher beantragten Angaben sind ausschließlich wegen einer präzisen Buchzustellung an Ihre Hausadresse erforderlich. Blitzbuch dient nur dazu, dass die Menschen ihre Liebe gegenüber den Büchern ausleben können und ohne große Hindernisse an das gewünschte Buch ankommen. Sollte der Club irgendwann nicht mehr in Betrieb sein, wird alles übergebliebene an einen Club mit der gleichen Absicht gespendet. 
-
-——————————————————
-
-Mitgliedsbeitrag 
-
-Der Mitgliedsbeitrag stellt eine Spende für unseren Leserklub dar. Nach dem ersten Probemonat können die Mitglieder 2,99€ einzahlen und danach sind sie berechtigt drei Bücher in diesem Monat zu bestellen (bzw. in den nächsten 30 Tagen ab der Einzahlung und der Bestätigung seitens des Administrators). Bei jeder Buchbestellung sind die Mitglieder aufgefordert die Versandkosten für das jeweilige Buch oder die Bücher zu übernehmen. Für unsere Mitglieder sind die Spendearten besonders interessant, die entweder Bücher oder Geld sein können. Durch die Spende können Sie der Erweiterung vom Titelangebot, der Appli- kationsinstandhaltung und der Entwicklung des Leserklubs verstärken. Erinnerung: Mitglieder des Clubs müssen die Bücher nicht zurückschicken. Sie können sie ruhig behalten oder Freunden / Familienmitgliedern weitergeben. Das Ziel ist, dass die Bücher es auf ihr Regal schaffen.
-
-——————————————————
-
-VIP Mitgliedsbeitrag des Bücherfreundeklubs
-
-Durch die Spende  von 4,99€ oder mehr werden  die Mitglieder des Bücherfreundeklubs zu VIP Mitgliedern.  VIP Mitglieder können bis zu vier Bücher monatlich aus der VIP Bücherklasse bestellen (sie beinhaltet Popular belletristic).
-
-——————————————————
-
-Pläne für die Zukunft
-
-Erweiterung vom Büchertitelangebot,
-Förderung und  Erstellung einer immer bekwäheren Mobilapplikation,
-Einführung  kostenloser  Bücherzustellung auf dem ganzen Wien Gebiet,
-Außer Belletristic  auch Angebot von Enziklopädieherausgaben und Fachliteratur.
-
-Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büchertitel !
-
-——————————————————</string>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Informationen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJX-cZ-PSa">
-                                <rect key="frame" x="16" y="36" width="284" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJX-cZ-PSa">
+                                <rect key="frame" x="16" y="36" width="284" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -214,9 +173,9 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                     </view>
                     <tabBarItem key="tabBarItem" title="Informationen" image="img_info" id="GE8-or-0xl"/>
                     <connections>
-                        <outlet property="label" destination="qJX-cZ-PSa" id="I1c-Wt-hbV"/>
                         <outlet property="textView" destination="dH1-yN-wAf" id="nHq-gj-9rK"/>
                         <outlet property="titleHolderView" destination="cgR-qM-DaL" id="zzw-sj-FfG"/>
+                        <outlet property="titleLabel" destination="qJX-cZ-PSa" id="rdr-y5-LFk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8l-Nk-q8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -408,7 +367,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QXl-b5-oih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3793.125" y="-1224.2957746478874"/>
+            <point key="canvasLocation" x="5788.125" y="-1224.2957746478874"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="fkv-qH-sQ0">
@@ -427,6 +386,9 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nhh-46-zEN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration" label="loadingScreenACLabel">
+                            <bool key="isElement" value="NO"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="4Dq-gL-GHH" firstAttribute="centerY" secondItem="4Le-YQ-hdv" secondAttribute="centerY" id="4ka-eV-tsb"/>
                             <constraint firstItem="4Dq-gL-GHH" firstAttribute="leading" secondItem="Nhh-46-zEN" secondAttribute="leading" constant="40" id="GXS-0E-UUR"/>
@@ -505,6 +467,19 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a9C-oS-OYU">
                                 <rect key="frame" x="0.0" y="174" width="320" height="345"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jAH-QW-oes">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jAH-QW-oes" id="4h1-ca-6fJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="homeTableCellACLabel"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="CHb-7B-NEn"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="XwV-U6-z7C"/>
@@ -512,6 +487,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48d-8a-fFj">
                                 <rect key="frame" x="33" y="89" width="25" height="25"/>
+                                <accessibility key="accessibilityConfiguration" identifier="sideMenuButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="AKz-PY-R0w"/>
                                     <constraint firstAttribute="height" constant="25" id="FrV-5x-Gcr"/>
@@ -541,6 +517,9 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="02R-kk-eFT" secondAttribute="trailing" constant="16" id="uxo-bs-260"/>
                             <constraint firstItem="48d-8a-fFj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="whW-Vc-RTZ"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="homeTopViewACLabel"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="img_home" id="r63-ao-GEM">
                         <color key="badgeColor" systemColor="scrollViewTexturedBackgroundColor"/>
@@ -548,10 +527,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                     <connections>
                         <outlet property="imageViewConstraint" destination="qkn-q2-iea" id="QFX-Wj-HaA"/>
                         <outlet property="tableView" destination="a9C-oS-OYU" id="odc-aL-RF6"/>
-                        <segue destination="pUr-r3-wfc" kind="presentation" identifier="login" id="i69-T5-41z"/>
-                        <segue destination="S8G-tq-aI7" kind="presentation" identifier="registration" id="2ak-G8-IfE"/>
-                        <segue destination="0vm-In-XY6" kind="show" identifier="donate" id="4ty-DA-F2g"/>
-                        <segue destination="TXF-CA-Wa7" kind="show" identifier="cart" id="Jzf-Wj-02z"/>
+                        <segue destination="bQ3-aa-JOG" kind="custom" id="fGM-g8-28B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -566,24 +542,21 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOGIN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqI-xr-ngW">
-                                <rect key="frame" x="16" y="20" width="284" height="23"/>
-                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E - mail *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="69J-Tc-1nW">
-                                <rect key="frame" x="16" y="65" width="288" height="34"/>
+                                <rect key="frame" x="16" y="76" width="288" height="34"/>
+                                <accessibility key="accessibilityConfiguration" identifier="eMailLoginField"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passwort *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7kR-xI-385">
-                                <rect key="frame" x="16" y="119" width="288" height="34"/>
+                                <rect key="frame" x="16" y="130" width="288" height="34"/>
+                                <accessibility key="accessibilityConfiguration" identifier="passwordLoginField"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jG-ax-h3E">
-                                <rect key="frame" x="16" y="183" width="288" height="30"/>
+                                <rect key="frame" x="16" y="194" width="288" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="einloggenButton"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -592,10 +565,10 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-ok-mhN">
-                                <rect key="frame" x="16" y="221" width="288" height="314"/>
+                                <rect key="frame" x="16" y="232" width="288" height="303"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_bb8" translatesAutoresizingMaskIntoConstraints="NO" id="s3g-zt-NYO">
-                                        <rect key="frame" x="67.5" y="65.5" width="153" height="183"/>
+                                        <rect key="frame" x="67.5" y="60" width="153" height="183"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="183" id="fnb-ax-fNx"/>
                                             <constraint firstAttribute="width" constant="153" id="vkW-3f-vFc"/>
@@ -615,22 +588,25 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="2jG-ax-h3E" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="5qp-3r-tz8"/>
                             <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="ZaC-ok-mhN" secondAttribute="trailing" constant="16" id="FQa-cN-Odo"/>
                             <constraint firstItem="U38-wd-4k7" firstAttribute="bottom" secondItem="ZaC-ok-mhN" secondAttribute="bottom" constant="13" id="JZr-6v-YoH"/>
-                            <constraint firstItem="69J-Tc-1nW" firstAttribute="top" secondItem="fqI-xr-ngW" secondAttribute="bottom" constant="22" id="Jo7-dc-tM4"/>
-                            <constraint firstItem="fqI-xr-ngW" firstAttribute="top" secondItem="U38-wd-4k7" secondAttribute="top" constant="20" id="LxZ-iI-Iun"/>
                             <constraint firstItem="7kR-xI-385" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="Ohg-Sw-5h3"/>
                             <constraint firstItem="2jG-ax-h3E" firstAttribute="top" secondItem="7kR-xI-385" secondAttribute="bottom" constant="30" id="Oot-XH-1AT"/>
                             <constraint firstItem="7kR-xI-385" firstAttribute="top" secondItem="69J-Tc-1nW" secondAttribute="bottom" constant="20" id="Ozb-X5-Sxd"/>
+                            <constraint firstItem="69J-Tc-1nW" firstAttribute="top" secondItem="U38-wd-4k7" secondAttribute="top" constant="20" id="WVM-5w-LEa"/>
                             <constraint firstItem="ZaC-ok-mhN" firstAttribute="top" secondItem="2jG-ax-h3E" secondAttribute="bottom" constant="8" id="bPu-Zm-80G"/>
                             <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="69J-Tc-1nW" secondAttribute="trailing" constant="16" id="cGF-rF-ENy"/>
-                            <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="fqI-xr-ngW" secondAttribute="trailing" constant="20" id="dEN-UR-B37"/>
                             <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="7kR-xI-385" secondAttribute="trailing" constant="16" id="eav-DB-0sA"/>
-                            <constraint firstItem="fqI-xr-ngW" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="gKJ-5j-aku"/>
                             <constraint firstItem="69J-Tc-1nW" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="sOA-Ak-nah"/>
                             <constraint firstItem="U38-wd-4k7" firstAttribute="trailing" secondItem="2jG-ax-h3E" secondAttribute="trailing" constant="16" id="sXj-Kg-SII"/>
                             <constraint firstItem="ZaC-ok-mhN" firstAttribute="leading" secondItem="U38-wd-4k7" secondAttribute="leading" constant="16" id="yPQ-Zh-tw7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ROe-Lz-8kS"/>
+                    <navigationItem key="navigationItem" id="ROe-Lz-8kS">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" style="done" id="AUd-4N-Iux">
+                            <connections>
+                                <action selector="backButtonAction:" destination="pUr-r3-wfc" id="KVT-Zz-6fI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="email" destination="69J-Tc-1nW" id="f1n-aA-OkG"/>
                         <outlet property="loginButtonOutlet" destination="2jG-ax-h3E" id="260-UH-iFE"/>
@@ -639,7 +615,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4s0-VX-skz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="451.875" y="-1224.2957746478874"/>
+            <point key="canvasLocation" x="1449.375" y="-1224.2957746478874"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="WZx-1U-bzl">
@@ -649,14 +625,8 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTRIERUNG" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-Q9-ddu">
-                                <rect key="frame" x="16" y="20" width="284" height="23"/>
-                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vorname *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swn-gJ-SsU">
-                                <rect key="frame" x="16" y="65" width="288" height="34"/>
+                                <rect key="frame" x="16" y="76" width="288" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -664,7 +634,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </textField>
                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Strasse *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4qo-5D-WAK">
-                                <rect key="frame" x="16" y="119" width="288" height="34"/>
+                                <rect key="frame" x="16" y="130" width="288" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -672,7 +642,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </textField>
                             <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ort *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="as4-CR-LBS">
-                                <rect key="frame" x="16" y="173" width="288" height="34"/>
+                                <rect key="frame" x="16" y="184" width="288" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -680,7 +650,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </textField>
                             <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E - mail *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BAQ-LI-PDe">
-                                <rect key="frame" x="16" y="227" width="288" height="34"/>
+                                <rect key="frame" x="16" y="238" width="288" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                 <connections>
@@ -688,7 +658,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </textField>
                             <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passwort *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mt9-pq-oSF">
-                                <rect key="frame" x="16" y="281" width="288" height="34"/>
+                                <rect key="frame" x="16" y="292" width="288" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
@@ -696,7 +666,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </textField>
                             <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passwort wiederholen *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O2T-14-awN">
-                                <rect key="frame" x="16" y="335" width="288" height="34"/>
+                                <rect key="frame" x="16" y="346" width="288" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
@@ -704,14 +674,14 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_flag" translatesAutoresizingMaskIntoConstraints="NO" id="BwS-ra-2h1">
-                                <rect key="frame" x="16" y="389" width="47" height="35"/>
+                                <rect key="frame" x="16" y="400" width="47" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="47" id="4eT-hm-FpM"/>
                                     <constraint firstAttribute="height" constant="35" id="rUa-Nh-pIi"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Telefonnummer +43" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vzB-ce-HB2">
-                                <rect key="frame" x="82" y="389" width="222" height="34"/>
+                                <rect key="frame" x="82" y="400" width="222" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="tel"/>
                                 <connections>
@@ -719,13 +689,13 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We value your privacy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XcK-kC-rGv">
-                                <rect key="frame" x="16" y="444" width="288" height="16"/>
+                                <rect key="frame" x="16" y="455" width="288" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQL-uB-aqb">
-                                <rect key="frame" x="16" y="484" width="288" height="34"/>
+                                <rect key="frame" x="16" y="495" width="288" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="msu-eU-JJe"/>
                                 </constraints>
@@ -747,15 +717,13 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="O2T-14-awN" firstAttribute="top" secondItem="Mt9-pq-oSF" secondAttribute="bottom" constant="20" id="DA4-Zb-KqW"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="vzB-ce-HB2" secondAttribute="trailing" constant="16" id="DMs-PV-kFt"/>
                             <constraint firstItem="XcK-kC-rGv" firstAttribute="top" secondItem="BwS-ra-2h1" secondAttribute="bottom" constant="20" id="Fo5-E8-FN8"/>
-                            <constraint firstItem="Swn-gJ-SsU" firstAttribute="top" secondItem="bhJ-Q9-ddu" secondAttribute="bottom" constant="22" id="Lc9-bm-wxH"/>
+                            <constraint firstItem="Swn-gJ-SsU" firstAttribute="top" secondItem="j7l-CB-UbV" secondAttribute="top" constant="20" id="OBk-CE-0uq"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="KQL-uB-aqb" secondAttribute="trailing" constant="16" id="QBl-sv-68h"/>
-                            <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="bhJ-Q9-ddu" secondAttribute="trailing" constant="20" id="QPv-SZ-eAW"/>
                             <constraint firstItem="4qo-5D-WAK" firstAttribute="top" secondItem="Swn-gJ-SsU" secondAttribute="bottom" constant="20" id="Qe9-nA-fhE"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="XcK-kC-rGv" secondAttribute="trailing" constant="16" id="Qsi-io-YC8"/>
                             <constraint firstItem="vzB-ce-HB2" firstAttribute="leading" secondItem="BwS-ra-2h1" secondAttribute="trailing" constant="19" id="RTa-Sg-EDm"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="O2T-14-awN" secondAttribute="trailing" constant="16" id="SMI-sg-PW0"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="BAQ-LI-PDe" secondAttribute="trailing" constant="16" id="Wm6-jr-OZH"/>
-                            <constraint firstItem="bhJ-Q9-ddu" firstAttribute="top" secondItem="j7l-CB-UbV" secondAttribute="top" constant="20" id="XOE-Ph-hcU"/>
                             <constraint firstItem="as4-CR-LBS" firstAttribute="top" secondItem="4qo-5D-WAK" secondAttribute="bottom" constant="20" id="b5H-Fj-awp"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="Mt9-pq-oSF" secondAttribute="trailing" constant="16" id="bzQ-3b-a6O"/>
                             <constraint firstItem="KQL-uB-aqb" firstAttribute="leading" secondItem="j7l-CB-UbV" secondAttribute="leading" constant="16" id="c1U-bg-pEX"/>
@@ -769,13 +737,18 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                             <constraint firstItem="KQL-uB-aqb" firstAttribute="top" secondItem="XcK-kC-rGv" secondAttribute="bottom" constant="24" id="q2m-9G-FLl"/>
                             <constraint firstItem="BAQ-LI-PDe" firstAttribute="leading" secondItem="j7l-CB-UbV" secondAttribute="leading" constant="16" id="tmD-60-Qzj"/>
                             <constraint firstItem="4qo-5D-WAK" firstAttribute="leading" secondItem="j7l-CB-UbV" secondAttribute="leading" constant="16" id="u0M-PP-k9g"/>
-                            <constraint firstItem="bhJ-Q9-ddu" firstAttribute="leading" secondItem="j7l-CB-UbV" secondAttribute="leading" constant="16" id="u38-ez-65a"/>
                             <constraint firstItem="O2T-14-awN" firstAttribute="leading" secondItem="j7l-CB-UbV" secondAttribute="leading" constant="16" id="vnn-Mv-CxN"/>
                             <constraint firstItem="j7l-CB-UbV" firstAttribute="trailing" secondItem="as4-CR-LBS" secondAttribute="trailing" constant="16" id="ysJ-Ry-0zp"/>
                             <constraint firstItem="XcK-kC-rGv" firstAttribute="leading" secondItem="j7l-CB-UbV" secondAttribute="leading" constant="16" id="zmi-ce-QJx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nQH-k1-zei"/>
+                    <navigationItem key="navigationItem" id="nQH-k1-zei">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" style="done" id="t4m-wy-o6U">
+                            <connections>
+                                <action selector="backButtonAction:" destination="S8G-tq-aI7" id="M8b-zQ-OjH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="city" destination="as4-CR-LBS" id="5Bv-NJ-Vzz"/>
                         <outlet property="email" destination="BAQ-LI-PDe" id="Mq0-ee-5r5"/>
@@ -789,7 +762,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kER-oX-k1d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1261.875" y="-1224.2957746478874"/>
+            <point key="canvasLocation" x="3256.875" y="-1224.2957746478874"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2KB-aO-QUG">
@@ -817,7 +790,7 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHU-YA-e00" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021.25" y="-1224.2957746478874"/>
+            <point key="canvasLocation" x="4016.25" y="-1224.2957746478874"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dGm-uL-dNV">
@@ -905,18 +878,25 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CG5-0V-sej" customClass="Label" customModule="blitzBuch" customModuleProvider="target">
                                                             <rect key="frame" x="59" y="5" width="41.5" height="20.5"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fL3-eh-mU0" customClass="Label" customModule="blitzBuch" customModuleProvider="target">
                                                             <rect key="frame" x="258.5" y="5" width="41.5" height="20.5"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZZ-wZ-HRc">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="30.5"/>
+                                                            <accessibility key="accessibilityConfiguration" identifier="einloggenActionButton"/>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -945,6 +925,10 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isAccessibilityElement" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="sideMenuTable"/>
+                                        </userDefinedRuntimeAttributes>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -962,6 +946,9 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jRx-Kc-aMB"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="sideMenuMainView">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="jRx-Kc-aMB" firstAttribute="trailing" secondItem="tGR-0N-CRL" secondAttribute="trailing" id="3ku-Ut-4tz"/>
                             <constraint firstItem="tGR-0N-CRL" firstAttribute="top" secondItem="4d8-Cc-wUP" secondAttribute="top" id="EAa-LB-LF6"/>
@@ -970,13 +957,16 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="sideMenuControllerACLabel"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="imageView" destination="YCg-KC-Qe2" id="bQl-N7-uUz"/>
                         <outlet property="mainView" destination="4d8-Cc-wUP" id="1L1-qB-cO6"/>
                         <outlet property="tableHolderView" destination="tGR-0N-CRL" id="PXh-yG-5iT"/>
                         <outlet property="tableView" destination="gaC-ez-FYN" id="Wi7-KY-jyP"/>
-                        <segue destination="pUr-r3-wfc" kind="show" identifier="login" id="1Gj-zh-ZxO"/>
-                        <segue destination="S8G-tq-aI7" kind="show" identifier="registration" id="dqj-fs-0D0"/>
+                        <segue destination="Qqw-OO-IXw" kind="show" identifier="login" id="1Gj-zh-ZxO"/>
+                        <segue destination="Ufr-IE-ygl" kind="show" identifier="registration" id="dqj-fs-0D0"/>
                         <segue destination="0vm-In-XY6" kind="show" identifier="donate" id="I5g-yn-FbE"/>
                         <segue destination="TXF-CA-Wa7" kind="show" identifier="cart" id="tGk-Ze-BVt"/>
                     </connections>
@@ -1002,15 +992,47 @@ Schließen Sie sich unserem Leserklub an und genießen Sie  Ihre beliebte Büche
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lr-JH-nCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2795.625" y="-1224.2957746478874"/>
+            <point key="canvasLocation" x="4790.625" y="-1224.2957746478874"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FG0-gz-8Ye">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qqw-OO-IXw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="1yv-tm-FyU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kbI-uX-O0K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pUr-r3-wfc" kind="relationship" relationship="rootViewController" id="8Bb-Sv-HEJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h2W-ie-ktr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="451.875" y="-1224.2957746478874"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wl1-xF-t1S">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ufr-IE-ygl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="1Pr-eX-1zB"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GBz-ui-5cg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="S8G-tq-aI7" kind="relationship" relationship="rootViewController" id="sgO-JE-aPt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SOa-Fr-pSc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2259.375" y="-1224.2957746478874"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="tGk-Ze-BVt"/>
-        <segue reference="4ty-DA-F2g"/>
-        <segue reference="2ak-G8-IfE"/>
-        <segue reference="i69-T5-41z"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="VIP" width="92" height="65.5"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>

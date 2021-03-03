@@ -23,10 +23,7 @@ class HomeViewController : BaseViewController, NSFetchedResultsControllerDelegat
         }
     }
     var book:Book?
-    
 
-
-    
     // properties for core data management
     private let context = DataManager.shared.context
     private var fetchResults : NSFetchedResultsController<NSManagedObject>?
@@ -41,7 +38,7 @@ class HomeViewController : BaseViewController, NSFetchedResultsControllerDelegat
     private let alertService = AlertService()
     
     @IBAction func vipButton(_ sender: Any) {
-        if let tabController = UIApplication.shared.keyWindow?.rootViewController as? TabBarViewController {
+        if let tabController = UIApplication.shared.windows.first?.rootViewController as? TabBarViewController {
             tabController.view.backgroundColor = Colors.defaultBackgroundColor
             if let vc = tabController.viewControllers?[2] {
                 _ = tabController.tabBarController(tabController, shouldSelect: vc)
@@ -64,7 +61,6 @@ class HomeViewController : BaseViewController, NSFetchedResultsControllerDelegat
     }
     @IBAction func menuButtonAction(_ sender: Any) {
         if let vc = (UIApplication.shared.delegate as? AppDelegate)?.getSideMenu() {
-            sideMenuController = vc
             let menu = SideMenuNavigationController(rootViewController: vc)
             menu.leftSide = true
             if self.traitCollection.userInterfaceStyle == .dark {
@@ -167,6 +163,14 @@ class HomeViewController : BaseViewController, NSFetchedResultsControllerDelegat
         } else {
             return 1
         }
+    }
+    
+    // MARK: - TEMPORARY
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self), for: indexPath) as! BookTableViewCell
+        let vc = LoginViewController.get()
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

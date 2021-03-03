@@ -17,7 +17,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBAction func registerButton(_ sender: Any) {
     }
     @IBOutlet weak var registerButtonOutlet: UIButton!
+    @IBAction func backButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     var textFieldTester = Int()
+    private var deviceType : DeviceType?
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -57,10 +61,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func textField(_ sender: AnyObject) {
         self.view.endEditing(true);
-    }// for dismiss of keyboard
+    }
     
     func styleViews(){
-        registerButtonOutlet.backgroundColor = Colors.blueDefault
+        deviceType = self.view.getDeviceType()
+        self.title = "Registrieren"
+        registerButtonOutlet.backgroundColor = deviceType != .macCatalyst ? Colors.blueDefault : .clear
+        registerButtonOutlet.setTitleColor(deviceType != .macCatalyst ? Colors.white : Colors.defaultFontColor, for: .normal)
         registerButtonOutlet.layer.cornerRadius = CornerRadius.medium
     }
     

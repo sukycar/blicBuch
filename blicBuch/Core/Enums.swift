@@ -54,6 +54,17 @@ enum LabelType{
         }
     }
     
+    var zPosition: CGFloat? {
+        switch self {
+        case .sideMenuCounterLabel:
+            return 2
+        case .sideMenuTitle:
+            return 2
+        default:
+            return 0
+        }
+    }
+    
     var textAlignment:NSTextAlignment?{
             return nil
     }
@@ -195,6 +206,7 @@ enum GeneralMenuCellType: CaseIterable{
             return "Cart".localized()
         }
     }
+    
     
     var imageName: String {
         switch self {

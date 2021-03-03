@@ -73,6 +73,8 @@ extension UIViewController {
                 self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
             } onCompleted: {
             }.disposed(by: disposeBag)
+        } else {
+            return
         }
     }
     

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -74,8 +73,15 @@
                     <constraint firstItem="tQs-oF-fIs" firstAttribute="leading" secondItem="r68-IS-AQU" secondAttribute="leading" constant="-2" id="sE5-bU-4ea"/>
                     <constraint firstAttribute="trailing" secondItem="1IP-pK-DSJ" secondAttribute="trailing" constant="16" id="tne-tK-cgD"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isAccessibilityElement" value="YES"/>
+                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="customCellACIdentifier"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <accessibility key="accessibilityConfiguration" identifier="bookTableViewCell">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
             <connections>
                 <outlet property="authorLabel" destination="ELw-8v-XFh" id="O2W-lL-JQI"/>
                 <outlet property="genreLabel" destination="QNC-gf-4sW" id="ZGq-oR-Vwj"/>

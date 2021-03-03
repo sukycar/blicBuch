@@ -54,7 +54,7 @@ class SideMenuViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.device = self.view.getDeviceType()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadUsername), name: NSNotification.Name(rawValue: "logedIn"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(reloadUsername), name: NSNotification.Name(rawValue: "logedIn"), object: nil)
         self.view.layer.cornerRadius = 15
         self.view.clipsToBounds = true
         self.view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
@@ -82,6 +82,8 @@ class SideMenuViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.mainView.isAccessibilityElement = true
+        self.mainView.accessibilityIdentifier = "mainView"
         self.cartItemsCount = self.cartItems?.count ?? 0
         UsersService.getCartBooks(userId: self.userId).subscribe { [weak self](cartArray) in
             self?.lockedBooks = cartArray
@@ -90,6 +92,11 @@ class SideMenuViewController: UIViewController{
             self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
         } onCompleted: {
         }.disposed(by: self.disposeBag)
+    }
+    
+    func count() -> Int{
+        let x = 4 + 5
+        return x
     }
     
     private func configureCells(){
@@ -153,8 +160,8 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         default:
             return 50
         }
-        
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let type = cells[indexPath.row]
         switch type {
@@ -177,8 +184,11 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
             if generalType == .login {
                 let logedIn = blicBuchUserDefaults.get(.logedIn) as? Bool
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
+                    
                     cell.sideMenuCell = generalType
                     cell.setCell(title: logedIn == false ? generalType.title : "Logout", imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
+                    cell.isAccessibilityElement = true
+                    cell.accessibilityIdentifier = "sideMenuLoginCell"
                     cell.layer.backgroundColor = UIColor.clear.cgColor
                     cell.contentView.backgroundColor = .clear
                     cell.backgroundColor = .clear
@@ -191,18 +201,18 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                                 for book in books {
                                     BooksService.lockBook(bookId:book.id, lockStatus: .unlocked).subscribe {(unlocked) in
                                         book.locked = LockStatus.unlocked.rawValue
+                                        try! self?.context?.save()
                                     } onError: { (error) in
                                         self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
                                     } onCompleted: {
                                     }.disposed(by: cell.disposeBag)
                                 }
-                                try! self?.context?.save()
                                 UsersService.updateCartBooks(userId: self?.userId ?? 0, bookIDs: [""]).subscribe { (updated) in
-                                    //
+                                        self?.cartItemsCount = 0
+                                        self?.dismiss(animated: true, completion: nil)
                                 } onError: { (error) in
                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
                                 } onCompleted: {
-                                    //
                                 }.disposed(by: cell.disposeBag)
                             }
                             self?.getAlert(errorString: "Izlogovani ste!", errorColor: Colors.orange)
@@ -215,15 +225,17 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                             self?.reloadUsername()
                         } else {
                             let vc = LoginViewController.get()
+                            let nav = UINavigationController(rootViewController: vc)
                             self?.transition = CustomTransition2(from: self ?? SideMenuViewController(), to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
-                            vc.transitioningDelegate = self?.transition
-                            vc.presentedViewController?.dismiss(animated: true, completion: nil)
-                            vc.modalPresentationStyle = .custom
-                            self?.present(vc, animated: true, completion: nil)
+                            nav.transitioningDelegate = self?.transition
+                            nav.presentedViewController?.dismiss(animated: true, completion: nil)
+                            nav.modalPresentationStyle = .custom
+                            let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.navigationTitle) ?? UIFont.systemFont(ofSize: FontSize.navigationTitle), NSAttributedString.Key.foregroundColor : Colors.blueDefault] as [NSAttributedString.Key : Any]
+                            nav.navigationBar.titleTextAttributes = attributes
+                            self?.present(nav, animated: true, completion: nil)
                             return
                         }
                     }).disposed(by: cell.disposeBag)
-                    
                     return cell
                 }
                 
@@ -279,11 +291,14 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                 return
             case .register:
                 let vc = RegisterViewController.get()
+                let nav = UINavigationController(rootViewController: vc)
                 self.transition = CustomTransition2(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
-                vc.transitioningDelegate = self.transition
-                vc.presentedViewController?.dismiss(animated: true, completion: nil)
-                vc.modalPresentationStyle = .custom
-                self.present(vc, animated: true, completion: nil)
+                nav.transitioningDelegate = self.transition
+                nav.presentedViewController?.dismiss(animated: true, completion: nil)
+                nav.modalPresentationStyle = .custom
+                let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.navigationTitle) ?? UIFont.systemFont(ofSize: FontSize.navigationTitle), NSAttributedString.Key.foregroundColor : Colors.blueDefault] as [NSAttributedString.Key : Any]
+                nav.navigationBar.titleTextAttributes = attributes
+                self.present(nav, animated: true, completion: nil)
                 return
             case .contact:
                 DispatchQueue.main.async {[weak self] in
