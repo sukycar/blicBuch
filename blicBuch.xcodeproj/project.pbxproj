@@ -51,6 +51,9 @@
 		0AFA045A24674D010096CCCD /* blicBuch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */; };
 		1F0025A525E81C9800388CA5 /* UIView + globalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0025A425E81C9800388CA5 /* UIView + globalFrame.swift */; };
 		1F0025A825E81D2600388CA5 /* UIView + border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0025A725E81D2600388CA5 /* UIView + border.swift */; };
+		1F29F8AC25F294CD0086331B /* BlueCloudCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8AB25F294CD0086331B /* BlueCloudCellData.swift */; };
+		1F29F8B025F295DC0086331B /* BlueCloudCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8AF25F295DC0086331B /* BlueCloudCellViewModel.swift */; };
+		1F29F8B425F2C4520086331B /* BlueCloudCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8B325F2C4520086331B /* BlueCloudCellModel.swift */; };
 		1F2DBA3D25E64AC400F4104B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */; };
 		1F2DBA4625E6614D00F4104B /* BibliotechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DBA4525E6614D00F4104B /* BibliotechViewController.swift */; };
 		1F444B9E25A475890046EB5F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444B9D25A475890046EB5F /* Enums.swift */; };
@@ -64,9 +67,10 @@
 		1F73897925E530E8003EFECC /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897525E530E8003EFECC /* User+CoreDataProperties.swift */; };
 		1F73897A25E530E8003EFECC /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897625E530E8003EFECC /* Book+CoreDataClass.swift */; };
 		1F73897F25E53228003EFECC /* GenreTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897E25E53228003EFECC /* GenreTableViewModel.swift */; };
-		1F73898225E5903A003EFECC /* CustomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73898125E5903A003EFECC /* CustomCellViewModel.swift */; };
+		1F73898225E5903A003EFECC /* BookCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73898125E5903A003EFECC /* BookCellViewModel.swift */; };
 		1F84715B257CD792008D759C /* blicBuchUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */; };
 		1F9592EA25AEEB9B00AD065F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9592E925AEEB9B00AD065F /* UsersService.swift */; };
+		1F9B7CBB25F1016E0020BD40 /* VipViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B7CBA25F1016E0020BD40 /* VipViewControllerViewModel.swift */; };
 		1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */; };
 		1FA4CBDF2587848300730984 /* UIView + loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CBDE2587848300730984 /* UIView + loader.swift */; };
 		1FAE4E2725E97BF300E7A774 /* UIResponder + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAE4E2625E97BF300E7A774 /* UIResponder + extensions.swift */; };
@@ -103,10 +107,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A028F8D242FC520005AEF14 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = blicBuch/ViewControllers/InfoViewController.swift; sourceTree = SOURCE_ROOT; };
-		0A196A3A2396653D00E2DF6C /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContactViewController.swift; path = blicBuch/ViewControllers/ContactViewController.swift; sourceTree = SOURCE_ROOT; };
+		0A028F8D242FC520005AEF14 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		0A196A3A2396653D00E2DF6C /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		0A1E326B2463D3DB00AD388C /* BooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksService.swift; sourceTree = "<group>"; };
-		0A1F61CA23D06166005C527A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = blicBuch/ViewControllers/RegisterViewController.swift; sourceTree = SOURCE_ROOT; };
+		0A1F61CA23D06166005C527A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0A27E3D924634C0F00DE117C /* FormatterHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterHelpers.swift; sourceTree = "<group>"; };
 		0A2C199623F4A45400185D3B /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A2DB41F238975880070DAE5 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -118,8 +122,8 @@
 		0A333F5A23806EFD00B5A39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A333F5C23806EFD00B5A39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A3A663C23C12393005BD1CF /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
-		0A4B2D3223F353A900D1A5E2 /* BlueCloudCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlueCloudCell.swift; path = blicBuch/Cells/BlueCloudCell.swift; sourceTree = SOURCE_ROOT; };
-		0A4B2D3323F353AA00D1A5E2 /* BlueCloudCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BlueCloudCell.xib; path = blicBuch/Cells/BlueCloudCell.xib; sourceTree = SOURCE_ROOT; };
+		0A4B2D3223F353A900D1A5E2 /* BlueCloudCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCell.swift; sourceTree = "<group>"; };
+		0A4B2D3323F353AA00D1A5E2 /* BlueCloudCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlueCloudCell.xib; sourceTree = "<group>"; };
 		0A75196624668A150089DED8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		0A75196824668A240089DED8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0A75196C24668DF80089DED8 /* Enviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
@@ -128,24 +132,24 @@
 		0A7519712466A8F90089DED8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		0A7F74E72467FE960064AE39 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		0A7F74E9246802C20064AE39 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
-		0A82E6D024F131CD003E00F6 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderTableViewCell.swift; path = blicBuch/Cells/OrderTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		0A82E6D124F131CD003E00F6 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OrderTableViewCell.xib; path = blicBuch/Cells/OrderTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		0A86432B24BB026000EF05CD /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartViewController.swift; path = blicBuch/ViewControllers/CartViewController.swift; sourceTree = SOURCE_ROOT; };
-		0A8E4F4B249DE7BC00C8B38A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = blicBuch/ViewControllers/LoadingViewController.swift; sourceTree = SOURCE_ROOT; };
+		0A82E6D024F131CD003E00F6 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		0A82E6D124F131CD003E00F6 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		0A86432B24BB026000EF05CD /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		0A8E4F4B249DE7BC00C8B38A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		0A8E4F4F249DEE8F00C8B38A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0A8F1FB62381EF2200ABE11F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		0A9D202723B285D000C4476F /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GenreViewController.swift; path = blicBuch/ViewControllers/GenreViewController.swift; sourceTree = SOURCE_ROOT; };
+		0A9D202723B285D000C4476F /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
 		0AA7BCB1240F97C300A06F6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0AADA21A23BE925E00648835 /* VIPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPViewController.swift; sourceTree = "<group>"; };
-		0AB938D62483CD6E009A9C0D /* BookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookTableViewCell.swift; path = blicBuch/Cells/BookTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		0AB938D72483CD72009A9C0D /* BookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookTableViewCell.xib; path = blicBuch/Cells/BookTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryTableViewCell.swift; path = blicBuch/Cells/CategoryTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CategoryTableViewCell.xib; path = blicBuch/Cells/CategoryTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		0AB938D62483CD6E009A9C0D /* BookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		0AB938D72483CD72009A9C0D /* BookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
+		0AB93D9A23AFB113006CAE59 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		0AB93D9B23AFB113006CAE59 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		0ABC0E13238A9C0300874626 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		0ABC0E15238B106400874626 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		0AC2B7F9238DC0BC008D4126 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = blicBuch/ViewControllers/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0AEEE89023C5CDC700240B90 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		0AEEE89223C5DF1300240B90 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		0AF1EEA12483EA8F000AB7DC /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -153,7 +157,10 @@
 		1F0025A425E81C9800388CA5 /* UIView + globalFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + globalFrame.swift"; sourceTree = "<group>"; };
 		1F0025A725E81D2600388CA5 /* UIView + border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + border.swift"; sourceTree = "<group>"; };
 		1F24437025A2482300BC99F8 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
-		1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = blicBuch/ViewControllers/BaseViewController.swift; sourceTree = SOURCE_ROOT; };
+		1F29F8AB25F294CD0086331B /* BlueCloudCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCellData.swift; sourceTree = "<group>"; };
+		1F29F8AF25F295DC0086331B /* BlueCloudCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCellViewModel.swift; sourceTree = "<group>"; };
+		1F29F8B325F2C4520086331B /* BlueCloudCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCellModel.swift; sourceTree = "<group>"; };
+		1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F2DBA4525E6614D00F4104B /* BibliotechViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibliotechViewController.swift; sourceTree = "<group>"; };
 		1F444B9D25A475890046EB5F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseAlertViewController.swift; sourceTree = "<group>"; };
@@ -169,22 +176,23 @@
 		1F73897525E530E8003EFECC /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1F73897625E530E8003EFECC /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1F73897E25E53228003EFECC /* GenreTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewModel.swift; sourceTree = "<group>"; };
-		1F73898125E5903A003EFECC /* CustomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellViewModel.swift; sourceTree = "<group>"; };
+		1F73898125E5903A003EFECC /* BookCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellViewModel.swift; sourceTree = "<group>"; };
 		1F84715A257CD792008D759C /* blicBuchUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = blicBuchUserDefaults.swift; path = blicBuch/Configuration/blicBuchUserDefaults.swift; sourceTree = SOURCE_ROOT; };
 		1F9592E925AEEB9B00AD065F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		1F9B7CBA25F1016E0020BD40 /* VipViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipViewControllerViewModel.swift; sourceTree = "<group>"; };
 		1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		1FA4CBDE2587848300730984 /* UIView + loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + loader.swift"; sourceTree = "<group>"; };
 		1FAE4E2625E97BF300E7A774 /* UIResponder + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder + extensions.swift"; sourceTree = "<group>"; };
-		1FB1B60D25AD828300AD6AE4 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyTableViewCell.swift; path = blicBuch/Cells/EmptyTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		1FB1B60E25AD828300AD6AE4 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EmptyTableViewCell.xib; path = blicBuch/Cells/EmptyTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		1FB1B60D25AD828300AD6AE4 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		1FB1B60E25AD828300AD6AE4 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		1FBE35FF25EFDAA900681F0A /* InfoViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewData.swift; sourceTree = "<group>"; };
 		1FBE360525EFDB8200681F0A /* InfoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewViewModel.swift; sourceTree = "<group>"; };
 		1FBE360C25EFE00F00681F0A /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
 		1FD71E58258B338B004435EA /* UIViewController + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + extensions.swift"; sourceTree = "<group>"; };
 		1FE8B5072584CA1C00C3A47A /* SideMenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuService.swift; sourceTree = "<group>"; };
 		1FE8B50A2584CA7600C3A47A /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
-		1FE8B50D2584CB3600C3A47A /* SideMenuMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideMenuMemberCell.swift; path = blicBuch/Cells/SideMenuMemberCell.swift; sourceTree = SOURCE_ROOT; };
-		1FE8B5102584CBE400C3A47A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = blicBuch/Cells/TableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		1FE8B50D2584CB3600C3A47A /* SideMenuMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMemberCell.swift; sourceTree = "<group>"; };
+		1FE8B5102584CBE400C3A47A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1FE8B5132584CC8C00C3A47A /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		1FE8B5172584CEF400C3A47A /* CustomTransition2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition2.swift; sourceTree = "<group>"; };
 		1FE8B51A2584CFBF00C3A47A /* ToasterLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterLabel.swift; sourceTree = "<group>"; };
@@ -192,7 +200,7 @@
 		1FE8B5212584D19A00C3A47A /* AppDelegate + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + extensions.swift"; sourceTree = "<group>"; };
 		1FE8B5242584D22500C3A47A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1FE8B5272584D45700C3A47A /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
-		1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SideMenuGeneralCell.swift; path = blicBuch/Cells/SideMenuGeneralCell.swift; sourceTree = SOURCE_ROOT; };
+		1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuGeneralCell.swift; sourceTree = "<group>"; };
 		1FF613EF25AC5CB300ACCE25 /* UIColor + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + extensions.swift"; sourceTree = "<group>"; };
 		1FFC9F6225CE986400451747 /* PROD.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PROD.xcconfig; sourceTree = "<group>"; };
 		E3CA839433651EB77BF51720 /* Pods_blicBuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blicBuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,13 +292,12 @@
 				1F553EB825E8FFED00747615 /* blitzBuch.entitlements */,
 				1FE8B5162584CEE200C3A47A /* Constants */,
 				0A27E3CF2463488F00DE117C /* Core */,
-				1F73897D25E531A5003EFECC /* ViewModel */,
-				0ADDD17C2517D9B3003626DE /* ViewControllers */,
+				1F73897D25E531A5003EFECC /* ViewModels */,
+				0ADDD17C2517D9B3003626DE /* Views */,
 				0A75196B24668DE30089DED8 /* Configuration */,
 				0A751965246689ED0089DED8 /* Network */,
 				0A1E326A2463D3AB00AD388C /* Service */,
 				0A27E3D824634BDE00DE117C /* Extensions */,
-				0A4C791D2517CA5D00FD2154 /* Cells */,
 				0A333F4B23806EE800B5A39B /* AppDelegate.swift */,
 				0A333F4D23806EE800B5A39B /* SceneDelegate.swift */,
 				0A333F5123806EE800B5A39B /* Main.storyboard */,
@@ -356,22 +363,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		0ADDD17C2517D9B3003626DE /* ViewControllers */ = {
+		0ADDD17C2517D9B3003626DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				0ADDD17D2517DA3B003626DE /* Alert */,
 				1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */,
 				1F2DBA4325E660FF00F4104B /* MainTabViewControllers */,
-				0A9D202723B285D000C4476F /* GenreViewController.swift */,
-				0A196A3A2396653D00E2DF6C /* ContactViewController.swift */,
-				0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */,
-				0A1F61CA23D06166005C527A /* RegisterViewController.swift */,
-				0A028F8D242FC520005AEF14 /* InfoViewController.swift */,
-				0A8E4F4B249DE7BC00C8B38A /* LoadingViewController.swift */,
-				0A86432B24BB026000EF05CD /* CartViewController.swift */,
-				1FE8B50A2584CA7600C3A47A /* SideMenuViewController.swift */,
+				1F9F0E8525F28650009DAE58 /* ViewControllers */,
+				0A4C791D2517CA5D00FD2154 /* Cells */,
 			);
-			path = ViewControllers;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		0ADDD17D2517DA3B003626DE /* Alert */ = {
@@ -411,10 +412,10 @@
 				1F2DBA4525E6614D00F4104B /* BibliotechViewController.swift */,
 				0ADFC2112393E1CB00BB8702 /* SearchViewController.swift */,
 				0AADA21A23BE925E00648835 /* VIPViewController.swift */,
+				0A028F8D242FC520005AEF14 /* InfoViewController.swift */,
 			);
-			name = MainTabViewControllers;
-			path = blicBuch/ViewControllers/MainTabViewControllers;
-			sourceTree = SOURCE_ROOT;
+			path = MainTabViewControllers;
+			sourceTree = "<group>";
 		};
 		1F6F13D425ED522C0039F6FB /* blicBuchUITests */ = {
 			isa = PBXGroup;
@@ -444,18 +445,43 @@
 				1F73897525E530E8003EFECC /* User+CoreDataProperties.swift */,
 				0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */,
 				1FBE360C25EFE00F00681F0A /* InfoViewModel.swift */,
+				1F29F8B325F2C4520086331B /* BlueCloudCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1F73897D25E531A5003EFECC /* ViewModel */ = {
+		1F73897D25E531A5003EFECC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				1F73897E25E53228003EFECC /* GenreTableViewModel.swift */,
-				1F73898125E5903A003EFECC /* CustomCellViewModel.swift */,
 				1FBE360525EFDB8200681F0A /* InfoViewViewModel.swift */,
+				1F9B7CBA25F1016E0020BD40 /* VipViewControllerViewModel.swift */,
+				1F9F0E7425F2852F009DAE58 /* CellViewModels */,
 			);
-			path = ViewModel;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1F9F0E7425F2852F009DAE58 /* CellViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1F29F8AF25F295DC0086331B /* BlueCloudCellViewModel.swift */,
+				1F73898125E5903A003EFECC /* BookCellViewModel.swift */,
+			);
+			path = CellViewModels;
+			sourceTree = "<group>";
+		};
+		1F9F0E8525F28650009DAE58 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0A9D202723B285D000C4476F /* GenreViewController.swift */,
+				0A196A3A2396653D00E2DF6C /* ContactViewController.swift */,
+				0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */,
+				0A1F61CA23D06166005C527A /* RegisterViewController.swift */,
+				0A8E4F4B249DE7BC00C8B38A /* LoadingViewController.swift */,
+				0A86432B24BB026000EF05CD /* CartViewController.swift */,
+				1FE8B50A2584CA7600C3A47A /* SideMenuViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		1FA4CB8B25877E0F00730984 /* Libraries */ = {
@@ -471,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				1FBE35FF25EFDAA900681F0A /* InfoViewData.swift */,
+				1F29F8AB25F294CD0086331B /* BlueCloudCellData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -688,10 +715,12 @@
 				0A75196D24668DF80089DED8 /* Enviroment.swift in Sources */,
 				0A7F74E82467FE960064AE39 /* NetworkingService.swift in Sources */,
 				0A75196724668A150089DED8 /* Router.swift in Sources */,
+				1F29F8AC25F294CD0086331B /* BlueCloudCellData.swift in Sources */,
 				1FE8B50E2584CB3600C3A47A /* SideMenuMemberCell.swift in Sources */,
 				0A9D202823B285D000C4476F /* GenreViewController.swift in Sources */,
 				1F0025A525E81C9800388CA5 /* UIView + globalFrame.swift in Sources */,
 				1FE8B5252584D22500C3A47A /* Constants.swift in Sources */,
+				1F9B7CBB25F1016E0020BD40 /* VipViewControllerViewModel.swift in Sources */,
 				1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */,
 				0A8E4F4C249DE7BC00C8B38A /* LoadingViewController.swift in Sources */,
 				1FE8B51F2584D05200C3A47A /* BaseLabel.swift in Sources */,
@@ -700,6 +729,7 @@
 				1FBE360025EFDAA900681F0A /* InfoViewData.swift in Sources */,
 				1F2DBA3D25E64AC400F4104B /* BaseViewController.swift in Sources */,
 				0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */,
+				1F29F8B425F2C4520086331B /* BlueCloudCellModel.swift in Sources */,
 				0A86432C24BB026000EF05CD /* CartViewController.swift in Sources */,
 				1F73897A25E530E8003EFECC /* Book+CoreDataClass.swift in Sources */,
 				1F2DBA4625E6614D00F4104B /* BibliotechViewController.swift in Sources */,
@@ -708,12 +738,13 @@
 				1F553EC925E93EA400747615 /* UIView + device.swift in Sources */,
 				1FE8B5282584D45700C3A47A /* String + extension.swift in Sources */,
 				0A1F61CB23D06166005C527A /* RegisterViewController.swift in Sources */,
-				1F73898225E5903A003EFECC /* CustomCellViewModel.swift in Sources */,
+				1F73898225E5903A003EFECC /* BookCellViewModel.swift in Sources */,
 				1FAE4E2725E97BF300E7A774 /* UIResponder + extensions.swift in Sources */,
 				1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */,
 				0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */,
 				0AF1EEA22483EA8F000AB7DC /* Colors.swift in Sources */,
 				0A7519722466A8F90089DED8 /* DataManager.swift in Sources */,
+				1F29F8B025F295DC0086331B /* BlueCloudCellViewModel.swift in Sources */,
 				1F73897925E530E8003EFECC /* User+CoreDataProperties.swift in Sources */,
 				1FE8B5082584CA1C00C3A47A /* SideMenuService.swift in Sources */,
 				0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */,
