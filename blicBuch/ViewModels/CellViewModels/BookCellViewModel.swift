@@ -50,5 +50,19 @@ class BookCellViewModel {
         return self.vip == true ? UIImage(named: "img_vip_cover")! : UIImage()
     }
     
+    func setLayout(nameLabel: UILabel, authorLabel: UILabel, genreLabel: UILabel, button: UIButton) {
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        nameLabel.textColor = Colors.Font.blue
+        authorLabel.font = UIFont.italicSystemFont(ofSize: 13)
+        authorLabel.textColor = Colors.tint
+        genreLabel.font = UIFont.systemFont(ofSize: 11)
+        genreLabel.textColor = Colors.Font.gray
+        button.backgroundColor = .none
+        button.layer.borderWidth = 1.5
+        button.layer.borderColor = .none
+        button.layer.cornerRadius = 3.5
+        button.layer.borderColor = Colors.white.cgColor
+    }
+    
     
 }

@@ -30,6 +30,9 @@ class BibliotechViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        dataSource.sort { (String1, String2) -> Bool in
+            String1 < String2
+        }
         if let path = genreTable.indexPathForSelectedRow {
             genreTable.deselectRow(at: path, animated: true)
         }
@@ -41,6 +44,15 @@ class BibliotechViewController: BaseViewController {
         genreTable.tableFooterView = UIView()
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -50,7 +62,7 @@ class BibliotechViewController: BaseViewController {
         
         let model = dataSource[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing:CategoryTableViewCell.self), for:indexPath) as! CategoryTableViewCell
-        cell.contentLabel.text = model
+        cell.set(with: model)
         return cell
     }
     

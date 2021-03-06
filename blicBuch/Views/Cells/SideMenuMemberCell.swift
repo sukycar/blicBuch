@@ -12,10 +12,10 @@ import RxSwift
 class SideMenuMemberCell: TableViewCell {
 
     @IBOutlet weak var usernameLabel: Label!
+    var viewModel : SideMenuMemberCellViewModel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.showLeftLine = false
         self.showRightLine = false
         self.showTopLine = false
@@ -28,7 +28,9 @@ class SideMenuMemberCell: TableViewCell {
     }
     
     func setCell(name: String?) {
-        usernameLabel.type = (.sideMenuTitle, name)
+        let model = SideMenuMemberCellModel(userName: name ?? "--")
+        self.viewModel = SideMenuMemberCellViewModel(sideMenuMemberCell: model)
+        usernameLabel.type = (.sideMenuTitle, viewModel.userName)
     }
     
    

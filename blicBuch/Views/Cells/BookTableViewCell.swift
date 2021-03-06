@@ -33,14 +33,16 @@ class BookTableViewCell: TableViewCell {
             imgView.layer.shadowRadius = 6
             imgView.layer.shadowOpacity = 1
             imgView.layer.shadowOffset = CGSize(width: 0, height: 0)
-            self.layer.shadowPath = UIBezierPath(rect: self.bounds.inset(by: .zero)).cgPath
         }
     }
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet weak var orderButton: UIButton!
-    
     private var bookId: Int32?
-    private var viewModel : BookCellViewModel?
+    private var viewModel : BookCellViewModel? {
+        didSet {
+            viewModel?.setLayout(nameLabel: self.nameLabel, authorLabel: self.authorLabel, genreLabel: self.genreLabel, button: self.orderButton)
+        }
+    }
     var cellDelegate: AlertMe?
     var disposeBag = DisposeBag()
     
@@ -52,22 +54,7 @@ class BookTableViewCell: TableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.styleViews()
         self.cellDelegate?.onClick()
-    }
-    
-    func styleViews(){
-        self.nameLabel.font = UIFont.boldSystemFont(ofSize: 13)
-        self.nameLabel.textColor = Colors.Font.blue
-        self.authorLabel.font = UIFont.italicSystemFont(ofSize: 13)
-        self.authorLabel.textColor = Colors.tint
-        self.genreLabel.font = UIFont.systemFont(ofSize: 11)
-        self.genreLabel.textColor = Colors.Font.gray
-        orderButton.backgroundColor = .none
-        orderButton.layer.borderWidth = 1.5
-        orderButton.layer.borderColor = .none
-        orderButton.layer.cornerRadius = 3.5
-        orderButton.layer.borderColor = Colors.white.cgColor
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -85,7 +72,6 @@ class BookTableViewCell: TableViewCell {
         } else if viewModel?.vip == false {
             vipHolderImageView.isHidden = true
         }
-        
         if let url = URL(string: (viewModel?.bookImage)!) {
             self.imgView.kf.indicatorType = .activity
             self.imgView.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.3))], progressBlock: nil)}

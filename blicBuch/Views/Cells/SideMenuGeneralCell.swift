@@ -21,9 +21,7 @@ class SideMenuGeneralCell: TableViewCell {
     var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
+        super.awakeFromNib()        
     }
 
     

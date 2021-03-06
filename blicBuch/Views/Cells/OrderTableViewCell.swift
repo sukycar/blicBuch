@@ -9,35 +9,34 @@
 import UIKit
 import RxSwift
 
-class OrderTableViewCell: UITableViewCell {
+class OrderTableViewCell: TableViewCell {
     
-    @IBOutlet weak var sumLabel: UILabel!
-    @IBOutlet weak var sumPriceLabel: UILabel!
+    @IBOutlet weak var serviceTypeLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var orderButton: UIButton!
     var disposeBag = DisposeBag()
     private var deviceType: DeviceType?
+    private var viewModel : OrderCellViewModel! {
+        didSet {
+            self.serviceTypeLabel.text = self.viewModel.serviceTypeText
+            self.priceLabel.text = self.viewModel.priceText
+            self.orderButton.setTitle(self.viewModel.orderButtonText, for: .normal)
+            self.viewModel.configureButton(for: orderButton, deviceType: deviceType ?? .iPhone)
+            self.serviceTypeLabel.font = viewModel.serviceTypeLabelFont
+            self.priceLabel.font = viewModel.priceLabelFont
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        styleViews()
+        self.deviceType = self.getDeviceType()
+        let cellModel = OrderCellModel(serviceText: OrderCellData.serviceText, priceText: OrderCellData.priceText, orderButtonText: OrderCellData.orderButtonText)
+        viewModel = OrderCellViewModel(model: cellModel)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-    
-    func styleViews(){
-        self.deviceType = self.getDeviceType()
-        self.sumLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        self.sumLabel.text = "Lieferung"
-        self.sumPriceLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        self.sumPriceLabel.text = "EUR 4,20"
-        self.orderButton.layer.cornerRadius = 6
-        self.orderButton.clipsToBounds = true
-        self.orderButton.backgroundColor = deviceType != .macCatalyst ? Colors.blueDefault : .clear
-        self.orderButton.tintColor = Colors.white
-        self.orderButton.setTitle("Senden", for: .normal)
     }
     
     override func prepareForReuse() {

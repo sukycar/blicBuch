@@ -57,6 +57,13 @@
 		1F2DBA3D25E64AC400F4104B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */; };
 		1F2DBA4625E6614D00F4104B /* BibliotechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DBA4525E6614D00F4104B /* BibliotechViewController.swift */; };
 		1F444B9E25A475890046EB5F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444B9D25A475890046EB5F /* Enums.swift */; };
+		1F50A9F325F395B100121AD4 /* OrderCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50A9F225F395B100121AD4 /* OrderCellData.swift */; };
+		1F50A9F725F3973400121AD4 /* OrderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50A9F625F3973400121AD4 /* OrderCellModel.swift */; };
+		1F50A9FB25F397FA00121AD4 /* OrderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50A9FA25F397FA00121AD4 /* OrderCellViewModel.swift */; };
+		1F50AA0B25F3E5E900121AD4 /* CategoryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50AA0A25F3E5E900121AD4 /* CategoryCellModel.swift */; };
+		1F50AA0F25F3E67700121AD4 /* CategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50AA0E25F3E67700121AD4 /* CategoryCellViewModel.swift */; };
+		1F50AA1625F4128B00121AD4 /* SideMenuMemberCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50AA1525F4128B00121AD4 /* SideMenuMemberCellModel.swift */; };
+		1F50AA1A25F4130500121AD4 /* SideMenuMemberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50AA1925F4130500121AD4 /* SideMenuMemberCellViewModel.swift */; };
 		1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */; };
 		1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E16925A200EA005B864F /* AlertButton.swift */; };
 		1F553EC925E93EA400747615 /* UIView + device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F553EC825E93EA400747615 /* UIView + device.swift */; };
@@ -163,6 +170,13 @@
 		1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F2DBA4525E6614D00F4104B /* BibliotechViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibliotechViewController.swift; sourceTree = "<group>"; };
 		1F444B9D25A475890046EB5F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		1F50A9F225F395B100121AD4 /* OrderCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellData.swift; sourceTree = "<group>"; };
+		1F50A9F625F3973400121AD4 /* OrderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellModel.swift; sourceTree = "<group>"; };
+		1F50A9FA25F397FA00121AD4 /* OrderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellViewModel.swift; sourceTree = "<group>"; };
+		1F50AA0A25F3E5E900121AD4 /* CategoryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellModel.swift; sourceTree = "<group>"; };
+		1F50AA0E25F3E67700121AD4 /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
+		1F50AA1525F4128B00121AD4 /* SideMenuMemberCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMemberCellModel.swift; sourceTree = "<group>"; };
+		1F50AA1925F4130500121AD4 /* SideMenuMemberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMemberCellViewModel.swift; sourceTree = "<group>"; };
 		1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseAlertViewController.swift; sourceTree = "<group>"; };
 		1F52E16925A200EA005B864F /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
 		1F553EB825E8FFED00747615 /* blitzBuch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = blitzBuch.entitlements; sourceTree = "<group>"; };
@@ -417,6 +431,17 @@
 			path = MainTabViewControllers;
 			sourceTree = "<group>";
 		};
+		1F50AA1225F4125100121AD4 /* CellsModel */ = {
+			isa = PBXGroup;
+			children = (
+				1F29F8B325F2C4520086331B /* BlueCloudCellModel.swift */,
+				1F50A9F625F3973400121AD4 /* OrderCellModel.swift */,
+				1F50AA0A25F3E5E900121AD4 /* CategoryCellModel.swift */,
+				1F50AA1525F4128B00121AD4 /* SideMenuMemberCellModel.swift */,
+			);
+			path = CellsModel;
+			sourceTree = "<group>";
+		};
 		1F6F13D425ED522C0039F6FB /* blicBuchUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,7 +470,7 @@
 				1F73897525E530E8003EFECC /* User+CoreDataProperties.swift */,
 				0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */,
 				1FBE360C25EFE00F00681F0A /* InfoViewModel.swift */,
-				1F29F8B325F2C4520086331B /* BlueCloudCellModel.swift */,
+				1F50AA1225F4125100121AD4 /* CellsModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -466,6 +491,9 @@
 			children = (
 				1F29F8AF25F295DC0086331B /* BlueCloudCellViewModel.swift */,
 				1F73898125E5903A003EFECC /* BookCellViewModel.swift */,
+				1F50A9FA25F397FA00121AD4 /* OrderCellViewModel.swift */,
+				1F50AA0E25F3E67700121AD4 /* CategoryCellViewModel.swift */,
+				1F50AA1925F4130500121AD4 /* SideMenuMemberCellViewModel.swift */,
 			);
 			path = CellViewModels;
 			sourceTree = "<group>";
@@ -498,6 +526,7 @@
 			children = (
 				1FBE35FF25EFDAA900681F0A /* InfoViewData.swift */,
 				1F29F8AB25F294CD0086331B /* BlueCloudCellData.swift */,
+				1F50A9F225F395B100121AD4 /* OrderCellData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -688,6 +717,7 @@
 				0A75196924668A250089DED8 /* API.swift in Sources */,
 				1F73897F25E53228003EFECC /* GenreTableViewModel.swift in Sources */,
 				1FE8B5222584D19A00C3A47A /* AppDelegate + extensions.swift in Sources */,
+				1F50A9FB25F397FA00121AD4 /* OrderCellViewModel.swift in Sources */,
 				0AADA21B23BE925E00648835 /* VIPViewController.swift in Sources */,
 				0AEEE89123C5CDC700240B90 /* AlertViewController.swift in Sources */,
 				0A4B2D3423F353AA00D1A5E2 /* BlueCloudCell.swift in Sources */,
@@ -698,6 +728,7 @@
 				1FE8B50B2584CA7600C3A47A /* SideMenuViewController.swift in Sources */,
 				1F73893F25E51CD3003EFECC /* MailHandler.swift in Sources */,
 				0A028F8E242FC520005AEF14 /* InfoViewController.swift in Sources */,
+				1F50AA0B25F3E5E900121AD4 /* CategoryCellModel.swift in Sources */,
 				1FE8B5182584CEF400C3A47A /* CustomTransition2.swift in Sources */,
 				1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */,
 				1FD71E59258B338B004435EA /* UIViewController + extensions.swift in Sources */,
@@ -713,6 +744,7 @@
 				1FE8B5142584CC8C00C3A47A /* Label.swift in Sources */,
 				0A8F1FB72381EF2200ABE11F /* HomeViewController.swift in Sources */,
 				0A75196D24668DF80089DED8 /* Enviroment.swift in Sources */,
+				1F50AA1A25F4130500121AD4 /* SideMenuMemberCellViewModel.swift in Sources */,
 				0A7F74E82467FE960064AE39 /* NetworkingService.swift in Sources */,
 				0A75196724668A150089DED8 /* Router.swift in Sources */,
 				1F29F8AC25F294CD0086331B /* BlueCloudCellData.swift in Sources */,
@@ -720,6 +752,7 @@
 				0A9D202823B285D000C4476F /* GenreViewController.swift in Sources */,
 				1F0025A525E81C9800388CA5 /* UIView + globalFrame.swift in Sources */,
 				1FE8B5252584D22500C3A47A /* Constants.swift in Sources */,
+				1F50AA1625F4128B00121AD4 /* SideMenuMemberCellModel.swift in Sources */,
 				1F9B7CBB25F1016E0020BD40 /* VipViewControllerViewModel.swift in Sources */,
 				1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */,
 				0A8E4F4C249DE7BC00C8B38A /* LoadingViewController.swift in Sources */,
@@ -733,6 +766,7 @@
 				0A86432C24BB026000EF05CD /* CartViewController.swift in Sources */,
 				1F73897A25E530E8003EFECC /* Book+CoreDataClass.swift in Sources */,
 				1F2DBA4625E6614D00F4104B /* BibliotechViewController.swift in Sources */,
+				1F50AA0F25F3E67700121AD4 /* CategoryCellViewModel.swift in Sources */,
 				1FA4CBDF2587848300730984 /* UIView + loader.swift in Sources */,
 				1FF613F025AC5CB300ACCE25 /* UIColor + extensions.swift in Sources */,
 				1F553EC925E93EA400747615 /* UIView + device.swift in Sources */,
@@ -751,11 +785,13 @@
 				1F9592EA25AEEB9B00AD065F /* UsersService.swift in Sources */,
 				1F444B9E25A475890046EB5F /* Enums.swift in Sources */,
 				0A7F74EA246802C20064AE39 /* PersistenceService.swift in Sources */,
+				1F50A9F325F395B100121AD4 /* OrderCellData.swift in Sources */,
 				1FE8B5112584CBE400C3A47A /* TableViewCell.swift in Sources */,
 				0A82E6D224F131CD003E00F6 /* OrderTableViewCell.swift in Sources */,
 				1FE8B51B2584CFBF00C3A47A /* ToasterLabel.swift in Sources */,
 				0A196A3B2396653D00E2DF6C /* ContactViewController.swift in Sources */,
 				1F84715B257CD792008D759C /* blicBuchUserDefaults.swift in Sources */,
+				1F50A9F725F3973400121AD4 /* OrderCellModel.swift in Sources */,
 				0AB93D9C23AFB113006CAE59 /* CategoryTableViewCell.swift in Sources */,
 				0AFA045A24674D010096CCCD /* blicBuch.xcdatamodeld in Sources */,
 			);

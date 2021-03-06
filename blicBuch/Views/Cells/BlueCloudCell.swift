@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BlueCloudCell: UITableViewCell {
+class BlueCloudCell: TableViewCell {
 
     @IBOutlet var imgView: UIImageView!
     private let viewModel = BlueCloudCellViewModel()
