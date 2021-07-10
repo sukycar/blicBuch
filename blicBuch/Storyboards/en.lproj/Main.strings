@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "LOGIN"; ObjectID = "0kX-as-1SL"; */
+"0kX-as-1SL.text" = "LOGIN";
+
+/* Class = "UIView"; accessibilityLabel = "upView"; ObjectID = "D0J-1i-e5p"; */
+"D0J-1i-e5p.accessibilityLabel" = "upView";
+
+/* Class = "UITabBarItem"; title = "Informationen"; ObjectID = "GE8-or-0xl"; */
+"GE8-or-0xl.title" = "Informationen";
+
+/* Class = "UITabBarItem"; title = "Bibliothek"; ObjectID = "J8S-b4-44G"; */
+"J8S-b4-44G.title" = "Bibliothek";
+
+/* Class = "UITabBarItem"; title = "VIP Member"; ObjectID = "MIC-TG-via"; */
+"MIC-TG-via.title" = "VIP Member";
+
+/* Class = "UILabel"; text = "DONATE"; ObjectID = "YxA-ZO-mOp"; */
+"YxA-ZO-mOp.text" = "DONATE";
+
+/* Class = "UITabBarItem"; title = "Suchen"; ObjectID = "kCg-Le-a1A"; */
+"kCg-Le-a1A.title" = "Suchen";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "r63-ao-GEM"; */
+"r63-ao-GEM.title" = "Home";
+
+/* Class = "UILabel"; text = "REGISTRATION"; ObjectID = "xDo-aX-SSq"; */
+"xDo-aX-SSq.text" = "REGISTRATION";
+
+/* Class = "UILabel"; text = "TEST"; ObjectID = "z6N-eR-L08"; */
+"z6N-eR-L08.text" = "TEST";

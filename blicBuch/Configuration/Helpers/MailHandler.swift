@@ -11,6 +11,7 @@ import MessageUI
 
 class MailHandler: UIViewController, MFMailComposeViewControllerDelegate {
     
+    private var errorMessage : String?
     /// Description
     /// - Parameter controller: controller used to present mail controller
     func sendEmail(presentedFrom controller: UIViewController) {
@@ -18,11 +19,12 @@ class MailHandler: UIViewController, MFMailComposeViewControllerDelegate {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["sukycar@gmail.com"])
-            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
-            mail.setSubject("Blic Buch support")
+            mail.setSubject("Blitz Buch support")
             controller.present(mail, animated: true)
         } else {
-            self.getAlert(errorString: "Mail not send. Check your connection\nand try again.", errorColor: Colors.orange)
+            if let errorMessage = self.errorMessage {
+            self.getAlert(errorString: errorMessage, errorColor: Colors.orange)
+            }
         }
     }
     
@@ -31,6 +33,6 @@ class MailHandler: UIViewController, MFMailComposeViewControllerDelegate {
             controller.dismiss(animated: true)
             return
         }
-        print(error.localizedDescription)
+        self.errorMessage = error.localizedDescription
     }
 }

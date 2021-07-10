@@ -16,7 +16,7 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
     
     func fetchBooks(){
         let fetchRequest = Book.fetchRequest() as NSFetchRequest
-        idArray = blicBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
+        idArray = blitzBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
         var idArraySequence = [Int32]()
         idArray.forEach { (string) in
             idArraySequence.append(Int32(string) ?? 0)
@@ -37,12 +37,12 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
     @IBAction func backButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    private let alertService = AlertService()
+    lazy var alertService = AlertService()
     var booksInCart: [Book]?
     //    private var booksFiltered: [Book] = [Book]()
     private let context = DataManager.shared.context
     private var idArray = [String]()
-    private let userId = blicBuchUserDefaults.get(.id) as? Int32 ?? 0
+    private let userId = blitzBuchUserDefaults.get(.id) as? Int32 ?? 0
     
     var cartItemsNumber = Int()
     var cartCountObserver = PublishSubject<Int>()
@@ -113,15 +113,19 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
                     self?.cartItemsNumber -= 1
                     self?.cartCountObserver.onNext(self?.cartItemsNumber ?? 0)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
-                        guard let id = blicBuchUserDefaults.get(.id) as? Int32 else {return}
+                        guard let id = blitzBuchUserDefaults.get(.id) as? Int32 else {return}
                         UsersService.checkForAvailableBooks(id).subscribe {(vip, regular) in
                             let vip = vip
                             let regular = regular
-                            let id = blicBuchUserDefaults.get(.id)
+                            let id = blitzBuchUserDefaults.get(.id)
                             
                             //function for updating number of available books
                             let vipStatus = book?.vip
-                            self?.updateBooksNumber(vip: vipStatus ?? false, removeBooks: false, numberOfBooks: 1, disposeBag: cell.disposeBag)
+                            if vipStatus == true {
+                            self?.updateVipBooksNumber(removeBooks: false, numberOfBooks: 1, disposeBag: cell.disposeBag)
+                            } else {
+                                self?.updateBooksNumber(removeBooks: false, numberOfBooks: 1, disposeBag: cell.disposeBag)
+                            }
                         } onError: { (error) in
                             self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
                         } onCompleted: {
@@ -143,7 +147,7 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
                             self?.idArray.removeAll(where: { (string) -> Bool in
                                 string == bookId
                             })
-                            _ = blicBuchUserDefaults.set(.cartItems, value: self?.idArray)
+                            _ = blitzBuchUserDefaults.set(.cartItems, value: self?.idArray)
                             self?.fetchBooks()
                         }
                     })

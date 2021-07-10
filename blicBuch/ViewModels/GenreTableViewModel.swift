@@ -12,7 +12,7 @@ import RxSwift
 
 class GenreTableViewModel {
     
-    var books = [BookCellViewModel]()
+    var books : [Book]?
     var genre : Book.Genre?
     var lockedBooks : [String]?
     
@@ -21,6 +21,9 @@ class GenreTableViewModel {
         self.fetchGenreBooks()
     }
     
+    var genreTitle : String {
+        return self.genre?.title ?? ""
+    }
     
     func fetchGenreBooks(){
         let context = DataManager.shared.context
@@ -30,9 +33,7 @@ class GenreTableViewModel {
         let predicate = NSPredicate(format: "genre == %@", genreString)
         fetchRequest.predicate = predicate
         do {
-            self.books = try context?.fetch(fetchRequest).map({_ in
-                return BookCellViewModel(model: Book())
-            }) as! [BookCellViewModel]
+            self.books = try context?.fetch(fetchRequest) as! [Book]
         } catch let err as NSError {
             print(err.debugDescription)
         }

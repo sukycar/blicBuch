@@ -52,23 +52,49 @@ extension UIViewController {
     
     /// Function for updating books number in userDefaults and on server side
     /// - Parameters:
-    ///   - vip: boolean that tells is book in vip section
     ///   - removeBooks: does the function remove book from server or add it
     ///   - numberOfBooks: how much books function adds or removes from server
-    public func updateBooksNumber(vip: Bool, removeBooks: Bool, numberOfBooks: Int, disposeBag: DisposeBag){
-        let userDefaultsBooks = vip == true ? blicBuchUserDefaults.get(.numberOfVipBooks) as! Int : blicBuchUserDefaults.get(.numberOfRegularBooks) as! Int
+    public func updateBooksNumber(removeBooks: Bool, numberOfBooks: Int, disposeBag: DisposeBag){
+        let userDefaultsBooks = blitzBuchUserDefaults.get(.numberOfRegularBooks) as! Int
         var newUserDefaultsBooks = Int()
         if numberOfBooks != 0 {
             if removeBooks == true && numberOfBooks <= userDefaultsBooks {
                 newUserDefaultsBooks = userDefaultsBooks - numberOfBooks
-                _ = vip == true ? blicBuchUserDefaults.set(.numberOfVipBooks, value: newUserDefaultsBooks) : blicBuchUserDefaults.set(.numberOfRegularBooks, value: newUserDefaultsBooks)
+                _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: newUserDefaultsBooks)
             } else if removeBooks == false {
                 newUserDefaultsBooks = userDefaultsBooks + numberOfBooks
-                _ = vip == true ? blicBuchUserDefaults.set(.numberOfVipBooks, value: newUserDefaultsBooks) : blicBuchUserDefaults.set(.numberOfRegularBooks, value: newUserDefaultsBooks)
+               _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: newUserDefaultsBooks)
             }
-            let updatedUserDefaults = vip == true ? blicBuchUserDefaults.get(.numberOfVipBooks) as! Int : blicBuchUserDefaults.get(.numberOfRegularBooks) as! Int
-            let userId = blicBuchUserDefaults.get(.id) as? Int32 ?? 0
-            UsersService.changeNumberOfBooks(vip: vip, userId: userId, numberOfBooks: updatedUserDefaults).subscribe { (updated) in
+            let updatedUserDefaults = blitzBuchUserDefaults.get(.numberOfRegularBooks) as! Int
+            let userId = blitzBuchUserDefaults.get(.id) as? Int32 ?? 0
+            UsersService.changeNumberOfBooks(userId: userId, numberOfBooks: updatedUserDefaults).subscribe { (updated) in
+            } onError: { (error) in
+                self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+            } onCompleted: {
+            }.disposed(by: disposeBag)
+        } else {
+            return
+        }
+    }
+    
+    /// Function for updating vip books number in userDefaults and on server side
+    /// - Parameters:
+    ///   - removeBooks: does the function remove book from server or add it
+    ///   - numberOfBooks: how much books function adds or removes from server
+    public func updateVipBooksNumber(removeBooks: Bool, numberOfBooks: Int, disposeBag: DisposeBag) {
+        let userDefaultsBooks = blitzBuchUserDefaults.get(.numberOfVipBooks) as! Int
+        var newUserDefaultsBooks = Int()
+        if numberOfBooks != 0 {
+            if removeBooks == true && numberOfBooks <= userDefaultsBooks {
+                newUserDefaultsBooks = userDefaultsBooks - numberOfBooks
+                _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: newUserDefaultsBooks)
+            } else if removeBooks == false {
+                newUserDefaultsBooks = userDefaultsBooks + numberOfBooks
+               _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: newUserDefaultsBooks)
+            }
+            let updatedUserDefaults = blitzBuchUserDefaults.get(.numberOfVipBooks) as! Int
+            let userId = blitzBuchUserDefaults.get(.id) as? Int32 ?? 0
+            UsersService.changeNumberOfVipBooks(userId: userId, numberOfBooks: updatedUserDefaults).subscribe { (updated) in
             } onError: { (error) in
                 self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
             } onCompleted: {

@@ -18,12 +18,12 @@ class LoadingViewController: UIViewController {
     @IBOutlet weak var imageYConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = blicBuchUserDefaults.set(.id, value: 0)
-        _ = blicBuchUserDefaults.set(.logedIn, value: false)
-        _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: 0)
-        _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: 0)
-        _ = blicBuchUserDefaults.set(.username, value: "--")
-        _ = blicBuchUserDefaults.set(.cartItems, value: [""])
+        _ = blitzBuchUserDefaults.set(.id, value: 0)
+        _ = blitzBuchUserDefaults.set(.logedIn, value: false)
+        _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: 0)
+        _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: 0)
+        _ = blitzBuchUserDefaults.set(.username, value: "--")
+        _ = blitzBuchUserDefaults.set(.cartItems, value: [""])
         
         UIView.animate(withDuration: 1,
                        delay: 0,

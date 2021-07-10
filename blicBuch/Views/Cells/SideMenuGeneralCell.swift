@@ -19,6 +19,7 @@ class SideMenuGeneralCell: TableViewCell {
     
     var sideMenuCell : GeneralMenuCellType = .login
     var disposeBag = DisposeBag()
+    private var viewModel : SideMenuGeneralCellViewModel!
     
     override func awakeFromNib() {
         super.awakeFromNib()        
@@ -26,15 +27,17 @@ class SideMenuGeneralCell: TableViewCell {
 
     
     func setCell(title: String, imageName: String, counter: Int, imageTint: UIColor) {
+        let model = SideMenuGeneralCellModel(iconImageName: imageName, cellTitle: title, counterValue: counter, tintColor: imageTint)
+        viewModel = SideMenuGeneralCellViewModel(model: model)
         if sideMenuCell != .login {
             actionButton.isUserInteractionEnabled = false
         }
         self.imageHolderView.layer.zPosition = 2
-        self.imageHolderView.image = UIImage(named: imageName)
-        self.imageHolderView.tintColor = imageTint
-        self.titleLabel.type = (.sideMenuTitle, title)
+        self.imageHolderView.image = UIImage(named: viewModel.imageName)
+        self.imageHolderView.tintColor = viewModel.tintColor
+        self.titleLabel.type = (.sideMenuTitle, viewModel.cellTitle)
         if sideMenuCell == .cart {
-        self.counterLabel.type = (.sideMenuCounterLabel, String(counter))
+            self.counterLabel.type = (.sideMenuCounterLabel, String(viewModel.counterValue))
         }
         self.counterLabel.layer.masksToBounds = true
         self.counterLabel.isHidden = counter != 0 ? false : true

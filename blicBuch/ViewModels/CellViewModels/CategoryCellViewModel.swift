@@ -27,12 +27,12 @@ class CategoryCellViewModel {
     
     func configureLabelWithAttributes() -> [NSAttributedString.Key: Any] {
         let titleFont = UIFont.systemFont(ofSize: 14)
-            let aColor = UIColor(hexString: "#5cbcf4")
-            
+        let aColor = UIColor(hexString: "#5cbcf4")
+        
         let titleAttributes: [NSAttributedString.Key: Any] = {
-                let attributes: [NSAttributedString.Key: Any] = [.font: titleFont, .foregroundColor: aColor]
-                return attributes
-            }()
+            let attributes: [NSAttributedString.Key: Any] = [.font: titleFont, .foregroundColor: aColor]
+            return attributes
+        }()
         return titleAttributes
     }
     

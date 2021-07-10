@@ -44,17 +44,17 @@ class UsersService {
                                                     let cartItems = user["cartItems"].stringValue
                                                     var cartItemsInUserDefaults = [String]()
                                                     
-                                                    _ = blicBuchUserDefaults.set(.id, value: id)
-                                                    _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: regularBooks)
-                                                    _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks)
-                                                    _ = blicBuchUserDefaults.set(.username, value: name)
-                                                    _ = blicBuchUserDefaults.set(.logedIn, value: true)
+                                                    _ = blitzBuchUserDefaults.set(.id, value: id)
+                                                    _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regularBooks)
+                                                    _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks)
+                                                    _ = blitzBuchUserDefaults.set(.username, value: name)
+                                                    _ = blitzBuchUserDefaults.set(.logedIn, value: true)
                                                     if cartItems != "" {
                                                         let cartItem = cartItems.components(separatedBy: ",")
                                                         cartItem.forEach { (item) in
                                                             cartItemsInUserDefaults.append(item)
                                                         }
-                                                        _ = blicBuchUserDefaults.set(.cartItems, value: cartItemsInUserDefaults)
+                                                        _ = blitzBuchUserDefaults.set(.cartItems, value: cartItemsInUserDefaults)
                                                     }
                                                     observer.onNext(true)
                                                     observer.onCompleted()
@@ -158,8 +158,8 @@ class UsersService {
                     guard let json = json else {return}
                     let numberOfVipBooks = json["numberOfVipBooks"].intValue
                     let numberOfRegularBooks = json["numberOfRegularBooks"].intValue
-                    _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: numberOfVipBooks)
-                    _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: numberOfRegularBooks)
+                    _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: numberOfVipBooks)
+                    _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: numberOfRegularBooks)
                     observer.onNext((numberOfVipBooks, numberOfRegularBooks))
                     observer.onCompleted()
                 case .Failure(let error):
@@ -177,11 +177,11 @@ class UsersService {
     
     
     /// update number of books on API depending of number of added books to cart
-    class func changeNumberOfBooks(vip: Bool, userId: Int32, numberOfBooks: Int) -> Observable<Bool> {
+    class func changeNumberOfBooks( userId: Int32, numberOfBooks: Int) -> Observable<Bool> {
         Observable.create { observer in
             var parameters = [String : AnyObject]()
             let router = Router.changeNumberOfAvailableBooks(for: userId)
-            let jsonParameter = vip == true ? "numberOfVipBooks" : "numberOfRegularBooks"
+            let jsonParameter = "numberOfRegularBooks"
             parameters[jsonParameter] = numberOfBooks as AnyObject
             let request = API.shared.request(router: router, parameters: parameters) { (response) in
                 switch response {
@@ -200,6 +200,31 @@ class UsersService {
         }
         
     }
+    
+    class func changeNumberOfVipBooks(userId: Int32, numberOfBooks: Int) -> Observable<Bool> {
+        Observable.create { observer in
+            var parameters = [String : AnyObject]()
+            let router = Router.changeNumberOfAvailableBooks(for: userId)
+            let jsonParameter = "numberOfVipBooks"
+            parameters[jsonParameter] = numberOfBooks as AnyObject
+            let request = API.shared.request(router: router, parameters: parameters) { (response) in
+                switch response {
+                case .Success(_):
+                    observer.onNext(true)
+                    observer.onCompleted()
+                case .Failure(let error):
+                    observer.onError(error)
+                    observer.onCompleted()
+                }
+            }
+            let cancel = Disposables.create(){
+                request.cancel()
+            }
+            return cancel
+        }
+        
+    }
+    
 }
 
 enum LoginStatus: Int {

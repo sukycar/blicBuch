@@ -32,7 +32,6 @@ class InAppPurchaseAlertViewController: UIViewController {
         fetchProducts()
         styleViews()
         SKPaymentQueue.default().add(self)
-        
     }
     
     func styleViews(){

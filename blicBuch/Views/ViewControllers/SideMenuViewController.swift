@@ -23,18 +23,18 @@ class SideMenuViewController: UIViewController{
     
     private var books = [Book]()
     private var cells = [SideMenuCellType]()
-    private var transition : CustomTransition2?
+    private var transition : CustomTransition?
     private var frame : CGRect?
     private var frameView : UIView?
     private var snapshot : UIImage?
     private var disposeBag = DisposeBag()
     private var context = DataManager.shared.context
-    private var userId = blicBuchUserDefaults.get(.id) as? Int32 ?? 0
+    private var userId = blitzBuchUserDefaults.get(.id) as? Int32 ?? 0
     
     var lockedBooks : [Int32]?
     var vipBooksCounter = Int()
     var regularBooksCounter = Int()
-    var cartItems = blicBuchUserDefaults.get(.cartItems) as? [String]
+    var cartItems = blitzBuchUserDefaults.get(.cartItems) as? [String]
     var cartItemsCount = Int(){
         didSet{
             if cartItems == [""] {
@@ -168,8 +168,8 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         case .member:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuMemberCell") as? SideMenuMemberCell {
                 cell.backgroundColor = .clear
-                if let loginStatus = blicBuchUserDefaults.get(.logedIn) as? Bool {
-                    let username = loginStatus == true ?  blicBuchUserDefaults.get(.username) : "--"
+                if let loginStatus = blitzBuchUserDefaults.get(.logedIn) as? Bool {
+                    let username = loginStatus == true ?  blitzBuchUserDefaults.get(.username) : "--"
                     cell.setCell(name: username as? String)
                 } else {
                     cell.setCell(name: "--")
@@ -182,7 +182,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
             }
         case .general(let generalType):
             if generalType == .login {
-                let logedIn = blicBuchUserDefaults.get(.logedIn) as? Bool
+                let logedIn = blitzBuchUserDefaults.get(.logedIn) as? Bool
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
                     
                     cell.sideMenuCell = generalType
@@ -195,8 +195,8 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                     cell.layer.opacity = 0
                     cell.actionButton.rx.tap.subscribe(onNext: {[weak self] in
                         if logedIn == true {
-                            self?.updateBooksNumber(vip: true, removeBooks: false, numberOfBooks: self?.vipBooksCounter ?? 0, disposeBag: cell.disposeBag)
-                            self?.updateBooksNumber(vip: false, removeBooks: false, numberOfBooks: self?.regularBooksCounter ?? 0, disposeBag: cell.disposeBag)
+                            self?.updateBooksNumber(removeBooks: false, numberOfBooks: self?.regularBooksCounter ?? 0, disposeBag: cell.disposeBag)
+                            self?.updateVipBooksNumber(removeBooks: false, numberOfBooks: self?.vipBooksCounter ?? 0, disposeBag: cell.disposeBag)
                             if let books = self?.books {
                                 for book in books {
                                     BooksService.lockBook(bookId:book.id, lockStatus: .unlocked).subscribe {(unlocked) in
@@ -216,17 +216,17 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                                 }.disposed(by: cell.disposeBag)
                             }
                             self?.getAlert(errorString: "Izlogovani ste!", errorColor: Colors.orange)
-                            _ = blicBuchUserDefaults.set(.id, value: 0)
-                            _ = blicBuchUserDefaults.set(.logedIn, value: false)
-                            _ = blicBuchUserDefaults.set(.numberOfRegularBooks, value: 0)
-                            _ = blicBuchUserDefaults.set(.numberOfVipBooks, value: 0)
-                            _ = blicBuchUserDefaults.set(.username, value: "--")
-                            _ = blicBuchUserDefaults.set(.cartItems, value: [""])
+                            _ = blitzBuchUserDefaults.set(.id, value: 0)
+                            _ = blitzBuchUserDefaults.set(.logedIn, value: false)
+                            _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: 0)
+                            _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: 0)
+                            _ = blitzBuchUserDefaults.set(.username, value: "--")
+                            _ = blitzBuchUserDefaults.set(.cartItems, value: [""])
                             self?.reloadUsername()
                         } else {
                             let vc = LoginViewController.get()
                             let nav = UINavigationController(rootViewController: vc)
-                            self?.transition = CustomTransition2(from: self ?? SideMenuViewController(), to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
+                            self?.transition = CustomTransition(from: self ?? SideMenuViewController(), to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
                             nav.transitioningDelegate = self?.transition
                             nav.presentedViewController?.dismiss(animated: true, completion: nil)
                             nav.modalPresentationStyle = .custom
@@ -292,7 +292,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
             case .register:
                 let vc = RegisterViewController.get()
                 let nav = UINavigationController(rootViewController: vc)
-                self.transition = CustomTransition2(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
+                self.transition = CustomTransition(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
                 nav.transitioningDelegate = self.transition
                 nav.presentedViewController?.dismiss(animated: true, completion: nil)
                 nav.modalPresentationStyle = .custom
@@ -308,7 +308,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                 return
             case .cart:
                 let vc = CartViewController.get()
-                self.transition = CustomTransition2(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
+                self.transition = CustomTransition(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
                 let nav = UINavigationController(rootViewController: vc)
                 nav.transitioningDelegate = self.transition
                 nav.presentedViewController?.dismiss(animated: true, completion: nil)
