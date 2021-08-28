@@ -59,6 +59,11 @@
 		1F06776F26B1C48B000C1D76 /* BlitzBuchCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776B26B1C48B000C1D76 /* BlitzBuchCartView.swift */; };
 		1F06777026B1C48B000C1D76 /* BlitzBuchCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776C26B1C48B000C1D76 /* BlitzBuchCartViewModel.swift */; };
 		1F18570A26DA596B00721F11 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18570926DA596B00721F11 /* FirebaseError.swift */; };
+		1F18570C26DAB35E00721F11 /* UISearchTextField + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18570B26DAB35D00721F11 /* UISearchTextField + extension.swift */; };
+		1F18571226DAB68900721F11 /* BlitzBuchGenreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18570E26DAB68900721F11 /* BlitzBuchGenreModels.swift */; };
+		1F18571326DAB68900721F11 /* BlitzBuchGenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18570F26DAB68900721F11 /* BlitzBuchGenreViewController.swift */; };
+		1F18571426DAB68900721F11 /* BlitzBuchGenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18571026DAB68900721F11 /* BlitzBuchGenreView.swift */; };
+		1F18571526DAB68900721F11 /* BlitzBuchGenreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18571126DAB68900721F11 /* BlitzBuchGenreViewModel.swift */; };
 		1F29F8AC25F294CD0086331B /* BlueCloudCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8AB25F294CD0086331B /* BlueCloudCellData.swift */; };
 		1F29F8B025F295DC0086331B /* BlueCloudCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8AF25F295DC0086331B /* BlueCloudCellViewModel.swift */; };
 		1F29F8B425F2C4520086331B /* BlueCloudCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8B325F2C4520086331B /* BlueCloudCellModel.swift */; };
@@ -209,6 +214,11 @@
 		1F06776B26B1C48B000C1D76 /* BlitzBuchCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchCartView.swift; sourceTree = "<group>"; };
 		1F06776C26B1C48B000C1D76 /* BlitzBuchCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchCartViewModel.swift; sourceTree = "<group>"; };
 		1F18570926DA596B00721F11 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
+		1F18570B26DAB35D00721F11 /* UISearchTextField + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchTextField + extension.swift"; sourceTree = "<group>"; };
+		1F18570E26DAB68900721F11 /* BlitzBuchGenreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchGenreModels.swift; sourceTree = "<group>"; };
+		1F18570F26DAB68900721F11 /* BlitzBuchGenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchGenreViewController.swift; sourceTree = "<group>"; };
+		1F18571026DAB68900721F11 /* BlitzBuchGenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchGenreView.swift; sourceTree = "<group>"; };
+		1F18571126DAB68900721F11 /* BlitzBuchGenreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchGenreViewModel.swift; sourceTree = "<group>"; };
 		1F24437025A2482300BC99F8 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		1F29F8AB25F294CD0086331B /* BlueCloudCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCellData.swift; sourceTree = "<group>"; };
 		1F29F8AF25F295DC0086331B /* BlueCloudCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCellViewModel.swift; sourceTree = "<group>"; };
@@ -364,6 +374,7 @@
 				1FF613EF25AC5CB300ACCE25 /* UIColor + extensions.swift */,
 				1FAE4E2625E97BF300E7A774 /* UIResponder + extensions.swift */,
 				1FD3939E25F6C5D70005458C /* TabBarViewController + extensions.swift */,
+				1F18570B26DAB35D00721F11 /* UISearchTextField + extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -526,6 +537,17 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		1F18570D26DAB65900721F11 /* Genre */ = {
+			isa = PBXGroup;
+			children = (
+				1F18570E26DAB68900721F11 /* BlitzBuchGenreModels.swift */,
+				1F18570F26DAB68900721F11 /* BlitzBuchGenreViewController.swift */,
+				1F18571026DAB68900721F11 /* BlitzBuchGenreView.swift */,
+				1F18571126DAB68900721F11 /* BlitzBuchGenreViewModel.swift */,
+			);
+			path = Genre;
+			sourceTree = "<group>";
+		};
 		1F2DBA4325E660FF00F4104B /* MainTabViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +564,7 @@
 		1F37C74B26A2B808001DD157 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1F18570D26DAB65900721F11 /* Genre */,
 				1F06776026B1C444000C1D76 /* Register */,
 				1F06775F26B1C43C000C1D76 /* Cart */,
 				1F37C75126A2B898001DD157 /* Info */,
@@ -977,6 +1000,7 @@
 				0AB938D82483CD72009A9C0D /* BookTableViewCell.swift in Sources */,
 				1FEF05FE26A2C26B000EAC19 /* BaseViewModel.swift in Sources */,
 				0AE5CF0D238E767200FF0D69 /* LoginViewController.swift in Sources */,
+				1F18570C26DAB35E00721F11 /* UISearchTextField + extension.swift in Sources */,
 				1F9ED5F125F9375C002758D9 /* AlertModel.swift in Sources */,
 				1F06777026B1C48B000C1D76 /* BlitzBuchCartViewModel.swift in Sources */,
 				0A1E326C2463D3DB00AD388C /* BooksService.swift in Sources */,
@@ -1004,6 +1028,7 @@
 				0ADFC2122393E1CB00BB8702 /* SearchViewController.swift in Sources */,
 				1FEF05F726A2BD48000EAC19 /* BlitzBuchInfoViewModel.swift in Sources */,
 				1FB1B60F25AD828300AD6AE4 /* EmptyTableViewCell.swift in Sources */,
+				1F18571226DAB68900721F11 /* BlitzBuchGenreModels.swift in Sources */,
 				1FE8B5142584CC8C00C3A47A /* Label.swift in Sources */,
 				0A8F1FB72381EF2200ABE11F /* HomeViewController.swift in Sources */,
 				1F44835726A32F0D002151CD /* CustomProgressHUD.swift in Sources */,
@@ -1020,6 +1045,7 @@
 				1F29F8AC25F294CD0086331B /* BlueCloudCellData.swift in Sources */,
 				1F44835B26A33574002151CD /* RemoteResourceError.swift in Sources */,
 				1FE8B50E2584CB3600C3A47A /* SideMenuMemberCell.swift in Sources */,
+				1F18571426DAB68900721F11 /* BlitzBuchGenreView.swift in Sources */,
 				1FEF05DE26A2BC15000EAC19 /* BlitzBuchLibraryView.swift in Sources */,
 				1F06776826B1C476000C1D76 /* BlitzBuchRegisterViewModel.swift in Sources */,
 				1FEF05D726A2BBE8000EAC19 /* BlitzBuchLoginViewModel.swift in Sources */,
@@ -1038,6 +1064,7 @@
 				1FE8B51F2584D05200C3A47A /* BaseLabel.swift in Sources */,
 				1FEF05FB26A2C195000EAC19 /* BaseViewController.swift in Sources */,
 				0A27E3DA24634C0F00DE117C /* FormatterHelpers.swift in Sources */,
+				1F18571326DAB68900721F11 /* BlitzBuchGenreViewController.swift in Sources */,
 				1F9F41CA26D6BAF3000E72D3 /* DialogViewController.swift in Sources */,
 				1FEF05F426A2BD48000EAC19 /* BlitzBuchInfoModels.swift in Sources */,
 				1FD3939A25F6C3870005458C /* MyTransition.swift in Sources */,
@@ -1074,6 +1101,7 @@
 				0A7519722466A8F90089DED8 /* DataManager.swift in Sources */,
 				1F06776F26B1C48B000C1D76 /* BlitzBuchCartView.swift in Sources */,
 				1F29F8B025F295DC0086331B /* BlueCloudCellViewModel.swift in Sources */,
+				1F18571526DAB68900721F11 /* BlitzBuchGenreViewModel.swift in Sources */,
 				1FEF05EE26A2BD34000EAC19 /* BlitzBuchSearchView.swift in Sources */,
 				1F73897925E530E8003EFECC /* User+CoreDataProperties.swift in Sources */,
 				1F06776E26B1C48B000C1D76 /* BlitzBuchCartViewController.swift in Sources */,

@@ -39,7 +39,8 @@ class BlitzBuchSearchViewController: BaseViewController, BlitzBuchSearchViewCont
         self.customView.setup(target: self,
                               tableViewDelegate: self,
                               tableViewDataSource: self,
-                              searchBarDelegate: self)
+                              searchBarDelegate: self,
+                              searchBarClearButtonSelector: #selector(self.resignKeyboard))
         self.bindViewModel()
     }
     
@@ -81,6 +82,13 @@ class BlitzBuchSearchViewController: BaseViewController, BlitzBuchSearchViewCont
             self?.customView.searchTable.reloadData()
         })
     }
+    
+    // MARK: - Action
+    
+    @objc private func resignKeyboard() {
+        self.customView.searchBar1.endEditing(true)
+    }
+
     
 }
 
@@ -297,6 +305,14 @@ extension BlitzBuchSearchViewController: UISearchResultsUpdating, UISearchBarDel
                 viewModel.filteredDataSource.value = viewModel.weRecommend.value
             }
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
 }
 

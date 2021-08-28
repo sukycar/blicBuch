@@ -57,9 +57,9 @@ class BlitzBuchLibraryViewController: BaseViewController, BlitzBuchLibraryViewCo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "bibliotech" {
             let newController = segue.destination as! UINavigationController
-            let tableViewCTRL = newController.topViewController as! GenreViewController
+            let genreVC = newController.topViewController as! BlitzBuchGenreViewController
             if let viewModel = self.viewModel {
-                tableViewCTRL.genre = viewModel.genre
+                genreVC.viewModel = BlitzBuchGenreViewModel(genre: viewModel.genre)
             }
         }
     }

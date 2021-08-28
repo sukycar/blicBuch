@@ -13,8 +13,6 @@ import RxSwift
 
 class GenreViewController: BaseViewController, NSFetchedResultsControllerDelegate {
     
-    
-    
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var genreLabel: UIButton!

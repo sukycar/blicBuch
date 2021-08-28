@@ -33,11 +33,13 @@ class BlitzBuchSearchView: UIView {
     func setup(target: Any,
                tableViewDelegate: UITableViewDelegate,
                tableViewDataSource: UITableViewDataSource,
-               searchBarDelegate: UISearchBarDelegate) {
+               searchBarDelegate: UISearchBarDelegate,
+               searchBarClearButtonSelector: Selector) {
         searchTable.delegate = tableViewDelegate
         searchTable.dataSource = tableViewDataSource
         searchBar1.delegate = searchBarDelegate
         let customCellName = String(describing: BookTableViewCell.self)
         searchTable.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+        searchBar1.searchTextField.clearButton?.addTarget(target, action: searchBarClearButtonSelector, for: .touchUpInside)
     }
 }
