@@ -18,7 +18,6 @@ class VIPViewController: BaseViewController, NSFetchedResultsControllerDelegate 
     @IBOutlet weak var titleHolderView: UIView!
 
     private let vipViewModel = VipViewControllerViewModel()
-    lazy var alertService = AlertService()
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -31,27 +30,42 @@ class VIPViewController: BaseViewController, NSFetchedResultsControllerDelegate 
         NotificationCenter.default.addObserver(self, selector: #selector(self.presentRegisterView), name: RegisterNotificationName, object: nil)
     }
     
-    override func configureTable() {
-        let customCellName = String(describing: BookTableViewCell.self)
-        tableView.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
-    }
     
-    override func styleViews() {
-        titleHolderView.addBottomBorder(color: .gray, margins: 0, borderLineSize: 0.3)
-        titleLabel.text = vipViewModel.titleText
+
+//    func configureTable() {
+//        let customCellName = String(describing: BookTableViewCell.self)
+//        tableView.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+//    }
+    
+    func styleViews() {
+
     }
 
     
     // MARK: - TABLE VIEW
+    
+    
+    @objc func alert () {
+        let newAlert = UIAlertController(title: "NOVI", message: "FUCKING CONTROLER", preferredStyle: .alert)
+        present(newAlert, animated: true)
+    }
+    
+
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension VIPViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vipViewModel.vipBooks?.count ?? 0
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let item = vipViewModel.vipBooks?[indexPath.row] {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self), for: indexPath) as! BookTableViewCell
             cell.set(with: item, inVipController: true)
@@ -68,9 +82,9 @@ class VIPViewController: BaseViewController, NSFetchedResultsControllerDelegate 
                     BooksService.checkLock(bookId: item.id).subscribe { (locked) in
                         if locked == true {
                             if !(cartItems?.contains(String(item.id)) ?? false) {
-                                self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
+                                self?.getAlert(errorString: NSLocalizedString("Book is already reserved", comment: ""), errorColor: Colors.orange)
                             } else {
-                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
                             }
                         } else {
                             if item.vip == true {
@@ -82,7 +96,7 @@ class VIPViewController: BaseViewController, NSFetchedResultsControllerDelegate 
                                         self?.updateVipBooksNumber(removeBooks: true, numberOfBooks: 1, disposeBag: cell.disposeBag)
                                         if !(cartItems?.contains(String(item.id)) ?? false) {
                                             _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
-                                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is added to cart", comment: ""), errorColor: Colors.blueDefault)
                                             item.locked = LockStatus.locked.rawValue
                                             cartItems?.append(String(item.id))
                                             BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
@@ -110,14 +124,14 @@ class VIPViewController: BaseViewController, NSFetchedResultsControllerDelegate 
                                                 //
                                             }.disposed(by: cell.disposeBag)
                                         } else {
-                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
                                         }
                                         
                                     } else {
                                         if (cartItems?.contains(String(item.id)) ?? false) {
-                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
                                         } else {
-                                            self?.getAlert(errorString: "Iskoristili ste limit za vip knjige", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("You have used the limit for vip books", comment: ""), errorColor: Colors.orange)
                                         }
                                     }
                                     
@@ -140,7 +154,7 @@ class VIPViewController: BaseViewController, NSFetchedResultsControllerDelegate 
                                         self?.updateBooksNumber(removeBooks: true, numberOfBooks: 1, disposeBag: cell.disposeBag)
                                         if !(cartItems?.contains(String(item.id)) ?? false) {
                                             _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
-                                            self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is added to cart", comment: ""), errorColor: Colors.blueDefault)
                                             item.locked = LockStatus.locked.rawValue
                                             //                                                cartBook?.inCart = true
                                             cartItems?.append(String(item.id))
@@ -168,14 +182,14 @@ class VIPViewController: BaseViewController, NSFetchedResultsControllerDelegate 
                                                 //
                                             }.disposed(by: cell.disposeBag)
                                         } else {
-                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
                                         }
                                         
                                     } else {
                                         if (cartItems?.contains(String(item.id)) ?? false) {
-                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
                                         } else {
-                                            self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("You have used the limit for regular books", comment: ""), errorColor: Colors.orange)
                                         }
                                     }
                                     
@@ -217,17 +231,8 @@ class VIPViewController: BaseViewController, NSFetchedResultsControllerDelegate 
         
     }
     
-    @objc func alert () {
-        let newAlert = UIAlertController(title: "NOVI", message: "FUCKING CONTROLER", preferredStyle: .alert)
-        present(newAlert, animated: true)
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height = CGFloat()
-        height = 182
-        return height
-    }
-}
 
+}
 
 extension VIPViewController{
     @objc func presentLoginView(){
@@ -245,7 +250,10 @@ extension VIPViewController{
 
 extension VIPViewController: AlertMe {
     func onClick() {
-        let alertVC = alertService.alert()
+    }
+    
+    func onLoggedOutClick() {
+        let alertVC = self.alertService.alert()
         self.present(alertVC, animated: true)
     }
 }

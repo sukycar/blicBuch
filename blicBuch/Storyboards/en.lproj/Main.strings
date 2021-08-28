@@ -1,3 +1,29 @@
+/* Class = "UILabel"; text = "Neu in die bibliothek"; ObjectID = "02R-kk-eFT"; */
+"02R-kk-eFT.text" = "New in the library";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "2Ig-Ij-CLp"; */
+"2Ig-Ij-CLp.normalTitle" = "Login";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "2jG-ax-h3E"; */
+"2jG-ax-h3E.normalTitle" = "Login";
+
+/* Class = "UITextField"; placeholder = "Strasse *"; ObjectID = "4qo-5D-WAK"; */
+"4qo-5D-WAK.placeholder" = "Street *";
+
+/* Class = "UITextField"; placeholder = "E - mail *"; ObjectID = "69J-Tc-1nW"; */
+"69J-Tc-1nW.placeholder" = "E - mail *";
+
+/* Class = "UITextField"; placeholder = "Passwort *"; ObjectID = "7kR-xI-385"; */
+"7kR-xI-385.placeholder" = "Password *";
+
+/* Class = "UITextField"; placeholder = "Passwort *"; ObjectID = "ew8-Uk-pfN"; */
+"ew8-Uk-pfN.placeholder" = "Password *";
+
+/* Class = "UITextField"; placeholder = "Vorname *"; ObjectID = "Swn-gJ-SsU"; */
+"Swn-gJ-SsU.placeholder" = "Name *";
+
+/* Class = "UITextField"; placeholder = "Ort *"; ObjectID = "as4-CR-LBS"; */
+"as4-CR-LBS.placeholder" = "County *";
 
 /* Class = "UILabel"; text = "LOGIN"; ObjectID = "0kX-as-1SL"; */
 "0kX-as-1SL.text" = "LOGIN";
@@ -6,19 +32,22 @@
 "D0J-1i-e5p.accessibilityLabel" = "upView";
 
 /* Class = "UITabBarItem"; title = "Informationen"; ObjectID = "GE8-or-0xl"; */
-"GE8-or-0xl.title" = "Informationen";
+"GE8-or-0xl.title" = "Informations";
 
 /* Class = "UITabBarItem"; title = "Bibliothek"; ObjectID = "J8S-b4-44G"; */
-"J8S-b4-44G.title" = "Bibliothek";
+"J8S-b4-44G.title" = "Library";
 
 /* Class = "UITabBarItem"; title = "VIP Member"; ObjectID = "MIC-TG-via"; */
 "MIC-TG-via.title" = "VIP Member";
+
+/* Class = "UILabel"; text = "Sie haben kein Konto?"; ObjectID = "OCy-Jf-INT"; */
+"OCy-Jf-INT.text" = "Don't have an account?";
 
 /* Class = "UILabel"; text = "DONATE"; ObjectID = "YxA-ZO-mOp"; */
 "YxA-ZO-mOp.text" = "DONATE";
 
 /* Class = "UITabBarItem"; title = "Suchen"; ObjectID = "kCg-Le-a1A"; */
-"kCg-Le-a1A.title" = "Suchen";
+"kCg-Le-a1A.title" = "Search";
 
 /* Class = "UITabBarItem"; title = "Home"; ObjectID = "r63-ao-GEM"; */
 "r63-ao-GEM.title" = "Home";
@@ -28,3 +57,30 @@
 
 /* Class = "UILabel"; text = "TEST"; ObjectID = "z6N-eR-L08"; */
 "z6N-eR-L08.text" = "TEST";
+
+/* Class = "UILabel"; text = "Suchen"; ObjectID = "TJ9-jp-9dv"; */
+"TJ9-jp-9dv.text" = "Search";
+
+/* Class = "UILabel"; text = "We value your privacy"; ObjectID = "XcK-kC-rGv"; */
+"XcK-kC-rGv.text" = "We value your privacy";
+
+/* Class = "UILabel"; text = "Library"; ObjectID = "aNL-Sj-AhX"; */
+"aNL-Sj-AhX.text" = "Library";
+
+/* Class = "UILabel"; text = "Wir empfehlen"; ObjectID = "fQs-L2-xxx"; */
+"fQs-L2-xxx.text" = "We recommend";
+
+/* Class = "UILabel"; text = "Einloggen"; ObjectID = "tuo-JT-S0S"; */
+"tuo-JT-S0S.text" = "Login";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "2Ig-Ij-CLp"; */
+"2Ig-Ij-CLp.normalTitle" = "Login";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "2jG-ax-h3E"; */
+"2jG-ax-h3E.normalTitle" = "Login";
+
+/* Class = "UITextField"; placeholder = "Telefonnummer +43"; ObjectID = "vzB-ce-HB2"; */
+"vzB-ce-HB2.placeholder" = "Phone number +43";
+
+/* Class = "UIButton"; normalTitle = "Registrierung"; ObjectID = "KQL-uB-aqb"; */
+"KQL-uB-aqb.normalTitle" = "Register";

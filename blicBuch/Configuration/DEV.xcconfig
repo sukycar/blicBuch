@@ -8,9 +8,12 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
-baseURL = https:/$()/www.blitzbuch.club/api/api.php/records/ ///https:/$()/www.blitzbuch.club/api/api.php/records/
+baseURL = https:/$()/www.blitzbuch.club/api/api.php/records/
 booksPath = BooksDev
 usersPath = UserDev
+APP_NAME = BlitzBuch (dev)
+GOOGLE_PLIST_FILE_PATH = GoogleService-Info
+API_KEY = AIzaSyBeAgbcFkEOdAkCxKQ91y0oeT_OF94-JYg
 allowedKingfisherUrl = www.blitzbuch.club
 bundleVersion = DEV
 bundleDisplayName = blitzBuch

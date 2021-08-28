@@ -27,30 +27,6 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         guard let emailText = email.text else { return }
         guard let passwordText = password.text else { return }
-        UsersService.getUser(email: emailText, password: passwordText).subscribe { [weak self] (logedIn) in
-            if logedIn == false {
-                DispatchQueue.main.async {
-                    self?.getAlert(errorString: "Greska u login podacima, pokusajte ponovo", errorColor: Colors.orange)
-                }
-            } else {
-                DispatchQueue.main.async { [weak self] in
-                    self?.getAlert(errorString: "Uspesno ste ulogovani!", errorColor: Colors.blueDefault)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logedIn"), object: nil)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self?.dismiss(animated: true, completion: nil)
-                        self?.presentingViewController?.dismiss(animated: true, completion: nil)
-                    }
-                    
-                }
-            }
-        } onError: { (error) in
-            self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-        } onCompleted: {
-            //
-        } onDisposed: {
-            //
-        }.disposed(by: self.disposeBag)
-        
     }
     @IBOutlet weak var loginButtonOutlet: UIButton!
     

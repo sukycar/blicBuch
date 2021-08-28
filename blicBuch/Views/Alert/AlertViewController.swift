@@ -23,7 +23,7 @@ class AlertViewController: UIViewController {
     @IBOutlet weak var newRegistrationButtonOutlet: UIButton!
     @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBAction func tapRegister(_ sender: Any) {
-        dismiss(animated: true){
+        dismiss(animated: true) {
             NotificationCenter.default.post(name: RegisterNotificationName, object: nil)
         }
     }

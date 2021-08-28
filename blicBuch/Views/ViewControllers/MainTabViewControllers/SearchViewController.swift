@@ -20,8 +20,7 @@ class SearchViewController: BaseViewController, UITextFieldDelegate, UISearchRes
     private var weReccomend = [Book]()
     private var resultsSearchController = UISearchController()
     private var searching = false
-    lazy var alertService = AlertService()
-
+    
     var fetchResults:NSFetchedResultsController<NSManagedObject>?
     
     @IBOutlet weak var searchTable: UITableView! {
@@ -98,7 +97,6 @@ class SearchViewController: BaseViewController, UITextFieldDelegate, UISearchRes
         DispatchQueue.main.async {
             self.searchTable.reloadData()
         }
-        
     }
     
     func fetch(){
@@ -138,13 +136,17 @@ class SearchViewController: BaseViewController, UITextFieldDelegate, UISearchRes
         self.searchBar1.resignFirstResponder()
     }
     
-    // MARK: - TABLE VIEW SOURCE AND DATA
+}
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching == false {
             return weReccomend.count
         } else {
@@ -152,7 +154,7 @@ class SearchViewController: BaseViewController, UITextFieldDelegate, UISearchRes
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self), for: indexPath) as! BookTableViewCell
         let item = filteredDataSource[indexPath.row]
         cell.set(with: item, inVipController: false)
@@ -160,17 +162,17 @@ class SearchViewController: BaseViewController, UITextFieldDelegate, UISearchRes
             if let logedIn = blitzBuchUserDefaults.get(.logedIn) as? Bool{
                 var cartItems = blitzBuchUserDefaults.get(.cartItems) as? [String]
                 if logedIn == true {
-//                    let request = CartBook.fetchRequest() as NSFetchRequest
-//                    request.predicate = NSPredicate(format: "id == %d", item.id)
-//                    let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
-//                    let cartBook = fetchedCartBooks.first
+                    //                    let request = CartBook.fetchRequest() as NSFetchRequest
+                    //                    request.predicate = NSPredicate(format: "id == %d", item.id)
+                    //                    let fetchedCartBooks = try! DataManager.shared.context.fetch(request)
+                    //                    let cartBook = fetchedCartBooks.first
                     self?.navigationController?.view.startActivityIndicator()
                     BooksService.checkLock(bookId: item.id).subscribe { (locked) in
                         if locked == true {
                             if !(cartItems?.contains(String(item.id)) ?? false) {
-                                self?.getAlert(errorString: "Knjiga je vec rezervisana", errorColor: Colors.orange)
+                                self?.getAlert(errorString: NSLocalizedString("Book is already reserved", comment: ""), errorColor: Colors.orange)
                             } else {
-                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
                             }
                         } else {
                             if item.vip == true {
@@ -180,44 +182,44 @@ class SearchViewController: BaseViewController, UITextFieldDelegate, UISearchRes
                                     let regular = regular
                                     if vip > 0 {
                                         self?.updateVipBooksNumber(removeBooks: true, numberOfBooks: 1, disposeBag: cell.disposeBag)
-                                            if !(cartItems?.contains(String(item.id)) ?? false) {
-                                                _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
-                                                self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                                                item.locked = LockStatus.locked.rawValue
-                                                cartItems?.append(String(item.id))
-                                                BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
-                                                    let lockedBookId = (String(item.id))
-                                                    self?.lockedBooks.append(lockedBookId)
-                                                    var cartBooks = blitzBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
-                                                    cartBooks.append(lockedBookId)
-                                                    var newCartBooks = cartBooks
-                                                    newCartBooks = Array(Set(newCartBooks))
-                                                    let clearBooksArray = newCartBooks.filter({return $0 != ""})
-                                                    _ = blitzBuchUserDefaults.set(.cartItems, value: clearBooksArray) as! [String]
-                                                    UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
-                                                        //
-                                                    } onError: { (error) in
-                                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                                                    } onCompleted: {
-                                                        //
-                                                    }.disposed(by: cell.disposeBag)
-
+                                        if !(cartItems?.contains(String(item.id)) ?? false) {
+                                            _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is added to cart", comment: ""), errorColor: Colors.blueDefault)
+                                            item.locked = LockStatus.locked.rawValue
+                                            cartItems?.append(String(item.id))
+                                            BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                let lockedBookId = (String(item.id))
+                                                self?.lockedBooks.append(lockedBookId)
+                                                var cartBooks = blitzBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
+                                                cartBooks.append(lockedBookId)
+                                                var newCartBooks = cartBooks
+                                                newCartBooks = Array(Set(newCartBooks))
+                                                let clearBooksArray = newCartBooks.filter({return $0 != ""})
+                                                _ = blitzBuchUserDefaults.set(.cartItems, value: clearBooksArray) as! [String]
+                                                UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                    //
                                                 } onError: { (error) in
                                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
                                                 } onCompleted: {
                                                     //
-                                                } onDisposed: {
-                                                    //
                                                 }.disposed(by: cell.disposeBag)
-                                            } else {
-                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                            }
-
+                                                
+                                            } onError: { (error) in
+                                                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                            } onCompleted: {
+                                                //
+                                            } onDisposed: {
+                                                //
+                                            }.disposed(by: cell.disposeBag)
+                                        } else {
+                                            self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
+                                        }
+                                        
                                     } else {
                                         if (cartItems?.contains(String(item.id)) ?? false) {
-                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
                                         } else {
-                                            self?.getAlert(errorString: "Iskoristili ste limit za vip knjige", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("You have used the limit for vip books", comment: ""), errorColor: Colors.orange)
                                         }
                                     }
                                     
@@ -239,44 +241,44 @@ class SearchViewController: BaseViewController, UITextFieldDelegate, UISearchRes
                                     if regular > 0 {
                                         self?.updateBooksNumber(removeBooks: true, numberOfBooks: 1, disposeBag: cell.disposeBag)
                                         
-                                            if !(cartItems?.contains(String(item.id)) ?? false) {
-                                                _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
-                                                self?.getAlert(errorString: "Knjiga je dodata u korpu", errorColor: Colors.blueDefault)
-                                                item.locked = LockStatus.locked.rawValue
-//                                                cartBook?.inCart = true
-                                                cartItems?.append(String(item.id))
-                                                BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
-                                                    let lockedBookId = (String(item.id))
-                                                    self?.lockedBooks.append(lockedBookId)
-                                                    var cartBooks = blitzBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
-                                                    cartBooks.append(lockedBookId)
-                                                    var newCartBooks = cartBooks
-                                                    newCartBooks = Array(Set(newCartBooks))
-                                                    let clearBooksArray = newCartBooks.filter({return $0 != ""})
-                                                    _ = blitzBuchUserDefaults.set(.cartItems, value: clearBooksArray) as! [String]
-                                                    UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
-                                                        //
-                                                    } onError: { (error) in
-                                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                                                    } onCompleted: {
-                                                        //
-                                                    }.disposed(by: cell.disposeBag)
+                                        if !(cartItems?.contains(String(item.id)) ?? false) {
+                                            _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regular)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is added to cart", comment: ""), errorColor: Colors.blueDefault)
+                                            item.locked = LockStatus.locked.rawValue
+                                            //                                                cartBook?.inCart = true
+                                            cartItems?.append(String(item.id))
+                                            BooksService.lockBook(bookId: item.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                let lockedBookId = (String(item.id))
+                                                self?.lockedBooks.append(lockedBookId)
+                                                var cartBooks = blitzBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
+                                                cartBooks.append(lockedBookId)
+                                                var newCartBooks = cartBooks
+                                                newCartBooks = Array(Set(newCartBooks))
+                                                let clearBooksArray = newCartBooks.filter({return $0 != ""})
+                                                _ = blitzBuchUserDefaults.set(.cartItems, value: clearBooksArray) as! [String]
+                                                UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                    //
                                                 } onError: { (error) in
                                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
                                                 } onCompleted: {
                                                     //
-                                                } onDisposed: {
-                                                    //
                                                 }.disposed(by: cell.disposeBag)
-                                            } else {
-                                                self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
-                                            }
-
+                                            } onError: { (error) in
+                                                self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                                            } onCompleted: {
+                                                //
+                                            } onDisposed: {
+                                                //
+                                            }.disposed(by: cell.disposeBag)
+                                        } else {
+                                            self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
+                                        }
+                                        
                                     } else {
                                         if (cartItems?.contains(String(item.id)) ?? false) {
-                                            self?.getAlert(errorString: "Knjiga se vec nalazi u korpi", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("Book is already in cart", comment: ""), errorColor: Colors.orange)
                                         } else {
-                                            self?.getAlert(errorString: "Iskoristili ste limit za obicne knjige", errorColor: Colors.orange)
+                                            self?.getAlert(errorString: NSLocalizedString("You have used the limit for regular books", comment: ""), errorColor: Colors.orange)
                                         }
                                     }
                                     
@@ -332,7 +334,10 @@ extension SearchViewController{
 
 extension SearchViewController: AlertMe {
     func onClick() {
-        let alertVC = alertService.alert()
+    }
+    
+    func onLoggedOutClick() {
+        let alertVC = self.alertService.alert()
         self.present(alertVC, animated: true)
     }
 }

@@ -188,45 +188,39 @@ var buttonText: String {
 }
 
 // MARK: - SIDE MENU
-enum SideMenuCellType{
+enum SideMenuCellType {
     case member,general(type:GeneralMenuCellType)
 }
 
-enum GeneralMenuCellType: CaseIterable{
-    case login, register, contact, cart
+enum GeneralMenuCellType: CaseIterable {
+    case contact, cart, logout
     var title:String{
         switch self {
-        case .login:
-            return "Einloggen".localized()
-        case .register:
-            return "Registrieren".localized()
         case .contact:
-            return "Kontakt".localized()
+            return "Contact".localized()
         case .cart:
             return "Cart".localized()
+        case .logout:
+            return "Logout".localized()
         }
     }
     
     
     var imageName: String {
         switch self {
-        case .login:
-            return "img_login"
-        case .register:
-            return "img_registration"
         case .contact:
             return "img_contact"
         case .cart:
             return "img_cart"
+        case .logout:
+            return "img_login"
         }
     }
     
     var imageTint: UIColor {
         switch self {
         
-        case .login:
-            return Colors.blueDefault
-        case .register:
+        case .logout:
             return Colors.blueDefault
         case .contact:
             return Colors.blueDefault

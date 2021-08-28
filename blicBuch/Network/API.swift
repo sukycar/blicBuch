@@ -10,6 +10,15 @@ import RxSwift
 import Alamofire
 import SwiftyJSON
 
+enum CustomError: Error {
+    case validation(AlertMessage)
+    case general(AlertMessage)
+    case register(AlertMessage)
+    case unauthorized
+    case forbidden
+    case internalError
+}
+
 class API: NSObject {
     var refreshingToken = false
     var refreshing = false

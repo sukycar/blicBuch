@@ -13,15 +13,12 @@ import SwiftyJSON
 import Alamofire
 
 class UsersService {
-    class func getUser(email: String?, password: String?) -> Observable<Bool> {
+    class func getUser(uid: String?) -> Observable<Bool> {
         return Observable.create { observer in
             let router = Router.user
             var parameters = [String : AnyObject]()
-            if let emailAddress = email {
-                parameters["email"] = emailAddress as AnyObject
-            }
-            if let enteredPassword = password {
-                parameters["password"] = enteredPassword as AnyObject
+            if let userId = uid {
+                parameters["uid"] = userId as AnyObject
             }
             let request = API.shared.request(router: router, parameters: parameters) { (response) in
                 switch response {
@@ -31,44 +28,37 @@ class UsersService {
                         DataManager.shared.work { (context) in
                             if let jsonData = jsonArray?.array {
                                 for user in jsonData {
-                                    let newEmail = user["email"].string
-                                    if let passedEmail = email {
-                                        let newPassword = user["password"].string
-                                        if let passedPassword = password {
-                                            if newEmail == passedEmail {
-                                                if newPassword == passedPassword {
-                                                    let id = user["id"].int32Value
-                                                    let regularBooks = user["numberOfRegularBooks"].intValue
-                                                    let vipBooks = user["numberOfVipBooks"].intValue
-                                                    let name = user["name"].stringValue
-                                                    let cartItems = user["cartItems"].stringValue
-                                                    var cartItemsInUserDefaults = [String]()
-                                                    
-                                                    _ = blitzBuchUserDefaults.set(.id, value: id)
-                                                    _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regularBooks)
-                                                    _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks)
-                                                    _ = blitzBuchUserDefaults.set(.username, value: name)
-                                                    _ = blitzBuchUserDefaults.set(.logedIn, value: true)
-                                                    if cartItems != "" {
-                                                        let cartItem = cartItems.components(separatedBy: ",")
-                                                        cartItem.forEach { (item) in
-                                                            cartItemsInUserDefaults.append(item)
-                                                        }
-                                                        _ = blitzBuchUserDefaults.set(.cartItems, value: cartItemsInUserDefaults)
-                                                    }
-                                                    observer.onNext(true)
-                                                    observer.onCompleted()
-                                                    return
+                                    let userId = user["uid"].string
+                                    if let passedUid = uid {
+                                        if userId == passedUid {
+                                            let id = user["id"].int32Value
+                                            let regularBooks = user["numberOfRegularBooks"].intValue
+                                            let vipBooks = user["numberOfVipBooks"].intValue
+                                            let name = user["name"].stringValue
+                                            let cartItems = user["cartItems"].stringValue
+                                            var cartItemsInUserDefaults = [String]()
+                                            
+                                            _ = blitzBuchUserDefaults.set(.id, value: id)
+                                            _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regularBooks)
+                                            _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks)
+                                            _ = blitzBuchUserDefaults.set(.username, value: name)
+                                            _ = blitzBuchUserDefaults.set(.logedIn, value: true)
+                                            if cartItems != "" {
+                                                let cartItem = cartItems.components(separatedBy: ",")
+                                                cartItem.forEach { (item) in
+                                                    cartItemsInUserDefaults.append(item)
                                                 }
+                                                _ = blitzBuchUserDefaults.set(.cartItems, value: cartItemsInUserDefaults)
                                             }
+                                            observer.onNext(true)
+                                            observer.onCompleted()
+                                            return
                                         }
-                                    } else {
-                                        observer.onNext(false)
-                                        observer.onCompleted()
                                     }
                                 }
                                 observer.onNext(false)
                                 observer.onCompleted()
+                                return
                             }
                         }
                     }
@@ -80,7 +70,6 @@ class UsersService {
             let cancel = Disposables.create() {
                 request.cancel()
             }
-            
             return cancel
         }
     }
@@ -128,7 +117,7 @@ class UsersService {
             if bookIDs.count == 0 {
                 booksString = ""
             }
-
+            
             var parameters = [String: AnyObject]()
             parameters["cartItems"] = booksString as AnyObject
             let request = API.shared.request(router: router, parameters: parameters) { (response) in
@@ -174,7 +163,6 @@ class UsersService {
         }
         
     }
-    
     
     /// update number of books on API depending of number of added books to cart
     class func changeNumberOfBooks( userId: Int32, numberOfBooks: Int) -> Observable<Bool> {

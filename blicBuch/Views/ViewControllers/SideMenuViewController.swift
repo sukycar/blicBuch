@@ -13,8 +13,7 @@ import NVActivityIndicatorView
 import CoreData
 
 
-class SideMenuViewController: UIViewController{
-    
+class SideMenuViewController: BaseViewController {
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var tableHolderView: UIView!
@@ -31,7 +30,7 @@ class SideMenuViewController: UIViewController{
     private var context = DataManager.shared.context
     private var userId = blitzBuchUserDefaults.get(.id) as? Int32 ?? 0
     
-    var lockedBooks : [Int32]?
+    var lockedServerBooks : [Int32]?
     var vipBooksCounter = Int()
     var regularBooksCounter = Int()
     var cartItems = blitzBuchUserDefaults.get(.cartItems) as? [String]
@@ -40,7 +39,7 @@ class SideMenuViewController: UIViewController{
             if cartItems == [""] {
                 cartItemsCount = 0
             }
-            self.tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
+            self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
         }
     }
     let mailHandler = MailHandler()
@@ -86,7 +85,7 @@ class SideMenuViewController: UIViewController{
         self.mainView.accessibilityIdentifier = "mainView"
         self.cartItemsCount = self.cartItems?.count ?? 0
         UsersService.getCartBooks(userId: self.userId).subscribe { [weak self](cartArray) in
-            self?.lockedBooks = cartArray
+            self?.lockedServerBooks = cartArray
             self?.loadBooksInCart()
         } onError: { (error) in
             self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
@@ -102,10 +101,9 @@ class SideMenuViewController: UIViewController{
     private func configureCells(){
         cells.removeAll()
         cells.append(.member)
-        cells.append(.general(type: .login))
-        cells.append(.general(type: .register))
         cells.append(.general(type: .contact))
         cells.append(.general(type: .cart))
+        cells.append(.general(type: .logout))
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -118,7 +116,7 @@ class SideMenuViewController: UIViewController{
     func loadBooksInCart(){
         let request = Book.fetchRequest() as NSFetchRequest
         var predicate : NSPredicate?
-        guard let lockedBooks = lockedBooks else {return}
+        guard let lockedBooks = lockedServerBooks else {return}
         predicate = NSPredicate(format: "id in %@", lockedBooks)
         request.predicate = predicate
         do {
@@ -133,7 +131,7 @@ class SideMenuViewController: UIViewController{
                 }
             }//: LOOP
         } catch {
-            self.getAlert(errorString: "Books are not fetched", errorColor: Colors.orange)
+            self.getAlert(errorString: NSLocalizedString("Books are not fetched", comment: ""), errorColor: Colors.orange)
         }//: DO-CATCH
     }
     
@@ -181,12 +179,12 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                 return cell
             }
         case .general(let generalType):
-            if generalType == .login {
+            if generalType == .logout {
                 let logedIn = blitzBuchUserDefaults.get(.logedIn) as? Bool
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
-                    
+
                     cell.sideMenuCell = generalType
-                    cell.setCell(title: logedIn == false ? generalType.title : "Logout", imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
+                    cell.setCell(title: logedIn == false ? generalType.title : NSLocalizedString("Logout", comment: ""), imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
                     cell.isAccessibilityElement = true
                     cell.accessibilityIdentifier = "sideMenuLoginCell"
                     cell.layer.backgroundColor = UIColor.clear.cgColor
@@ -195,82 +193,70 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                     cell.layer.opacity = 0
                     cell.actionButton.rx.tap.subscribe(onNext: {[weak self] in
                         if logedIn == true {
-                            self?.updateBooksNumber(removeBooks: false, numberOfBooks: self?.regularBooksCounter ?? 0, disposeBag: cell.disposeBag)
-                            self?.updateVipBooksNumber(removeBooks: false, numberOfBooks: self?.vipBooksCounter ?? 0, disposeBag: cell.disposeBag)
-                            if let books = self?.books {
-                                for book in books {
-                                    BooksService.lockBook(bookId:book.id, lockStatus: .unlocked).subscribe {(unlocked) in
-                                        book.locked = LockStatus.unlocked.rawValue
-                                        try! self?.context?.save()
-                                    } onError: { (error) in
-                                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                                    } onCompleted: {
-                                    }.disposed(by: cell.disposeBag)
-                                }
-                                UsersService.updateCartBooks(userId: self?.userId ?? 0, bookIDs: [""]).subscribe { (updated) in
-                                        self?.cartItemsCount = 0
-                                        self?.dismiss(animated: true, completion: nil)
-                                } onError: { (error) in
-                                    self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                                } onCompleted: {
-                                }.disposed(by: cell.disposeBag)
-                            }
-                            self?.getAlert(errorString: "Izlogovani ste!", errorColor: Colors.orange)
+                            self?.getAlert(errorString: NSLocalizedString("You have been logged out!", comment: ""), errorColor: Colors.orange)
                             _ = blitzBuchUserDefaults.set(.id, value: 0)
                             _ = blitzBuchUserDefaults.set(.logedIn, value: false)
                             _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: 0)
                             _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: 0)
                             _ = blitzBuchUserDefaults.set(.username, value: "--")
                             _ = blitzBuchUserDefaults.set(.cartItems, value: [""])
+                            self?.cartItemsCount = 0
+                            self?.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
                             self?.reloadUsername()
-                        } else {
-                            let vc = LoginViewController.get()
-                            let nav = UINavigationController(rootViewController: vc)
-                            self?.transition = CustomTransition(from: self ?? SideMenuViewController(), to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
-                            nav.transitioningDelegate = self?.transition
-                            nav.presentedViewController?.dismiss(animated: true, completion: nil)
-                            nav.modalPresentationStyle = .custom
-                            let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.navigationTitle) ?? UIFont.systemFont(ofSize: FontSize.navigationTitle), NSAttributedString.Key.foregroundColor : Colors.blueDefault] as [NSAttributedString.Key : Any]
-                            nav.navigationBar.titleTextAttributes = attributes
-                            self?.present(nav, animated: true, completion: nil)
-                            return
+                            self?.logoutUser()
                         }
+//                        else {
+//                            let vc = LoginViewController.get()
+//                            let nav = UINavigationController(rootViewController: vc)
+//                            self?.transition = CustomTransition(from: self ?? SideMenuViewController(), to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
+//                            nav.transitioningDelegate = self?.transition
+//                            nav.presentedViewController?.dismiss(animated: true, completion: nil)
+//                            nav.modalPresentationStyle = .custom
+//                            let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.navigationTitle) ?? UIFont.systemFont(ofSize: FontSize.navigationTitle), NSAttributedString.Key.foregroundColor : Colors.blueDefault] as [NSAttributedString.Key : Any]
+//                            nav.navigationBar.titleTextAttributes = attributes
+//                            self?.present(nav, animated: true, completion: nil)
+//                            return
+//                        }
                     }).disposed(by: cell.disposeBag)
                     return cell
                 }
-                
+
             }
-            if generalType == .register {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
-                    cell.sideMenuCell = generalType
-                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
-                    cell.layer.backgroundColor = UIColor.clear.cgColor
-                    cell.contentView.backgroundColor = .clear
-                    cell.backgroundColor = .clear
-                    cell.layer.opacity = 0
-                    return cell
-                    
-                }
-            }
+//            if generalType == .register {
+//                if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
+//                    cell.sideMenuCell = generalType
+//                    cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
+//                    cell.layer.backgroundColor = UIColor.clear.cgColor
+//                    cell.contentView.backgroundColor = .clear
+//                    cell.backgroundColor = .clear
+//                    cell.layer.opacity = 0
+//                    return cell
+//
+//                }
+//            }
             if generalType == .contact {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
+                    cell.actionButton.isUserInteractionEnabled = false
                     cell.sideMenuCell = generalType
                     cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: 0, imageTint: generalType.imageTint)
                     cell.layer.backgroundColor = UIColor.clear.cgColor
                     cell.contentView.backgroundColor = .clear
                     cell.backgroundColor = .clear
                     cell.layer.opacity = 0
+                    cell.isUserInteractionEnabled = true
                     return cell
                 }
             }
             if generalType == .cart {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuGeneralCell") as? SideMenuGeneralCell {
+                    cell.actionButton.isUserInteractionEnabled = false
                     cell.sideMenuCell = generalType
                     cell.setCell(title: generalType.title, imageName: generalType.imageName, counter: cartItemsCount, imageTint: generalType.imageTint)
                     cell.layer.backgroundColor = UIColor.clear.cgColor
                     cell.contentView.backgroundColor = .clear
                     cell.backgroundColor = .clear
                     cell.layer.opacity = 0
+                    cell.isUserInteractionEnabled = true
                     return cell
                 }
             }
@@ -287,19 +273,19 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
             return
         case .general(type: let type):
             switch type {
-            case .login:
+            case .logout:
                 return
-            case .register:
-                let vc = RegisterViewController.get()
-                let nav = UINavigationController(rootViewController: vc)
-                self.transition = CustomTransition(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
-                nav.transitioningDelegate = self.transition
-                nav.presentedViewController?.dismiss(animated: true, completion: nil)
-                nav.modalPresentationStyle = .custom
-                let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.navigationTitle) ?? UIFont.systemFont(ofSize: FontSize.navigationTitle), NSAttributedString.Key.foregroundColor : Colors.blueDefault] as [NSAttributedString.Key : Any]
-                nav.navigationBar.titleTextAttributes = attributes
-                self.present(nav, animated: true, completion: nil)
-                return
+//            case .register:
+//                let vc = RegisterViewController.get()
+//                let nav = UINavigationController(rootViewController: vc)
+//                self.transition = CustomTransition(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
+//                nav.transitioningDelegate = self.transition
+//                nav.presentedViewController?.dismiss(animated: true, completion: nil)
+//                nav.modalPresentationStyle = .custom
+//                let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.navigationTitle) ?? UIFont.systemFont(ofSize: FontSize.navigationTitle), NSAttributedString.Key.foregroundColor : Colors.blueDefault] as [NSAttributedString.Key : Any]
+//                nav.navigationBar.titleTextAttributes = attributes
+//                self.present(nav, animated: true, completion: nil)
+//                return
             case .contact:
                 DispatchQueue.main.async {[weak self] in
                     guard let strongSelf = self else {return}
@@ -307,26 +293,31 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
                 }
                 return
             case .cart:
-                let vc = CartViewController.get()
+                print(indexPath)
+                let vc = BlitzBuchCartViewController.get()
+                vc.delegate = self
+                vc.navigationController?.navigationBar.isHidden = true
                 self.transition = CustomTransition(from: self, to: vc, fromFrame: nil, snapshot: nil, viewToHide: nil)
                 let nav = UINavigationController(rootViewController: vc)
                 nav.transitioningDelegate = self.transition
                 nav.presentedViewController?.dismiss(animated: true, completion: nil)
-                vc.cartCountObserver.subscribe(onNext: {number in
-                    self.cartItemsCount = number
-                }).disposed(by: self.disposeBag)
                 let attributes = [NSAttributedString.Key.font:UIFont(name: FontName.regular.value, size: FontSize.navigationTitle) ?? UIFont.systemFont(ofSize: FontSize.navigationTitle), NSAttributedString.Key.foregroundColor : Colors.blueDefault] as [NSAttributedString.Key : Any]
                 nav.navigationBar.titleTextAttributes = attributes
                 nav.modalPresentationStyle = .custom
                 self.present(nav, animated: true, completion: nil)
                 return
             }
-            
         }
-        
     }
-    
-    
-    
-    
+
+}
+
+// MARK: - CartCounterDelegate
+
+extension SideMenuViewController: BlitzBuchCartVCDelegate {
+    func reloadCartCounter() {
+        cartItems = blitzBuchUserDefaults.get(.cartItems) as? [String]
+        self.cartItemsCount = self.cartItems?.count ?? 0
+        self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
+    }
 }

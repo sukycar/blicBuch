@@ -29,15 +29,17 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
         } catch {
             self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
         }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.view.stopActivityIndicator()
-        }
+        
+        // MARK: - TODO: - prebaciti u view model celu funkciju pa raditi reload preko binda
+
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//            self.view.stopActivityIndicator()
+//        }
     }
     @IBAction func backButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    lazy var alertService = AlertService()
     var booksInCart: [Book]?
     //    private var booksFiltered: [Book] = [Book]()
     private let context = DataManager.shared.context
@@ -66,26 +68,54 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.fetchBooks()
-        self.tableView?.reloadData()
+//        self.tableView?.reloadData()
     }
     
+
     
-    override func configureTable(){
-        let customCellName = String(describing: BookTableViewCell.self)
-        let orderCellName = String(describing: OrderTableViewCell.self)
-        tableView?.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
-        tableView?.register(UINib(nibName: orderCellName, bundle: nil), forCellReuseIdentifier: orderCellName)
-        tableView?.register(UINib(nibName: String(describing: EmptyTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: EmptyTableViewCell.self))
-        self.tableView?.tableFooterView = UIView()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.disposeBag = DisposeBag()
     }
     
-    // MARK: - Table view data source
+    @objc func dismissController(){
+        self.dismiss(animated: true) {[weak self] in
+            guard let strongSelf = self else {return}
+            strongSelf.booksInCart?.forEach({ (book) in
+                BooksService.deleteBook(bookId: Int(book.id)).subscribe { (finished) in
+                    if finished {
+                        BooksService.getAll().subscribe { (finished) in
+                            if finished {
+                                print("Books refreshed")
+                            }
+                        } onError: { (error) in
+                            strongSelf.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                        } onCompleted: {
+                            //
+                        } onDisposed: {
+                            //
+                        }.disposed(by: self?.disposeBag ?? DisposeBag())
+                    }
+                } onError: { (error) in
+                    strongSelf.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                } onCompleted: {
+                    //
+                } onDisposed: {
+                    //
+                }.disposed(by: self?.disposeBag ?? DisposeBag())
+            })
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return booksInCart?.count ?? 1
         } else {
@@ -94,7 +124,7 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
         
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if booksInCart?.count ?? 0 > 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self), for: indexPath) as! BookTableViewCell
@@ -154,7 +184,7 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
                     UsersService.updateCartBooks(userId: self?.userId ?? 0, bookIDs: self?.idArray ?? [""]).subscribe { (updated) in
                         //
                         DispatchQueue.main.async {
-                            self?.tableView.reloadData()
+                            tableView.reloadData()
                         }
                         self?.view.stopActivityIndicator()
                         
@@ -209,47 +239,14 @@ class CartViewController: BaseViewController, MFMailComposeViewControllerDelegat
         }
         return 0
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.disposeBag = DisposeBag()
-    }
-    
-    @objc func dismissController(){
-        self.dismiss(animated: true) {[weak self] in
-            guard let strongSelf = self else {return}
-            strongSelf.booksInCart?.forEach({ (book) in
-                BooksService.deleteBook(bookId: Int(book.id)).subscribe { (finished) in
-                    if finished {
-                        BooksService.getAll().subscribe { (finished) in
-                            if finished {
-                                print("Books refreshed")
-                            }
-                        } onError: { (error) in
-                            strongSelf.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                        } onCompleted: {
-                            //
-                        } onDisposed: {
-                            //
-                        }.disposed(by: self?.disposeBag ?? DisposeBag())
-                    }
-                } onError: { (error) in
-                    strongSelf.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-                } onCompleted: {
-                    //
-                } onDisposed: {
-                    //
-                }.disposed(by: self?.disposeBag ?? DisposeBag())
-            })
-        }
-    }
 }
 
-extension CartViewController{
-    class func get() -> CartViewController {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CartTableView") as! CartViewController
-        vc.view.startActivityIndicator()
-        return vc
-    }
-}
+//extension CartViewController{
+//    class func get() -> CartViewController {
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CartTableView") as! CartViewController
+//        vc.view.startActivityIndicator()
+//        return vc
+//    }
+//}
 
 

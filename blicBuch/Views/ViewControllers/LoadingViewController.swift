@@ -10,9 +10,12 @@ import UIKit
 import RxSwift
 import CoreData
 import Alamofire
+import KeychainAccess
 
 class LoadingViewController: UIViewController {
     
+    internal lazy var keychainServices = KeychainServices(keychain:
+                                                            Keychain(service: "blitzBuch"))
     var disposeBag = DisposeBag()
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageYConstraint: NSLayoutConstraint!
@@ -46,11 +49,7 @@ class LoadingViewController: UIViewController {
 //                }.disposed(by: self.disposeBag)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-                    vc.view.alpha = 0
-                    vc.loaderTest = .firstTime
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.setWindow(vc: vc, animated: false)
+                    self.goToLogin()
                     
                 }
             }
@@ -69,6 +68,15 @@ class LoadingViewController: UIViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.disposeBag = DisposeBag()
      }
+    
+    private func goToLogin() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlitzBuchLoginViewController") as! BlitzBuchLoginViewController
+        vc.viewModel = BlitzBuchLoginViewModel(keychainServices: self.keychainServices)
+//                    vc.view.alpha = 1
+//                    vc.loaderTest = .firstTime
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setWindow(vc: vc, animated: false)
+    }
     
 }
 

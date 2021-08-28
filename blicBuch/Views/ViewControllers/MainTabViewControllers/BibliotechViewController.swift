@@ -30,13 +30,37 @@ class BibliotechViewController: BaseViewController {
         borderView.addBottomBorder(color: .gray, margins: 0, borderLineSize: 0.3)
     }
     
-    override func configureTable() {
-        genreTable.delegate = self
-        genreTable.dataSource = self
-        let customCellName = String(describing: CategoryTableViewCell.self)
-        genreTable.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
-        genreTable.tableFooterView = UIView()
+    // MARK: - TODO: u View
+
+//    override func configureTable() {
+//        genreTable.delegate = self
+//        genreTable.dataSource = self
+//        let customCellName = String(describing: CategoryTableViewCell.self)
+//        genreTable.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
+//        genreTable.tableFooterView = UIView()
+//    }
+    
+    
+    var imageArray = [UIImage(named: "image1"), UIImage(named: "image2"), UIImage(named: "image3"), UIImage(named: "image4"), UIImage(named: "image5")]
+    
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "bibliotech" {
+            let newController = segue.destination as! UINavigationController
+            let tableViewCTRL = newController.topViewController as! GenreViewController
+            tableViewCTRL.genre = self.genre
+        }
     }
+    
+    
+}
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
+extension BibliotechViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         return view
@@ -46,11 +70,11 @@ class BibliotechViewController: BaseViewController {
         return 10
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataSource[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing:CategoryTableViewCell.self), for:indexPath) as! CategoryTableViewCell
         cell.set(with: model)
@@ -106,23 +130,8 @@ class BibliotechViewController: BaseViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
     }
-    
-    var imageArray = [UIImage(named: "image1"), UIImage(named: "image2"), UIImage(named: "image3"), UIImage(named: "image4"), UIImage(named: "image5")]
-    
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "bibliotech" {
-            let newController = segue.destination as! UINavigationController
-            let tableViewCTRL = newController.topViewController as! GenreViewController
-            tableViewCTRL.genre = self.genre
-        }
-    }
-    
-    
 }
+
 
 
 

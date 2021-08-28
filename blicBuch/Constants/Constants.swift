@@ -5,9 +5,13 @@
 //  Created by Vladimir Sukanica on 12.12.20..
 //  Copyright © 2020 sukydeveloper. All rights reserved.
 //
+
 import UIKit
 
-
+class Constants {
+    static let userLogout = "UserLogout"
+    static let userDefaultsToken = "UserDefaultsToken"
+}
 
 struct FontSize {
     static let label:CGFloat = 17

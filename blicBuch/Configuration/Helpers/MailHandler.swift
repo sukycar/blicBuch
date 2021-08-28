@@ -18,7 +18,7 @@ class MailHandler: UIViewController, MFMailComposeViewControllerDelegate {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["sukycar@gmail.com"])
+            mail.setToRecipients(["blitzBuch@gmail.com"])
             mail.setSubject("Blitz Buch support")
             controller.present(mail, animated: true)
         } else {

@@ -30,6 +30,33 @@ class TabBarViewController: UITabBarController {
                 self.view.alpha = 1
             }
         }
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Home VC
+        let newHomeVC = storyBoard.instantiateViewController(identifier: "BlitzBuchHomeViewController") as? BlitzBuchHomeViewController
+        newHomeVC?.viewModel = BlitzBuchHomeViewModel()
+        self.viewControllers?[0] = newHomeVC!
+        
+        // Library VC
+        let libraryVC = storyBoard.instantiateViewController(identifier: "BlitzBuchLibraryViewController") as? BlitzBuchLibraryViewController
+        libraryVC?.viewModel = BlitzBuchLibraryViewModel()
+        self.viewControllers?[1] = libraryVC!
+        
+        // VIP VC
+        let vipVC = storyBoard.instantiateViewController(identifier: "BlitzBuchVipViewController") as? BlitzBuchVipViewController
+        vipVC?.viewModel = BlitzBuchVipViewModel()
+        self.viewControllers?[2] = vipVC!
+        
+        // Info VC
+        let infoVC = storyBoard.instantiateViewController(identifier: "BlitzBuchInfoViewController") as? BlitzBuchInfoViewController
+        infoVC?.viewModel = BlitzBuchInfoViewModel()
+        self.viewControllers?[3] = infoVC!
+        
+        // Search VC
+        let searchVC = storyBoard.instantiateViewController(identifier: "BlitzBuchSearchViewController") as? BlitzBuchSearchViewController
+        searchVC?.viewModel = BlitzBuchSearchViewModel()
+        self.viewControllers?[4] = searchVC!
+        
     }
     
     enum Loaded {

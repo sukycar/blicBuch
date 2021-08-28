@@ -13,6 +13,11 @@ target 'blitzBuch' do
   pod 'SideMenu', '~> 6.4.8'
   pod 'NVActivityIndicatorView'
   pod 'RxSwift'
-
+  pod 'KeychainAccess'
+  pod 'MBProgressHUD'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'PopupDialog'
   
 end

@@ -39,7 +39,7 @@ class ActivityIndicatorView: UIView {
 //        self.style(Styles.ActivityIndicator.activityIndicatorBg())
         let processingLabel = UILabel()
         processingLabel.textAlignment = .center
-        processingLabel.text = "Processing..."
+        processingLabel.text = NSLocalizedString("Processing...", comment: "")
 //        processingLabel.style(Styles.ActivityIndicator.activityIndicator())
         holderView.addSubview(processingLabel)
         processingLabel.translatesAutoresizingMaskIntoConstraints = false

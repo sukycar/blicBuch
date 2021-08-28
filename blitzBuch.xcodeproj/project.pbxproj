@@ -46,17 +46,34 @@
 		0AEEE89123C5CDC700240B90 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEE89023C5CDC700240B90 /* AlertViewController.swift */; };
 		0AEEE89323C5DF1300240B90 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEE89223C5DF1300240B90 /* AlertService.swift */; };
 		0AF1EEA22483EA8F000AB7DC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1EEA12483EA8F000AB7DC /* Colors.swift */; };
-		0AFA045524673AA10096CCCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0AA7BCB1240F97C300A06F6A /* GoogleService-Info.plist */; };
 		0AFA045A24674D010096CCCD /* blicBuch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA0456246747850096CCCD /* blicBuch.xcdatamodeld */; };
 		1BE2D4A4BDAA4157F542C675 /* Pods_blitzBuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D313F7A7449774C29F2F56 /* Pods_blitzBuch.framework */; };
 		1F0025A525E81C9800388CA5 /* UIView + globalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0025A425E81C9800388CA5 /* UIView + globalFrame.swift */; };
 		1F0025A825E81D2600388CA5 /* UIView + border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0025A725E81D2600388CA5 /* UIView + border.swift */; };
+		1F06776526B1C476000C1D76 /* BlitzBuchRegisterModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776126B1C476000C1D76 /* BlitzBuchRegisterModels.swift */; };
+		1F06776626B1C476000C1D76 /* BlitzBuchRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776226B1C476000C1D76 /* BlitzBuchRegisterViewController.swift */; };
+		1F06776726B1C476000C1D76 /* BlitzBuchRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776326B1C476000C1D76 /* BlitzBuchRegisterView.swift */; };
+		1F06776826B1C476000C1D76 /* BlitzBuchRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776426B1C476000C1D76 /* BlitzBuchRegisterViewModel.swift */; };
+		1F06776D26B1C48B000C1D76 /* BlitzBuchCartModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776926B1C48B000C1D76 /* BlitzBuchCartModels.swift */; };
+		1F06776E26B1C48B000C1D76 /* BlitzBuchCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776A26B1C48B000C1D76 /* BlitzBuchCartViewController.swift */; };
+		1F06776F26B1C48B000C1D76 /* BlitzBuchCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776B26B1C48B000C1D76 /* BlitzBuchCartView.swift */; };
+		1F06777026B1C48B000C1D76 /* BlitzBuchCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F06776C26B1C48B000C1D76 /* BlitzBuchCartViewModel.swift */; };
+		1F18570A26DA596B00721F11 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18570926DA596B00721F11 /* FirebaseError.swift */; };
 		1F29F8AC25F294CD0086331B /* BlueCloudCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8AB25F294CD0086331B /* BlueCloudCellData.swift */; };
 		1F29F8B025F295DC0086331B /* BlueCloudCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8AF25F295DC0086331B /* BlueCloudCellViewModel.swift */; };
 		1F29F8B425F2C4520086331B /* BlueCloudCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F29F8B325F2C4520086331B /* BlueCloudCellModel.swift */; };
-		1F2DBA3D25E64AC400F4104B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */; };
 		1F2DBA4625E6614D00F4104B /* BibliotechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DBA4525E6614D00F4104B /* BibliotechViewController.swift */; };
+		1F37C75626A2B8D9001DD157 /* BlitzBuchHomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37C75226A2B8D9001DD157 /* BlitzBuchHomeModels.swift */; };
+		1F37C75726A2B8D9001DD157 /* BlitzBuchHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37C75326A2B8D9001DD157 /* BlitzBuchHomeViewController.swift */; };
+		1F37C75826A2B8D9001DD157 /* BlitzBuchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37C75426A2B8D9001DD157 /* BlitzBuchHomeView.swift */; };
+		1F37C75926A2B8D9001DD157 /* BlitzBuchHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F37C75526A2B8D9001DD157 /* BlitzBuchHomeViewModel.swift */; };
+		1F3A0F3C26D0D7FB00171FE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F3A0F3B26D0D7FB00171FE1 /* GoogleService-Info.plist */; };
 		1F444B9E25A475890046EB5F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F444B9D25A475890046EB5F /* Enums.swift */; };
+		1F44835126A326CA002151CD /* AllertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44835026A326CA002151CD /* AllertMessage.swift */; };
+		1F44835526A3282C002151CD /* KeychainServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44835426A3282C002151CD /* KeychainServices.swift */; };
+		1F44835726A32F0D002151CD /* CustomProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44835626A32F0D002151CD /* CustomProgressHUD.swift */; };
+		1F44835926A33546002151CD /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44835826A33546002151CD /* ErrorView.swift */; };
+		1F44835B26A33574002151CD /* RemoteResourceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44835A26A33574002151CD /* RemoteResourceError.swift */; };
 		1F50A9F325F395B100121AD4 /* OrderCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50A9F225F395B100121AD4 /* OrderCellData.swift */; };
 		1F50A9F725F3973400121AD4 /* OrderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50A9F625F3973400121AD4 /* OrderCellModel.swift */; };
 		1F50A9FB25F397FA00121AD4 /* OrderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F50A9FA25F397FA00121AD4 /* OrderCellViewModel.swift */; };
@@ -67,8 +84,8 @@
 		1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */; };
 		1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F52E16925A200EA005B864F /* AlertButton.swift */; };
 		1F553EC925E93EA400747615 /* UIView + device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F553EC825E93EA400747615 /* UIView + device.swift */; };
+		1F664C0526D8ACF700B5C383 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F664C0726D8ACF700B5C383 /* Localizable.strings */; };
 		1F688CC625FA4E68008CBB7D /* HomeControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F688CC525FA4E68008CBB7D /* HomeControllerViewModel.swift */; };
-		1F6F13D625ED522C0039F6FB /* blitzBuchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F13D525ED522C0039F6FB /* blitzBuchUITests.swift */; };
 		1F73893F25E51CD3003EFECC /* MailHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73893E25E51CD3003EFECC /* MailHandler.swift */; };
 		1F73897725E530E8003EFECC /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897325E530E8003EFECC /* User+CoreDataClass.swift */; };
 		1F73897825E530E8003EFECC /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897425E530E8003EFECC /* Book+CoreDataProperties.swift */; };
@@ -76,13 +93,14 @@
 		1F73897A25E530E8003EFECC /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897625E530E8003EFECC /* Book+CoreDataClass.swift */; };
 		1F73897F25E53228003EFECC /* GenreTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73897E25E53228003EFECC /* GenreTableViewModel.swift */; };
 		1F73898225E5903A003EFECC /* BookCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73898125E5903A003EFECC /* BookCellViewModel.swift */; };
+		1F7663C326C927990030AD31 /* GoogleService-Info-Prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F7663C226C927990030AD31 /* GoogleService-Info-Prod.plist */; };
 		1F84715B257CD792008D759C /* blitzBuchUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F84715A257CD792008D759C /* blitzBuchUserDefaults.swift */; };
 		1F9592EA25AEEB9B00AD065F /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9592E925AEEB9B00AD065F /* UsersService.swift */; };
 		1F9B7CBB25F1016E0020BD40 /* VipViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B7CBA25F1016E0020BD40 /* VipViewControllerViewModel.swift */; };
 		1F9ED5E725F93731002758D9 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9ED5E625F93731002758D9 /* AlertViewModel.swift */; };
 		1F9ED5EC25F93746002758D9 /* AlertViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9ED5EB25F93746002758D9 /* AlertViewData.swift */; };
 		1F9ED5F125F9375C002758D9 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9ED5F025F9375C002758D9 /* AlertModel.swift */; };
-		1F9F716925F5744E002098F7 /* InfoViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9F716825F5744E002098F7 /* InfoViewModelTest.swift */; };
+		1F9F41CA26D6BAF3000E72D3 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9F41C926D6BAF3000E72D3 /* DialogViewController.swift */; };
 		1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */; };
 		1FA4CBDF2587848300730984 /* UIView + loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CBDE2587848300730984 /* UIView + loader.swift */; };
 		1FAE4E2725E97BF300E7A774 /* UIResponder + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAE4E2625E97BF300E7A774 /* UIResponder + extensions.swift */; };
@@ -108,25 +126,31 @@
 		1FE8B5252584D22500C3A47A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B5242584D22500C3A47A /* Constants.swift */; };
 		1FE8B5282584D45700C3A47A /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B5272584D45700C3A47A /* String + extension.swift */; };
 		1FE8B52B2584DAD600C3A47A /* SideMenuGeneralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */; };
+		1FEF05D426A2BBE8000EAC19 /* BlitzBuchLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05D026A2BBE8000EAC19 /* BlitzBuchLoginModels.swift */; };
+		1FEF05D526A2BBE8000EAC19 /* BlitzBuchLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05D126A2BBE8000EAC19 /* BlitzBuchLoginViewController.swift */; };
+		1FEF05D626A2BBE8000EAC19 /* BlitzBuchLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05D226A2BBE8000EAC19 /* BlitzBuchLoginView.swift */; };
+		1FEF05D726A2BBE8000EAC19 /* BlitzBuchLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05D326A2BBE8000EAC19 /* BlitzBuchLoginViewModel.swift */; };
+		1FEF05DC26A2BC15000EAC19 /* BlitzBuchLibraryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05D826A2BC15000EAC19 /* BlitzBuchLibraryModels.swift */; };
+		1FEF05DD26A2BC15000EAC19 /* BlitzBuchLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05D926A2BC15000EAC19 /* BlitzBuchLibraryViewController.swift */; };
+		1FEF05DE26A2BC15000EAC19 /* BlitzBuchLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05DA26A2BC15000EAC19 /* BlitzBuchLibraryView.swift */; };
+		1FEF05DF26A2BC15000EAC19 /* BlitzBuchLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05DB26A2BC15000EAC19 /* BlitzBuchLibraryViewModel.swift */; };
+		1FEF05E426A2BD1E000EAC19 /* BlitzBuchVipModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05E026A2BD1E000EAC19 /* BlitzBuchVipModels.swift */; };
+		1FEF05E526A2BD1E000EAC19 /* BlitzBuchVipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05E126A2BD1E000EAC19 /* BlitzBuchVipViewController.swift */; };
+		1FEF05E626A2BD1E000EAC19 /* BlitzBuchVipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05E226A2BD1E000EAC19 /* BlitzBuchVipView.swift */; };
+		1FEF05E726A2BD1E000EAC19 /* BlitzBuchVipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05E326A2BD1E000EAC19 /* BlitzBuchVipViewModel.swift */; };
+		1FEF05EC26A2BD34000EAC19 /* BlitzBuchSearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05E826A2BD34000EAC19 /* BlitzBuchSearchModels.swift */; };
+		1FEF05ED26A2BD34000EAC19 /* BlitzBuchSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05E926A2BD34000EAC19 /* BlitzBuchSearchViewController.swift */; };
+		1FEF05EE26A2BD34000EAC19 /* BlitzBuchSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05EA26A2BD34000EAC19 /* BlitzBuchSearchView.swift */; };
+		1FEF05EF26A2BD34000EAC19 /* BlitzBuchSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05EB26A2BD34000EAC19 /* BlitzBuchSearchViewModel.swift */; };
+		1FEF05F426A2BD48000EAC19 /* BlitzBuchInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05F026A2BD48000EAC19 /* BlitzBuchInfoModels.swift */; };
+		1FEF05F526A2BD48000EAC19 /* BlitzBuchInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05F126A2BD48000EAC19 /* BlitzBuchInfoViewController.swift */; };
+		1FEF05F626A2BD48000EAC19 /* BlitzBuchInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05F226A2BD48000EAC19 /* BlitzBuchInfoView.swift */; };
+		1FEF05F726A2BD48000EAC19 /* BlitzBuchInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05F326A2BD48000EAC19 /* BlitzBuchInfoViewModel.swift */; };
+		1FEF05FB26A2C195000EAC19 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05FA26A2C195000EAC19 /* BaseViewController.swift */; };
+		1FEF05FE26A2C26B000EAC19 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF05FD26A2C26B000EAC19 /* BaseViewModel.swift */; };
+		1FEF060126A2C2A7000EAC19 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF060026A2C2A7000EAC19 /* Dynamic.swift */; };
 		1FF613F025AC5CB300ACCE25 /* UIColor + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF613EF25AC5CB300ACCE25 /* UIColor + extensions.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		1F6F13D825ED522C0039F6FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A333F4023806EE800B5A39B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A333F4723806EE800B5A39B;
-			remoteInfo = blicBuch;
-		};
-		1F9F715B25F5730D002098F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A333F4023806EE800B5A39B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A333F4723806EE800B5A39B;
-			remoteInfo = blitzBuch;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0A028F8D242FC520005AEF14 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -160,7 +184,6 @@
 		0A8E4F4F249DEE8F00C8B38A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0A8F1FB62381EF2200ABE11F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0A9D202723B285D000C4476F /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
-		0AA7BCB1240F97C300A06F6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0AADA21A23BE925E00648835 /* VIPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPViewController.swift; sourceTree = "<group>"; };
 		0AB938D62483CD6E009A9C0D /* BookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		0AB938D72483CD72009A9C0D /* BookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
@@ -177,13 +200,31 @@
 		0AFA0457246747850096CCCD /* blicBuch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = blicBuch.xcdatamodel; sourceTree = "<group>"; };
 		1F0025A425E81C9800388CA5 /* UIView + globalFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + globalFrame.swift"; sourceTree = "<group>"; };
 		1F0025A725E81D2600388CA5 /* UIView + border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + border.swift"; sourceTree = "<group>"; };
+		1F06776126B1C476000C1D76 /* BlitzBuchRegisterModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchRegisterModels.swift; sourceTree = "<group>"; };
+		1F06776226B1C476000C1D76 /* BlitzBuchRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchRegisterViewController.swift; sourceTree = "<group>"; };
+		1F06776326B1C476000C1D76 /* BlitzBuchRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchRegisterView.swift; sourceTree = "<group>"; };
+		1F06776426B1C476000C1D76 /* BlitzBuchRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchRegisterViewModel.swift; sourceTree = "<group>"; };
+		1F06776926B1C48B000C1D76 /* BlitzBuchCartModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchCartModels.swift; sourceTree = "<group>"; };
+		1F06776A26B1C48B000C1D76 /* BlitzBuchCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchCartViewController.swift; sourceTree = "<group>"; };
+		1F06776B26B1C48B000C1D76 /* BlitzBuchCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchCartView.swift; sourceTree = "<group>"; };
+		1F06776C26B1C48B000C1D76 /* BlitzBuchCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchCartViewModel.swift; sourceTree = "<group>"; };
+		1F18570926DA596B00721F11 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		1F24437025A2482300BC99F8 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		1F29F8AB25F294CD0086331B /* BlueCloudCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCellData.swift; sourceTree = "<group>"; };
 		1F29F8AF25F295DC0086331B /* BlueCloudCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCellViewModel.swift; sourceTree = "<group>"; };
 		1F29F8B325F2C4520086331B /* BlueCloudCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCloudCellModel.swift; sourceTree = "<group>"; };
-		1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1F2DBA4525E6614D00F4104B /* BibliotechViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibliotechViewController.swift; sourceTree = "<group>"; };
+		1F37C75226A2B8D9001DD157 /* BlitzBuchHomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchHomeModels.swift; sourceTree = "<group>"; };
+		1F37C75326A2B8D9001DD157 /* BlitzBuchHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchHomeViewController.swift; sourceTree = "<group>"; };
+		1F37C75426A2B8D9001DD157 /* BlitzBuchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchHomeView.swift; sourceTree = "<group>"; };
+		1F37C75526A2B8D9001DD157 /* BlitzBuchHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchHomeViewModel.swift; sourceTree = "<group>"; };
+		1F3A0F3B26D0D7FB00171FE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F444B9D25A475890046EB5F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		1F44835026A326CA002151CD /* AllertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllertMessage.swift; sourceTree = "<group>"; };
+		1F44835426A3282C002151CD /* KeychainServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServices.swift; sourceTree = "<group>"; };
+		1F44835626A32F0D002151CD /* CustomProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressHUD.swift; sourceTree = "<group>"; };
+		1F44835826A33546002151CD /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		1F44835A26A33574002151CD /* RemoteResourceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceError.swift; sourceTree = "<group>"; };
 		1F50A9F225F395B100121AD4 /* OrderCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellData.swift; sourceTree = "<group>"; };
 		1F50A9F625F3973400121AD4 /* OrderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellModel.swift; sourceTree = "<group>"; };
 		1F50A9FA25F397FA00121AD4 /* OrderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellViewModel.swift; sourceTree = "<group>"; };
@@ -195,8 +236,11 @@
 		1F52E16925A200EA005B864F /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
 		1F553EB825E8FFED00747615 /* blitzBuch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = blitzBuch.entitlements; sourceTree = "<group>"; };
 		1F553EC825E93EA400747615 /* UIView + device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + device.swift"; sourceTree = "<group>"; };
+		1F664C0126D8AB3100B5C383 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1F664C0626D8ACF700B5C383 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1F664C0826D8AD0B00B5C383 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1F664C0A26D8B69D00B5C383 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		1F688CC525FA4E68008CBB7D /* HomeControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerViewModel.swift; sourceTree = "<group>"; };
-		1F6F13D325ED522C0039F6FB /* blitzBuchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = blitzBuchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F6F13D525ED522C0039F6FB /* blitzBuchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blitzBuchUITests.swift; sourceTree = "<group>"; };
 		1F6F13D725ED522C0039F6FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F73893E25E51CD3003EFECC /* MailHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailHandler.swift; sourceTree = "<group>"; };
@@ -206,13 +250,14 @@
 		1F73897625E530E8003EFECC /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1F73897E25E53228003EFECC /* GenreTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewModel.swift; sourceTree = "<group>"; };
 		1F73898125E5903A003EFECC /* BookCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellViewModel.swift; sourceTree = "<group>"; };
+		1F7663C226C927990030AD31 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
 		1F84715A257CD792008D759C /* blitzBuchUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = blitzBuchUserDefaults.swift; path = blicBuch/Configuration/blitzBuchUserDefaults.swift; sourceTree = SOURCE_ROOT; };
 		1F9592E925AEEB9B00AD065F /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		1F9B7CBA25F1016E0020BD40 /* VipViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipViewControllerViewModel.swift; sourceTree = "<group>"; };
 		1F9ED5E625F93731002758D9 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		1F9ED5EB25F93746002758D9 /* AlertViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewData.swift; sourceTree = "<group>"; };
 		1F9ED5F025F9375C002758D9 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
-		1F9F715625F5730D002098F7 /* blitzBuchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = blitzBuchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F9F41C926D6BAF3000E72D3 /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		1F9F715A25F5730D002098F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F9F716825F5744E002098F7 /* InfoViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModelTest.swift; sourceTree = "<group>"; };
 		1FA4CB8825877D8000730984 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -240,11 +285,36 @@
 		1FE8B5242584D22500C3A47A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1FE8B5272584D45700C3A47A /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
 		1FE8B52A2584DAD600C3A47A /* SideMenuGeneralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuGeneralCell.swift; sourceTree = "<group>"; };
+		1FEF05D026A2BBE8000EAC19 /* BlitzBuchLoginModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchLoginModels.swift; sourceTree = "<group>"; };
+		1FEF05D126A2BBE8000EAC19 /* BlitzBuchLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchLoginViewController.swift; sourceTree = "<group>"; };
+		1FEF05D226A2BBE8000EAC19 /* BlitzBuchLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchLoginView.swift; sourceTree = "<group>"; };
+		1FEF05D326A2BBE8000EAC19 /* BlitzBuchLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchLoginViewModel.swift; sourceTree = "<group>"; };
+		1FEF05D826A2BC15000EAC19 /* BlitzBuchLibraryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchLibraryModels.swift; sourceTree = "<group>"; };
+		1FEF05D926A2BC15000EAC19 /* BlitzBuchLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchLibraryViewController.swift; sourceTree = "<group>"; };
+		1FEF05DA26A2BC15000EAC19 /* BlitzBuchLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchLibraryView.swift; sourceTree = "<group>"; };
+		1FEF05DB26A2BC15000EAC19 /* BlitzBuchLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchLibraryViewModel.swift; sourceTree = "<group>"; };
+		1FEF05E026A2BD1E000EAC19 /* BlitzBuchVipModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchVipModels.swift; sourceTree = "<group>"; };
+		1FEF05E126A2BD1E000EAC19 /* BlitzBuchVipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchVipViewController.swift; sourceTree = "<group>"; };
+		1FEF05E226A2BD1E000EAC19 /* BlitzBuchVipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchVipView.swift; sourceTree = "<group>"; };
+		1FEF05E326A2BD1E000EAC19 /* BlitzBuchVipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchVipViewModel.swift; sourceTree = "<group>"; };
+		1FEF05E826A2BD34000EAC19 /* BlitzBuchSearchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchSearchModels.swift; sourceTree = "<group>"; };
+		1FEF05E926A2BD34000EAC19 /* BlitzBuchSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchSearchViewController.swift; sourceTree = "<group>"; };
+		1FEF05EA26A2BD34000EAC19 /* BlitzBuchSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchSearchView.swift; sourceTree = "<group>"; };
+		1FEF05EB26A2BD34000EAC19 /* BlitzBuchSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchSearchViewModel.swift; sourceTree = "<group>"; };
+		1FEF05F026A2BD48000EAC19 /* BlitzBuchInfoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchInfoModels.swift; sourceTree = "<group>"; };
+		1FEF05F126A2BD48000EAC19 /* BlitzBuchInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchInfoViewController.swift; sourceTree = "<group>"; };
+		1FEF05F226A2BD48000EAC19 /* BlitzBuchInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchInfoView.swift; sourceTree = "<group>"; };
+		1FEF05F326A2BD48000EAC19 /* BlitzBuchInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzBuchInfoViewModel.swift; sourceTree = "<group>"; };
+		1FEF05FA26A2C195000EAC19 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1FEF05FD26A2C26B000EAC19 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		1FEF060026A2C2A7000EAC19 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		1FF613EF25AC5CB300ACCE25 /* UIColor + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + extensions.swift"; sourceTree = "<group>"; };
 		1FFC9F6225CE986400451747 /* PROD.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PROD.xcconfig; sourceTree = "<group>"; };
 		2EE6BD9448310AE72496FE56 /* Pods-blitzBuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blitzBuch.debug.xcconfig"; path = "Target Support Files/Pods-blitzBuch/Pods-blitzBuch.debug.xcconfig"; sourceTree = "<group>"; };
 		33D313F7A7449774C29F2F56 /* Pods_blitzBuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blitzBuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1BE284BBBC3AEBAC80201BC /* Pods-blitzBuch.debug(prod).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blitzBuch.debug(prod).xcconfig"; path = "Target Support Files/Pods-blitzBuch/Pods-blitzBuch.debug(prod).xcconfig"; sourceTree = "<group>"; };
 		C61826BD8CAF2147F8DA1DD2 /* Pods-blitzBuch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blitzBuch.release.xcconfig"; path = "Target Support Files/Pods-blitzBuch/Pods-blitzBuch.release.xcconfig"; sourceTree = "<group>"; };
+		DB2615A162227DF791475F56 /* Pods-blitzBuch.release(prod).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blitzBuch.release(prod).xcconfig"; path = "Target Support Files/Pods-blitzBuch/Pods-blitzBuch.release(prod).xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,20 +323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BE2D4A4BDAA4157F542C675 /* Pods_blitzBuch.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1F6F13D025ED522C0039F6FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1F9F715325F5730D002098F7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +336,7 @@
 				0AEEE89223C5DF1300240B90 /* AlertService.swift */,
 				1FE8B5072584CA1C00C3A47A /* SideMenuService.swift */,
 				1F9592E925AEEB9B00AD065F /* UsersService.swift */,
+				1F44835426A3282C002151CD /* KeychainServices.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -287,6 +344,7 @@
 		0A27E3CF2463488F00DE117C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1FEF05F826A2C126000EAC19 /* BaseClasses */,
 				1FBE360925EFDCF700681F0A /* Data */,
 				1F73894125E52FD1003EFECC /* Model */,
 				0A7519712466A8F90089DED8 /* DataManager.swift */,
@@ -313,6 +371,7 @@
 		0A333F3F23806EE800B5A39B = {
 			isa = PBXGroup;
 			children = (
+				1F664C0726D8ACF700B5C383 /* Localizable.strings */,
 				1F24437025A2482300BC99F8 /* Configuration.storekit */,
 				0ABC0E12238A97E600874626 /* Fonts */,
 				0A333F4A23806EE800B5A39B /* blicBuch */,
@@ -328,8 +387,6 @@
 			isa = PBXGroup;
 			children = (
 				0A333F4823806EE800B5A39B /* blitzBuch.app */,
-				1F6F13D325ED522C0039F6FB /* blitzBuchUITests.xctest */,
-				1F9F715625F5730D002098F7 /* blitzBuchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,6 +394,7 @@
 		0A333F4A23806EE800B5A39B /* blicBuch */ = {
 			isa = PBXGroup;
 			children = (
+				1F37C74B26A2B808001DD157 /* Scenes */,
 				1F9ED5F925F93BCF002758D9 /* Delegates */,
 				1F9ED5F825F93B56002758D9 /* Storyboards */,
 				1F553EB825E8FFED00747615 /* blitzBuch.entitlements */,
@@ -381,6 +439,9 @@
 				0A75196F2466A35A0089DED8 /* Model.swift */,
 				0A7F74E72467FE960064AE39 /* NetworkingService.swift */,
 				0A7F74E9246802C20064AE39 /* PersistenceService.swift */,
+				1F44835826A33546002151CD /* ErrorView.swift */,
+				1F44835A26A33574002151CD /* RemoteResourceError.swift */,
+				1F18570926DA596B00721F11 /* FirebaseError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -388,8 +449,9 @@
 		0A75196B24668DE30089DED8 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				1F3A0F3B26D0D7FB00171FE1 /* GoogleService-Info.plist */,
+				1F7663C226C927990030AD31 /* GoogleService-Info-Prod.plist */,
 				0A333F5C23806EFD00B5A39B /* Info.plist */,
-				0AA7BCB1240F97C300A06F6A /* GoogleService-Info.plist */,
 				1FA4CB8B25877E0F00730984 /* Libraries */,
 				1F73893D25E51A16003EFECC /* Helpers */,
 				0A75196C24668DF80089DED8 /* Enviroment.swift */,
@@ -415,6 +477,7 @@
 				0ADDD17D2517DA3B003626DE /* Alert */,
 				1F9F0E8525F28650009DAE58 /* ViewControllers */,
 				0A4C791D2517CA5D00FD2154 /* Cells */,
+				1F44835626A32F0D002151CD /* CustomProgressHUD.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -425,6 +488,7 @@
 				0AEEE89023C5CDC700240B90 /* AlertViewController.swift */,
 				1F52E11825A1F9F1005B864F /* InAppPurchaseAlertViewController.swift */,
 				1F52E16925A200EA005B864F /* AlertButton.swift */,
+				1F9F41C926D6BAF3000E72D3 /* DialogViewController.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -440,6 +504,28 @@
 			path = UIView;
 			sourceTree = "<group>";
 		};
+		1F06775F26B1C43C000C1D76 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				1F06776926B1C48B000C1D76 /* BlitzBuchCartModels.swift */,
+				1F06776A26B1C48B000C1D76 /* BlitzBuchCartViewController.swift */,
+				1F06776B26B1C48B000C1D76 /* BlitzBuchCartView.swift */,
+				1F06776C26B1C48B000C1D76 /* BlitzBuchCartViewModel.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		1F06776026B1C444000C1D76 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				1F06776126B1C476000C1D76 /* BlitzBuchRegisterModels.swift */,
+				1F06776226B1C476000C1D76 /* BlitzBuchRegisterViewController.swift */,
+				1F06776326B1C476000C1D76 /* BlitzBuchRegisterView.swift */,
+				1F06776426B1C476000C1D76 /* BlitzBuchRegisterViewModel.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		1F2DBA4325E660FF00F4104B /* MainTabViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +537,87 @@
 				0A028F8D242FC520005AEF14 /* InfoViewController.swift */,
 			);
 			path = MainTabViewControllers;
+			sourceTree = "<group>";
+		};
+		1F37C74B26A2B808001DD157 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				1F06776026B1C444000C1D76 /* Register */,
+				1F06775F26B1C43C000C1D76 /* Cart */,
+				1F37C75126A2B898001DD157 /* Info */,
+				1F37C75026A2B893001DD157 /* Search */,
+				1F37C74F26A2B881001DD157 /* Vip */,
+				1F37C74E26A2B852001DD157 /* Bibliotech */,
+				1F37C74D26A2B842001DD157 /* Login */,
+				1F37C74C26A2B82D001DD157 /* Home */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		1F37C74C26A2B82D001DD157 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1F37C75226A2B8D9001DD157 /* BlitzBuchHomeModels.swift */,
+				1F37C75326A2B8D9001DD157 /* BlitzBuchHomeViewController.swift */,
+				1F37C75426A2B8D9001DD157 /* BlitzBuchHomeView.swift */,
+				1F37C75526A2B8D9001DD157 /* BlitzBuchHomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1F37C74D26A2B842001DD157 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF05D026A2BBE8000EAC19 /* BlitzBuchLoginModels.swift */,
+				1FEF05D126A2BBE8000EAC19 /* BlitzBuchLoginViewController.swift */,
+				1FEF05D226A2BBE8000EAC19 /* BlitzBuchLoginView.swift */,
+				1FEF05D326A2BBE8000EAC19 /* BlitzBuchLoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		1F37C74E26A2B852001DD157 /* Bibliotech */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF05D826A2BC15000EAC19 /* BlitzBuchLibraryModels.swift */,
+				1FEF05D926A2BC15000EAC19 /* BlitzBuchLibraryViewController.swift */,
+				1FEF05DA26A2BC15000EAC19 /* BlitzBuchLibraryView.swift */,
+				1FEF05DB26A2BC15000EAC19 /* BlitzBuchLibraryViewModel.swift */,
+			);
+			path = Bibliotech;
+			sourceTree = "<group>";
+		};
+		1F37C74F26A2B881001DD157 /* Vip */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF05E026A2BD1E000EAC19 /* BlitzBuchVipModels.swift */,
+				1FEF05E126A2BD1E000EAC19 /* BlitzBuchVipViewController.swift */,
+				1FEF05E226A2BD1E000EAC19 /* BlitzBuchVipView.swift */,
+				1FEF05E326A2BD1E000EAC19 /* BlitzBuchVipViewModel.swift */,
+			);
+			path = Vip;
+			sourceTree = "<group>";
+		};
+		1F37C75026A2B893001DD157 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF05E826A2BD34000EAC19 /* BlitzBuchSearchModels.swift */,
+				1FEF05E926A2BD34000EAC19 /* BlitzBuchSearchViewController.swift */,
+				1FEF05EA26A2BD34000EAC19 /* BlitzBuchSearchView.swift */,
+				1FEF05EB26A2BD34000EAC19 /* BlitzBuchSearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		1F37C75126A2B898001DD157 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF05F026A2BD48000EAC19 /* BlitzBuchInfoModels.swift */,
+				1FEF05F126A2BD48000EAC19 /* BlitzBuchInfoViewController.swift */,
+				1FEF05F226A2BD48000EAC19 /* BlitzBuchInfoView.swift */,
+				1FEF05F326A2BD48000EAC19 /* BlitzBuchInfoViewModel.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		1F50AA1225F4125100121AD4 /* CellsModel */ = {
@@ -481,6 +648,7 @@
 				0AF1EEA12483EA8F000AB7DC /* Colors.swift */,
 				1F73893E25E51CD3003EFECC /* MailHandler.swift */,
 				1FD3939925F6C3870005458C /* MyTransition.swift */,
+				1F44835026A326CA002151CD /* AllertMessage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -548,7 +716,6 @@
 		1F9F0E8525F28650009DAE58 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1F2DBA3C25E64AC400F4104B /* BaseViewController.swift */,
 				1F2DBA4325E660FF00F4104B /* MainTabViewControllers */,
 				0A9D202723B285D000C4476F /* GenreViewController.swift */,
 				0AE5CF0C238E767200FF0D69 /* LoginViewController.swift */,
@@ -616,11 +783,47 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		1FEF05F826A2C126000EAC19 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF05FF26A2C283000EAC19 /* Dynamic */,
+				1FEF05FC26A2C249000EAC19 /* ViewModel */,
+				1FEF05F926A2C177000EAC19 /* Controller */,
+			);
+			path = BaseClasses;
+			sourceTree = "<group>";
+		};
+		1FEF05F926A2C177000EAC19 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF05FA26A2C195000EAC19 /* BaseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1FEF05FC26A2C249000EAC19 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF05FD26A2C26B000EAC19 /* BaseViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1FEF05FF26A2C283000EAC19 /* Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF060026A2C2A7000EAC19 /* Dynamic.swift */,
+			);
+			path = Dynamic;
+			sourceTree = "<group>";
+		};
 		6D5C3B4C3604FF44A33220DD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				2EE6BD9448310AE72496FE56 /* Pods-blitzBuch.debug.xcconfig */,
 				C61826BD8CAF2147F8DA1DD2 /* Pods-blitzBuch.release.xcconfig */,
+				C1BE284BBBC3AEBAC80201BC /* Pods-blitzBuch.debug(prod).xcconfig */,
+				DB2615A162227DF791475F56 /* Pods-blitzBuch.release(prod).xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -656,42 +859,6 @@
 			productReference = 0A333F4823806EE800B5A39B /* blitzBuch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1F6F13D225ED522C0039F6FB /* blitzBuchUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1F6F13DA25ED522C0039F6FB /* Build configuration list for PBXNativeTarget "blitzBuchUITests" */;
-			buildPhases = (
-				1F6F13CF25ED522C0039F6FB /* Sources */,
-				1F6F13D025ED522C0039F6FB /* Frameworks */,
-				1F6F13D125ED522C0039F6FB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1F6F13D925ED522C0039F6FB /* PBXTargetDependency */,
-			);
-			name = blitzBuchUITests;
-			productName = blicBuchUITests;
-			productReference = 1F6F13D325ED522C0039F6FB /* blitzBuchUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		1F9F715525F5730D002098F7 /* blitzBuchTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1F9F715D25F5730D002098F7 /* Build configuration list for PBXNativeTarget "blitzBuchTests" */;
-			buildPhases = (
-				1F9F715225F5730D002098F7 /* Sources */,
-				1F9F715325F5730D002098F7 /* Frameworks */,
-				1F9F715425F5730D002098F7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1F9F715C25F5730D002098F7 /* PBXTargetDependency */,
-			);
-			name = blitzBuchTests;
-			productName = blitzBuchTests;
-			productReference = 1F9F715625F5730D002098F7 /* blitzBuchTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -705,14 +872,6 @@
 					0A333F4723806EE800B5A39B = {
 						CreatedOnToolsVersion = 11.2;
 					};
-					1F6F13D225ED522C0039F6FB = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = 0A333F4723806EE800B5A39B;
-					};
-					1F9F715525F5730D002098F7 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = 0A333F4723806EE800B5A39B;
-					};
 				};
 			};
 			buildConfigurationList = 0A333F4323806EE800B5A39B /* Build configuration list for PBXProject "blitzBuch" */;
@@ -722,6 +881,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 0A333F3F23806EE800B5A39B;
 			productRefGroup = 0A333F4923806EE800B5A39B /* Products */;
@@ -729,8 +889,6 @@
 			projectRoot = "";
 			targets = (
 				0A333F4723806EE800B5A39B /* blitzBuch */,
-				1F6F13D225ED522C0039F6FB /* blitzBuchUITests */,
-				1F9F715525F5730D002098F7 /* blitzBuchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -741,31 +899,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AB938D92483CD72009A9C0D /* BookTableViewCell.xib in Resources */,
-				0AFA045524673AA10096CCCD /* GoogleService-Info.plist in Resources */,
 				0AB93D9D23AFB113006CAE59 /* CategoryTableViewCell.xib in Resources */,
 				0A333F5B23806EFD00B5A39B /* LaunchScreen.storyboard in Resources */,
+				1F664C0526D8ACF700B5C383 /* Localizable.strings in Resources */,
 				0A82E6D324F131CD003E00F6 /* OrderTableViewCell.xib in Resources */,
+				1F3A0F3C26D0D7FB00171FE1 /* GoogleService-Info.plist in Resources */,
 				0A333F5823806EFD00B5A39B /* Assets.xcassets in Resources */,
 				0A4B2D3523F353AA00D1A5E2 /* BlueCloudCell.xib in Resources */,
 				0ABC0E16238B106400874626 /* Roboto-Regular.ttf in Resources */,
 				0ABC0E14238A9C0300874626 /* Roboto-Bold.ttf in Resources */,
+				1F7663C326C927990030AD31 /* GoogleService-Info-Prod.plist in Resources */,
 				1FB1B61025AD828300AD6AE4 /* EmptyTableViewCell.xib in Resources */,
 				0A333F5323806EE800B5A39B /* Main.storyboard in Resources */,
 				0A3A663D23C12393005BD1CF /* Alert.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1F6F13D125ED522C0039F6FB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1F9F715425F5730D002098F7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,62 +967,91 @@
 				0A75196924668A250089DED8 /* API.swift in Sources */,
 				1F73897F25E53228003EFECC /* GenreTableViewModel.swift in Sources */,
 				1FE8B5222584D19A00C3A47A /* AppDelegate + extensions.swift in Sources */,
+				1FEF05DF26A2BC15000EAC19 /* BlitzBuchLibraryViewModel.swift in Sources */,
 				1F9ED5E725F93731002758D9 /* AlertViewModel.swift in Sources */,
+				1F06776526B1C476000C1D76 /* BlitzBuchRegisterModels.swift in Sources */,
 				1F50A9FB25F397FA00121AD4 /* OrderCellViewModel.swift in Sources */,
 				0AADA21B23BE925E00648835 /* VIPViewController.swift in Sources */,
 				0AEEE89123C5CDC700240B90 /* AlertViewController.swift in Sources */,
 				0A4B2D3423F353AA00D1A5E2 /* BlueCloudCell.swift in Sources */,
 				0AB938D82483CD72009A9C0D /* BookTableViewCell.swift in Sources */,
+				1FEF05FE26A2C26B000EAC19 /* BaseViewModel.swift in Sources */,
 				0AE5CF0D238E767200FF0D69 /* LoginViewController.swift in Sources */,
 				1F9ED5F125F9375C002758D9 /* AlertModel.swift in Sources */,
+				1F06777026B1C48B000C1D76 /* BlitzBuchCartViewModel.swift in Sources */,
 				0A1E326C2463D3DB00AD388C /* BooksService.swift in Sources */,
 				1F73897825E530E8003EFECC /* Book+CoreDataProperties.swift in Sources */,
 				1FE8B50B2584CA7600C3A47A /* SideMenuViewController.swift in Sources */,
 				1F73893F25E51CD3003EFECC /* MailHandler.swift in Sources */,
 				0A028F8E242FC520005AEF14 /* InfoViewController.swift in Sources */,
+				1FEF05D626A2BBE8000EAC19 /* BlitzBuchLoginView.swift in Sources */,
 				1F50AA0B25F3E5E900121AD4 /* CategoryCellModel.swift in Sources */,
 				1FE8B5182584CEF400C3A47A /* CustomTransition.swift in Sources */,
 				1F52E11925A1F9F1005B864F /* InAppPurchaseAlertViewController.swift in Sources */,
 				1FD71E59258B338B004435EA /* UIViewController + extensions.swift in Sources */,
+				1F18570A26DA596B00721F11 /* FirebaseError.swift in Sources */,
 				1F73897725E530E8003EFECC /* User+CoreDataClass.swift in Sources */,
 				1FBE360D25EFE00F00681F0A /* InfoViewModel.swift in Sources */,
 				1FE8B52B2584DAD600C3A47A /* SideMenuGeneralCell.swift in Sources */,
+				1FEF05F526A2BD48000EAC19 /* BlitzBuchInfoViewController.swift in Sources */,
+				1F37C75826A2B8D9001DD157 /* BlitzBuchHomeView.swift in Sources */,
 				1FBE360625EFDB8200681F0A /* InfoViewViewModel.swift in Sources */,
+				1F44835126A326CA002151CD /* AllertMessage.swift in Sources */,
 				1F0025A825E81D2600388CA5 /* UIView + border.swift in Sources */,
 				0AEEE89323C5DF1300240B90 /* AlertService.swift in Sources */,
 				0A8E4F50249DEE8F00C8B38A /* NavigationController.swift in Sources */,
 				1FD3939F25F6C5D70005458C /* TabBarViewController + extensions.swift in Sources */,
 				0ADFC2122393E1CB00BB8702 /* SearchViewController.swift in Sources */,
+				1FEF05F726A2BD48000EAC19 /* BlitzBuchInfoViewModel.swift in Sources */,
 				1FB1B60F25AD828300AD6AE4 /* EmptyTableViewCell.swift in Sources */,
 				1FE8B5142584CC8C00C3A47A /* Label.swift in Sources */,
 				0A8F1FB72381EF2200ABE11F /* HomeViewController.swift in Sources */,
+				1F44835726A32F0D002151CD /* CustomProgressHUD.swift in Sources */,
+				1F37C75626A2B8D9001DD157 /* BlitzBuchHomeModels.swift in Sources */,
 				0A75196D24668DF80089DED8 /* Enviroment.swift in Sources */,
 				1F50AA1A25F4130500121AD4 /* SideMenuMemberCellViewModel.swift in Sources */,
 				0A7F74E82467FE960064AE39 /* NetworkingService.swift in Sources */,
 				1F9ED5EC25F93746002758D9 /* AlertViewData.swift in Sources */,
+				1FEF05E526A2BD1E000EAC19 /* BlitzBuchVipViewController.swift in Sources */,
 				1FD3939025F6706F0005458C /* SideMenuGeneralCellViewModel.swift in Sources */,
+				1FEF05E626A2BD1E000EAC19 /* BlitzBuchVipView.swift in Sources */,
+				1F06776D26B1C48B000C1D76 /* BlitzBuchCartModels.swift in Sources */,
 				0A75196724668A150089DED8 /* Router.swift in Sources */,
 				1F29F8AC25F294CD0086331B /* BlueCloudCellData.swift in Sources */,
+				1F44835B26A33574002151CD /* RemoteResourceError.swift in Sources */,
 				1FE8B50E2584CB3600C3A47A /* SideMenuMemberCell.swift in Sources */,
+				1FEF05DE26A2BC15000EAC19 /* BlitzBuchLibraryView.swift in Sources */,
+				1F06776826B1C476000C1D76 /* BlitzBuchRegisterViewModel.swift in Sources */,
+				1FEF05D726A2BBE8000EAC19 /* BlitzBuchLoginViewModel.swift in Sources */,
 				0A9D202823B285D000C4476F /* GenreViewController.swift in Sources */,
 				1F0025A525E81C9800388CA5 /* UIView + globalFrame.swift in Sources */,
 				1FE8B5252584D22500C3A47A /* Constants.swift in Sources */,
+				1FEF05F626A2BD48000EAC19 /* BlitzBuchInfoView.swift in Sources */,
+				1F06776626B1C476000C1D76 /* BlitzBuchRegisterViewController.swift in Sources */,
 				1F50AA1625F4128B00121AD4 /* SideMenuMemberCellModel.swift in Sources */,
 				1F9B7CBB25F1016E0020BD40 /* VipViewControllerViewModel.swift in Sources */,
+				1F06776726B1C476000C1D76 /* BlitzBuchRegisterView.swift in Sources */,
 				1F52E16A25A200EA005B864F /* AlertButton.swift in Sources */,
 				0A8E4F4C249DE7BC00C8B38A /* LoadingViewController.swift in Sources */,
+				1FEF05EC26A2BD34000EAC19 /* BlitzBuchSearchModels.swift in Sources */,
 				1F688CC625FA4E68008CBB7D /* HomeControllerViewModel.swift in Sources */,
 				1FE8B51F2584D05200C3A47A /* BaseLabel.swift in Sources */,
+				1FEF05FB26A2C195000EAC19 /* BaseViewController.swift in Sources */,
 				0A27E3DA24634C0F00DE117C /* FormatterHelpers.swift in Sources */,
+				1F9F41CA26D6BAF3000E72D3 /* DialogViewController.swift in Sources */,
+				1FEF05F426A2BD48000EAC19 /* BlitzBuchInfoModels.swift in Sources */,
 				1FD3939A25F6C3870005458C /* MyTransition.swift in Sources */,
 				0A7519702466A35A0089DED8 /* Model.swift in Sources */,
 				1FBE360025EFDAA900681F0A /* InfoViewData.swift in Sources */,
-				1F2DBA3D25E64AC400F4104B /* BaseViewController.swift in Sources */,
+				1FEF05DC26A2BC15000EAC19 /* BlitzBuchLibraryModels.swift in Sources */,
+				1FEF05E426A2BD1E000EAC19 /* BlitzBuchVipModels.swift in Sources */,
 				0A333F4C23806EE800B5A39B /* AppDelegate.swift in Sources */,
+				1FEF05EF26A2BD34000EAC19 /* BlitzBuchSearchViewModel.swift in Sources */,
 				1F29F8B425F2C4520086331B /* BlueCloudCellModel.swift in Sources */,
 				0A86432C24BB026000EF05CD /* CartViewController.swift in Sources */,
 				1F73897A25E530E8003EFECC /* Book+CoreDataClass.swift in Sources */,
 				1F2DBA4625E6614D00F4104B /* BibliotechViewController.swift in Sources */,
+				1F37C75726A2B8D9001DD157 /* BlitzBuchHomeViewController.swift in Sources */,
 				1F50AA0F25F3E67700121AD4 /* CategoryCellViewModel.swift in Sources */,
 				1FA4CBDF2587848300730984 /* UIView + loader.swift in Sources */,
 				1FF613F025AC5CB300ACCE25 /* UIColor + extensions.swift in Sources */,
@@ -884,14 +1059,24 @@
 				1F553EC925E93EA400747615 /* UIView + device.swift in Sources */,
 				1FE8B5282584D45700C3A47A /* String + extension.swift in Sources */,
 				0A1F61CB23D06166005C527A /* RegisterViewController.swift in Sources */,
+				1FEF05ED26A2BD34000EAC19 /* BlitzBuchSearchViewController.swift in Sources */,
+				1FEF05D426A2BBE8000EAC19 /* BlitzBuchLoginModels.swift in Sources */,
+				1F44835526A3282C002151CD /* KeychainServices.swift in Sources */,
+				1FEF060126A2C2A7000EAC19 /* Dynamic.swift in Sources */,
+				1FEF05D526A2BBE8000EAC19 /* BlitzBuchLoginViewController.swift in Sources */,
+				1FEF05E726A2BD1E000EAC19 /* BlitzBuchVipViewModel.swift in Sources */,
 				1F73898225E5903A003EFECC /* BookCellViewModel.swift in Sources */,
 				1FAE4E2725E97BF300E7A774 /* UIResponder + extensions.swift in Sources */,
+				1F37C75926A2B8D9001DD157 /* BlitzBuchHomeViewModel.swift in Sources */,
 				1FA4CB8925877D8000730984 /* ActivityIndicatorView.swift in Sources */,
 				0A333F4E23806EE800B5A39B /* SceneDelegate.swift in Sources */,
 				0AF1EEA22483EA8F000AB7DC /* Colors.swift in Sources */,
 				0A7519722466A8F90089DED8 /* DataManager.swift in Sources */,
+				1F06776F26B1C48B000C1D76 /* BlitzBuchCartView.swift in Sources */,
 				1F29F8B025F295DC0086331B /* BlueCloudCellViewModel.swift in Sources */,
+				1FEF05EE26A2BD34000EAC19 /* BlitzBuchSearchView.swift in Sources */,
 				1F73897925E530E8003EFECC /* User+CoreDataProperties.swift in Sources */,
+				1F06776E26B1C48B000C1D76 /* BlitzBuchCartViewController.swift in Sources */,
 				1FE8B5082584CA1C00C3A47A /* SideMenuService.swift in Sources */,
 				0A2DB420238975880070DAE5 /* TabBarViewController.swift in Sources */,
 				1F9592EA25AEEB9B00AD065F /* UsersService.swift in Sources */,
@@ -900,44 +1085,17 @@
 				1F50A9F325F395B100121AD4 /* OrderCellData.swift in Sources */,
 				1FE8B5112584CBE400C3A47A /* TableViewCell.swift in Sources */,
 				0A82E6D224F131CD003E00F6 /* OrderTableViewCell.swift in Sources */,
+				1FEF05DD26A2BC15000EAC19 /* BlitzBuchLibraryViewController.swift in Sources */,
 				1FE8B51B2584CFBF00C3A47A /* ToasterLabel.swift in Sources */,
 				1F84715B257CD792008D759C /* blitzBuchUserDefaults.swift in Sources */,
 				1F50A9F725F3973400121AD4 /* OrderCellModel.swift in Sources */,
 				0AB93D9C23AFB113006CAE59 /* CategoryTableViewCell.swift in Sources */,
+				1F44835926A33546002151CD /* ErrorView.swift in Sources */,
 				0AFA045A24674D010096CCCD /* blicBuch.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F6F13CF25ED522C0039F6FB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1F6F13D625ED522C0039F6FB /* blitzBuchUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1F9F715225F5730D002098F7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1F9F716925F5744E002098F7 /* InfoViewModelTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		1F6F13D925ED522C0039F6FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0A333F4723806EE800B5A39B /* blitzBuch */;
-			targetProxy = 1F6F13D825ED522C0039F6FB /* PBXContainerItemProxy */;
-		};
-		1F9F715C25F5730D002098F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0A333F4723806EE800B5A39B /* blitzBuch */;
-			targetProxy = 1F9F715B25F5730D002098F7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0A333F5123806EE800B5A39B /* Main.storyboard */ = {
@@ -945,6 +1103,7 @@
 			children = (
 				0A333F5223806EE800B5A39B /* Base */,
 				0AC2B7F9238DC0BC008D4126 /* en */,
+				1F664C0A26D8B69D00B5C383 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -953,8 +1112,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				0A333F5A23806EFD00B5A39B /* Base */,
+				1F664C0126D8AB3100B5C383 /* de */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1F664C0726D8ACF700B5C383 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F664C0626D8ACF700B5C383 /* en */,
+				1F664C0826D8AD0B00B5C383 /* de */,
+			);
+			name = Localizable.strings;
+			path = blicBuch/Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -965,6 +1135,7 @@
 			baseConfigurationReference = 0A75196E246690DA0089DED8 /* DEV.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1026,9 +1197,10 @@
 		};
 		0A333F5E23806EFE00B5A39B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FFC9F6225CE986400451747 /* PROD.xcconfig */;
+			baseConfigurationReference = 0A75196E246690DA0089DED8 /* DEV.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1091,6 +1263,7 @@
 				CODE_SIGN_ENTITLEMENTS = blicBuch/blitzBuch.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 49Z3PZTYY4;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = blicBuch/Configuration/Info.plist;
@@ -1116,6 +1289,7 @@
 				CODE_SIGN_ENTITLEMENTS = blicBuch/blitzBuch.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 49Z3PZTYY4;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = blicBuch/Configuration/Info.plist;
@@ -1133,93 +1307,182 @@
 			};
 			name = Release;
 		};
-		1F6F13DB25ED522C0039F6FB /* Debug */ = {
+		1F7663BE26C925060030AD31 /* Debug(Prod) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FFC9F6225CE986400451747 /* PROD.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K84TS52934;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
-				INFOPLIST_FILE = blicBuchUITests/Info.plist;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug(Prod)";
+		};
+		1F7663BF26C925060030AD31 /* Debug(Prod) */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1BE284BBBC3AEBAC80201BC /* Pods-blitzBuch.debug(prod).xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = blicBuch/blitzBuch.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 49Z3PZTYY4;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = blicBuch/Configuration/Info.plist;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphonesimulator*]" = 14.4;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sukydeveloper.blicBuchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = club.blitzBuch.app;
+				PRODUCT_NAME = blitzBuch;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = blitzBuch;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
-			name = Debug;
+			name = "Debug(Prod)";
 		};
-		1F6F13DC25ED522C0039F6FB /* Release */ = {
+		1F7663C026C925150030AD31 /* Release(Prod) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FFC9F6225CE986400451747 /* PROD.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K84TS52934;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
-				INFOPLIST_FILE = blicBuchUITests/Info.plist;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sukydeveloper.blicBuchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = blitzBuch;
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Release(Prod)";
 		};
-		1F9F715E25F5730D002098F7 /* Debug */ = {
+		1F7663C126C925150030AD31 /* Release(Prod) */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB2615A162227DF791475F56 /* Pods-blitzBuch.release(prod).xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = blicBuch/blitzBuch.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K84TS52934;
-				INFOPLIST_FILE = blitzBuchTests/Configuration/Info.plist;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 49Z3PZTYY4;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = blicBuch/Configuration/Info.plist;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphonesimulator*]" = 14.4;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sukydeveloper.blitzBuchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = club.blitzBuch.app;
+				PRODUCT_NAME = blitzBuch;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/blitzBuch.app/blitzBuch";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
-			name = Debug;
-		};
-		1F9F715F25F5730D002098F7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K84TS52934;
-				INFOPLIST_FILE = blitzBuchTests/Configuration/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sukydeveloper.blitzBuchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/blitzBuch.app/blitzBuch";
-			};
-			name = Release;
+			name = "Release(Prod)";
 		};
 /* End XCBuildConfiguration section */
 
@@ -1228,7 +1491,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A333F5D23806EFD00B5A39B /* Debug */,
+				1F7663BE26C925060030AD31 /* Debug(Prod) */,
 				0A333F5E23806EFE00B5A39B /* Release */,
+				1F7663C026C925150030AD31 /* Release(Prod) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1237,25 +1502,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A333F6023806EFE00B5A39B /* Debug */,
+				1F7663BF26C925060030AD31 /* Debug(Prod) */,
 				0A333F6123806EFE00B5A39B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1F6F13DA25ED522C0039F6FB /* Build configuration list for PBXNativeTarget "blitzBuchUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1F6F13DB25ED522C0039F6FB /* Debug */,
-				1F6F13DC25ED522C0039F6FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1F9F715D25F5730D002098F7 /* Build configuration list for PBXNativeTarget "blitzBuchTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1F9F715E25F5730D002098F7 /* Debug */,
-				1F9F715F25F5730D002098F7 /* Release */,
+				1F7663C126C925150030AD31 /* Release(Prod) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

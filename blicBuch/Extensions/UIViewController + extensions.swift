@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import MBProgressHUD
 
 extension UIViewController {
     
@@ -125,5 +126,22 @@ extension UIViewController {
     
     @objc func dismissView(){
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UIViewController {
+    
+    // MARK: Loader
+    
+    func shouldHideLoader(isHidden: Bool) {
+        if isHidden {
+            DispatchQueue.main.async {
+                CustomProgressHUD.hide(for: self.view, animated: true)
+            }
+        } else {
+            DispatchQueue.main.async {
+                CustomProgressHUD.showAdded(to: self.view, animated: true)
+            }
+        }
     }
 }

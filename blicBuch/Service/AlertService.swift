@@ -20,7 +20,12 @@ class AlertService {
         let vc = UIStoryboard(name: "Alert", bundle: nil).instantiateViewController(identifier: "InAppPurchaseVC") as InAppPurchaseAlertViewController
         vc.alertType = alertType
         return vc
-
+    }
+    
+    func alertDialog(message: String) -> DialogViewController {
+        let vc = UIStoryboard(name: "Alert", bundle: nil).instantiateViewController(identifier: "DialogViewController") as DialogViewController
+        vc.titleText = message
+        return vc
     }
     
     

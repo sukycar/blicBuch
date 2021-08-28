@@ -17,6 +17,7 @@ import RxSwift
 /// if user is not logged in
 protocol AlertMe {
     func onClick()
+    func onLoggedOutClick()
 }
 
 class BookTableViewCell: TableViewCell {
@@ -54,7 +55,20 @@ class BookTableViewCell: TableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.cellDelegate?.onClick()
+        self.orderButton.addTarget(self, action: #selector(self.onClick), for: .touchUpInside)
+        self.orderButton.setImage(UIImage(named: "order_button_eng".localized()), for: .normal)
+    }
+    
+    @objc func onClick() {
+        if let userLoggedIn = blitzBuchUserDefaults.get(.logedIn) as? Bool {
+            if userLoggedIn == true {
+                self.cellDelegate?.onClick()
+            } else {
+                self.cellDelegate?.onLoggedOutClick()
+            }
+        } else {
+            self.cellDelegate?.onLoggedOutClick()
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

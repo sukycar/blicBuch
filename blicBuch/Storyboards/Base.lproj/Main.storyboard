@@ -20,8 +20,8 @@
         <!--Bibliothek-->
         <scene sceneID="ipa-WP-fYl">
             <objects>
-                <viewController id="Yjb-CC-Y9q" customClass="BibliotechViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TT3-kD-h8C">
+                <viewController storyboardIdentifier="BlitzBuchLibraryViewController" id="Yjb-CC-Y9q" customClass="BlitzBuchLibraryViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TT3-kD-h8C" customClass="BlitzBuchLibraryView" customModule="blitzBuch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bibliothek" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNL-Sj-AhX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNL-Sj-AhX">
                                 <rect key="frame" x="16" y="36" width="112" height="30"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -57,13 +57,13 @@
                             <constraint firstItem="lAo-Vb-w5j" firstAttribute="leading" secondItem="hvc-Yp-uoq" secondAttribute="leading" id="sMq-bt-ypC"/>
                             <constraint firstItem="hvc-Yp-uoq" firstAttribute="trailing" secondItem="aNL-Sj-AhX" secondAttribute="trailing" constant="192" id="tnc-8p-a2k"/>
                         </constraints>
+                        <connections>
+                            <outlet property="borderView" destination="lAo-Vb-w5j" id="npg-7E-LG5"/>
+                            <outlet property="genreTable" destination="GOG-xp-ppv" id="3M3-Zs-E29"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Bibliothek" image="img_bibliotech" id="J8S-b4-44G"/>
                     <connections>
-                        <outlet property="borderView" destination="lAo-Vb-w5j" id="fr6-uq-mHA"/>
-                        <outlet property="genreTable" destination="GOG-xp-ppv" id="6Pb-vo-e4A"/>
-                        <outlet property="tabBar" destination="J8S-b4-44G" id="MsB-SA-7eq"/>
-                        <outlet property="tableView" destination="GOG-xp-ppv" id="74O-Zd-NbK"/>
                         <segue destination="TT7-O3-l2V" kind="presentation" identifier="bibliotech" animates="NO" modalPresentationStyle="fullScreen" id="2gi-Gb-SHi"/>
                     </connections>
                 </viewController>
@@ -132,8 +132,8 @@
         <!--Informationen-->
         <scene sceneID="yKZ-z2-wSB">
             <objects>
-                <viewController id="L8b-rq-i2Z" customClass="InfoViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="abd-X7-fM6">
+                <viewController storyboardIdentifier="BlitzBuchInfoViewController" id="L8b-rq-i2Z" customClass="BlitzBuchInfoViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="abd-X7-fM6" customClass="BlitzBuchInfoView" customModule="blitzBuch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -170,13 +170,13 @@
                             <constraint firstItem="qJX-cZ-PSa" firstAttribute="leading" secondItem="UgJ-Ji-lAE" secondAttribute="leading" constant="16" id="xWb-YO-9mR"/>
                             <constraint firstItem="UgJ-Ji-lAE" firstAttribute="trailing" secondItem="cgR-qM-DaL" secondAttribute="trailing" id="xzC-Py-A0z"/>
                         </constraints>
+                        <connections>
+                            <outlet property="textView" destination="dH1-yN-wAf" id="hVP-ss-Eqi"/>
+                            <outlet property="titleHolderView" destination="cgR-qM-DaL" id="sgF-Yt-Kb7"/>
+                            <outlet property="titleLabel" destination="qJX-cZ-PSa" id="cAQ-Yo-yeG"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Informationen" image="img_info" id="GE8-or-0xl"/>
-                    <connections>
-                        <outlet property="textView" destination="dH1-yN-wAf" id="nHq-gj-9rK"/>
-                        <outlet property="titleHolderView" destination="cgR-qM-DaL" id="zzw-sj-FfG"/>
-                        <outlet property="titleLabel" destination="qJX-cZ-PSa" id="rdr-y5-LFk"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8l-Nk-q8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,8 +185,8 @@
         <!--Suchen-->
         <scene sceneID="tMS-1K-KE2">
             <objects>
-                <viewController id="Yh4-BS-Qcw" customClass="SearchViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hbS-5G-vjN">
+                <viewController storyboardIdentifier="BlitzBuchSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yh4-BS-Qcw" customClass="BlitzBuchSearchViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hbS-5G-vjN" customClass="BlitzBuchSearchView" customModule="blitzBuch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -258,16 +258,15 @@
                             <constraint firstItem="TJ9-jp-9dv" firstAttribute="top" secondItem="QyB-XA-DD7" secondAttribute="top" constant="36" id="bZe-53-LFv"/>
                             <constraint firstItem="AmG-eZ-Sje" firstAttribute="top" secondItem="YEz-UY-VVo" secondAttribute="bottom" constant="8" id="ict-yr-oAd"/>
                         </constraints>
+                        <connections>
+                            <outlet property="label" destination="TJ9-jp-9dv" id="cCx-i8-XQ9"/>
+                            <outlet property="searchBar1" destination="hH1-zl-tDa" id="JWo-qp-avJ"/>
+                            <outlet property="searchTable" destination="AmG-eZ-Sje" id="5dj-ne-k1F"/>
+                            <outlet property="sugestionsLabel" destination="fQs-L2-xxx" id="7jb-ZV-op8"/>
+                            <outlet property="viewForBorder" destination="YEz-UY-VVo" id="YxW-Ua-MaO"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Suchen" image="img_search" id="kCg-Le-a1A"/>
-                    <connections>
-                        <outlet property="label" destination="TJ9-jp-9dv" id="eZB-oX-uMD"/>
-                        <outlet property="searchBar1" destination="hH1-zl-tDa" id="uHS-5e-4i5"/>
-                        <outlet property="searchTable" destination="AmG-eZ-Sje" id="xCF-Hk-gWI"/>
-                        <outlet property="sugestionsLabel" destination="fQs-L2-xxx" id="iMn-ya-wUJ"/>
-                        <outlet property="tableView" destination="AmG-eZ-Sje" id="JEA-9j-wsw"/>
-                        <outlet property="viewForBorder" destination="YEz-UY-VVo" id="3Ol-SS-0a2"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdJ-xY-3Tg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -276,8 +275,8 @@
         <!--VIP Member-->
         <scene sceneID="rkA-6O-74V">
             <objects>
-                <viewController id="4hm-0j-ysa" customClass="VIPViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oxp-oO-ddZ">
+                <viewController storyboardIdentifier="BlitzBuchVipViewController" id="4hm-0j-ysa" customClass="BlitzBuchVipViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oxp-oO-ddZ" customClass="BlitzBuchVipView" customModule="blitzBuch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -311,13 +310,13 @@
                             <constraint firstItem="8hY-cI-Gks" firstAttribute="bottom" secondItem="FR7-VL-nHU" secondAttribute="bottom" id="i96-AL-S07"/>
                             <constraint firstItem="8P2-HY-OED" firstAttribute="leading" secondItem="FR7-VL-nHU" secondAttribute="leading" constant="16" id="tPW-G7-8M5"/>
                         </constraints>
+                        <connections>
+                            <outlet property="tableView" destination="8hY-cI-Gks" id="NuR-8O-fjT"/>
+                            <outlet property="titleHolderView" destination="k2u-7a-UM6" id="0q2-AQ-HVZ"/>
+                            <outlet property="titleLabel" destination="8P2-HY-OED" id="gQ3-Y8-tEL"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="VIP Member" image="img_vip" id="MIC-TG-via"/>
-                    <connections>
-                        <outlet property="tableView" destination="8hY-cI-Gks" id="NBQ-Wa-z2k"/>
-                        <outlet property="titleHolderView" destination="k2u-7a-UM6" id="FaQ-jk-1OX"/>
-                        <outlet property="titleLabel" destination="8P2-HY-OED" id="FWO-N5-gfU"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihA-Gf-6gg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="1T1-Xm-t1j">
@@ -341,34 +340,36 @@
             </objects>
             <point key="canvasLocation" x="-414.375" y="379.22535211267603"/>
         </scene>
-        <!--Cart View Controller-->
-        <scene sceneID="Ggx-q4-Rof">
+        <!--Blitz Buch Cart View Controller-->
+        <scene sceneID="jU9-Lh-tT6">
             <objects>
-                <tableViewController storyboardIdentifier="CartTableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZXp-PO-0ce" customClass="CartViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ydw-Id-2lc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                <viewController storyboardIdentifier="BlitzBuchCartViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y0b-Ab-XmD" customClass="BlitzBuchCartViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dg3-2q-6Jc" customClass="BlitzBuchCartView" customModule="blitzBuch" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSX-C2-oe9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YJH-UU-ECu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="sSX-C2-oe9" secondAttribute="bottom" id="DFf-Af-EQJ"/>
+                            <constraint firstItem="sSX-C2-oe9" firstAttribute="top" secondItem="Dg3-2q-6Jc" secondAttribute="top" id="SEs-JO-8Lo"/>
+                            <constraint firstItem="sSX-C2-oe9" firstAttribute="leading" secondItem="Dg3-2q-6Jc" secondAttribute="leading" id="ezG-yv-GjL"/>
+                            <constraint firstAttribute="trailing" secondItem="sSX-C2-oe9" secondAttribute="trailing" id="qjq-dH-XIW"/>
+                        </constraints>
                         <connections>
-                            <outlet property="dataSource" destination="ZXp-PO-0ce" id="S9H-0s-29i"/>
-                            <outlet property="delegate" destination="ZXp-PO-0ce" id="IjA-Xv-vce"/>
+                            <outlet property="tableView" destination="sSX-C2-oe9" id="wo2-ie-XhK"/>
                         </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="eBz-Bt-C0D">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" style="done" id="ZAR-hQ-zSS">
-                            <color key="tintColor" name="defaultBlue"/>
-                            <connections>
-                                <action selector="backButtonAction:" destination="ZXp-PO-0ce" id="Caj-fa-hEI"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="tableView" destination="Ydw-Id-2lc" id="Y2T-ma-qcU"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QXl-b5-oih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="O3R-aV-aa3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jY9-YV-Bge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5788.125" y="-1224.2957746478874"/>
+            <point key="canvasLocation" x="5591" y="-1224"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="fkv-qH-sQ0">
@@ -433,8 +434,8 @@
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="HomeViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController storyboardIdentifier="BlitzBuchHomeViewController" wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="BlitzBuchHomeViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="BlitzBuchHomeView" customModule="blitzBuch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -461,9 +462,6 @@
                                     <constraint firstAttribute="height" constant="56" id="fxq-Hc-wzk"/>
                                 </constraints>
                                 <state key="normal" image="VIP"/>
-                                <connections>
-                                    <action selector="vipButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="olH-Mq-UUM"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a9C-oS-OYU">
                                 <rect key="frame" x="0.0" y="174" width="320" height="345"/>
@@ -496,9 +494,6 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="c3u-3n-h8L"/>
                                 </constraints>
                                 <state key="normal" image="img_menu"/>
-                                <connections>
-                                    <action selector="menuButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="taa-hq-la1"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -521,13 +516,17 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="homeTopViewACLabel"/>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="imageViewConstraint" destination="qkn-q2-iea" id="bfh-nY-1ah"/>
+                            <outlet property="menuButton" destination="48d-8a-fFj" id="GTB-o3-N5F"/>
+                            <outlet property="tableView" destination="a9C-oS-OYU" id="pT5-Zx-Cng"/>
+                            <outlet property="vipButton" destination="Row-4l-PNZ" id="yd6-al-53w"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="img_home" id="r63-ao-GEM">
                         <color key="badgeColor" systemColor="scrollViewTexturedBackgroundColor"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="imageViewConstraint" destination="qkn-q2-iea" id="QFX-Wj-HaA"/>
-                        <outlet property="tableView" destination="a9C-oS-OYU" id="odc-aL-RF6"/>
                         <segue destination="bQ3-aa-JOG" kind="custom" id="fGM-g8-28B"/>
                     </connections>
                 </viewController>
@@ -988,7 +987,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ZXp-PO-0ce" kind="relationship" relationship="rootViewController" id="5WB-89-3s7"/>
+                        <segue destination="y0b-Ab-XmD" kind="custom" id="NLH-iZ-ZCo"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lr-JH-nCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1033,11 +1032,11 @@
             </objects>
             <point key="canvasLocation" x="2259.375" y="-1224.2957746478874"/>
         </scene>
-        <!--View Controller-->
+        <!--Blitz Buch Login View Controller-->
         <scene sceneID="4uX-sR-XBe">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="ewc-6m-E6A" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cqr-Ku-6kH">
+                <viewController storyboardIdentifier="BlitzBuchLoginViewController" id="ewc-6m-E6A" customClass="BlitzBuchLoginViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cqr-Ku-6kH" customClass="BlitzBuchLoginView" customModule="blitzBuch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1046,6 +1045,9 @@
                                 <accessibility key="accessibilityConfiguration" identifier="eMailLoginField"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="emailTextField:" destination="3Ck-Oz-udt" eventType="editingDidEnd" id="MO4-NX-a7P"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passwort *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ew8-Uk-pfN">
                                 <rect key="frame" x="16" y="123.5" width="288" height="34"/>
@@ -1055,19 +1057,40 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ig-Ij-CLp">
                                 <rect key="frame" x="16" y="187.5" width="288" height="30"/>
+                                <color key="backgroundColor" name="defaultBlue"/>
                                 <accessibility key="accessibilityConfiguration" identifier="einloggenButton"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="loginButton:" destination="ewc-6m-E6A" eventType="touchUpInside" id="EP2-3H-sTM"/>
-                                </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="czT-pe-zWw">
+                                <rect key="frame" x="60.5" y="229" width="199" height="26.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sie haben kein Konto?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCy-Jf-INT" userLabel="Sie haben kein Konto?">
+                                        <rect key="frame" x="0.0" y="6" width="125" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-z3-oQi">
+                                        <rect key="frame" x="130" y="0.0" width="69" height="26.5"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Registrieren">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="cellTitle"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGp-8m-XPa">
-                                <rect key="frame" x="16" y="225.5" width="288" height="329.5"/>
+                                <rect key="frame" x="16" y="265.5" width="288" height="289.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_bb8" translatesAutoresizingMaskIntoConstraints="NO" id="7SI-O6-L0M">
-                                        <rect key="frame" x="67.5" y="73.5" width="153" height="183"/>
+                                        <rect key="frame" x="67.5" y="53.5" width="153" height="183"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="153" id="aUC-4t-9Qb"/>
                                             <constraint firstAttribute="height" constant="183" id="iA4-tw-0bs"/>
@@ -1099,29 +1122,29 @@
                             <constraint firstItem="pOr-ad-Fah" firstAttribute="trailing" secondItem="ew8-Uk-pfN" secondAttribute="trailing" constant="16" id="HCv-rW-QDW"/>
                             <constraint firstItem="2Ig-Ij-CLp" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="Hqk-SS-8Fh"/>
                             <constraint firstItem="pOr-ad-Fah" firstAttribute="trailing" secondItem="2Ig-Ij-CLp" secondAttribute="trailing" constant="16" id="MwJ-pa-HXL"/>
-                            <constraint firstItem="PGp-8m-XPa" firstAttribute="top" secondItem="2Ig-Ij-CLp" secondAttribute="bottom" constant="8" id="T9P-kw-KVV"/>
+                            <constraint firstItem="PGp-8m-XPa" firstAttribute="top" secondItem="czT-pe-zWw" secondAttribute="bottom" constant="10" id="T9P-kw-KVV"/>
                             <constraint firstItem="Bt8-tf-ChC" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="ajp-sc-gKQ"/>
                             <constraint firstItem="ew8-Uk-pfN" firstAttribute="top" secondItem="Bt8-tf-ChC" secondAttribute="bottom" constant="20" id="dQ2-SH-fcg"/>
                             <constraint firstItem="2Ig-Ij-CLp" firstAttribute="top" secondItem="ew8-Uk-pfN" secondAttribute="bottom" constant="30" id="de7-YM-QUV"/>
+                            <constraint firstItem="czT-pe-zWw" firstAttribute="top" secondItem="2Ig-Ij-CLp" secondAttribute="bottom" constant="11.5" id="g1K-RY-Wzw"/>
                             <constraint firstItem="ew8-Uk-pfN" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="hrA-IV-6gW"/>
+                            <constraint firstItem="czT-pe-zWw" firstAttribute="centerX" secondItem="cqr-Ku-6kH" secondAttribute="centerX" id="itm-1G-H9u"/>
                             <constraint firstItem="tuo-JT-S0S" firstAttribute="top" secondItem="pOr-ad-Fah" secondAttribute="top" constant="20" id="vCZ-ya-dDy"/>
                             <constraint firstItem="Bt8-tf-ChC" firstAttribute="top" secondItem="tuo-JT-S0S" secondAttribute="bottom" constant="20" id="zcM-CY-ifl"/>
                         </constraints>
+                        <connections>
+                            <outlet property="loginButton" destination="2Ig-Ij-CLp" id="n8O-hP-eW7"/>
+                            <outlet property="loginEmailTextField" destination="Bt8-tf-ChC" id="tQW-51-M81"/>
+                            <outlet property="loginPasswordTextField" destination="ew8-Uk-pfN" id="XIW-gK-Bhc"/>
+                            <outlet property="registerButton" destination="jRk-z3-oQi" id="PrB-YI-ZwN"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="2Jz-UH-2jB">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" style="done" id="hA9-ZN-0AN">
-                            <connections>
-                                <action selector="backButtonAction:" destination="ewc-6m-E6A" id="OFE-P8-lun"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" style="done" id="hA9-ZN-0AN"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="email" destination="Bt8-tf-ChC" id="gxV-FQ-ADD"/>
-                        <outlet property="loginButtonOutlet" destination="2Ig-Ij-CLp" id="AgL-mO-kPj"/>
-                        <outlet property="password" destination="ew8-Uk-pfN" id="aBP-eV-RzC"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpO-Hv-tmx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="3Ck-Oz-udt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2048" y="-826"/>
         </scene>
@@ -1146,6 +1169,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
