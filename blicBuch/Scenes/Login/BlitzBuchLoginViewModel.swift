@@ -45,13 +45,13 @@ class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol {
     
     func validateData(email: String, password: String) {
         if email.isEmpty {
-            self.error.value = .validation(AlertMessage(title: "Email error", body: "Email can't be empty"))
+            self.error.value = .validation(AlertMessage(title: "Email error".localized(), body: "Email can't be empty".localized()))
         } else if !email.isValidEmail {
-            self.error.value = .validation(AlertMessage(title: "Email error", body: "Email address is not valid"))
+            self.error.value = .validation(AlertMessage(title: "Email error".localized(), body: "Email address is not valid".localized()))
         } else if password.isEmpty {
-            self.error.value = .validation(AlertMessage(title: "Password error", body: "Password can't be empty"))
+            self.error.value = .validation(AlertMessage(title: "Password error".localized(), body: "Password can't be empty".localized()))
         } else if password.count < 6 {
-            self.error.value = .validation(AlertMessage(title: "Password error", body: "Password must contain 6 or more characters"))
+            self.error.value = .validation(AlertMessage(title: "Password error".localized(), body: "Password must contain 6 or more characters".localized()))
         } else {
             let requestObject = BlitzBuchLogin.LoginRequestObject(email: email, password: password)
             self.loginFirebaseUser(data: requestObject)
@@ -60,8 +60,6 @@ class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol {
     
     func navigateToHome() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-//                    vc.view.alpha = 1
-//                    vc.loaderTest = .firstTime
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.setWindow(vc: vc, animated: false)
     }
@@ -101,7 +99,7 @@ class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol {
             } else {
                 DispatchQueue.main.async { [weak self] in
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logedIn"), object: nil)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self?.loggedIn.value = true
                     }
                 }

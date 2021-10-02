@@ -16,9 +16,80 @@ class BlitzBuchRegisterView: UIView {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var street: UITextField!
+    @IBOutlet weak var city: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var passwordRepeat: UITextField!
+    @IBOutlet weak var phone: UITextField!
+    @IBOutlet weak var subscriptionTableView: UITableView!
+    @IBOutlet weak var subscriptionHolderView: UIView!
+    @IBOutlet weak var youHaveAccountLabel: UILabel!
+    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var registerButton: UIButton!
+    
+    // MARK: - Lifecycle
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.registerButton.layer.cornerRadius = CornerRadius.medium
+        self.registerButton.clipsToBounds = true
+        self.subscriptionTableView.layer.cornerRadius = CornerRadius.high
+        self.subscriptionTableView.clipsToBounds = true
+        self.subscriptionTableView.layer.borderWidth = 0.3
+        self.subscriptionTableView.layer.borderColor = UIColor.gray.cgColor
+        
+    }
     // MARK: - Public methods
     
-    func setup() {
+    func setup(target: Any,
+               registerButtonSelector: Selector,
+               loginButtonSelector: Selector,
+               subscriptionViewSelector: Selector,
+               textFieldDelegate: UITextFieldDelegate,
+               tableViewDelegate: UITableViewDelegate,
+               tableViewDataSource: UITableViewDataSource) {
+        // Table view configure
+        let nib = UINib(nibName: SubscriptionTableViewCell.cellID, bundle: nil)
+        self.subscriptionTableView.register(nib, forCellReuseIdentifier: SubscriptionTableViewCell.cellID)
+        self.subscriptionTableView.estimatedRowHeight = 40
+        self.subscriptionTableView.tableFooterView = UIView()
+        self.subscriptionTableView.isScrollEnabled = false
+        self.subscriptionTableView.delegate = tableViewDelegate
+        self.subscriptionTableView.dataSource = tableViewDataSource
+        self.subscriptionTableView.isHidden = true
         
+        // Configure fields
+        self.subscriptionHolderView.isHidden = true
+        self.titleLabel.text = "Register".localized()
+        self.youHaveAccountLabel.text = "You already have account?".localized()
+        self.loginButton.setTitle("Login".localized(), for: .normal)
+        self.name.delegate = textFieldDelegate
+        self.street.delegate = textFieldDelegate
+        self.city.delegate = textFieldDelegate
+        self.email.delegate = textFieldDelegate
+        self.password.placeholder = "Password *".localized()
+        self.passwordRepeat.placeholder = "Repeat password *".localized()
+        self.password.delegate = textFieldDelegate
+        self.passwordRepeat.delegate = textFieldDelegate
+        self.phone.delegate = textFieldDelegate
+        
+        // Action
+        self.registerButton.addTarget(target, action: registerButtonSelector, for: .touchUpInside)
+        self.loginButton.addTarget(target, action: loginButtonSelector, for: .touchUpInside)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: target, action: subscriptionViewSelector)
+        self.subscriptionHolderView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func handleShowSubscriptionTableView() {
+        if self.subscriptionHolderView.isHidden {
+            self.subscriptionHolderView.isHidden = false
+            self.subscriptionTableView.isHidden = false
+        } else {
+            self.subscriptionTableView.isHidden = true
+            self.subscriptionHolderView.isHidden = true
+        }
     }
 }

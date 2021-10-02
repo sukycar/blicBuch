@@ -15,6 +15,7 @@ import CoreData
 
 protocol BlitzBuchHomeViewModelProtocol {
     var homeBooks: Dynamic<[Book]> { get set }
+    var userDefaults: BlitzBuchUserDefaults { get set }
     
     func fetchLatestBooks()
 }
@@ -24,6 +25,7 @@ class BlitzBuchHomeViewModel: BaseViewModel, BlitzBuchHomeViewModelProtocol {
     // MARK: - BlitzBuchHomeViewModelProtocol Vars & Lets
 
     var homeBooks : Dynamic<[Book]>
+    var userDefaults: BlitzBuchUserDefaults
 
     // MARK: - Vars & Lets
 
@@ -32,6 +34,7 @@ class BlitzBuchHomeViewModel: BaseViewModel, BlitzBuchHomeViewModelProtocol {
     // MARK: - Init
     
     override init() {
+        self.userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
         self.homeBooks = Dynamic([])
         super.init()
     }

@@ -11,6 +11,8 @@ import UIKit
 class BlueCloudCell: TableViewCell {
 
     @IBOutlet var imgView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var bodyLabel: UILabel!
     private let viewModel = BlueCloudCellViewModel()
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +23,8 @@ class BlueCloudCell: TableViewCell {
     func styleViews(){
         self.imgView.image = viewModel.setImage()
         self.viewModel.setImageViewProperties(for: imgView)
+        self.titleLabel.text = "Write to us...".localized()
+        self.bodyLabel.text = "Your suggestions and suggestions will be gladly accepted by us and they will challenge the readers' club".localized()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

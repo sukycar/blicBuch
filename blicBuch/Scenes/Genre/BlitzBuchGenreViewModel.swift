@@ -18,6 +18,7 @@ protocol BlitzBuchGenreViewModelProtocol {
     var genre: Book.Genre? { get set }
     var lockedBooks: [String]? { get set }
     var booksFetched: Dynamic<Bool> { get set }
+    var userDefaults: BlitzBuchUserDefaults { get set }
     
     func fetchGenreBooks()
 }
@@ -30,12 +31,14 @@ class BlitzBuchGenreViewModel: BaseViewModel, BlitzBuchGenreViewModelProtocol {
     var genre: Book.Genre?
     var lockedBooks: [String]?
     var booksFetched: Dynamic<Bool>
+    var userDefaults: BlitzBuchUserDefaults
 
     // MARK: - Init
     
     init(genre: Book.Genre) {
         self.genre = genre
         self.booksFetched = Dynamic(false)
+        self.userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
         super.init()
     }
     

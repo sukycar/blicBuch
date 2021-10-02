@@ -12,6 +12,34 @@
 
 import UIKit
 
+// MARK: - Enum
+
 enum BlitzBuchRegister {
     
+    // MARK: - Models
+    
+    struct UserModel: Codable {
+        var id: String?
+        var uid: String?
+        var address: String?
+        var city: String?
+        var email: String?
+        var name: String?
+        var password: String?
+        var payment: Bool? = false
+        var phoneNumber: String?
+        var vipUser: Bool? = false
+        var numberOfVipBooks: Int? = 0
+        var numberOfRegularBooks: Int? = 0
+        var cartItems: String? = ""
+    }
+    
+    // MARK: - Enum
+    
+    enum SubscriptionType: String, CaseIterable {
+        case starter = "club.blitzBuch.starter"
+        case regular = "club.blitzBuch.regular"
+        case vip = "club.blitzBuch.vip"
+    }
+
 }

@@ -15,6 +15,7 @@ import Alamofire
 class BooksService {
     
     //MARK: - Delete books after order
+    
     class func deleteBook(bookId: Int) -> Observable<Bool> {
         return Observable.create { observer in
             let router = Router.book(for: bookId)
@@ -49,6 +50,7 @@ class BooksService {
 
     
     //MARK: - lock book when it is in the cart
+    
     class func lockBook(bookId: Int32, lockStatus: LockStatus) -> Observable<Bool> {
         return Observable.create { observer in
             let router = Router.updateBook(for: bookId)
@@ -71,6 +73,7 @@ class BooksService {
     }
     
     //MARK: - check lock status
+    
     class func checkLock(bookId: Int32) -> Observable<Bool> {
         return Observable.create { observer in
             let router = Router.checkLockStatus(for: bookId)
@@ -95,6 +98,7 @@ class BooksService {
             return cancel
         }
     }
+    
     class func getAll() -> Observable<Bool>{
         var booksIDs = [String]()
         var jsonFetchedBooksIDs = [String]()

@@ -96,31 +96,31 @@ extension BlitzBuchLibraryViewController: UITableViewDataSource, UITableViewDele
         
         let model = self.viewModel?.dataSource.value[indexPath.row]
         switch model {
-        case "Das Abenteuer":
+        case "Adventure".localized():
             self.viewModel?.genre = .avantura
-        case "Lebenslauf":
+        case "Biography".localized():
             self.viewModel?.genre = .biografija
-        case "Detektiv-Romane /Kriminalromane":
+        case "Detective novels / crime novels".localized():
             self.viewModel?.genre = .detektivski
-        case "Das epische Fantasy Romangenre":
+        case "The epic fantasy".localized():
             self.viewModel?.genre = .epski
-        case "Erotikromane/Liebesromane":
+        case "Erotic novels / romance novels".localized():
             self.viewModel?.genre = .erotski
-        case "Klassikliteratur":
+        case "Classical Literature".localized():
             self.viewModel?.genre = .klasika
-        case "Popularpsychologie":
+        case "Popular Psychology".localized():
             self.viewModel?.genre = .psihologija
-        case "Thriller":
+        case "Thriller".localized():
             self.viewModel?.genre = .triler
-        case "Historische Romane":
+        case "Historical novels".localized():
             self.viewModel?.genre = .istorijski
-        case "Sonstiges":
+        case "Miscellaneous".localized():
             self.viewModel?.genre = .ostalo
-        case "Horror":
+        case "Horror".localized():
             self.viewModel?.genre = .horor
-        case "Aktion":
+        case "Action".localized():
             self.viewModel?.genre = .akcija
-        case "Roman":
+        case "Novel".localized():
             self.viewModel?.genre = .roman
         default:
             print("Select row")

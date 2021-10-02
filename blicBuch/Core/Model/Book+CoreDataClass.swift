@@ -89,6 +89,38 @@ extension Book {
             
             }
         }
+        
+        var controllerTitle: String {
+            switch self {
+            
+            case .avantura:
+                return "Adventure".localized()
+            case .biografija:
+                return "Biography".localized()
+            case .detektivski:
+                return "Detective novels / crime novels".localized()
+            case .epski:
+                return "The epic fantasy".localized()
+            case .erotski:
+                return "Erotic novels / romance novels".localized()
+            case .klasika:
+                return "Classical Literature".localized()
+            case .psihologija:
+                return "Popular Psychology".localized()
+            case .triler:
+                return "Thriller".localized()
+            case .istorijski:
+                return "Historical novels".localized()
+            case .ostalo:
+                return "Miscellaneous".localized()
+            case .horor:
+                return "Horror".localized()
+            case .akcija:
+                return "Action".localized()
+            case .roman:
+                return "Novel".localized()
+            }
+        }
     }
     
     

@@ -21,6 +21,7 @@ protocol BlitzBuchSearchViewModelProtocol {
     var resultsSearchController: UISearchController { get set }
     var searching: Dynamic<Bool> { get set }
     var fetchResults: NSFetchedResultsController<NSManagedObject>? { get set }
+    var userDefaults: BlitzBuchUserDefaults { get set }
     
     func fetch()
     func fetchRecommendedBooks()
@@ -38,10 +39,12 @@ class BlitzBuchSearchViewModel: BaseViewModel, BlitzBuchSearchViewModelProtocol,
     var resultsSearchController = UISearchController()
     var searching = Dynamic(false)
     var fetchResults: NSFetchedResultsController<NSManagedObject>?
+    var userDefaults: BlitzBuchUserDefaults
     
     // MARK: - Init
     
     override init() {
+        self.userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
         super.init()
     }
     

@@ -13,6 +13,7 @@
 import UIKit
 import CoreData
 import RxSwift
+import StoreKit
 
 protocol BlitzBuchCartViewModelProtocol {
     var idArray: [String] { get set }
@@ -22,13 +23,16 @@ protocol BlitzBuchCartViewModelProtocol {
     var dataFetched: Dynamic<Bool> { get set }
     var cell: BookTableViewCell { get set }
     var cellIndexPath: IndexPath { get set }
-    var userId: Int32 { get set }
+    var user: UserCodable? { get set }
     var disposeBag: DisposeBag { get set }
+    var models: Dynamic<[SKProduct]> { get set }
     
     func fetchBooks()
+    func fetchProducts()
+    func deleteBook(bookId: Int)
 }
 
-class BlitzBuchCartViewModel: BaseViewModel, BlitzBuchCartViewModelProtocol {
+class BlitzBuchCartViewModel: BaseViewModel, BlitzBuchCartViewModelProtocol, SKProductsRequestDelegate {
     
     // MARK: - BlitzBuchCartViewModelProtocol Vars & Lets
     
@@ -37,10 +41,11 @@ class BlitzBuchCartViewModel: BaseViewModel, BlitzBuchCartViewModelProtocol {
     var cartItemsNumber: Int = 0
     var cartCountObserver: Dynamic<Int> = Dynamic(0)
     var dataFetched: Dynamic<Bool> = Dynamic(false)
-    var userId: Int32 = blitzBuchUserDefaults.get(.id) as? Int32 ?? 0
+    var user: UserCodable?
     var cell = BookTableViewCell()
     var cellIndexPath = IndexPath(row: 0, section: 0)
     var disposeBag: DisposeBag = DisposeBag()
+    var models: Dynamic<[SKProduct]> = Dynamic([SKProduct]())
     
     // MARK: - Vars & Lets
 
@@ -49,12 +54,24 @@ class BlitzBuchCartViewModel: BaseViewModel, BlitzBuchCartViewModelProtocol {
     // MARK: - Init
     
     override init() {
+        self.user = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard).getUser()
         super.init()
+    }
+    
+    func fetchProducts() {
+        let request = SKProductsRequest(productIdentifiers: Set(BlitzBuchCart.TransportExpences.allCases.compactMap({$0.rawValue})))
+        request.delegate = self
+        request.start()
     }
     
     func fetchBooks(){
         let fetchRequest = Book.fetchRequest() as NSFetchRequest
-        idArray = blitzBuchUserDefaults.get(.cartItems) as? [String] ?? [""]
+        let cartItems = self.user?.cartItems
+        if let cartItems = user?.cartItems, cartItems.contains(",") {
+            idArray = cartItems.components(separatedBy: ",")
+        } else {
+            idArray = cartItems.map({[String($0)]}) ?? [""]
+        }
         var idArraySequence = [Int32]()
         idArray.forEach { (string) in
             idArraySequence.append(Int32(string) ?? 0)
@@ -68,7 +85,6 @@ class BlitzBuchCartViewModel: BaseViewModel, BlitzBuchCartViewModelProtocol {
         } catch {
             self.error.value = .validation(AlertMessage(title: "", body: error.localizedDescription))
         }
-        
     }
     
     func deleteBook(bookId: Int) {
@@ -97,5 +113,11 @@ class BlitzBuchCartViewModel: BaseViewModel, BlitzBuchCartViewModelProtocol {
         } onDisposed: {
             //
         }.disposed(by: self.disposeBag)
+    }
+    
+    // MARK: - SKProductDelegate Methods
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        self.models.value = response.products
     }
 }

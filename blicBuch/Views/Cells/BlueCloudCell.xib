@@ -1,37 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="138" id="KGk-i7-Jjw" customClass="BlueCloudCell" customModule="blitzBuch" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="378" height="138"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="173" id="KGk-i7-Jjw" customClass="BlueCloudCell" customModule="blitzBuch" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="173"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="378" height="138"/>
+                <rect key="frame" x="0.0" y="0.0" width="378" height="173"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N92-us-Ao7">
-                        <rect key="frame" x="5" y="15" width="368" height="108"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_blueCloud" translatesAutoresizingMaskIntoConstraints="NO" id="N92-us-Ao7">
+                        <rect key="frame" x="5" y="15" width="368" height="143"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtJ-0z-7vi">
+                        <rect key="frame" x="25" y="50" width="328" height="20"/>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys7-Hm-byg">
+                        <rect key="frame" x="25" y="90" width="328" height="18"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N92-us-Ao7" secondAttribute="trailing" constant="5" id="5sm-UI-SwW"/>
+                    <constraint firstItem="UtJ-0z-7vi" firstAttribute="trailing" secondItem="N92-us-Ao7" secondAttribute="trailing" constant="-20" id="8Dv-3j-LoW"/>
                     <constraint firstItem="N92-us-Ao7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="DUH-KQ-xvX"/>
+                    <constraint firstItem="ys7-Hm-byg" firstAttribute="leading" secondItem="N92-us-Ao7" secondAttribute="leading" constant="20" id="Df4-oU-mgr"/>
+                    <constraint firstItem="UtJ-0z-7vi" firstAttribute="top" secondItem="N92-us-Ao7" secondAttribute="top" constant="35" id="LlL-ZT-6Go"/>
+                    <constraint firstItem="ys7-Hm-byg" firstAttribute="top" secondItem="UtJ-0z-7vi" secondAttribute="bottom" constant="20" id="Pjn-aE-YJj"/>
                     <constraint firstAttribute="bottom" secondItem="N92-us-Ao7" secondAttribute="bottom" constant="15" id="ZaL-UK-eva"/>
+                    <constraint firstItem="UtJ-0z-7vi" firstAttribute="leading" secondItem="N92-us-Ao7" secondAttribute="leading" constant="20" id="wyt-MK-6Dm"/>
                     <constraint firstItem="N92-us-Ao7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="xSh-UA-1jR"/>
+                    <constraint firstItem="ys7-Hm-byg" firstAttribute="trailing" secondItem="N92-us-Ao7" secondAttribute="trailing" constant="-20" id="zsw-sE-4gH"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bodyLabel" destination="ys7-Hm-byg" id="i6A-v9-OzI"/>
                 <outlet property="imgView" destination="N92-us-Ao7" id="Ztk-u4-ZLG"/>
+                <outlet property="titleLabel" destination="UtJ-0z-7vi" id="1q5-Xl-Urm"/>
             </connections>
-            <point key="canvasLocation" x="89.855072463768124" y="168.08035714285714"/>
+            <point key="canvasLocation" x="89.855072463768124" y="179.79910714285714"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="img_blueCloud" width="4309" height="1643"/>
+    </resources>
 </document>

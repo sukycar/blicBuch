@@ -11,34 +11,204 @@
 //
 
 import UIKit
+import StoreKit
 
 protocol BlitzBuchRegisterViewControllerProtocol: AnyObject {
     
 }
 
-class BlitzBuchRegisterViewController: UIViewController, BlitzBuchRegisterViewControllerProtocol {
+class BlitzBuchRegisterViewController: BaseViewController, BlitzBuchRegisterViewControllerProtocol  {
     
     // MARK: - Vars & Lets
     
     private var customView: BlitzBuchRegisterView! {
-        loadViewIfNeeded()
+        DispatchQueue.main.async {
+            self.loadViewIfNeeded()
+        }
         return view as? BlitzBuchRegisterView
     }
-    var viewModel: BlitzBuchRegisterViewModelProtocol?
+    var viewModel: (BaseViewModel & BlitzBuchRegisterViewModelProtocol)?
     
     // MARK: - Controller lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.customView.setup()
+        self.title = "Register".localized()
+        SKPaymentQueue.default().add(self)
+        self.handleKeyboardShow()
+        self.customView.setup(target: self,
+                              registerButtonSelector: #selector(self.registerUser),
+                              loginButtonSelector: #selector(self.loginAction),
+                              subscriptionViewSelector: #selector(self.dismissSubscriptionAction),
+                              textFieldDelegate: self,
+                              tableViewDelegate: self,
+                              tableViewDataSource: self)
+        self.viewModel?.fetchProducts()
         self.bindViewModel()
     }
     
     // MARK: - Private methods
     
     private func bindViewModel() {
+        self.viewModel?.error.bind({ [weak self] in
+            if let error = $0 {
+                self?.handleError(error: error)
+            }
+        })
+        self.viewModel?.isLoaderHidden.bind({ [weak self] in
+            self?.shouldHideLoader(isHidden: $0)
+        })
+        self.viewModel?.models.bind({ [weak self] _ in
+            DispatchQueue.main.async {
+                self?.customView.subscriptionTableView.reloadData()
+            }
+        })
+    }
+    
+    private func handleKeyboardShow(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // MARK: - Actions
+
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if let activeTextField = UIResponder.currentFirst() as? UITextField {
+            if activeTextField.tag > 4 {
+                if self.view.frame.origin.y == 0{
+                    self.view.frame.origin.y -= keyboardFrame.height
+                }
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.customView.frame.origin.y != 0{
+            self.customView.frame.origin.y = 0
+        }
+    }
+
+    @objc private func loginAction() {
+        self.viewModel?.navigateToLogin()
+    }
+    
+    @objc private func registerUser() {
+        DispatchQueue.main.async {
+            self.customView.handleShowSubscriptionTableView()
+        }
+    }
+    
+    @objc private func dismissSubscriptionAction() {
+        self.customView.handleShowSubscriptionTableView()
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension BlitzBuchRegisterViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.customView.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.customView.endEditing(true)
+        return false
+    }
+}
+
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension BlitzBuchRegisterViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel?.models.value.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == self.customView.subscriptionTableView {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: SubscriptionTableViewCell.cellID, for: indexPath) as? SubscriptionTableViewCell {
+            if let model = self.viewModel?.models.value[indexPath.row] {
+                cell.setupData(title: model.localizedTitle, description: "\(model.localizedDescription) - \(model.priceLocale)€")
+                return cell
+            }
+        }
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.estimatedRowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            if let models = self.viewModel?.models {
+                let payment = SKPayment(product: models.value[indexPath.row])
+                SKPaymentQueue.default().add(payment)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
+        let label = UILabel(frame: CGRect(x: -16, y: 10, width: self.customView.frame.width, height: 15))
+        label.textAlignment = .center
+        label.font = UIFont(name: FontName.bold.value, size: 14)
+        label.text = "Select subscription type:".localized()
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.customView.frame.size.width, height: 30))
+        let separatorView = UIView(frame: CGRect(x: 0, y: 30, width: self.customView.subscriptionTableView.frame.width, height: 1))
+        separatorView.backgroundColor = .black
+        headerView.addSubview(label)
+        headerView.addSubview(separatorView)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
     
 }
+
+// MARK: - SKPaymentTransactionObserver Delegate
+
+extension BlitzBuchRegisterViewController: SKPaymentTransactionObserver {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        
+        // MARK: - ToDo: Handle updated transactions
+        if let transaction = transactions.first {
+            switch transaction.transactionState {
+            
+            case .purchasing:
+                print("Purchasing")
+            case .purchased:
+                self.viewModel?.validateData(address: self.customView.street.text ?? "",
+                                             city: self.customView.city.text ?? "",
+                                             email: self.customView.email.text ?? "",
+                                             name: self.customView.name.text ?? "",
+                                             password: self.customView.password.text ?? "",
+                                             confirmPassword: self.customView.passwordRepeat.text ?? "",
+                                             phoneNumber: self.customView.phone.text ?? "")
+            case .failed:
+                print("Failed")
+            case .restored:
+                print("Restored")
+            case .deferred:
+                print("Deferred")
+                self.dismiss(animated: true, completion: nil)
+            @unknown default:
+                print("Status unknown")
+            }
+        }
+    }
+    
+}
+
+
+

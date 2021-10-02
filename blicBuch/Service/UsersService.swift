@@ -16,6 +16,8 @@ class UsersService {
     class func getUser(uid: String?) -> Observable<Bool> {
         return Observable.create { observer in
             let router = Router.user
+            let userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
+            let userModel = UserCodable()
             var parameters = [String : AnyObject]()
             if let userId = uid {
                 parameters["uid"] = userId as AnyObject
@@ -31,25 +33,29 @@ class UsersService {
                                     let userId = user["uid"].string
                                     if let passedUid = uid {
                                         if userId == passedUid {
+                                            print("Korisnik \(user)")
                                             let id = user["id"].int32Value
                                             let regularBooks = user["numberOfRegularBooks"].intValue
                                             let vipBooks = user["numberOfVipBooks"].intValue
                                             let name = user["name"].stringValue
                                             let cartItems = user["cartItems"].stringValue
+                                            let orderedItems = user["orderedItems"].stringValue
                                             var cartItemsInUserDefaults = [String]()
                                             
-                                            _ = blitzBuchUserDefaults.set(.id, value: id)
-                                            _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: regularBooks)
-                                            _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: vipBooks)
-                                            _ = blitzBuchUserDefaults.set(.username, value: name)
-                                            _ = blitzBuchUserDefaults.set(.logedIn, value: true)
+                                            userModel.id = id
+                                            userModel.numberOfRegularBooks = regularBooks
+                                            userModel.numberOfVipBooks = vipBooks
+                                            userModel.name = name
+                                            userModel.cartItems = cartItems
+                                            userModel.orderedItems = orderedItems
                                             if cartItems != "" {
                                                 let cartItem = cartItems.components(separatedBy: ",")
                                                 cartItem.forEach { (item) in
                                                     cartItemsInUserDefaults.append(item)
                                                 }
-                                                _ = blitzBuchUserDefaults.set(.cartItems, value: cartItemsInUserDefaults)
+                                                userModel.cartItems = cartItems
                                             }
+                                            userDefaults.saveUser(userModel)
                                             observer.onNext(true)
                                             observer.onCompleted()
                                             return
@@ -74,6 +80,34 @@ class UsersService {
         }
     }
     
+    //MARK: - lock book when it is in the cart
+    
+    class func registerUser(user: BlitzBuchRegister.UserModel) -> Observable<Bool> {
+        var parameters = [String: AnyObject]()
+        do {
+            parameters = try user.toDictionary()
+        } catch {
+            print("Error in decoding")
+        }
+        
+        return Observable.create { observer in
+            let router = Router.register
+            let request = API.shared.request(router: router, parameters: parameters) { (response) in
+                switch response {
+                case .Success:
+                    observer.onNext(true)
+                    observer.onCompleted()
+                case .Failure(let error):
+                    observer.onError(error)
+                }
+            }
+            let cancel = Disposables.create {
+                request.cancel()
+            }
+            return cancel
+        }
+    }
+    
     /// get books in cart for user from SQL on server
     class func getCartBooks(userId: Int32) -> Observable<[Int32]> {
         return Observable.create { observer in
@@ -86,7 +120,9 @@ class UsersService {
                     var int32Array = [Int32]()
                     let items = cartItems.components(separatedBy: ",")
                     items.forEach { (string) in
-                        int32Array.append(Int32(string) ?? 0)
+                        if let newItem = Int32(string) {
+                            int32Array.append(newItem)
+                        }
                     }
                     observer.onNext(int32Array)
                     observer.onCompleted()
@@ -104,22 +140,10 @@ class UsersService {
     /// add book ids to user cart on server
     class func updateCartBooks(userId: Int32, bookIDs: [String]) -> Observable<Bool> {
         return Observable.create { observer in
+            let cartBooks = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard).getUser()?.cartItems
             let router = Router.updateCart(for: userId)
-            let enumeratedIDs = bookIDs.enumerated()
-            var booksString = String()
-            enumeratedIDs.forEach { (index, bookId) in
-                if index == 0 {
-                    booksString.append(bookId)
-                } else {
-                    booksString.append(",\(bookId)")
-                }
-            }
-            if bookIDs.count == 0 {
-                booksString = ""
-            }
-            
             var parameters = [String: AnyObject]()
-            parameters["cartItems"] = booksString as AnyObject
+            parameters["cartItems"] = cartBooks as AnyObject
             let request = API.shared.request(router: router, parameters: parameters) { (response) in
                 switch response {
                 case .Success:
@@ -140,6 +164,7 @@ class UsersService {
     class func checkForAvailableBooks(_ id: Int32) -> Observable<(Int, Int)> {
         Observable.create { observer in
             let id = id
+            let userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
             let router = Router.checkAvailableBooks(for: id)
             let request = API.shared.request(router: router, parameters: nil) { (response) in
                 switch response {
@@ -147,8 +172,11 @@ class UsersService {
                     guard let json = json else {return}
                     let numberOfVipBooks = json["numberOfVipBooks"].intValue
                     let numberOfRegularBooks = json["numberOfRegularBooks"].intValue
-                    _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: numberOfVipBooks)
-                    _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: numberOfRegularBooks)
+                    if let user = userDefaults.getUser() {
+                        user.numberOfVipBooks = numberOfVipBooks
+                        user.numberOfRegularBooks = numberOfRegularBooks
+                        userDefaults.saveUser(user)
+                    }
                     observer.onNext((numberOfVipBooks, numberOfRegularBooks))
                     observer.onCompleted()
                 case .Failure(let error):
@@ -169,8 +197,7 @@ class UsersService {
         Observable.create { observer in
             var parameters = [String : AnyObject]()
             let router = Router.changeNumberOfAvailableBooks(for: userId)
-            let jsonParameter = "numberOfRegularBooks"
-            parameters[jsonParameter] = numberOfBooks as AnyObject
+            parameters["numberOfRegularBooks"] = numberOfBooks as AnyObject
             let request = API.shared.request(router: router, parameters: parameters) { (response) in
                 switch response {
                 case .Success(_):
@@ -193,8 +220,7 @@ class UsersService {
         Observable.create { observer in
             var parameters = [String : AnyObject]()
             let router = Router.changeNumberOfAvailableBooks(for: userId)
-            let jsonParameter = "numberOfVipBooks"
-            parameters[jsonParameter] = numberOfBooks as AnyObject
+            parameters["numberOfVipBooks"] = numberOfBooks as AnyObject
             let request = API.shared.request(router: router, parameters: parameters) { (response) in
                 switch response {
                 case .Success(_):

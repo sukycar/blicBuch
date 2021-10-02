@@ -11,17 +11,24 @@
       "localizations" : [
         {
           "description" : "Payment for transport",
-          "displayName" : "Transport expences",
+          "displayName" : "Transport expenses",
           "locale" : "en_US"
+        },
+        {
+          "description" : "Kosten für den Versand von Büchern",
+          "displayName" : "Transportkosten",
+          "locale" : "de"
         }
       ],
-      "productID" : "com.temporary.transport",
-      "referenceName" : "Transport expences",
+      "productID" : "club.blitzBuch.transport",
+      "referenceName" : "Transport expenses",
       "type" : "Consumable"
     }
   ],
   "settings" : {
-
+    "_askToBuyEnabled" : true,
+    "_locale" : "en_US",
+    "_timeRate" : 6
   },
   "subscriptionGroups" : [
     {
@@ -35,31 +42,9 @@
           "adHocOffers" : [
 
           ],
-          "displayPrice" : "0.00",
-          "familyShareable" : false,
-          "groupNumber" : 1,
-          "internalID" : "C6822D61",
-          "introductoryOffer" : null,
-          "localizations" : [
-            {
-              "description" : "One month free membership, one free book",
-              "displayName" : "Free subscription",
-              "locale" : "en_US"
-            }
-          ],
-          "productID" : "com.temporary.free",
-          "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "Free subscription",
-          "subscriptionGroupID" : "2D8FEE64",
-          "type" : "RecurringSubscription"
-        },
-        {
-          "adHocOffers" : [
-
-          ],
           "displayPrice" : "2.99",
           "familyShareable" : false,
-          "groupNumber" : 1,
+          "groupNumber" : 2,
           "internalID" : "F3A4A342",
           "introductoryOffer" : null,
           "localizations" : [
@@ -67,9 +52,14 @@
               "description" : "You can order 3 regular books",
               "displayName" : "Regular subscription",
               "locale" : "en_US"
+            },
+            {
+              "description" : "Sie können bis zu 3 reguläre Bücher bestellen",
+              "displayName" : "Reguläres Abonnement",
+              "locale" : "de"
             }
           ],
-          "productID" : "com.temporary.regular",
+          "productID" : "club.blitzBuch.regular",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Regular subscription",
           "subscriptionGroupID" : "2D8FEE64",
@@ -89,17 +79,58 @@
               "description" : "You can order 4 regular and 1 vip book",
               "displayName" : "Vip subscription",
               "locale" : "en_US"
+            },
+            {
+              "description" : "Sie können 4 reguläre und 1 VIP-Buch bestelle",
+              "displayName" : "Vip Abonnement",
+              "locale" : "de"
             }
           ],
-          "productID" : "com.temporary.vip",
+          "productID" : "club.blitzBuch.vip",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Vip subscription",
+          "subscriptionGroupID" : "2D8FEE64",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "2.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "5F79CDB6",
+          "introductoryOffer" : {
+            "internalID" : "E903BAB6",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1M"
+          },
+          "localizations" : [
+            {
+              "description" : "One month free membership, one free book",
+              "displayName" : "Starter subscription",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Ein Monat kostenlose Mitgliedschaft, ein kost",
+              "displayName" : "Starter Abonnement",
+              "locale" : "de"
+            }
+          ],
+          "productID" : "club.blitzBuch.starter",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Starter subscription",
           "subscriptionGroupID" : "2D8FEE64",
           "type" : "RecurringSubscription"
         }
       ]
     }
   ],
+  "subscriptionOffersKeyPair" : {
+    "id" : "57F38167",
+    "privateKey" : "MF8CAQEEGAklFv6yccg5zd/ydYJLShaRboaECEdxYaAKBggqhkjOPQMBAaE0AzIA\nBLve1Q7jTgkoTZnwfyxVHgQ8wBUdP+3G9X9GXvQVdA/nO+Bw+DQrR0jpeysh0RGp\nfg==",
+    "publicKey" : "MEkwEwYHKoZIzj0CAQYIKoZIzj0DAQEDMgAEu97VDuNOCShNmfB/LFUeBDzAFR0/\n7cb1f0Ze9BV0D+c74HD4NCtHSOl7KyHREal+"
+  },
   "version" : {
     "major" : 1,
     "minor" : 1

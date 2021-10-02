@@ -56,25 +56,30 @@ extension UIViewController {
     ///   - removeBooks: does the function remove book from server or add it
     ///   - numberOfBooks: how much books function adds or removes from server
     public func updateBooksNumber(removeBooks: Bool, numberOfBooks: Int, disposeBag: DisposeBag){
-        let userDefaultsBooks = blitzBuchUserDefaults.get(.numberOfRegularBooks) as! Int
-        var newUserDefaultsBooks = Int()
-        if numberOfBooks != 0 {
-            if removeBooks == true && numberOfBooks <= userDefaultsBooks {
-                newUserDefaultsBooks = userDefaultsBooks - numberOfBooks
-                _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: newUserDefaultsBooks)
-            } else if removeBooks == false {
-                newUserDefaultsBooks = userDefaultsBooks + numberOfBooks
-               _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: newUserDefaultsBooks)
+        let userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
+        if let user = userDefaults.getUser() {
+            let userDefaultsBooks = user.numberOfRegularBooks ?? 0
+            var newUserDefaultsBooks = Int()
+            if numberOfBooks != 0 {
+                if removeBooks == true && numberOfBooks <= userDefaultsBooks {
+                    newUserDefaultsBooks = userDefaultsBooks - numberOfBooks
+                    user.numberOfRegularBooks = newUserDefaultsBooks
+                    userDefaults.saveUser(user)
+                } else if removeBooks == false {
+                    newUserDefaultsBooks = userDefaultsBooks + numberOfBooks
+                    user.numberOfRegularBooks = newUserDefaultsBooks
+                    userDefaults.saveUser(user)
+                }
+                let updatedUserDefaults = userDefaults.getUser()?.numberOfRegularBooks ?? 0
+                let userId = user.id ?? 0
+                UsersService.changeNumberOfBooks(userId: userId, numberOfBooks: updatedUserDefaults).subscribe { (updated) in
+                } onError: { (error) in
+                    self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                } onCompleted: {
+                }.disposed(by: disposeBag)
+            } else {
+                return
             }
-            let updatedUserDefaults = blitzBuchUserDefaults.get(.numberOfRegularBooks) as! Int
-            let userId = blitzBuchUserDefaults.get(.id) as? Int32 ?? 0
-            UsersService.changeNumberOfBooks(userId: userId, numberOfBooks: updatedUserDefaults).subscribe { (updated) in
-            } onError: { (error) in
-                self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-            } onCompleted: {
-            }.disposed(by: disposeBag)
-        } else {
-            return
         }
     }
     
@@ -83,25 +88,30 @@ extension UIViewController {
     ///   - removeBooks: does the function remove book from server or add it
     ///   - numberOfBooks: how much books function adds or removes from server
     public func updateVipBooksNumber(removeBooks: Bool, numberOfBooks: Int, disposeBag: DisposeBag) {
-        let userDefaultsBooks = blitzBuchUserDefaults.get(.numberOfVipBooks) as! Int
-        var newUserDefaultsBooks = Int()
-        if numberOfBooks != 0 {
-            if removeBooks == true && numberOfBooks <= userDefaultsBooks {
-                newUserDefaultsBooks = userDefaultsBooks - numberOfBooks
-                _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: newUserDefaultsBooks)
-            } else if removeBooks == false {
-                newUserDefaultsBooks = userDefaultsBooks + numberOfBooks
-               _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: newUserDefaultsBooks)
+        let userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
+        if let user = userDefaults.getUser() {
+            let userDefaultsBooks = user.numberOfVipBooks ?? 0
+            var newUserDefaultsBooks = Int()
+            if numberOfBooks != 0 {
+                if removeBooks == true && numberOfBooks <= userDefaultsBooks {
+                    newUserDefaultsBooks = userDefaultsBooks - numberOfBooks
+                    user.numberOfVipBooks = newUserDefaultsBooks
+                    userDefaults.saveUser(user)
+                } else if removeBooks == false {
+                    newUserDefaultsBooks = userDefaultsBooks + numberOfBooks
+                    user.numberOfVipBooks = newUserDefaultsBooks
+                    userDefaults.saveUser(user)
+                }
+                let updatedUserDefaults = userDefaults.getUser()?.numberOfVipBooks ?? 0
+                let userId = user.id ?? 0
+                UsersService.changeNumberOfVipBooks(userId: userId, numberOfBooks: updatedUserDefaults).subscribe { (updated) in
+                } onError: { (error) in
+                    self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
+                } onCompleted: {
+                }.disposed(by: disposeBag)
+            } else {
+                return
             }
-            let updatedUserDefaults = blitzBuchUserDefaults.get(.numberOfVipBooks) as! Int
-            let userId = blitzBuchUserDefaults.get(.id) as? Int32 ?? 0
-            UsersService.changeNumberOfVipBooks(userId: userId, numberOfBooks: updatedUserDefaults).subscribe { (updated) in
-            } onError: { (error) in
-                self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-            } onCompleted: {
-            }.disposed(by: disposeBag)
-        } else {
-            return
         }
     }
     

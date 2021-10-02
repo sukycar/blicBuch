@@ -12,6 +12,14 @@
 
 import UIKit
 
+// MARK: - Enums
+
 enum BlitzBuchCart {
     
+    // MARK: - Enum
+    
+    enum TransportExpences: String, CaseIterable {
+        case transport = "club.blitzBuch.transport"
+    }
+
 }

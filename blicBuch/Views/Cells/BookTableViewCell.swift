@@ -20,6 +20,10 @@ protocol AlertMe {
     func onLoggedOutClick()
 }
 
+protocol SelectedBookDelegate: AnyObject {
+    func bookSelected(indexPath: IndexPath)
+}
+
 class BookTableViewCell: TableViewCell {
     
     @IBOutlet weak var authorLabel: UILabel!
@@ -44,7 +48,9 @@ class BookTableViewCell: TableViewCell {
             viewModel?.setLayout(nameLabel: self.nameLabel, authorLabel: self.authorLabel, genreLabel: self.genreLabel, button: self.orderButton)
         }
     }
+    var indexPath = IndexPath()
     var cellDelegate: AlertMe?
+    weak var delegate: SelectedBookDelegate?
     var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
@@ -60,15 +66,8 @@ class BookTableViewCell: TableViewCell {
     }
     
     @objc func onClick() {
-        if let userLoggedIn = blitzBuchUserDefaults.get(.logedIn) as? Bool {
-            if userLoggedIn == true {
-                self.cellDelegate?.onClick()
-            } else {
-                self.cellDelegate?.onLoggedOutClick()
-            }
-        } else {
-            self.cellDelegate?.onLoggedOutClick()
-        }
+        self.cellDelegate?.onClick()
+        self.delegate?.bookSelected(indexPath: self.indexPath)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

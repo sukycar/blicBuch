@@ -24,7 +24,7 @@ extension User {
     @NSManaged public var name: String?
     @NSManaged public var password: String?
     @NSManaged public var payment: Bool
-    @NSManaged public var phoneNumber: Int64
+    @NSManaged public var phoneNumber: String?
     @NSManaged public var vipUser: Bool
     @NSManaged public var logedIn: Bool
     @NSManaged public var books: NSSet?

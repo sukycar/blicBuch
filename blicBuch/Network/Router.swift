@@ -12,6 +12,7 @@ enum Router {
     
     case books
     case user
+    case register
     case book(for: Int)
     case updateBook(for: Int32)
     case checkLockStatus(for: Int32)
@@ -35,6 +36,8 @@ enum Router {
             return "\(Environment.configuration(.booksPath))/\(id)"
         case .user:
             return "\(Environment.configuration(.usersPath))/"
+        case .register:
+            return "\(Environment.configuration(.usersPath))"
         case .updateBook(let id):
             return "\(Environment.configuration(.booksPath))/\(id)"
         case .checkLockStatus(let id):
@@ -58,6 +61,8 @@ enum Router {
             return .get
         case .user:
             return .get
+        case .register:
+            return .post
         case .book:
             return .delete
         case .updateBook:
@@ -78,8 +83,14 @@ enum Router {
     }
     
     
-    
     func fullUrl() -> URL{
         return URL(string: self.baseURL + self.path)!
+    }
+    
+    var encoding: ParameterEncoding {
+        switch self {
+        default:
+            return JSONEncoding.default
+        }
     }
 }

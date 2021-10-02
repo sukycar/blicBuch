@@ -21,12 +21,15 @@ class LoadingViewController: UIViewController {
     @IBOutlet weak var imageYConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = blitzBuchUserDefaults.set(.id, value: 0)
-        _ = blitzBuchUserDefaults.set(.logedIn, value: false)
-        _ = blitzBuchUserDefaults.set(.numberOfRegularBooks, value: 0)
-        _ = blitzBuchUserDefaults.set(.numberOfVipBooks, value: 0)
-        _ = blitzBuchUserDefaults.set(.username, value: "--")
-        _ = blitzBuchUserDefaults.set(.cartItems, value: [""])
+        let userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
+        if let user = userDefaults.getUser() {
+            user.id = 0
+            user.numberOfRegularBooks = 0
+            user.numberOfVipBooks = 0
+            user.name = "--"
+            user.cartItems = ""
+            userDefaults.saveUser(user)
+        }
         
         UIView.animate(withDuration: 1,
                        delay: 0,
@@ -37,46 +40,31 @@ class LoadingViewController: UIViewController {
                        completion: nil)
         BooksService.getAll().subscribe(onNext: {(finished) in
             if finished {
-//                BooksService.getAllCartStatuses().subscribe { (finished) in
-//                    //finished
-//                    print("Completed filling status id's")
-//                } onError: { (error) in
-//                    print(error)
-//                } onCompleted: {
-//                    //
-//                } onDisposed: {
-//                    //
-//                }.disposed(by: self.disposeBag)
-                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.goToLogin()
-                    
                 }
             }
         }, onError: { (error) in
             self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
         }, onCompleted: {
-            
-            //
         }) {
-            
         }.disposed(by: self.disposeBag)
-        // Do any additional setup after loading the view.
     }
     
-
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.disposeBag = DisposeBag()
-     }
+    }
     
     private func goToLogin() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlitzBuchLoginViewController") as! BlitzBuchLoginViewController
         vc.viewModel = BlitzBuchLoginViewModel(keychainServices: self.keychainServices)
-//                    vc.view.alpha = 1
-//                    vc.loaderTest = .firstTime
+        vc.onRegister = {
+            let registerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlitzBuchRegisterViewController") as! BlitzBuchRegisterViewController
+            registerVC.viewModel = BlitzBuchRegisterViewModel(keychainServices: self.keychainServices)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.setWindow(vc: registerVC, animated: true)
+        }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.setWindow(vc: vc, animated: false)
     }
-    
 }
-

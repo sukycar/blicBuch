@@ -15,6 +15,7 @@ import CoreData
 
 protocol BlitzBuchVipViewModelProtocol {
     var vipBooks : Dynamic<[Book]> { get set }
+    var userDefaults: BlitzBuchUserDefaults { get set }
     
     func getVipBooks()
 }
@@ -24,11 +25,13 @@ class BlitzBuchVipViewModel: BaseViewModel, BlitzBuchVipViewModelProtocol {
     // MARK: - BlitzBuchVipViewModelProtocol Vars & Lets
     
     var vipBooks: Dynamic<[Book]>
+    var userDefaults: BlitzBuchUserDefaults
     
     // MARK: - Init
     
     override init() {
         self.vipBooks = Dynamic([])
+        self.userDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
         super.init()
     }
     

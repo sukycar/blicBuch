@@ -79,7 +79,10 @@ class DialogViewController: BaseViewController {
             self.titleLabel.isHidden = true
         }
         self.leftButton.layer.cornerRadius = 16
-        self.leftButton.layer.masksToBounds = true
+        self.leftButton.clipsToBounds = true
+        
+        self.rightButton.layer.cornerRadius = 16
+        self.rightButton.clipsToBounds = true
         
         // Configure dialog with close button
         self.leftTitleLabel.textColor = .orange

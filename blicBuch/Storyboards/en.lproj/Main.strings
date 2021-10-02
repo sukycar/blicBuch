@@ -23,7 +23,7 @@
 "Swn-gJ-SsU.placeholder" = "Name *";
 
 /* Class = "UITextField"; placeholder = "Ort *"; ObjectID = "as4-CR-LBS"; */
-"as4-CR-LBS.placeholder" = "County *";
+"as4-CR-LBS.placeholder" = "City *";
 
 /* Class = "UILabel"; text = "LOGIN"; ObjectID = "0kX-as-1SL"; */
 "0kX-as-1SL.text" = "LOGIN";

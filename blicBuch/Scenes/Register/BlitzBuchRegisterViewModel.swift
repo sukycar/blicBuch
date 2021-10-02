@@ -11,17 +11,130 @@
 //
 
 import UIKit
+import RxSwift
+import KeychainAccess
+import Firebase
+import StoreKit
 
 protocol BlitzBuchRegisterViewModelProtocol {
+    var models: Dynamic<[SKProduct]> { get set }
     
+    func fetchProducts()
+    func validateData(address: String, city: String,
+                      email: String, name: String, password: String,
+                      confirmPassword: String, phoneNumber: String)
+    func navigateToHome()
+    func navigateToLogin()
 }
 
-class BlitzBuchRegisterViewModel: NSObject, BlitzBuchRegisterViewModelProtocol {
+class BlitzBuchRegisterViewModel: BaseViewModel, BlitzBuchRegisterViewModelProtocol, SKProductsRequestDelegate {
+    
+    // MARK: - BlitzBuchRegisterViewModelProtocol Vars & Lets
+
+    var models: Dynamic<[SKProduct]> = Dynamic([SKProduct]())
+    
+    // MARK: - Properties
+    
+    var disposeBag = DisposeBag()
+    let keychainServices: KeychainServices
+    var userModel = BlitzBuchRegister.UserModel()
     
     // MARK: - Init
     
-    override init() {
+    init(keychainServices: KeychainServices) {
+        self.keychainServices = keychainServices
         super.init()
+    }
+    
+    // MARK: - BlitzBuchRegisterViewModelProtocol Methods
+    
+    func fetchProducts() {
+        let request = SKProductsRequest(productIdentifiers: Set(BlitzBuchRegister.SubscriptionType.allCases.compactMap({$0.rawValue})))
+        request.delegate = self
+        request.start()
+    }
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print("Fetch error:\(error.localizedDescription)")
+    }
+    
+    func navigateToHome() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setWindow(vc: vc, animated: false)
+    }
+    
+    func navigateToLogin() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlitzBuchLoginViewController") as! BlitzBuchLoginViewController
+        vc.viewModel = BlitzBuchLoginViewModel(keychainServices: self.keychainServices)
+        vc.onRegister = {
+            let registerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlitzBuchRegisterViewController") as! BlitzBuchRegisterViewController
+            registerVC.viewModel = BlitzBuchRegisterViewModel(keychainServices: self.keychainServices)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.setWindow(vc: registerVC, animated: true)
+        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setWindow(vc: vc, animated: true)
+    }
+    
+    func validateData(address: String, city: String,
+                      email: String, name: String, password: String,
+                      confirmPassword: String, phoneNumber: String) {
+        if address.isEmpty {
+            self.error.value = .validation(AlertMessage(title: "Address error".localized(), body: "Address field can't be empty".localized()))
+        } else if city.isEmpty {
+            self.error.value = .validation(AlertMessage(title: "City error".localized(), body: "City field can't be empty".localized()))
+        } else if name.isEmpty {
+            self.error.value = .validation(AlertMessage(title: "Name error".localized(), body: "Name can't be empty".localized()))
+        } else if email.isEmpty {
+            self.error.value = .validation(AlertMessage(title: "Email error".localized(), body: "Email can't be empty".localized()))
+        } else if !email.isValidEmail {
+            self.error.value = .validation(AlertMessage(title: "Email error".localized(), body: "Email address is not valid".localized()))
+        } else if password.isEmpty {
+            self.error.value = .validation(AlertMessage(title: "Password error".localized(), body: "Password can't be empty".localized()))
+        } else if password.count < 6 {
+            self.error.value = .validation(AlertMessage(title: "Password error".localized(), body: "Password must contain 6 or more characters".localized()))
+        } else if confirmPassword != password {
+            self.error.value = .validation(AlertMessage(title: "Password error".localized(), body: "Password and confirm password doesn't match".localized()))
+        } else if phoneNumber.isEmpty {
+            self.error.value = .validation(AlertMessage(title: "Phone number error".localized(), body: "Phone number can't be empty".localized()))
+        } else {
+            self.userModel = BlitzBuchRegister.UserModel(address: address,
+                                                         city: city,
+                                                         email: email,
+                                                         name: name,
+                                                         password: password,
+                                                         phoneNumber: phoneNumber)
+            self.registerFirebaseUser(email: email, password: password)
+        }
+    }
+    
+    // MARK: - SKProductDelegate Methods
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        self.models.value = response.products
+    }
+
+    // MARK: - Private methods
+    
+    private func registerFirebaseUser(email: String, password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let uid = result?.user.uid {
+                self.userModel.uid = uid
+                self.registerUser(user: self.userModel)
+            } else if let error = error {
+                self.error.value = .general(AlertMessage(title: "", body: error.localizedDescription))
+            }
+        }
+    }
+    
+    private func registerUser(user: BlitzBuchRegister.UserModel) {
+        UsersService.registerUser(user: user).subscribe { registered in
+            self.error.value = .general(AlertMessage(title: "", body: "Successfully registered".localized()))
+        } onError: { error in
+            self.error.value = .general(AlertMessage(title: "", body: error.localizedDescription))
+        } onCompleted: {
+        }.disposed(by: self.disposeBag)
     }
     
 }

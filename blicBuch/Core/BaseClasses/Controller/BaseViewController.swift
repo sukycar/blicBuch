@@ -18,6 +18,8 @@ class BaseViewController: UIViewController {
     
     internal lazy var keychainServices = KeychainServices(keychain:
                                                             Keychain(service: "BlitzBuch.blitzBuch"))
+    
+    internal lazy var blitzBuchUserDefaults = BlitzBuchUserDefaults(userDefaults: UserDefaults.standard)
     lazy var alertService = AlertService()
 
 //    internal lazy var userDefaultsService = UserDefaultsService(userDefaults: UserDefaults.standard)
@@ -46,7 +48,7 @@ class BaseViewController: UIViewController {
         case .internalError:
             self.showAlert(message: "Internal server error, something wrong and unhandled happened on API")
         case .validation(let alertMessage):
-            self.showAlert(message: alertMessage.body)
+            self.showAlert(alertMessage: alertMessage)
         case .register(let alertMessage):
             self.showAlert(message: alertMessage.body)
         }
@@ -74,6 +76,12 @@ class BaseViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "BlitzBuchLoginViewController") as! BlitzBuchLoginViewController
         vc.viewModel = BlitzBuchLoginViewModel(keychainServices: self.keychainServices)
+        vc.onRegister = {
+            let registerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlitzBuchRegisterViewController") as! BlitzBuchRegisterViewController
+            registerVC.viewModel = BlitzBuchRegisterViewModel(keychainServices: self.keychainServices)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.setWindow(vc: registerVC, animated: true)
+        }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         UIView.animate(withDuration: 0.3) {
             appDelegate.setWindow(vc: vc, animated: true)

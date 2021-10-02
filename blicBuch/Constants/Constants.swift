@@ -11,6 +11,8 @@ import UIKit
 class Constants {
     static let userLogout = "UserLogout"
     static let userDefaultsToken = "UserDefaultsToken"
+    static let appToken = "AppToken"
+    static let user = "User"
 }
 
 struct FontSize {

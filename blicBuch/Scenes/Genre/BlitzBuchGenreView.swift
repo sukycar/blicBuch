@@ -19,6 +19,8 @@ class BlitzBuchGenreView: UIView {
     @IBOutlet weak var holderView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var donateTitleLabel: UILabel!
+    @IBOutlet weak var donateTextLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -37,5 +39,10 @@ class BlitzBuchGenreView: UIView {
         let customCellName = String(describing: BookTableViewCell.self)
         self.tableView.register(UINib(nibName: customCellName, bundle: nil), forCellReuseIdentifier: customCellName)
         self.tableView.tableFooterView = UIView()
+        
+        // Set text
+        self.donateTitleLabel.text = "Why donation...".localized()
+        self.donateTextLabel.text = "Expansion of the range of book titles,\nfunding and creation of an increasingly \nbeing mobile application,\nIn addition to Belletristic also offer of\neniclopedia editions and specialist literature".localized()
+        
     }
 }

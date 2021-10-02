@@ -25,6 +25,14 @@ class KeychainServices {
         return self.keychain[Constants.userDefaultsToken]
     }
     
+    func saveAppToken(token: String) {
+        self.keychain[Constants.appToken] = token
+    }
+    
+    func getAppToken() -> String? {
+        return self.keychain[Constants.appToken]
+    }
+    
     func logout() {
         self.deleteTokens()
     }

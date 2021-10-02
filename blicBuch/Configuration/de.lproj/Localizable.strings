@@ -8,6 +8,7 @@
 
 "Login" = "Einloggen";
 "Don't have an account?" = "Sie haben kein Konto?";
+"You already have account?" = "Sie haben schon ein Konto?";
 "E-mail" = "E-mail";
 "Password" = "Passwort";
 "Library" = "Bibliothek";
@@ -20,16 +21,52 @@
 "New in the library" = "Neu in die bibliothek";
 "Name *" = "Vorname *";
 "Street *" = "Straße *";
-"County *" = "Ort *";
+"City *" = "Ort *";
 "Password *" = "Passwort *";
+"Repeat password *" = "Passwort wiederholen *";
 "No items in cart" = "Keine Artikel im Warenkorb";
 "Processing..." = "Wird bearbeitet...";
 "Register" = "Registrieren";
 "order_button_eng" = "orderButton";
 
+// Subscription and transport
+"Select subscription type:" = "Abonnementtyp auswählen";
+"Transport expenses" = "Transportkosten";
+"Regular subscription" = "Reguläres Abonnement";
+"VIP subscription" = "VIP Abonnement";
+"Starter subscription" = "Starter Abonnement";
+"You can order 3 regular books" = "Sie können 3 normale Bücher bestellen";
+"Payment for transport" = "Kosten für den Versand von Büchern";
+"You can order 4 regular and 1 vip book" = "Sie können 4 reguläre und 1 VIP-Buch bestelle";
+"One month free membership, one free book" = "Ein Monat kostenlose Mitgliedschaft, ein kost";
+
+// Validation messages
+"Address error" = "Adressfehler";
+"Address field can't be empty" = "Adressfeld darf nicht leer sein";
+"City field can't be empty" = "Stadtfeld darf nicht leer sein";
+"City error" = "Stadtfehler";
+"Name error" = "Namensfehler";
+"Name can't be empty" = "Name darf nicht leer sein";
+"Email error" = "E-Mail-Fehler";
+"Password error" = "Passwort Fehler";
+"Email can't be empty" = "E-Mail darf nicht leer sein";
+"Email address is not valid" = "Email Adresse ist nicht gültig";
+"Password can't be empty" = "Passwort darf nicht leer sein";
+"Password must contain 6 or more characters" = "Passwort muss 6 oder mehr Zeichen enthalten";
+"Password and confirm password doesn't match" = "Passwort und Passwort bestätigen stimmen nicht überein";
+"Phone number error" = "Fehler bei der Telefonnummer";
+"Phone number can't be empty" = "Telefonnummer darf nicht leer sein";
+"Successfully registered" = "Erfolgreich registriert";
+
 // Menu
 "Contact" = "Kontakt";
 "Logout" = "Ausloggen";
+
+// Info clouds
+"Write to us..." = "Schreiben Sie uns...";
+"Your suggestions and suggestions will be gladly accepted by us and they will challenge the readers' club" = "Ihre Vorschläge und Suggestionen werden von uns gerne angenommen und die werden den Leserklub fördern";
+"Why donation..." = "Warum Schenkung...";
+"Expansion of the range of book titles,\nfunding and creation of an increasingly \nbeing mobile application,\nIn addition to Belletristic also offer of\neniclopedia editions and specialist literature" = "Erweiterung vom Büchertitelangebot,\nFörderung und Erstellung einer immer\nbekwäheren Mobilapplikation,\nAußer Belletristic auch Angebot von\nEnziklopädieherausgaben und Fachliteratur";
 
 // Genres
 "Adventure" = "Das Abenteuer";
@@ -54,6 +91,8 @@
 "You have used the limit for regular books" = "Du hast das Limit für normale Bücher genutzt";
 "Books are not fetched" = "Bücher werden nicht abgeholt";
 "You have been logged out!" = "Sie wurden ausgeloggt!";
+"Network error" = "Netzwerkfehler";
+"Something went wrong" = "Etwas ist schief gelaufen";
 
 // Firebase errors
 "Wrong password. Try again." = "Falsches Passwort. Versuchen Sie es erneut.";
