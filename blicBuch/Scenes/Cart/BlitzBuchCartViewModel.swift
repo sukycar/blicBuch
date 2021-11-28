@@ -95,9 +95,6 @@ class BlitzBuchCartViewModel: BaseViewModel, BlitzBuchCartViewModelProtocol, SKP
         } onError: { (error) in
             self.error.value = .general(AlertMessage(title: "", body: error.localizedDescription))
         } onCompleted: {
-            //
-        } onDisposed: {
-            //
         }.disposed(by: self.disposeBag)
     }
     
@@ -109,9 +106,6 @@ class BlitzBuchCartViewModel: BaseViewModel, BlitzBuchCartViewModelProtocol, SKP
         } onError: { (error) in
             self.error.value = .general(AlertMessage(title: "", body: error.localizedDescription))
         } onCompleted: {
-            //
-        } onDisposed: {
-            //
         }.disposed(by: self.disposeBag)
     }
     

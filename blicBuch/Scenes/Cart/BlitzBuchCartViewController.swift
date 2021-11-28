@@ -13,16 +13,20 @@
 import UIKit
 import RxSwift
 import StoreKit
+import Combine
 
 protocol BlitzBuchCartVCDelegate: AnyObject {
     func reloadCartCounter()
 }
 
 protocol BlitzBuchCartViewControllerProtocol: AnyObject {
-    
 }
 
 class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControllerProtocol {
+    
+    // MARK: - Outlets
+
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
     // MARK: - Vars & Lets
     
@@ -32,8 +36,8 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
     }
     var viewModel: (BaseViewModel & BlitzBuchCartViewModelProtocol)?
     var disposeBag = DisposeBag()
+    var orderItems: String?
     weak var delegate: BlitzBuchCartVCDelegate?
-    
     
     // MARK: - Controller lifecycle
     
@@ -41,7 +45,6 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
         super.viewDidLoad()
         
         self.title = NSLocalizedString("Cart", comment: "")
-        SKPaymentQueue.default().add(self)
         self.customView.setup(target: self,
                               tableViewDelegate: self,
                               tableViewDataSource: self)
@@ -50,11 +53,19 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
         }
         self.viewModel?.fetchProducts()
         self.bindViewModel()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateOrderedItems),
+                                               name: Notification.Name(Constants.orderItemsNotification), object: nil)
+        self.backButton.tintColor = Colors.blueDefault
+        self.backButton.action = #selector(self.dismissView)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
         self.delegate?.reloadCartCounter()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(Constants.orderItemsNotification), object: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,6 +89,40 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
                 self?.customView.tableView.reloadData()
             }
         })
+    }
+    
+    @objc private func updateOrderedItems() {
+        if let user = self.viewModel?.user {
+            if let orderedItems = self.orderItems {
+                UsersService.updateOrderedItems(userId: user.id ?? 0, orderedItems: orderedItems) { response, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        self.viewModel?.booksInCart?.forEach({ book in
+                            BooksService.deleteBook(bookId: Int(book.id)).subscribe { success in
+                                print("Deleted book: \(book.title ?? "")")
+                            } onError: { error in
+                                self.showAlert(alertMessage: AlertMessage(title: "", body: error.localizedDescription))
+                            } onCompleted: {
+                            }.disposed(by: self.disposeBag)
+                        })
+                        user.cartItems = ""
+                        self.blitzBuchUserDefaults.saveUser(user)
+                        UsersService.updateCartBooks(userId: user.id ?? 0, bookIDs: [""]).subscribe { updated in
+                            print("Books updated")
+                            self.showAlert(alertMessage: AlertMessage(title: "Success", body: "Books are on their way!"), buttonTitle: "OK") {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        } onError: { error in
+                            self.showAlert(alertMessage: AlertMessage(title: "", body: error.localizedDescription))
+                        } onCompleted: {
+                        }.disposed(by: self.disposeBag)
+                    }
+                }
+            } else {
+                print("No ordered items")
+            }
+        }
     }
     
     private func removeBook(_ indexPath: IndexPath) {
@@ -113,16 +158,20 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
                                         var regularBooksCount = regular
                                         if book.vip == true {
                                             vipBooksCount += 1
-                                            UsersService.changeNumberOfVipBooks(userId: user.id ?? 0, numberOfBooks: vipBooksCount).subscribe { finished in
+                                            UsersService.changeNumberOfVipBooks(userId: user.id ?? 0,
+                                                                                numberOfBooks: vipBooksCount).subscribe { finished in
                                             } onError: { error in
-                                                self.showAlert(alertMessage: AlertMessage(title: "Network error", body: "Something went wrong".localized()))
+                                                self.showAlert(alertMessage: AlertMessage(title: "Network error",
+                                                                                          body: "Something went wrong".localized()))
                                             } onCompleted: {
                                             }.disposed(by: self.disposeBag)
                                         } else if book.vip == false {
                                             regularBooksCount += 1
-                                            UsersService.changeNumberOfBooks(userId: user.id ?? 0, numberOfBooks: regularBooksCount).subscribe { finished in
+                                            UsersService.changeNumberOfBooks(userId: user.id ?? 0,
+                                                                             numberOfBooks: regularBooksCount).subscribe { finished in
                                             } onError: { error in
-                                                self.showAlert(alertMessage: AlertMessage(title: "Network error", body: "Something went wrong".localized()))
+                                                self.showAlert(alertMessage: AlertMessage(title: "Network error",
+                                                                                          body: "Something went wrong".localized()))
                                             } onCompleted: {
                                             }.disposed(by: self.disposeBag)
                                         }
@@ -130,10 +179,6 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
                                         self.showAlert(alertMessage: AlertMessage(title: "Network error", body: "Something went wrong".localized()))
                                     } onCompleted: {
                                     }.disposed(by: self.disposeBag)
-                                    
-                                    if book.vip == true {
-                                        
-                                    }
                                 } onError: { error in
                                     self.showAlert(alertMessage: AlertMessage(title: "Network error", body: "Something went wrong".localized()))
                                 } onCompleted: {
@@ -171,16 +216,12 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
             } onError: { (error) in
                 self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
             } onCompleted: {
-                //
-            } onDisposed: {
-                //
             }.disposed(by: cell.disposeBag)
             BooksService.lockBook(bookId: book?.id ?? 0, lockStatus: .unlocked).subscribe { (subscribed) in
-                //
+                print("Locked book ID: \(String(describing: book?.id))")
             } onError: { (error) in
                 self.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
             } onCompleted: {
-                //
             }.disposed(by: cell.disposeBag)
         }
         
@@ -199,7 +240,7 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
             }
         })
         UsersService.updateCartBooks(userId: self.viewModel?.user?.id ?? 0, bookIDs: self.viewModel?.idArray ?? [""]).subscribe { (updated) in
-            //
+            print("Cart books updated")
             DispatchQueue.main.async {
                 self.customView.tableView.reloadData()
             }
@@ -212,7 +253,7 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
         }.disposed(by: cell.disposeBag)
         self.viewModel?.fetchBooks()
     }
-
+    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -235,10 +276,10 @@ extension BlitzBuchCartViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if self.viewModel?.booksInCart?.count ?? 0 > 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self), for: indexPath) as! BookTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookTableViewCell.self),
+                                                         for: indexPath) as! BookTableViewCell
                 let book = self.viewModel?.booksInCart?[indexPath.row]
                 cell.set(with: book ?? Book(), inVipController: false)
-                cell.cellDelegate = self
                 cell.delegate = self
                 cell.indexPath = indexPath
                 cell.orderButton.setImage(UIImage(named: "img_remove"), for: .normal)
@@ -249,66 +290,6 @@ extension BlitzBuchCartViewController: UITableViewDataSource, UITableViewDelegat
                 cell.orderButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
                 cell.orderButton.rightAnchor.constraint(equalTo: cell.rightAnchor, constant: -20).isActive = true
                 cell.orderButton.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -20).isActive = true
-//                cell.orderButton.rx.tap.subscribe (onNext: {[weak self] in
-//                    self?.view.startActivityIndicator()
-//                    self?.viewModel?.cartItemsNumber -= 1
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
-//                        guard let id = blitzBuchUserDefaults.get(.id) as? Int32 else {return}
-//                        UsersService.checkForAvailableBooks(id).subscribe {(vip, regular) in
-//                            let vip = vip
-//                            let regular = regular
-//                            let id = blitzBuchUserDefaults.get(.id)
-//
-//                            //function for updating number of available books
-//                            let vipStatus = book?.vip
-//                            if vipStatus == true {
-//                                DispatchQueue.main.async {
-//                                    self?.updateVipBooksNumber(removeBooks: false, numberOfBooks: 1, disposeBag: cell.disposeBag)
-//                                }
-//                            } else {
-//                                DispatchQueue.main.async {
-//                                    self?.updateBooksNumber(removeBooks: false, numberOfBooks: 1, disposeBag: cell.disposeBag)
-//                                }
-//                            }
-//                        } onError: { (error) in
-//                            self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-//                        } onCompleted: {
-//                            //
-//                        } onDisposed: {
-//                            //
-//                        }.disposed(by: cell.disposeBag)
-//                        BooksService.lockBook(bookId: book?.id ?? 0, lockStatus: .unlocked).subscribe { (subscribed) in
-//                            //
-//                        } onError: { (error) in
-//                            self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-//                        } onCompleted: {
-//                            //
-//                        }.disposed(by: cell.disposeBag)
-//                    }
-//
-//                    self?.viewModel?.idArray.forEach({ (bookId) in
-//                        if bookId == String(book?.id ?? 0){
-//                            self?.viewModel?.idArray.removeAll(where: { (string) -> Bool in
-//                                string == bookId
-//                            })
-//                            _ = blitzBuchUserDefaults.set(.cartItems, value: self?.viewModel?.idArray)
-//                            self?.viewModel?.fetchBooks()
-//                        }
-//                    })
-//                    UsersService.updateCartBooks(userId: self?.viewModel?.userId ?? 0, bookIDs: self?.viewModel?.idArray ?? [""]).subscribe { (updated) in
-//                        //
-//                        DispatchQueue.main.async {
-//                            tableView.reloadData()
-//                        }
-//                        self?.view.stopActivityIndicator()
-//
-//                    } onError: { (error) in
-//                        self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
-//                    } onCompleted: {
-//                        //
-//                    }.disposed(by: cell.disposeBag)
-//
-//                }).disposed(by: cell.disposeBag)
                 self.viewModel?.cell = cell
                 return cell
             } else {
@@ -316,17 +297,32 @@ extension BlitzBuchCartViewController: UITableViewDataSource, UITableViewDelegat
             }
         } else if indexPath.section == 1 {
             if self.viewModel?.booksInCart?.count == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: (String(describing: EmptyTableViewCell.self)), for: indexPath) as! EmptyTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: (String(describing: EmptyTableViewCell.self)),
+                                                         for: indexPath) as! EmptyTableViewCell
                 cell.set("No items in cart".localized())
                 return cell
-            } else if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OrderTableViewCell.self), for: indexPath) as? OrderTableViewCell {
+            } else if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: OrderTableViewCell.self),
+                                                               for: indexPath) as? OrderTableViewCell {
                 cell.orderButton.rx.tap.subscribe(onNext: {[weak self] in
                     guard let strongSelf = self else {return}
                     DispatchQueue.main.async {
-                        strongSelf.showAlert(alertMessage: AlertMessage(title: "Pay transport?", body: "To send package, pay 4.99e for post expencess"), buttonTitle: "OK") {
-                            if let models = self?.viewModel?.models {
-                                let payment = SKPayment(product: models.value.first!)
-                                SKPaymentQueue.default().add(payment)
+                        strongSelf.showAlert(alertMessage: AlertMessage(title: "Pay shipping costs".localized(),
+                                                                        body: "Parcel delivery takes place by post and costs 4.99€".localized()), buttonTitle: "OK") {
+                            if let user = self?.viewModel?.user {
+                                let books = self?.viewModel?.booksInCart
+                                var booksData = user.orderedItems ?? ""
+                                books?.forEach({ book in
+                                    booksData.append("Ime knjige: \(book.title ?? "Nepoznato"), broj police: \(String(book.boxNumber));")
+                                })
+                                user.orderedItems?.append(booksData)
+                                self?.blitzBuchUserDefaults.saveUser(user)
+                                self?.orderItems = booksData
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    if let models = self?.viewModel?.models {
+                                        let payment = SKPayment(product: models.value.first!)
+                                        SKPaymentQueue.default().add(payment)
+                                    }
+                                }
                             }
                         }
                     }
@@ -347,48 +343,10 @@ extension BlitzBuchCartViewController: UITableViewDataSource, UITableViewDelegat
 
 extension BlitzBuchCartViewController {
     class func get() -> BlitzBuchCartViewController {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlitzBuchCartViewController") as! BlitzBuchCartViewController
+        let vc = UIStoryboard(name: "Main",
+                              bundle: nil).instantiateViewController(withIdentifier: "BlitzBuchCartViewController") as! BlitzBuchCartViewController
         vc.viewModel = BlitzBuchCartViewModel()
-//        vc.view.startActivityIndicator()
         return vc
-    }
-}
-
-extension BlitzBuchCartViewController: AlertMe {
-    func onLoggedOutClick() {
-        let alertVC = self.alertService.alert()
-        self.present(alertVC, animated: true)
-    }
-    
-    func onClick() {
-//        if let viewModel = self.viewModel {
-//            self.connectCellAction(cell: viewModel.cell)
-//        }
-    }
-}
-
-// MARK: - SKPaymentTransactionObserver Delegate
-
-extension BlitzBuchCartViewController: SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        
-        // MARK: - ToDo: Handle updated transactions
-        if let transaction = transactions.first {
-            switch transaction.transactionState {
-            case .purchasing:
-                print("Purchasing")
-            case .purchased:
-                print("Purchased")
-            case .failed:
-                print("Failed")
-            case .restored:
-                print("Restored")
-            case .deferred:
-                print("Deferred")
-            @unknown default:
-                print("Unknown")
-            }
-        }
     }
 }
 

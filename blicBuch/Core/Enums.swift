@@ -188,6 +188,7 @@ var buttonText: String {
 }
 
 // MARK: - SIDE MENU
+
 enum SideMenuCellType {
     case member,general(type:GeneralMenuCellType)
 }
@@ -231,7 +232,16 @@ enum GeneralMenuCellType: CaseIterable {
 }
 
 // MARK: - LOCK BOOK
+
 enum LockStatus: Int16 {
     case locked = 1
     case unlocked = 0
+}
+
+// MARK: - TYPES OF NON-RENEWABLE SUBSCRIPTION
+
+enum SubscriptionTypeBundleId: String, CaseIterable {
+    case starter = "club.blitzBuch.starter"
+    case regular = "club.blitzBuch.regular"
+    case vip = "club.blitzBuch.vip"
 }

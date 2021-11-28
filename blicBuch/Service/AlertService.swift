@@ -28,6 +28,4 @@ class AlertService {
         return vc
     }
     
-    
-    
 }

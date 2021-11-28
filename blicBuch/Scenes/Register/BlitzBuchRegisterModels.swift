@@ -19,27 +19,19 @@ enum BlitzBuchRegister {
     // MARK: - Models
     
     struct UserModel: Codable {
-        var id: String?
-        var uid: String?
+        var id: Int32?
         var address: String?
         var city: String?
         var email: String?
+        var uid: String?
         var name: String?
         var password: String?
-        var payment: Bool? = false
+        var payment: Bool?
         var phoneNumber: String?
-        var vipUser: Bool? = false
-        var numberOfVipBooks: Int? = 0
-        var numberOfRegularBooks: Int? = 0
-        var cartItems: String? = ""
+        var vipUser: Bool?
+        var numberOfVipBooks: Int?
+        var numberOfRegularBooks: Int?
+        var cartItems: String?
+        var orderedItems: String?
     }
-    
-    // MARK: - Enum
-    
-    enum SubscriptionType: String, CaseIterable {
-        case starter = "club.blitzBuch.starter"
-        case regular = "club.blitzBuch.regular"
-        case vip = "club.blitzBuch.vip"
-    }
-
 }

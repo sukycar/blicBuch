@@ -54,7 +54,7 @@ class BlitzBuchGenreViewModel: BaseViewModel, BlitzBuchGenreViewModelProtocol {
             fetchRequest.predicate = predicate
             do {
                 self.isLoaderHidden.value = true
-                self.books = try context?.fetch(fetchRequest) as! [Book]
+                self.books = try (context?.fetch(fetchRequest))
                 self.booksFetched.value = true
             } catch let err as NSError {
                 self.isLoaderHidden.value = false

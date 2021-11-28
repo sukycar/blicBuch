@@ -291,65 +291,20 @@ private class Dismisser2: NSObject, UIViewControllerAnimatedTransitioning {
         if #available(iOS 13, *){
             let generator = UIImpactFeedbackGenerator(style: .soft)
             generator.impactOccurred()
-        }else{
+        } else {
             let generator = UIImpactFeedbackGenerator(style: .light)
             generator.impactOccurred()
         }
-//        if let vc = transitionContext.viewController(forKey: .from)! as? UINavigationController {
-//            if let fromCollectionView = vc.topViewController as? AuctionResultsController {
-//                fromCollectionView.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
-//                fromCollectionView.headerView?.isHidden = true
-////                fakeImageView.load(fromCollectionView.event?.imageCropUrl)
-////                fakeImageView.layer.cornerRadius = Style.radius.large
-//                fakeImageView.contentMode = .scaleAspectFill
-//                fakeImageView.clipsToBounds = true
-//                fakeImageView.frame = CGRect(x: fromViewFrame.origin.x, y: fromViewFrame.origin.y, width: fromViewFrame.size.width, height: fromViewFrame.size.width / 3 * 2)
-//                container.addSubview(fakeImageView)
-//                fromCollectionView.headerView?.headerImageView.image = nil
-//            }else if let fromCollectionView = vc.topViewController as? ClassifiedsDetailsController {
-//                fromCollectionView.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
-//                fromCollectionView.classifiedHeaderView?.isHidden = true
-////                fakeImageView.load(fromCollectionView.classified?.imageCropUrl)
-////                fakeImageView.layer.cornerRadius = Style.radius.large
-//                fakeImageView.contentMode = .scaleAspectFill
-//                fakeImageView.clipsToBounds = true
-//                fakeImageView.frame = CGRect(x: fromViewFrame.origin.x, y: fromViewFrame.origin.y, width: fromViewFrame.size.width, height: fromViewFrame.size.width / 3 * 2)
-//                container.addSubview(fakeImageView)
-////                fromCollectionView.classifiedHeaderView?.imageSlideshow.image = nil
-//            }else if let fromCollectionView = vc.topViewController as? AuctionDetailsController {
-//                fromCollectionView.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
-//                fromCollectionView.classifiedHeaderView?.isHidden = true
-////                fakeImageView.load(fromCollectionView.auction?.imageCropUrl)
-////                fakeImageView.layer.cornerRadius = Style.radius.large
-//                fakeImageView.contentMode = .scaleAspectFill
-//                fakeImageView.clipsToBounds = true
-//                fakeImageView.frame = CGRect(x: fromViewFrame.origin.x, y: fromViewFrame.origin.y, width: fromViewFrame.size.width, height: fromViewFrame.size.width / 3 * 2)
-//                container.addSubview(fakeImageView)
-//            }else if let fromCollectionView = vc.topViewController as? CategoryDetailsController {
-//                fromCollectionView.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .bottom, animated: false)
-//                fromCollectionView.headerView?.isHidden = true
-////                fakeImageView.load(fromCollectionView.category?.imageCropUrl)
-//                fakeImageView.layer.cornerRadius = Style.radius.large
-//                fakeImageView.contentMode = .scaleAspectFill
-//                fakeImageView.clipsToBounds = true
-//                fakeImageView.frame = CGRect(x: fromViewFrame.origin.x, y: fromViewFrame.origin.y, width: fromViewFrame.size.width, height: fromViewFrame.size.width / 3 * 2)
-//                container.addSubview(fakeImageView)
-//            }
-//        }
         
         fakeImageView.frame = CGRect(x: fromViewFrame.origin.x, y: fromViewFrame.origin.y, width: fromViewFrame.size.width, height: fromViewFrame.size.width / 3 * 2)
         container.addSubview(fakeImageView)
         fakeImageView.image = snapshot
-//        UIView.animate(withDuration: 0.05, delay: 0.35, options: [], animations: {[weak self] in
-//            self?.viewToHide?.alpha = 1
-//        }) { (finished) in
-//
-//        }
+
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: [], animations: {[weak self] in
             fakeImageView.frame = self?.fromFrame ?? CGRect.zero
             fromView.frame = self?.fromFrame ?? CGRect.zero
             fromView.alpha = 0
-        }) {[weak self](completed) in
+        }) { (completed) in
             UIView.animate(withDuration: 0.1, animations: {
                 fromView.alpha = 0
             }) { (completed) in

@@ -13,6 +13,7 @@ class Constants {
     static let userDefaultsToken = "UserDefaultsToken"
     static let appToken = "AppToken"
     static let user = "User"
+    static let orderItemsNotification = "OrderNotfication"
 }
 
 struct FontSize {

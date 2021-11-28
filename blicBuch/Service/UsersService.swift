@@ -40,14 +40,19 @@ class UsersService {
                                             let name = user["name"].stringValue
                                             let cartItems = user["cartItems"].stringValue
                                             let orderedItems = user["orderedItems"].stringValue
+                                            let payment = user["payment"].boolValue
+                                            let expireDate = user["expireDate"].intValue
                                             var cartItemsInUserDefaults = [String]()
                                             
                                             userModel.id = id
+                                            userModel.uid = userId
                                             userModel.numberOfRegularBooks = regularBooks
                                             userModel.numberOfVipBooks = vipBooks
                                             userModel.name = name
                                             userModel.cartItems = cartItems
                                             userModel.orderedItems = orderedItems
+                                            userModel.payment = payment
+                                            userModel.expireDate = expireDate
                                             if cartItems != "" {
                                                 let cartItem = cartItems.components(separatedBy: ",")
                                                 cartItem.forEach { (item) in
@@ -135,6 +140,69 @@ class UsersService {
             }
             return cancel
         }
+    }
+    
+    /// update user uid after firebase registration
+    class func updateUserUID(userId: Int32, firebaseUID: String) -> Observable<Bool> {
+        return Observable.create { observer in
+            let router = Router.updateUserId(for: firebaseUID)
+            var parameters = [String: AnyObject]()
+            parameters["uid"] = firebaseUID as AnyObject
+            let request = API.shared.request(router: router, parameters: parameters) { (response) in
+                switch response {
+                case .Success:
+                    observer.onNext(true)
+                    observer.onCompleted()
+                case .Failure(let error):
+                    observer.onError(error)
+                }
+            }
+            let cancel = Disposables.create {
+                request.cancel()
+            }
+            return cancel
+        }
+    }
+    
+    /// update membership status when apple payment is completed
+    class func updateMembershipStatus(userId: Int32, active: Bool) -> Observable<Bool> {
+        return Observable.create { observer in
+            let membershipStatus = active
+            let router = Router.updateMembershipStatus(for: userId)
+            var parameters = [String: AnyObject]()
+            parameters["payment"] = membershipStatus as AnyObject
+            parameters["expireDate"] = Int(Date().timeIntervalSince1970 + 2592000) as AnyObject
+            let request = API.shared.request(router: router, parameters: parameters) { (response) in
+                switch response {
+                case .Success:
+                    observer.onNext(true)
+                    observer.onCompleted()
+                case .Failure(let error):
+                    observer.onError(error)
+                }
+            }
+            let cancel = Disposables.create {
+                request.cancel()
+            }
+            return cancel
+        }
+    }
+    
+    /// Send ordered items to server to inform user that he should
+    /// prepare products for shipping
+    class func updateOrderedItems(userId: Int32, orderedItems: String, handler: @escaping (Bool?, ApiError?) -> Void) {
+        let router = Router.updateOrderedItems(for: userId)
+        var parameters = [String: AnyObject]()
+        parameters["orderedItems"] = orderedItems as AnyObject
+        let request = API.shared.request(router: router, parameters: parameters) { response in
+            switch response {
+            case .Success:
+                handler(true, nil)
+            case .Failure(let apiError):
+                handler(nil, apiError)
+            }
+        }
+        request.resume()
     }
     
     /// add book ids to user cart on server

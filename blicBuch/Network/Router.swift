@@ -20,6 +20,9 @@ enum Router {
     case changeNumberOfAvailableBooks(for: Int32)
     case checkAvailableBooks(for: Int32)
     case updateCart(for: Int32)
+    case updateUserId(for: String)
+    case updateMembershipStatus(for: Int32)
+    case updateOrderedItems(for: Int32)
     case getCartItems(for: Int32)
     
     private var baseURL: String {
@@ -52,6 +55,12 @@ enum Router {
             return "\(Environment.configuration(.usersPath))/\(id)"
         case .getCartItems(let id):
             return "\(Environment.configuration(.usersPath))/\(id)"
+        case .updateUserId(let id):
+            return "\(Environment.configuration(.usersPath))/\(id)"
+        case .updateMembershipStatus(let id):
+            return "\(Environment.configuration(.usersPath))/\(id)"
+        case .updateOrderedItems(let id):
+            return "\(Environment.configuration(.usersPath))/\(id)"
         }
     }
     
@@ -79,6 +88,12 @@ enum Router {
             return .put
         case .getCartItems:
             return .get
+        case .updateUserId:
+            return .put
+        case .updateMembershipStatus:
+            return .put
+        case .updateOrderedItems:
+            return .put
         }
     }
     

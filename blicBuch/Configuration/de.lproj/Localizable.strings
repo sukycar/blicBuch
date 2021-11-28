@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   blitzBuch
 
@@ -7,7 +7,7 @@
 */
 
 "Login" = "Einloggen";
-"Don't have an account?" = "Sie haben kein Konto?";
+"Don't have an account?" = "Sie haben noch kein Konto?";
 "You already have account?" = "Sie haben schon ein Konto?";
 "E-mail" = "E-mail";
 "Password" = "Passwort";
@@ -17,45 +17,51 @@
 "Search" = "Suchen";
 "VIP" = "VIP";
 "Cart" = "Einkaufswagen";
-"Home" = "Heim";
-"New in the library" = "Neu in die bibliothek";
-"Name *" = "Vorname *";
+"Home" = "Home";
+"New in the library" = "Neu in der Bibliothek";
+"Name *" = "Nachname *";
 "Street *" = "Straße *";
 "City *" = "Ort *";
 "Password *" = "Passwort *";
-"Repeat password *" = "Passwort wiederholen *";
+"Repeat password *" = "Passwort bestätigen *";
 "No items in cart" = "Keine Artikel im Warenkorb";
-"Processing..." = "Wird bearbeitet...";
+"Processing..." = "Ladet...";
 "Register" = "Registrieren";
 "order_button_eng" = "orderButton";
 
 // Subscription and transport
-"Select subscription type:" = "Abonnementtyp auswählen";
+"Select subscription type:" = "Wählen Sie Ihr Abonnement";
 "Transport expenses" = "Transportkosten";
 "Regular subscription" = "Reguläres Abonnement";
 "VIP subscription" = "VIP Abonnement";
 "Starter subscription" = "Starter Abonnement";
-"You can order 3 regular books" = "Sie können 3 normale Bücher bestellen";
-"Payment for transport" = "Kosten für den Versand von Büchern";
-"You can order 4 regular and 1 vip book" = "Sie können 4 reguläre und 1 VIP-Buch bestelle";
-"One month free membership, one free book" = "Ein Monat kostenlose Mitgliedschaft, ein kost";
+"You can order 3 regular books" = "Sie können 3 reguläre Bücher bestellen";
+"Payment for transport" = "Versandkosten";
+"You can order 4 regular and 1 vip book" = "Sie können 4 reguläre und 1 VIP-Buch bestellen";
+"One month free membership, one free book" = "Kostenlose Mitgliedschaft für einen Monat und ein kostenloses Buch";
+"Pay shipping costs" = "Versandkosten bezahlen";
+"Parcel delivery takes place by post and costs 4.99€" = "Paketzustellung erfolgt per Post und kostet 4,99€";
+"Delivery" = "Lieferung";
+"Order" = "Orderung";
+"Restore Purchases" = "Einkäufe wiederherstellen";
+"Your free subscription has expired. Please choose another subscription." = "Ihr kostenloses Abonnement ist abgelaufen. Bitte wählen Sie ein anderes Abonnement.";
 
 // Validation messages
 "Address error" = "Adressfehler";
 "Address field can't be empty" = "Adressfeld darf nicht leer sein";
-"City field can't be empty" = "Stadtfeld darf nicht leer sein";
+"City field can't be empty" = "Ortsangabe darf nicht leer sein";
 "City error" = "Stadtfehler";
 "Name error" = "Namensfehler";
-"Name can't be empty" = "Name darf nicht leer sein";
+"Name can't be empty" = "Namensangabe darf nicht leer sein";
 "Email error" = "E-Mail-Fehler";
 "Password error" = "Passwort Fehler";
-"Email can't be empty" = "E-Mail darf nicht leer sein";
+"Email can't be empty" = "E-Mail-Angabe darf nicht leer sein";
 "Email address is not valid" = "Email Adresse ist nicht gültig";
-"Password can't be empty" = "Passwort darf nicht leer sein";
+"Password can't be empty" = "Passwortangabe darf nicht leer sein";
 "Password must contain 6 or more characters" = "Passwort muss 6 oder mehr Zeichen enthalten";
-"Password and confirm password doesn't match" = "Passwort und Passwort bestätigen stimmen nicht überein";
+"Password and confirm password doesn't match" = "Die Passwörter stimmen nicht überein";
 "Phone number error" = "Fehler bei der Telefonnummer";
-"Phone number can't be empty" = "Telefonnummer darf nicht leer sein";
+"Phone number can't be empty" = "Telefonnummerfeld darf nicht leer sein";
 "Successfully registered" = "Erfolgreich registriert";
 
 // Menu
@@ -64,18 +70,18 @@
 
 // Info clouds
 "Write to us..." = "Schreiben Sie uns...";
-"Your suggestions and suggestions will be gladly accepted by us and they will challenge the readers' club" = "Ihre Vorschläge und Suggestionen werden von uns gerne angenommen und die werden den Leserklub fördern";
-"Why donation..." = "Warum Schenkung...";
-"Expansion of the range of book titles,\nfunding and creation of an increasingly \nbeing mobile application,\nIn addition to Belletristic also offer of\neniclopedia editions and specialist literature" = "Erweiterung vom Büchertitelangebot,\nFörderung und Erstellung einer immer\nbekwäheren Mobilapplikation,\nAußer Belletristic auch Angebot von\nEnziklopädieherausgaben und Fachliteratur";
+"Your suggestions and suggestions will be gladly accepted by us and they will challenge the readers' club" = "Ihre Vorschläge werden von uns gerne angenommen und werden den Bücherklub fördern";
+"Why donation..." = "Warum spenden…";
+"Expansion of the range of book titles,\nfunding and creation of an increasingly \nbeing mobile application,\nIn addition to Belletristic also offer of\neniclopedia editions and specialist literature" = "Erweiterung von Büchertitelangeboten,\nFörderung und Erstellung einer immer\nbequemen Mobilapplikation,\nNeben Belletristic gibt es auch ein Angebot von\nEnzyklopädie Büchern und Fachliteratur";
 
 // Genres
-"Adventure" = "Das Abenteuer";
+"Adventure" = "Abenteuer";
 "Biography" = "Lebenslauf";
 "Detective novels / crime novels" = "Detektiv-Romane /Kriminalromane";
-"The epic fantasy" = "Das epische Fantasy Romangenre";
+"The epic fantasy" = "Epische Fantasy";
 "Erotic novels / romance novels" = "Erotikromane/Liebesromane";
-"Classical Literature" = "Klassikliteratur";
-"Popular Psychology" = "Popularpsychologie";
+"Classical Literature" = "Klassische Literatur";
+"Popular Psychology" = "Populäre Psychologie";
 "Thriller" = "Thriller";
 "Historical novels" = "Historische Romane";
 "Miscellaneous" = "Sonstiges";
@@ -84,27 +90,29 @@
 "Novel" = "Roman";
 
 // Error messages
-"Book is already reserved" = "Buch ist bereits reserviert";
-"Book is already in cart" = "Buch ist bereits im Warenkorb";
-"Book is added to cart" = "Buch wird in den Warenkorb gelegt";
-"You have used the limit for vip books" = "Du hast das Limit für VIP-Bücher genutzt";
-"You have used the limit for regular books" = "Du hast das Limit für normale Bücher genutzt";
-"Books are not fetched" = "Bücher werden nicht abgeholt";
+"Book is already reserved" = "Dieses Buch ist bereits reserviert";
+"Book is already in cart" = "Dieses Buch befindet sich bereits im Warenkorb";
+"Book is added to cart" = "Dieses Buch wird in den Warenkorb gelegt";
+"You have used the limit for vip books" = "Du hast das Limit für VIP-Bücher überschritten";
+"You have used the limit for regular books" = "Du hast das Limit für reguläre Bücher überschritten";
+"Books are not fetched" = "Die Bücher werden nicht abgeholt";
 "You have been logged out!" = "Sie wurden ausgeloggt!";
 "Network error" = "Netzwerkfehler";
 "Something went wrong" = "Etwas ist schief gelaufen";
+"Login failed, please try again" = "Anmeldefehler, bitte versuchen Sie es erneut";
+"Your membership has expired or you have not fully completed the registration process." = "Ihre Mitgliedschaft ist abgelaufen oder Sie haben den Registrierungsprozess nicht vollständig abgeschlossen.";
 
 // Firebase errors
 "Wrong password. Try again." = "Falsches Passwort. Versuchen Sie es erneut.";
 "Wrong email. Try again." = "Falsche E-Mail. Versuchen Sie es erneut.";
-"User with given email doesn't exist.\nPlease try again." = "Benutzer mit angegebener E-Mail-Adresse existiert nicht.\nBitte versuchen Sie es erneut.";
-"User is temporarily disabled.\nPlease try again later or contact app owner." = "Benutzer ist vorübergehend deaktiviert.\nBitte versuchen Sie es später erneut oder wenden Sie sich an den App-Inhaber.";
+"User with given email doesn't exist.\nPlease try again." = "Der Benutzer mit der angegebenen E-Mail-Adresse existiert nicht.\nBitte versuchen Sie es erneut.";
+"User is temporarily disabled.\nPlease try again later or contact app owner." = "Dieser Benutzer ist vorübergehend deaktiviert.\nBitte versuchen Sie es später erneut oder wenden Sie sich an den App-Inhaber.";
 "Please use different email.\nThis email is already in use." = "Bitte verwenden Sie eine andere E-Mail-Adresse.\nDiese E-Mail wird bereits verwendet.";
-"Token expired. Please sign in again." = "Token abgelaufen. Bitte melden Sie sich erneut an.";
+"Token expired. Please sign in again." = "Keine Aktivität festgestellt. Bitte melden Sie sich erneut an.";
 "Something went wrong. Please try again." = "Etwas ist schief gelaufen. Bitte versuche es erneut.";
 
 // Info section
-"Verein Buchliebhaber Club blitzBuch ZVR 1759468752 c / o Perica Anciger \nc / o Daniela Kukic \nPilgeringasse 21/1/1 \n1150 Vienna \nBawag Bank: \nVerein 'Buchliebhaber Club blitzBuch' \nRaiffeisen Bank \nAT25 3200 0000 1335 0616 \n \n \nThe association, whose activity is not aimed at profit, aims to deliver books to your address throughout Austria. \nIt is very easy to register as a member of the Club for Book Lovers - by registering quickly. The member starts the application , clicks on the book that he would like to have sent to his home address and we will deliver it immediately. If you are already a member of our club, you can simply contact the e-mail address you provided when you ordered the book Log in. Membership in the club is free for the first month and the member receives a book according to their wishes. The information requested in advance is only for the purpose of a precise book supplement delivery to your home address is required. Blitzbuch only serves to ensure that people can live out their love for the books and arrive at the desired book without major obstacles. If at some point the club is no longer in operation, everything left over will be donated to a club with the same intention. \n " = "Verein Bücherliebhaber Club blitzBuch ZVR 1759468752 c/o Perica Anciger \nc/o Daniela Kukic \nPilgeringasse 21/1/1 \n1150 Wien \nBawag Bank: \nVerein „Bücherliebhaber Club blitzBuch“ \nRaiffeisen Bank \nAT25 3200 0000 1335 0616 \n\n\nDer Verein, dessen Tätigkeit nicht auf Gewinn gerichtet ist bezweckt die Zustellung von Büchern an Ihre Adresse in ganz Österreich. \nMan kann sich als Mitglied des Klubs für Bücherfreunde sehr leicht anmelden lassen- nämlich durch schnelles Registrieren. Das Mitglied startet die Applikation, macht den Klick auf das Buch, dass er an seine Hausadresse gesandt haben möchte und es wird von uns sofort geliefert. Falls Sie bereits Mitglied unseres Klubs sind, können Sie sich einfach durch die von Ihnen bereits bei der vorherigen Buchbestellung angegebene E-Mail Adresse einloggen. Die Mitgliedschaft im Klub ist im ersten Monat kostenlos und das Mitglied bekommt ein Buch wunschgemäß. Die vorher beantragten Angaben sind ausschließlich wegen einer präzisen Buchzustellung an Ihre Hausadresse erforderlich. Blitzbuch dient nur dazu, dass die Menschen ihre Liebe gegenüber den Büchern ausleben können und ohne große Hindernisse an das gewünschte Buch ankommen. Sollte der Club irgendwann nicht mehr in Betrieb sein, wird alles übergebliebene an einen Club mit der gleichen Absicht gespendet.\n";
+"Verein Buchliebhaber Club blitzBuch ZVR 1759468752 c / o Perica Anciger \nc / o Daniela Kukic \nPilgerimgasse 21/1/1 \n1150 Vienna \nBawag Bank: \nVerein 'Buchliebhaber Club blitzBuch' \nRaiffeisen Bank \nAT25 3200 0000 1335 0616 \n \n \nThe association, whose activity is not aimed at profit, aims to deliver books to your address throughout Austria. \nIt is very easy to register as a member of the Club for Book Lovers - by registering quickly. The member starts the application , clicks on the book that he would like to have sent to his home address and we will deliver it immediately. If you are already a member of our club, you can simply contact the e-mail address you provided when you ordered the book Log in. Membership in the club is free for the first month and the member receives a book according to their wishes. The information requested in advance is only for the purpose of a precise book supplement delivery to your home address is required. Blitzbuch only serves to ensure that people can live out their love for the books and arrive at the desired book without major obstacles. If at some point the club is no longer in operation, everything left over will be donated to a club with the same intention. \n " = "Verein Bücherliebhaber Club blitzBuch ZVR 1759468752 c/o Perica Anciger \nc/o Daniela Kukic \nPilgerimgasse 21/1/1 \n1150 Wien \nBawag Bank: \nVerein „Bücherliebhaber Club blitzBuch“ \nRaiffeisen Bank \nAT25 3200 0000 1335 0616 \n\n\nDer Verein, dessen Tätigkeit nicht auf Gewinn gerichtet ist bezweckt die Zustellung von Büchern an Ihre Adresse in ganz Österreich. \nMan kann sich als Mitglied des Klubs für Bücherfreunde sehr leicht anmelden lassen- nämlich durch schnelles Registrieren. Das Mitglied startet die Applikation, macht den Klick auf das Buch, dass er an seine Hausadresse gesandt haben möchte und es wird von uns sofort geliefert. Falls Sie bereits Mitglied unseres Klubs sind, können Sie sich einfach durch die von Ihnen bereits bei der vorherigen Buchbestellung angegebene E-Mail Adresse einloggen. Die Mitgliedschaft im Klub ist im ersten Monat kostenlos und das Mitglied bekommt ein Buch wunschgemäß. Die vorher beantragten Angaben sind ausschließlich wegen einer präzisen Buchzustellung an Ihre Hausadresse erforderlich. Blitzbuch dient nur dazu, dass die Menschen ihre Liebe gegenüber den Büchern ausleben können und ohne große Hindernisse an das gewünschte Buch ankommen. Sollte der Club irgendwann nicht mehr in Betrieb sein, wird alles übergebliebene an einen Club mit der gleichen Absicht gespendet.\n";
 "Membership fee\n\n" = "Mitgliedsbeitrag\n\n";
 "The membership fee represents a donation for our readers' club. After the first month of trial, members can deposit € 2.99 and then they are entitled to order three books in that month (or within the next 30 days from the payment and confirmation from us Each time a book is ordered, the members are asked to pay the shipping costs for the respective book or books. The types of donation are particularly interesting for our members, which can be either books or money. Reminder: Club members don't have to return books. They can keep them or give them to friends / family members. The goal is to get the books on their shelves. \n" = "Der Mitgliedsbeitrag stellt eine Spende für unseren Leserklub dar. Nach dem ersten Probemonat können die Mitglieder 2,99€ einzahlen und danach sind sie berechtigt drei Bücher in diesem Monat zu bestellen (bzw. in den nächsten 30 Tagen ab der Einzahlung und der Bestätigung seitens des Administrators). Bei jeder Buchbestellung sind die Mitglieder aufgefordert die Versandkosten für das jeweilige Buch oder die Bücher zu übernehmen. Für unsere Mitglieder sind die Spendearten besonders interessant, die entweder Bücher oder Geld sein können. Durch die Spende können Sie der Erweiterung vom Titelangebot, der Appli- kationsinstandhaltung und der Entwicklung des Leserklubs verstärken. Erinnerung: Mitglieder des Clubs müssen die Bücher nicht zurückschicken. Sie können sie ruhig behalten oder Freunden / Familienmitgliedern weitergeben. Das Ziel ist, dass die Bücher es auf ihr Regal schaffen.\n";
 "VIP membership fee of the Book Friends Club\n\n" = "VIP Mitgliedsbeitrag des Bücherfreundeklubs\n\n";

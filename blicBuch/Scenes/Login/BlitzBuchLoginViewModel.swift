@@ -14,23 +14,33 @@ import UIKit
 import Firebase
 import RxSwift
 import KeychainAccess
+import StoreKit
+import SwiftKeychainWrapper
 
 protocol BlitzBuchLoginViewModelProtocol {
+    var models: Dynamic<[SKProduct]> { get set }
     var loggedIn: Dynamic<Bool> { get set }
+    var newSubscription: Dynamic<String> { get set }
     
+    func fetchProducts()
+    func restorePurchases()
     func validateData(email: String, password: String)
     func navigateToHome()
 }
 
-class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol {
+class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol, SKProductsRequestDelegate {
     
     
     // MARK: - BlitzBuchLoginViewModelProtocol Vars & Lets
     
+    var models: Dynamic<[SKProduct]> = Dynamic([SKProduct]())
     var loggedIn = Dynamic<Bool>(false)
+    var newSubscription: Dynamic<String> = Dynamic("")
     
     // MARK: - Vars & Lets
     
+    var productIdentifiers = Set(SubscriptionTypeBundleId.allCases.compactMap({$0.rawValue}))
+    var purchasedSubscriptions = Set<String>()
     let keychainServices: KeychainServices
     var disposeBag = DisposeBag()
     
@@ -38,6 +48,9 @@ class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol {
     
     init(keychainServices: KeychainServices) {
         self.keychainServices = keychainServices
+        self.purchasedSubscriptions = Set(productIdentifiers.filter {
+            KeychainWrapper.standard.bool(forKey: $0) ?? false
+        })
         super.init()
     }
     
@@ -62,6 +75,26 @@ class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.setWindow(vc: vc, animated: false)
+    }
+    
+    func fetchProducts() {
+        let request = SKProductsRequest(productIdentifiers: Set(SubscriptionTypeBundleId.allCases.compactMap({$0.rawValue})))
+        request.delegate = self
+        request.start()
+    }
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print("Fetch error:\(error.localizedDescription)")
+    }
+    
+    func restorePurchases() {
+        SKPaymentQueue.default().restoreCompletedTransactions()
+    }
+    
+    // MARK: - SKProductDelegate Methods
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        self.models.value = response.products
     }
     
     // MARK: - Private methods
@@ -94,22 +127,25 @@ class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol {
             self?.isLoaderHidden.value = true
             if logedIn == false {
                 DispatchQueue.main.async {
-                    self?.error.value = .general(AlertMessage(title: "Error", body: "Anmeldefehler, bitte versuchen Sie es erneut"))
+                    self?.error.value = .general(AlertMessage(title: "Error", body: "Login failed, please try again".localized()))
                 }
             } else {
                 DispatchQueue.main.async { [weak self] in
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logedIn"), object: nil)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        self?.loggedIn.value = true
+                        if let subscriptionPaid = self?.purchasedSubscriptions.count ?? 0 > 0 ? true : false {
+                            if subscriptionPaid != true {
+                                self?.newSubscription.value = "Your membership has expired or you have not fully completed the registration process.".localized()
+                            } else {
+                                self?.loggedIn.value = true
+                            }
+                        }
                     }
                 }
             }
         } onError: { (error) in
             self.error.value = .general(AlertMessage(title: "Error", body: error.localizedDescription))
         } onCompleted: {
-            //
-        } onDisposed: {
-            //
         }.disposed(by: self.disposeBag)
     }
     

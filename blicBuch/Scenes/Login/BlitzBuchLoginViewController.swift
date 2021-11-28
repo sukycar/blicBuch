@@ -12,6 +12,8 @@
 
 import UIKit
 import PopupDialog
+import StoreKit
+import SwiftyStoreKit
 
 protocol BlitzBuchLoginViewControllerProtocol: AnyObject {
     var onLoggedIn: (() -> Void)? { get set }
@@ -40,7 +42,12 @@ class BlitzBuchLoginViewController: BaseViewController, BlitzBuchLoginViewContro
         self.title = "Login".localized()
         self.customView?.setup(target: self,
                                loginButtonSelector: #selector(self.loginButtonPressed),
-                               registerButtonSelector: #selector(self.registerButtonPressed))
+                               registerButtonSelector: #selector(self.registerButtonPressed),
+                               subscriptionViewSelector: #selector(self.dismissSubscriptionAction),
+                               restoreButtonSelector: #selector(restoreButtonAction),
+                               tableViewDelegate: self,
+                               tableViewDataSource: self)
+        self.viewModel?.fetchProducts()
         self.bindViewModel()
     }
     
@@ -68,6 +75,16 @@ class BlitzBuchLoginViewController: BaseViewController, BlitzBuchLoginViewContro
         self.viewModel?.loggedIn.bind({ [weak self] _ in
             self?.viewModel?.navigateToHome()
         })
+        self.viewModel?.newSubscription.bind({ [weak self] message in
+            self?.showAlert(message: message,
+                            leftButtonHandler: {
+                self?.customView.handleShowSubscriptionTableView(show: true)
+            },
+                            rightButtonTitle: "Cancel",
+                            rightButtonHandler: {
+                self?.dismissSubscriptionAction()
+            })
+        })
     }
     
 }
@@ -76,6 +93,7 @@ class BlitzBuchLoginViewController: BaseViewController, BlitzBuchLoginViewContro
 
 extension BlitzBuchLoginViewController {
     @objc func loginButtonPressed() {
+        self.customView.endEditing(true)
         self.viewModel?.validateData(email: self.customView?.loginEmailTextField.text ?? "",
                                      password: self.customView?.loginPasswordTextField.text ?? "")
     }
@@ -83,5 +101,82 @@ extension BlitzBuchLoginViewController {
     @objc func registerButtonPressed() {
         self.onRegister?()
     }
+    
+    @objc private func dismissSubscriptionAction() {
+        self.customView.handleShowSubscriptionTableView(show: false)
+    }
+    
+    @objc private func restoreButtonAction() {
+        self.viewModel?.restorePurchases()
+    }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension BlitzBuchLoginViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel?.models.value.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == self.customView.subscriptionTableView {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: SubscriptionTableViewCell.cellID, for: indexPath) as? SubscriptionTableViewCell {
+            if let model = self.viewModel?.models.value[indexPath.row] {
+                cell.setupData(title: model.localizedTitle, description: "\(model.localizedDescription) - \(model.localizedPrice ?? "0")")
+                return cell
+            }
+        }
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.estimatedRowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            if let models = self.viewModel?.models {
+                let payment = SKPayment(product: models.value[indexPath.row])
+                if payment.productIdentifier == SubscriptionTypeBundleId.starter.rawValue {
+                    if let user = self.blitzBuchUserDefaults.getUser(), let date = user.expireDate {
+                        if date < Int(Date().timeIntervalSince1970) {
+                            self.showAlert(message: "Your free subscription has expired. Please choose another subscription.".localized())
+                        } else {
+                            SKPaymentQueue.default().add(payment)
+                        }
+                    }
+                }
+                SKPaymentQueue.default().add(payment)
+            }
+        }
+        self.customView.handleShowSubscriptionTableView(show: false)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel(frame: CGRect(x: -16, y: 10, width: self.customView.frame.width, height: 15))
+        label.textAlignment = .center
+        label.font = UIFont(name: FontName.bold.value, size: 14)
+        label.text = "Select subscription type:".localized()
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.customView.frame.size.width, height: 0))
+        let separatorView = UIView(frame: CGRect(x: 0, y: 30, width: self.customView.subscriptionTableView.frame.width, height: 1))
+        separatorView.backgroundColor = .black
+        headerView.addSubview(label)
+        headerView.addSubview(separatorView)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+  
+}

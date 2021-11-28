@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ali-IE-iWA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ali-IE-iWA">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -275,7 +276,7 @@
                                 <color key="sectionIndexColor" systemColor="systemOrangeColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="search" id="1Ks-xH-AOs">
-                                        <rect key="frame" x="0.0" y="24.5" width="320" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="320" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Ks-xH-AOs" id="Pv8-JH-sVQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -393,11 +394,11 @@
             <objects>
                 <viewController storyboardIdentifier="BlitzBuchCartViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y0b-Ab-XmD" customClass="BlitzBuchCartViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dg3-2q-6Jc" customClass="BlitzBuchCartView" customModule="blitzBuch" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSX-C2-oe9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -413,7 +414,13 @@
                             <outlet property="tableView" destination="sSX-C2-oe9" id="wo2-ie-XhK"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="O3R-aV-aa3"/>
+                    <navigationItem key="navigationItem" id="O3R-aV-aa3">
+                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="8sv-w8-cYB"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backButton" destination="8sv-w8-cYB" id="n9F-gc-7FJ"/>
+                        <outlet property="navigationItem" destination="O3R-aV-aa3" id="t1m-d9-aFe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jY9-YV-Bge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -515,19 +522,6 @@
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a9C-oS-OYU">
                                 <rect key="frame" x="0.0" y="174" width="320" height="345"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jAH-QW-oes">
-                                        <rect key="frame" x="0.0" y="24.5" width="320" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jAH-QW-oes" id="4h1-ca-6fJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="homeTableCellACLabel"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="CHb-7B-NEn"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="XwV-U6-z7C"/>
@@ -576,7 +570,7 @@
                         <color key="badgeColor" systemColor="scrollViewTexturedBackgroundColor"/>
                     </tabBarItem>
                     <connections>
-                        <segue destination="bQ3-aa-JOG" kind="custom" id="fGM-g8-28B"/>
+                        <segue destination="bQ3-aa-JOG" kind="show" identifier="sideMenu" id="fGM-g8-28B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -685,10 +679,10 @@
                                 <color key="backgroundColor" red="0.15380366161616166" green="0.15380366161616166" blue="0.15380366161616166" alpha="0.46913803807947019" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WXx-FR-wY1">
-                                <rect key="frame" x="16" y="209" width="288" height="150"/>
+                                <rect key="frame" x="16" y="164" width="288" height="240"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="1K5-rB-qh6"/>
+                                    <constraint firstAttribute="height" constant="240" id="1K5-rB-qh6"/>
                                 </constraints>
                             </tableView>
                         </subviews>
@@ -785,22 +779,22 @@
             <objects>
                 <viewController storyboardIdentifier="SideMenuVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bQ3-aa-JOG" customClass="SideMenuViewController" customModule="blitzBuch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4d8-Cc-wUP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGR-0N-CRL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YCg-KC-Qe2">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gaC-ez-FYN">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuMemberCell" rowHeight="100" id="8Ke-Fe-aEP" customClass="SideMenuMemberCell" customModule="blitzBuch" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="320" height="100"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="320" height="100"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Ke-Fe-aEP" id="Fi9-V9-7ym">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -832,7 +826,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuGeneralCell" id="4ga-y6-dIO" customClass="SideMenuGeneralCell" customModule="blitzBuch" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="124.5" width="320" height="30.5"/>
+                                                <rect key="frame" x="0.0" y="144.5" width="320" height="30.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4ga-y6-dIO" id="TlR-Lg-GoE">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="30.5"/>
@@ -927,6 +921,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="5dL-gf-nC3"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="accessibilityLabel" value="sideMenuControllerACLabel"/>
                     </userDefinedRuntimeAttributes>
@@ -954,7 +949,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="y0b-Ab-XmD" kind="custom" id="NLH-iZ-ZCo"/>
+                        <segue destination="y0b-Ab-XmD" kind="show" identifier="cart" id="NLH-iZ-ZCo"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lr-JH-nCG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1038,6 +1033,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhR-1J-aO4">
+                                <rect key="frame" x="87.5" y="517" width="145" height="31"/>
+                                <color key="tintColor" name="defaultBlue"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Restore"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Restore Purchases">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" name="defaultBlue"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJL-EK-T9K">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.1538036616" green="0.1538036616" blue="0.1538036616" alpha="0.46913803809999999" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="INm-Z9-8LM">
+                                <rect key="frame" x="16" y="164" width="288" height="240"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="x0l-bS-Zd9"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pOr-ad-Fah"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1046,19 +1063,29 @@
                             <constraint firstItem="pOr-ad-Fah" firstAttribute="bottom" secondItem="PGp-8m-XPa" secondAttribute="bottom" constant="13" id="5h4-Xi-Tgu"/>
                             <constraint firstItem="tuo-JT-S0S" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="6yC-aF-Sj6"/>
                             <constraint firstItem="PGp-8m-XPa" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="9BK-Lz-kxl"/>
+                            <constraint firstItem="INm-Z9-8LM" firstAttribute="centerY" secondItem="cqr-Ku-6kH" secondAttribute="centerY" id="Aw2-6T-vTF"/>
                             <constraint firstItem="pOr-ad-Fah" firstAttribute="trailing" secondItem="PGp-8m-XPa" secondAttribute="trailing" constant="16" id="BBq-II-Qa1"/>
                             <constraint firstItem="pOr-ad-Fah" firstAttribute="trailing" secondItem="Bt8-tf-ChC" secondAttribute="trailing" constant="16" id="EdC-RH-TR3"/>
                             <constraint firstItem="pOr-ad-Fah" firstAttribute="trailing" secondItem="ew8-Uk-pfN" secondAttribute="trailing" constant="16" id="HCv-rW-QDW"/>
                             <constraint firstItem="2Ig-Ij-CLp" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="Hqk-SS-8Fh"/>
+                            <constraint firstItem="BJL-EK-T9K" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" id="JhW-xP-qUm"/>
                             <constraint firstItem="pOr-ad-Fah" firstAttribute="trailing" secondItem="2Ig-Ij-CLp" secondAttribute="trailing" constant="16" id="MwJ-pa-HXL"/>
+                            <constraint firstItem="BJL-EK-T9K" firstAttribute="bottom" secondItem="cqr-Ku-6kH" secondAttribute="bottom" id="PIx-6c-qpK"/>
+                            <constraint firstItem="INm-Z9-8LM" firstAttribute="centerX" secondItem="cqr-Ku-6kH" secondAttribute="centerX" id="SWY-Zc-VBF"/>
+                            <constraint firstItem="INm-Z9-8LM" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="Sx9-ZM-Ij5"/>
                             <constraint firstItem="PGp-8m-XPa" firstAttribute="top" secondItem="czT-pe-zWw" secondAttribute="bottom" constant="10" id="T9P-kw-KVV"/>
+                            <constraint firstItem="BJL-EK-T9K" firstAttribute="trailing" secondItem="pOr-ad-Fah" secondAttribute="trailing" id="ZDX-Gu-DFa"/>
+                            <constraint firstItem="BJL-EK-T9K" firstAttribute="top" secondItem="cqr-Ku-6kH" secondAttribute="top" id="aAp-Ep-MUY"/>
                             <constraint firstItem="Bt8-tf-ChC" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="ajp-sc-gKQ"/>
+                            <constraint firstItem="AhR-1J-aO4" firstAttribute="centerX" secondItem="cqr-Ku-6kH" secondAttribute="centerX" id="bGu-1R-2Nu"/>
                             <constraint firstItem="ew8-Uk-pfN" firstAttribute="top" secondItem="Bt8-tf-ChC" secondAttribute="bottom" constant="20" id="dQ2-SH-fcg"/>
                             <constraint firstItem="2Ig-Ij-CLp" firstAttribute="top" secondItem="ew8-Uk-pfN" secondAttribute="bottom" constant="30" id="de7-YM-QUV"/>
                             <constraint firstItem="czT-pe-zWw" firstAttribute="top" secondItem="2Ig-Ij-CLp" secondAttribute="bottom" constant="11.5" id="g1K-RY-Wzw"/>
                             <constraint firstItem="ew8-Uk-pfN" firstAttribute="leading" secondItem="pOr-ad-Fah" secondAttribute="leading" constant="16" id="hrA-IV-6gW"/>
                             <constraint firstItem="czT-pe-zWw" firstAttribute="centerX" secondItem="cqr-Ku-6kH" secondAttribute="centerX" id="itm-1G-H9u"/>
+                            <constraint firstItem="pOr-ad-Fah" firstAttribute="trailing" secondItem="INm-Z9-8LM" secondAttribute="trailing" constant="16" id="sEG-w1-BQr"/>
                             <constraint firstItem="tuo-JT-S0S" firstAttribute="top" secondItem="pOr-ad-Fah" secondAttribute="top" constant="20" id="vCZ-ya-dDy"/>
+                            <constraint firstItem="pOr-ad-Fah" firstAttribute="bottom" secondItem="AhR-1J-aO4" secondAttribute="bottom" constant="20" id="xY8-eT-cCA"/>
                             <constraint firstItem="Bt8-tf-ChC" firstAttribute="top" secondItem="tuo-JT-S0S" secondAttribute="bottom" constant="20" id="zcM-CY-ifl"/>
                         </constraints>
                         <connections>
@@ -1066,6 +1093,9 @@
                             <outlet property="loginEmailTextField" destination="Bt8-tf-ChC" id="tQW-51-M81"/>
                             <outlet property="loginPasswordTextField" destination="ew8-Uk-pfN" id="XIW-gK-Bhc"/>
                             <outlet property="registerButton" destination="jRk-z3-oQi" id="PrB-YI-ZwN"/>
+                            <outlet property="restoreButton" destination="AhR-1J-aO4" id="Da4-WL-jda"/>
+                            <outlet property="subscriptionTableView" destination="INm-Z9-8LM" id="tKd-p2-643"/>
+                            <outlet property="subscriptionTransparentView" destination="BJL-EK-T9K" id="SkW-md-6L2"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="2Jz-UH-2jB">

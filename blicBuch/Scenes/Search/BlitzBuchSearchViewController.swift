@@ -33,8 +33,6 @@ class BlitzBuchSearchViewController: BaseViewController, BlitzBuchSearchViewCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.presentLoginView), name: LoginNotificationName, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.presentRegisterView), name: RegisterNotificationName, object: nil)
         self.viewModel?.fetch()
         self.viewModel?.fetchRecommendedBooks()
         self.customView.searchTable.reloadData()
@@ -357,22 +355,6 @@ extension BlitzBuchSearchViewController: UISearchResultsUpdating, UISearchBarDel
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
-    }
-}
-
-// MARK: - Actions
-
-extension BlitzBuchSearchViewController {
-    @objc func presentLoginView(){
-        let vc = LoginViewController.get()
-        vc.modalPresentationStyle = .formSheet
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    @objc func presentRegisterView(){
-        let vc = RegisterViewController.get()
-        vc.modalPresentationStyle = .formSheet
-        self.present(vc, animated: true, completion: nil)
     }
 }
 

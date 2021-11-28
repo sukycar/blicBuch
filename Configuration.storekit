@@ -1,7 +1,26 @@
 {
   "identifier" : "A2C0FC62",
   "nonRenewingSubscriptions" : [
-
+    {
+      "displayPrice" : "0",
+      "familyShareable" : false,
+      "internalID" : "3031CE25",
+      "localizations" : [
+        {
+          "description" : "One month free membership, one free book",
+          "displayName" : "Starter subscription",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Kostenlose Mitgliedschaft für einen Monat",
+          "displayName" : "Starter Abonnement",
+          "locale" : "de"
+        }
+      ],
+      "productID" : "club.blitzBuch.starter",
+      "referenceName" : "Starter subscription",
+      "type" : "NonRenewingSubscription"
+    }
   ],
   "products" : [
     {
@@ -26,17 +45,17 @@
     }
   ],
   "settings" : {
-    "_askToBuyEnabled" : true,
+    "_askToBuyEnabled" : false,
     "_locale" : "en_US",
-    "_timeRate" : 6
+    "_timeRate" : 0
   },
   "subscriptionGroups" : [
     {
-      "id" : "2D8FEE64",
+      "id" : "58F219FD",
       "localizations" : [
 
       ],
-      "name" : "Subscriptions",
+      "name" : "Renewable subscriptions",
       "subscriptions" : [
         {
           "adHocOffers" : [
@@ -44,17 +63,17 @@
           ],
           "displayPrice" : "2.99",
           "familyShareable" : false,
-          "groupNumber" : 2,
-          "internalID" : "F3A4A342",
+          "groupNumber" : 1,
+          "internalID" : "6BE85D09",
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "You can order 3 regular books",
+              "description" : "You can order 3 regular books per month",
               "displayName" : "Regular subscription",
               "locale" : "en_US"
             },
             {
-              "description" : "Sie können bis zu 3 reguläre Bücher bestellen",
+              "description" : "Sie können 3 reguläre Bücher bestellen",
               "displayName" : "Reguläres Abonnement",
               "locale" : "de"
             }
@@ -62,7 +81,7 @@
           "productID" : "club.blitzBuch.regular",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Regular subscription",
-          "subscriptionGroupID" : "2D8FEE64",
+          "subscriptionGroupID" : "58F219FD",
           "type" : "RecurringSubscription"
         },
         {
@@ -72,55 +91,24 @@
           "displayPrice" : "4.99",
           "familyShareable" : false,
           "groupNumber" : 1,
-          "internalID" : "7E84128F",
+          "internalID" : "89A46372",
           "introductoryOffer" : null,
           "localizations" : [
             {
               "description" : "You can order 4 regular and 1 vip book",
-              "displayName" : "Vip subscription",
+              "displayName" : "VIP subscription",
               "locale" : "en_US"
             },
             {
               "description" : "Sie können 4 reguläre und 1 VIP-Buch bestelle",
-              "displayName" : "Vip Abonnement",
+              "displayName" : "VIP Abonnement",
               "locale" : "de"
             }
           ],
           "productID" : "club.blitzBuch.vip",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Vip subscription",
-          "subscriptionGroupID" : "2D8FEE64",
-          "type" : "RecurringSubscription"
-        },
-        {
-          "adHocOffers" : [
-
-          ],
-          "displayPrice" : "2.99",
-          "familyShareable" : false,
-          "groupNumber" : 1,
-          "internalID" : "5F79CDB6",
-          "introductoryOffer" : {
-            "internalID" : "E903BAB6",
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P1M"
-          },
-          "localizations" : [
-            {
-              "description" : "One month free membership, one free book",
-              "displayName" : "Starter subscription",
-              "locale" : "en_US"
-            },
-            {
-              "description" : "Ein Monat kostenlose Mitgliedschaft, ein kost",
-              "displayName" : "Starter Abonnement",
-              "locale" : "de"
-            }
-          ],
-          "productID" : "club.blitzBuch.starter",
-          "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "Starter subscription",
-          "subscriptionGroupID" : "2D8FEE64",
+          "subscriptionGroupID" : "58F219FD",
           "type" : "RecurringSubscription"
         }
       ]

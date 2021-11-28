@@ -20,6 +20,9 @@ class BlitzBuchLoginView: UIView {
     @IBOutlet weak var loginPasswordTextField: UITextField!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var subscriptionTransparentView: UIView!
+    @IBOutlet private weak var restoreButton: UIButton!
+    @IBOutlet weak var subscriptionTableView: UITableView!
     
     // MARK: - Vars & Lets
     
@@ -29,20 +32,53 @@ class BlitzBuchLoginView: UIView {
     
     func setup(target: Any,
                loginButtonSelector: Selector,
-               registerButtonSelector: Selector) {
+               registerButtonSelector: Selector,
+               subscriptionViewSelector: Selector,
+               restoreButtonSelector: Selector,
+               tableViewDelegate: UITableViewDelegate,
+               tableViewDataSource: UITableViewDataSource) {
         self.styleViews()
         
         // Actions
         self.loginButton.addTarget(target, action: loginButtonSelector, for: .touchUpInside)
         self.registerButton.addTarget(target, action: registerButtonSelector, for: .touchUpInside)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: target, action: subscriptionViewSelector)
+        self.subscriptionTransparentView.addGestureRecognizer(tapGestureRecognizer)
+        self.restoreButton.addTarget(target, action: restoreButtonSelector, for: .touchUpInside)
+        
+        // Configure table view
+        let nib = UINib(nibName: SubscriptionTableViewCell.cellID, bundle: nil)
+        self.subscriptionTableView.register(nib, forCellReuseIdentifier: SubscriptionTableViewCell.cellID)
+        self.subscriptionTableView.estimatedRowHeight = 60
+        self.subscriptionTableView.tableFooterView = nil
+        self.subscriptionTableView.isScrollEnabled = false
+        self.subscriptionTableView.delegate = tableViewDelegate
+        self.subscriptionTableView.dataSource = tableViewDataSource
     }
     
     func styleViews(){
-        deviceType = self.getDeviceType()
-        loginButton.layer.cornerRadius = CornerRadius.medium
-        loginButton.backgroundColor = deviceType != .macCatalyst ? Colors.blueDefault : .clear
-        loginButton.setTitle(NSLocalizedString("Login", comment: ""), for: .normal)
-        loginButton.setTitleColor(deviceType != .macCatalyst ? Colors.white : Colors.defaultFontColor, for: .normal)
-        registerButton.setAttributedTitle(NSAttributedString(string: "Register".localized()), for: .normal)
+        self.deviceType = self.getDeviceType()
+        self.subscriptionTransparentView.isHidden = true
+        self.subscriptionTableView.isHidden = true
+        self.subscriptionTableView.layer.cornerRadius = CornerRadius.high
+        self.subscriptionTableView.clipsToBounds = true
+        self.subscriptionTableView.layer.borderWidth = 0.3
+        self.subscriptionTableView.layer.borderColor = UIColor.gray.cgColor
+        self.loginButton.layer.cornerRadius = CornerRadius.medium
+        self.loginButton.backgroundColor = deviceType != .macCatalyst ? Colors.blueDefault : .clear
+        self.loginButton.setTitle(NSLocalizedString("Login", comment: ""), for: .normal)
+        self.loginButton.setTitleColor(deviceType != .macCatalyst ? Colors.white : Colors.defaultFontColor, for: .normal)
+        self.registerButton.setAttributedTitle(NSAttributedString(string: "Register".localized()), for: .normal)
+        self.restoreButton.setTitle("Restore Purchases".localized(), for: .normal)
+    }
+    
+    func handleShowSubscriptionTableView(show: Bool) {
+        if show {
+            self.subscriptionTransparentView.isHidden = false
+            self.subscriptionTableView.isHidden = false
+        } else {
+            self.subscriptionTableView.isHidden = true
+            self.subscriptionTransparentView.isHidden = true
+        }
     }
 }

@@ -10,19 +10,20 @@ import UIKit
 import CoreData
 import SideMenu
 import Kingfisher
-import RxSwift
 import Firebase
 import FirebaseCore
+import SwiftyStoreKit
+import StoreKit
+import SwiftKeychainWrapper
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    private static var tosterLoader = Array<String?>()
-    private static var presentingToaster = false
-    private var sideMenuController:SideMenuViewController?
-    var bgTask : UIBackgroundTaskIdentifier!
+    private var sideMenuController: SideMenuViewController?
+    var userId: String?
+    let swiftyHelper = SwiftyStoreKitHelper()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -33,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KingfisherManager.shared.cache = ImageCache.default
         KingfisherManager.shared.downloader.trustedHosts = Set([Environment.configuration(.allowedKingfisherUrl)])
         FirebaseApp.configure()
+        
+        // Check app purchase state and finish transactions
+        swiftyHelper.completeTransactions()
         return true
     }
     
@@ -40,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuVC") as? SideMenuViewController
         return sideMenuController!
     }
+    
     // MARK: UISceneSession Lifecycle
     
     
@@ -107,37 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
-    //MARK: - general logout function
-    /*func logout(withError:Error?){
-     self.finalLogout(withError: withError)
-     }
-     private func finalLogout(withError:Error?){
-     UserDefaults.reset()
-     setWindow(vc: LoginController.getController(), animated:true)
-     //        if let withError = withError{
-     //            AppDelegate.error(error:withError)
-     //        }
-     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-     let delegate = UIApplication.shared.delegate as! AppDelegate
-     let context = delegate.persistentContainer.viewContext
-     
-     for i in 0...delegate.persistentContainer.managedObjectModel.entities.count-1 {
-     let entity = delegate.persistentContainer.managedObjectModel.entities[i]
-     
-     do {
-     let query = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
-     let deleterequest = NSBatchDeleteRequest(fetchRequest: query)
-     try context.execute(deleterequest)
-     try context.save()
-     
-     } catch let error as NSError {
-     print("Error: \(error.localizedDescription)")
-     abort()
-     }
-     }
-     }
-     }*/
-    
     // MARK: - Core Data Saving support
     func saveContext () {
         let context = persistentContainer.viewContext
@@ -154,4 +128,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 }
-

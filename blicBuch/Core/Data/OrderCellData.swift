@@ -9,7 +9,7 @@
 import Foundation
 
 struct OrderCellData {
-    static let serviceText = "Lieferung"
-    static let priceText = "EUR 4.20"
-    static let orderButtonText = "Orderung"
+    static let serviceText = "Delivery".localized()
+    static let priceText = "EUR 4.99"
+    static let orderButtonText = "Order".localized()
 }

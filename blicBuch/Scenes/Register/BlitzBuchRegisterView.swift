@@ -51,11 +51,12 @@ class BlitzBuchRegisterView: UIView {
                textFieldDelegate: UITextFieldDelegate,
                tableViewDelegate: UITableViewDelegate,
                tableViewDataSource: UITableViewDataSource) {
+        
         // Table view configure
         let nib = UINib(nibName: SubscriptionTableViewCell.cellID, bundle: nil)
         self.subscriptionTableView.register(nib, forCellReuseIdentifier: SubscriptionTableViewCell.cellID)
-        self.subscriptionTableView.estimatedRowHeight = 40
-        self.subscriptionTableView.tableFooterView = UIView()
+        self.subscriptionTableView.estimatedRowHeight = 60
+        self.subscriptionTableView.tableFooterView = nil
         self.subscriptionTableView.isScrollEnabled = false
         self.subscriptionTableView.delegate = tableViewDelegate
         self.subscriptionTableView.dataSource = tableViewDataSource
@@ -83,8 +84,8 @@ class BlitzBuchRegisterView: UIView {
         self.subscriptionHolderView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    func handleShowSubscriptionTableView() {
-        if self.subscriptionHolderView.isHidden {
+    func handleShowSubscriptionTableView(show: Bool) {
+        if show {
             self.subscriptionHolderView.isHidden = false
             self.subscriptionTableView.isHidden = false
         } else {

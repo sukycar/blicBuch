@@ -274,20 +274,6 @@ extension BlitzBuchVipViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-extension BlitzBuchVipViewController {
-    @objc func presentLoginView(){
-        let vc = LoginViewController.get()
-        vc.modalPresentationStyle = .formSheet
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    @objc func presentRegisterView(){
-        let vc = RegisterViewController.get()
-        vc.modalPresentationStyle = .formSheet
-        self.present(vc, animated: true, completion: nil)
-    }
-}
-
 extension BlitzBuchVipViewController: AlertMe {
     func onClick() {
     }

@@ -9,7 +9,7 @@ target 'blitzBuch' do
   pod 'SwiftyJSON'
   pod 'RxCocoa'
   pod 'Alamofire', '~> 4.9.0'
-  pod 'Kingfisher'
+  pod 'Kingfisher', '~> 7.0.0'
   pod 'SideMenu', '~> 6.4.8'
   pod 'NVActivityIndicatorView'
   pod 'RxSwift'
@@ -19,5 +19,7 @@ target 'blitzBuch' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'PopupDialog'
+  pod 'SwiftyStoreKit'
+  pod 'SwiftKeychainWrapper'
   
 end

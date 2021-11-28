@@ -101,7 +101,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
   - KeychainAccess (4.2.2)
-  - Kingfisher (6.3.0)
+  - Kingfisher (7.0.0)
   - leveldb-library (1.22.1)
   - MBProgressHUD (1.2.0)
   - nanopb (2.30908.0):
@@ -122,7 +122,9 @@ PODS:
     - RxSwift (= 6.2.0)
   - RxSwift (6.2.0)
   - SideMenu (6.4.9)
+  - SwiftKeychainWrapper (4.0.1)
   - SwiftyJSON (5.0.1)
+  - SwiftyStoreKit (0.16.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.9.0)
@@ -130,14 +132,16 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - KeychainAccess
-  - Kingfisher
+  - Kingfisher (~> 7.0.0)
   - MBProgressHUD
   - NVActivityIndicatorView
   - PopupDialog
   - RxCocoa
   - RxSwift
   - SideMenu (~> 6.4.8)
+  - SwiftKeychainWrapper
   - SwiftyJSON
+  - SwiftyStoreKit
 
 SPEC REPOS:
   trunk:
@@ -166,7 +170,9 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SideMenu
+    - SwiftKeychainWrapper
     - SwiftyJSON
+    - SwiftyStoreKit
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -183,7 +189,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
-  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
@@ -194,8 +200,10 @@ SPEC CHECKSUMS:
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SideMenu: 8ef57a3cfc024a2d3fc1c036c7fe98537baec9e0
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
 
-PODFILE CHECKSUM: 65d737b3eedd3036b5205a52aa716b0d52aa6b6f
+PODFILE CHECKSUM: 6a6300fc4ae2537154f73c25d02feb15ddcf4303
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.2

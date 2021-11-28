@@ -18,6 +18,11 @@ import StoreKit
 
 protocol BlitzBuchRegisterViewModelProtocol {
     var models: Dynamic<[SKProduct]> { get set }
+    var onRegistered: Dynamic<(email: String, password: String)> { get set }
+    var onFirebaseRegistered: Dynamic<Bool> { get set }
+    var onChoseMembership: Dynamic<Bool> { get set }
+    var email: String { get set }
+    var password: String { get set }
     
     func fetchProducts()
     func validateData(address: String, city: String,
@@ -25,6 +30,8 @@ protocol BlitzBuchRegisterViewModelProtocol {
                       confirmPassword: String, phoneNumber: String)
     func navigateToHome()
     func navigateToLogin()
+    func registerFirebaseUser(email: String, password: String)
+    func loginFirebaseUser()
 }
 
 class BlitzBuchRegisterViewModel: BaseViewModel, BlitzBuchRegisterViewModelProtocol, SKProductsRequestDelegate {
@@ -32,6 +39,11 @@ class BlitzBuchRegisterViewModel: BaseViewModel, BlitzBuchRegisterViewModelProto
     // MARK: - BlitzBuchRegisterViewModelProtocol Vars & Lets
 
     var models: Dynamic<[SKProduct]> = Dynamic([SKProduct]())
+    var onRegistered: Dynamic<(email: String, password: String)> = Dynamic((email: "", password: ""))
+    var onFirebaseRegistered: Dynamic<Bool> = Dynamic(false)
+    var onChoseMembership: Dynamic<Bool> = Dynamic(false)
+    var email: String = ""
+    var password: String = ""
     
     // MARK: - Properties
     
@@ -49,7 +61,7 @@ class BlitzBuchRegisterViewModel: BaseViewModel, BlitzBuchRegisterViewModelProto
     // MARK: - BlitzBuchRegisterViewModelProtocol Methods
     
     func fetchProducts() {
-        let request = SKProductsRequest(productIdentifiers: Set(BlitzBuchRegister.SubscriptionType.allCases.compactMap({$0.rawValue})))
+        let request = SKProductsRequest(productIdentifiers: Set(SubscriptionTypeBundleId.allCases.compactMap({$0.rawValue})))
         request.delegate = self
         request.start()
     }
@@ -104,8 +116,24 @@ class BlitzBuchRegisterViewModel: BaseViewModel, BlitzBuchRegisterViewModelProto
                                                          email: email,
                                                          name: name,
                                                          password: password,
-                                                         phoneNumber: phoneNumber)
-            self.registerFirebaseUser(email: email, password: password)
+                                                         payment: false,
+                                                         phoneNumber: phoneNumber,
+                                                         numberOfVipBooks: 0,
+                                                         numberOfRegularBooks: 0)
+            self.onRegistered.value = (email: email, password: password)
+        }
+    }
+    
+    func registerFirebaseUser(email: String, password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let uid = result?.user.uid {
+                self.userModel.uid = uid
+                self.registerUser(user: self.userModel)
+                self.email = email
+                self.password = password
+            } else if let error = error {
+                self.error.value = .general(AlertMessage(title: "", body: error.localizedDescription))
+            }
         }
     }
     
@@ -117,23 +145,58 @@ class BlitzBuchRegisterViewModel: BaseViewModel, BlitzBuchRegisterViewModelProto
 
     // MARK: - Private methods
     
-    private func registerFirebaseUser(email: String, password: String) {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let uid = result?.user.uid {
-                self.userModel.uid = uid
-                self.registerUser(user: self.userModel)
-            } else if let error = error {
+    private func registerUser(user: BlitzBuchRegister.UserModel) {
+        UsersService.registerUser(user: user).subscribe { registered in
+            UsersService.getUser(uid: user.uid).subscribe { finished in
+                self.onChoseMembership.value = true
+            } onError: { error in
                 self.error.value = .general(AlertMessage(title: "", body: error.localizedDescription))
+            } onCompleted: {
+            }.disposed(by: self.disposeBag)
+            self.onChoseMembership.value = true
+        } onError: { error in
+            self.error.value = .general(AlertMessage(title: "", body: error.localizedDescription))
+        } onCompleted: {
+        }.disposed(by: self.disposeBag)
+    }
+    
+    // MARK: - Private methods
+    
+    func loginFirebaseUser() {
+        self.isLoaderHidden.value = false
+        Auth.auth().signIn(withEmail: self.email, password: self.password) { result, error in
+            if let error = error {
+                self.isLoaderHidden.value = true
+                if let errorCode = AuthErrorCode(rawValue: error._code) {
+                    if let errorString = errorCode.returnLocalizedString() {
+                        self.error.value = .general(AlertMessage(title: "Error", body: errorString))
+                    }
+                }
+            } else {
+                if let uid = result?.user.uid {
+                    self.loginUser(userId: uid)
+                    self.keychainServices.saveToken(token: uid)
+                } else {
+                    self.error.value = .general(AlertMessage(title: "Error", body: "Something went wrong".localized()))
+                }
             }
         }
     }
     
-    private func registerUser(user: BlitzBuchRegister.UserModel) {
-        UsersService.registerUser(user: user).subscribe { registered in
-            self.error.value = .general(AlertMessage(title: "", body: "Successfully registered".localized()))
-        } onError: { error in
-            self.error.value = .general(AlertMessage(title: "", body: error.localizedDescription))
+    private func loginUser(userId: String?) {
+        UsersService.getUser(uid: userId).subscribe { [weak self] (logedIn) in
+            self?.isLoaderHidden.value = true
+            if logedIn == false {
+                DispatchQueue.main.async {
+                    self?.error.value = .general(AlertMessage(title: "Error", body: "Login failed, please try again".localized()))
+                }
+            }
+        } onError: { (error) in
+            self.error.value = .general(AlertMessage(title: "Error", body: error.localizedDescription))
         } onCompleted: {
+            //
+        } onDisposed: {
+            //
         }.disposed(by: self.disposeBag)
     }
     

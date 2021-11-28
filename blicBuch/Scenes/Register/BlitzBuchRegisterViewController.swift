@@ -12,6 +12,8 @@
 
 import UIKit
 import StoreKit
+import SwiftyStoreKit
+import RxSwift
 
 protocol BlitzBuchRegisterViewControllerProtocol: AnyObject {
     
@@ -28,6 +30,7 @@ class BlitzBuchRegisterViewController: BaseViewController, BlitzBuchRegisterView
         return view as? BlitzBuchRegisterView
     }
     var viewModel: (BaseViewModel & BlitzBuchRegisterViewModelProtocol)?
+    var disposeBag = DisposeBag()
     
     // MARK: - Controller lifecycle
     
@@ -35,7 +38,6 @@ class BlitzBuchRegisterViewController: BaseViewController, BlitzBuchRegisterView
         super.viewDidLoad()
         
         self.title = "Register".localized()
-        SKPaymentQueue.default().add(self)
         self.handleKeyboardShow()
         self.customView.setup(target: self,
                               registerButtonSelector: #selector(self.registerUser),
@@ -46,6 +48,10 @@ class BlitzBuchRegisterViewController: BaseViewController, BlitzBuchRegisterView
                               tableViewDataSource: self)
         self.viewModel?.fetchProducts()
         self.bindViewModel()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.disposeBag = DisposeBag()
     }
     
     // MARK: - Private methods
@@ -62,6 +68,14 @@ class BlitzBuchRegisterViewController: BaseViewController, BlitzBuchRegisterView
         self.viewModel?.models.bind({ [weak self] _ in
             DispatchQueue.main.async {
                 self?.customView.subscriptionTableView.reloadData()
+            }
+        })
+        self.viewModel?.onRegistered.bind({ [weak self] email, password in
+            self?.viewModel?.registerFirebaseUser(email: email, password: password)
+        })
+        self.viewModel?.onChoseMembership.bind({ [weak self] _ in
+            DispatchQueue.main.async {
+                self?.customView.handleShowSubscriptionTableView(show: true)
             }
         })
     }
@@ -97,13 +111,18 @@ class BlitzBuchRegisterViewController: BaseViewController, BlitzBuchRegisterView
     }
     
     @objc private func registerUser() {
-        DispatchQueue.main.async {
-            self.customView.handleShowSubscriptionTableView()
-        }
+        self.viewModel?.validateData(address: self.customView.street.text ?? "",
+                                     city: self.customView.city.text ?? "",
+                                     email: self.customView.email.text ?? "",
+                                     name: self.customView.name.text ?? "",
+                                     password: self.customView.password.text ?? "",
+                                     confirmPassword: self.customView.passwordRepeat.text ?? "",
+                                     phoneNumber: self.customView.phone.text ?? "")
+
     }
     
     @objc private func dismissSubscriptionAction() {
-        self.customView.handleShowSubscriptionTableView()
+        self.customView.handleShowSubscriptionTableView(show: false)
     }
 }
 
@@ -135,7 +154,7 @@ extension BlitzBuchRegisterViewController: UITableViewDelegate, UITableViewDataS
         if tableView == self.customView.subscriptionTableView {
         if let cell = tableView.dequeueReusableCell(withIdentifier: SubscriptionTableViewCell.cellID, for: indexPath) as? SubscriptionTableViewCell {
             if let model = self.viewModel?.models.value[indexPath.row] {
-                cell.setupData(title: model.localizedTitle, description: "\(model.localizedDescription) - \(model.priceLocale)€")
+                cell.setupData(title: model.localizedTitle, description: "\(model.localizedDescription) - \(model.localizedPrice ?? "0")")
                 return cell
             }
         }
@@ -151,9 +170,19 @@ extension BlitzBuchRegisterViewController: UITableViewDelegate, UITableViewDataS
         DispatchQueue.main.async {
             if let models = self.viewModel?.models {
                 let payment = SKPayment(product: models.value[indexPath.row])
+                if payment.productIdentifier == SubscriptionTypeBundleId.starter.rawValue {
+                    if let user = self.blitzBuchUserDefaults.getUser(), let date = user.expireDate, date != 0 {
+                        if date < Int(Date().timeIntervalSince1970) {
+                            self.showAlert(message: "Your free subscription has expired. Please choose another subscription.".localized())
+                        } else {
+                            SKPaymentQueue.default().add(payment)
+                        }
+                    }
+                }
                 SKPaymentQueue.default().add(payment)
             }
         }
+        self.customView.handleShowSubscriptionTableView(show: false)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -162,7 +191,7 @@ extension BlitzBuchRegisterViewController: UITableViewDelegate, UITableViewDataS
         label.textAlignment = .center
         label.font = UIFont(name: FontName.bold.value, size: 14)
         label.text = "Select subscription type:".localized()
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.customView.frame.size.width, height: 30))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.customView.frame.size.width, height: 0))
         let separatorView = UIView(frame: CGRect(x: 0, y: 30, width: self.customView.subscriptionTableView.frame.width, height: 1))
         separatorView.backgroundColor = .black
         headerView.addSubview(label)
@@ -174,41 +203,8 @@ extension BlitzBuchRegisterViewController: UITableViewDelegate, UITableViewDataS
         return 30
     }
     
-}
-
-// MARK: - SKPaymentTransactionObserver Delegate
-
-extension BlitzBuchRegisterViewController: SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        
-        // MARK: - ToDo: Handle updated transactions
-        if let transaction = transactions.first {
-            switch transaction.transactionState {
-            
-            case .purchasing:
-                print("Purchasing")
-            case .purchased:
-                self.viewModel?.validateData(address: self.customView.street.text ?? "",
-                                             city: self.customView.city.text ?? "",
-                                             email: self.customView.email.text ?? "",
-                                             name: self.customView.name.text ?? "",
-                                             password: self.customView.password.text ?? "",
-                                             confirmPassword: self.customView.passwordRepeat.text ?? "",
-                                             phoneNumber: self.customView.phone.text ?? "")
-            case .failed:
-                print("Failed")
-            case .restored:
-                print("Restored")
-            case .deferred:
-                print("Deferred")
-                self.dismiss(animated: true, completion: nil)
-            @unknown default:
-                print("Status unknown")
-            }
-        }
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
     
 }
-
-
-
