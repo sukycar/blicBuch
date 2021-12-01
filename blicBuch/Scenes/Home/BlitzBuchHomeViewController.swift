@@ -69,6 +69,7 @@ class BlitzBuchHomeViewController: BaseViewController, BlitzBuchHomeViewControll
     private func addBookToCart(indexPath: IndexPath) {
         if let model = self.viewModel?.homeBooks.value[indexPath.row] {
             if let user = self.viewModel?.userDefaults.getUser() {
+                self.navigationController?.view.startActivityIndicator()
                 UsersService.getCartBooks(userId: user.id ?? 0).subscribe { (cartBooks) in
                     user.cartItems = ""
                     var userCartBooks = String()
@@ -123,6 +124,7 @@ class BlitzBuchHomeViewController: BaseViewController, BlitzBuchHomeViewControll
                                                 user.cartItems = cartItemsCleared
                                                 self?.viewModel?.userDefaults.saveUser(user)
                                                 UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                    self?.navigationController?.view.stopActivityIndicator()
                                                     //
                                                 } onError: { (error) in
                                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
@@ -190,6 +192,7 @@ class BlitzBuchHomeViewController: BaseViewController, BlitzBuchHomeViewControll
                                                 user.cartItems = cartItemsCleared
                                                 self?.viewModel?.userDefaults.saveUser(user)
                                                 UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                    self?.navigationController?.view.stopActivityIndicator()
                                                     //
                                                 } onError: { (error) in
                                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)

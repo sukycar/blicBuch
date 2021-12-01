@@ -14,6 +14,7 @@ extension UIViewController {
     
     func getAlert(errorString: String, errorColor: UIColor) {
         let label = ToasterLabel()
+        self.view.isUserInteractionEnabled = false
         if #available(iOS 13.0, *){
             if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate, let window = sceneDelegate.window{
                 label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,8 +45,8 @@ extension UIViewController {
                         label?.alpha = 0
                     }) {[weak label] (finished) in
                         label?.removeFromSuperview()
+                        self.view.isUserInteractionEnabled = true
                     }
-                    
                 }
             }
         }

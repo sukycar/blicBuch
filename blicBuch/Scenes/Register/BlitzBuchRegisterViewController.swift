@@ -74,9 +74,13 @@ class BlitzBuchRegisterViewController: BaseViewController, BlitzBuchRegisterView
             self?.viewModel?.registerFirebaseUser(email: email, password: password)
         })
         self.viewModel?.onChoseMembership.bind({ [weak self] _ in
-            DispatchQueue.main.async {
-                self?.customView.handleShowSubscriptionTableView(show: true)
-            }
+            
+            // MARK: - ToDo - uncomment code, delete showAlert
+
+//            DispatchQueue.main.async {
+//                self?.customView.handleShowSubscriptionTableView(show: true)
+//            }
+            self?.showAlert(message: "Successfully registered user")
         })
     }
     

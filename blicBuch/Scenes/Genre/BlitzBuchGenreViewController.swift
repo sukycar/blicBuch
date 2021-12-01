@@ -62,6 +62,7 @@ class BlitzBuchGenreViewController: BaseViewController, BlitzBuchGenreViewContro
     private func addBookToCart(indexPath: IndexPath) {
         if let model = self.viewModel?.books?[indexPath.row] {
             if let user = self.viewModel?.userDefaults.getUser() {
+                self.navigationController?.view.startActivityIndicator()
                 UsersService.getCartBooks(userId: user.id ?? 0).subscribe { (cartBooks) in
                     user.cartItems = ""
                     var userCartBooks = String()
@@ -76,6 +77,7 @@ class BlitzBuchGenreViewController: BaseViewController, BlitzBuchGenreViewContro
                     var cartItems = user.cartItems
                     self.navigationController?.view.startActivityIndicator()
                     BooksService.checkLock(bookId: model.id).subscribe { (locked) in
+                        self.navigationController?.view.stopActivityIndicator()
                         if locked == true {
                             if !(cartItems?.contains(String(model.id)) ?? false) {
                                 self.getAlert(errorString: NSLocalizedString("Book is already reserved", comment: ""), errorColor: Colors.orange)
@@ -86,6 +88,7 @@ class BlitzBuchGenreViewController: BaseViewController, BlitzBuchGenreViewContro
                             if model.vip == true {
                                 guard let id = user.id else {return}
                                 UsersService.checkForAvailableBooks(id).subscribe {(vip, regular) in
+                                    self.navigationController?.view.stopActivityIndicator()
                                     let vip = vip
                                     let regular = regular
                                     if vip > 0 {
@@ -116,6 +119,7 @@ class BlitzBuchGenreViewController: BaseViewController, BlitzBuchGenreViewContro
                                                 user.cartItems = cartItemsCleared
                                                 self?.viewModel?.userDefaults.saveUser(user)
                                                 UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                    self?.navigationController?.view.stopActivityIndicator()
                                                     //
                                                 } onError: { (error) in
                                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
@@ -152,6 +156,7 @@ class BlitzBuchGenreViewController: BaseViewController, BlitzBuchGenreViewContro
                             }
                             if model.vip == false {
                                 guard let id = user.id else {return}
+                                self.navigationController?.view.startActivityIndicator()
                                 UsersService.checkForAvailableBooks(id).subscribe {(vip, regular) in
                                     let regular = regular
                                     if regular > 0 {
@@ -163,6 +168,7 @@ class BlitzBuchGenreViewController: BaseViewController, BlitzBuchGenreViewContro
                                             model.locked = LockStatus.locked.rawValue
                                             cartItems?.append("\(String(model.id)),")
                                             BooksService.lockBook(bookId: model.id, lockStatus: .locked).subscribe { [weak self] (finished) in
+                                                self?.navigationController?.view.stopActivityIndicator()
                                                 let lockedBookId = (String(model.id))
                                                 self?.lockedBooks.append(lockedBookId)
                                                 var cartBooks = [String]()
@@ -183,6 +189,7 @@ class BlitzBuchGenreViewController: BaseViewController, BlitzBuchGenreViewContro
                                                 user.cartItems = cartItemsCleared
                                                 self?.viewModel?.userDefaults.saveUser(user)
                                                 UsersService.updateCartBooks(userId: id, bookIDs: clearBooksArray).subscribe { (subscribed) in
+                                                    self?.navigationController?.view.stopActivityIndicator()
                                                     //
                                                 } onError: { (error) in
                                                     self?.getAlert(errorString: error.localizedDescription, errorColor: Colors.orange)
@@ -267,6 +274,7 @@ extension BlitzBuchGenreViewController: UITableViewDataSource, UITableViewDelega
             cell.set(with: item, inVipController: false)
             cell.cellDelegate = self
             cell.delegate = self
+            cell.indexPath = indexPath
             return cell
         } else {
             return UITableViewCell()

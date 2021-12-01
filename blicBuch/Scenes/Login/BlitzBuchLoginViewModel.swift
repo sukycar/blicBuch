@@ -133,13 +133,17 @@ class BlitzBuchLoginViewModel: BaseViewModel, BlitzBuchLoginViewModelProtocol, S
                 DispatchQueue.main.async { [weak self] in
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logedIn"), object: nil)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        if let subscriptionPaid = self?.purchasedSubscriptions.count ?? 0 > 0 ? true : false {
-                            if subscriptionPaid != true {
-                                self?.newSubscription.value = "Your membership has expired or you have not fully completed the registration process.".localized()
-                            } else {
-                                self?.loggedIn.value = true
-                            }
-                        }
+                        
+                        // MARK: - ToDo - Uncomment code, remove self?.loggedIn.value
+
+//                        if let subscriptionPaid = self?.purchasedSubscriptions.count ?? 0 > 0 ? true : false {
+//                            if subscriptionPaid != true {
+//                                self?.newSubscription.value = "Your membership has expired or you have not fully completed the registration process.".localized()
+//                            } else {
+//                                self?.loggedIn.value = true
+//                            }
+//                        }
+                        self?.loggedIn.value = true
                     }
                 }
             }

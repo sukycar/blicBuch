@@ -127,6 +127,7 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
     
     private func removeBook(_ indexPath: IndexPath) {
         if let book = self.viewModel?.booksInCart?[indexPath.row] {
+            self.navigationController?.view.startActivityIndicator()
             self.viewModel?.booksInCart?.remove(at: indexPath.row)
             DispatchQueue.main.async {
                 self.customView.tableView.reloadData()
@@ -175,6 +176,7 @@ class BlitzBuchCartViewController: BaseViewController, BlitzBuchCartViewControll
                                             } onCompleted: {
                                             }.disposed(by: self.disposeBag)
                                         }
+                                        self.navigationController?.view.stopActivityIndicator()
                                     } onError: { error in
                                         self.showAlert(alertMessage: AlertMessage(title: "Network error", body: "Something went wrong".localized()))
                                     } onCompleted: {
